@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
+
+            <!--Top Categories -->
+            <RelativeLayout
+                android:id="@+id/cv1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/top_categories"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/line"
+                android:layout_below="@+id/cv1"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="2dp"
+                android:background="@color/line"/>
+
+
+            <!--Second Categories(Best Cusine) -->
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:id="@+id/cv2"
+                android:layout_below="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/bestCruisine"
+                    android:textSize="15sp"
+                    android:text="Best Cusine"
+                    android:textColor="@color/colorBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_alignParentLeft="true"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/second_categories"
+                    android:layout_marginTop="2dp"
+                    android:layout_below="@+id/bestCruisine"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/line2"
+                android:layout_below="@+id/cv2"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="2dp"
+                android:background="@color/line"/>
+
+            <!--Third Categories(Today Special's) -->
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:id="@+id/cv3"
+                android:layout_below="@+id/line2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/todaysSpecial"
+                    android:textSize="15sp"
+                    android:text="Today's Special"
+                    android:textColor="@color/colorBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_alignParentLeft="true"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/third_categories"
+                    android:layout_marginTop="2dp"
+                    android:layout_below="@+id/todaysSpecial"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+            </RelativeLayout>
+
+
+            <View
+                android:id="@+id/line3"
+                android:layout_below="@+id/cv3"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="2dp"
+                android:background="@color/line"/>
+
+            <!--Fourth Categories (Your Favourites ) 2 Column -->
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:id="@+id/cv4"
+                android:layout_below="@+id/line3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/yourFavourites"
+                    android:textSize="15sp"
+                    android:text="Your Favourites"
+                    android:textColor="@color/colorBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_alignParentLeft="true"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/fourth_categories"
+                    android:layout_marginTop="2dp"
+                    android:layout_below="@+id/yourFavourites"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/line4"
+                android:layout_below="@+id/cv4"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="2dp"
+                android:background="@color/line"/>
+
+            <!--Fifth Categories -->
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:id="@+id/cv5"
+                android:layout_below="@+id/line4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/test"
+                    android:textSize="15sp"
+                    android:text="Test"
+                    android:textColor="@color/colorBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_alignParentLeft="true"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/fifth_categories"
+                    android:layout_marginTop="2dp"
+                    android:layout_below="@+id/test"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

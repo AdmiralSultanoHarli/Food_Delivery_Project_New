@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.MenuDetailsScreenActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/shoppingCartButton"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/iconshop"
+            />
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/iconback"
+            />
+
+        <TextView
+            android:id="@+id/textMenu"
+            android:layout_width="59dp"
+            android:layout_height="28.5dp"
+            android:layout_centerInParent="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            android:text="Menu"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textColor="@color/colorBlack"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/itemCard"
+            android:layout_below="@+id/textMenu"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="183.3dp"
+            app:cardCornerRadius="10dp"
+            app:cardMaxElevation="2dp"
+            app:cardElevation="1dp">
+
+                <ImageView
+                    android:background="@drawable/butter_chicken"
+                    android:id="@+id/rectangleTop"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/itemInfo"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="172.3dp"
+            android:layout_below="@+id/itemCard"
+            app:cardCornerRadius="7dp"
+            android:elevation="8dp"
+            app:cardElevation="10dp"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/itemName"
+                    android:layout_width="115dp"
+                    android:layout_height="wrap_content"
+                    android:text="Butter Chicken"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignParentLeft="true"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:id="@+id/itemTotalPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="40.0000"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/itemTotalPrice"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="13dp">
+
+
+                    <TextView
+                        android:id="@+id/items"
+                        android:layout_alignParentLeft="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Items"
+                        android:textSize="15sp"
+                        android:textColor="@color/textGreyColor"
+                        />
+
+                    <TextView
+                        android:id="@+id/butterRoti"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/items"
+                        android:textSize="14sp"
+                        android:text="Butter Roti"
+                        android:layout_marginTop="10dp"
+                        android:layout_alignParentLeft="true"
+                        />
+
+                    <TextView
+                        android:id="@+id/butterChicken"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/butterRoti"
+                        android:textSize="14sp"
+                        android:text="Butter Chicken"
+                        android:layout_marginTop="10dp"
+                        android:layout_alignParentLeft="true"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/butterChicken"
+                        android:textSize="14sp"
+                        android:text="Butter Roti"
+                        android:layout_marginTop="10dp"
+                        android:layout_alignParentLeft="true"
+                        />
+
+                    <TextView
+                        android:id="@+id/quantity"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:text="Quantity"
+                        android:textColor="@color/textGreyColor"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/quantity"
+                        android:textSize="14sp"
+                        android:text="Butter Roti"
+                        android:layout_marginTop="10dp"
+                        android:layout_alignParentRight="true"
+                        />
+
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+
+
+        </androidx.cardview.widget.CardView>
+
+
+    </RelativeLayout>
+
+
+</ScrollView>

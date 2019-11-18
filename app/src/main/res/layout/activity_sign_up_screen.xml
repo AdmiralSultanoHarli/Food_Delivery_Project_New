@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.SignUpScreenActivity">
+
+    <ImageButton
+        android:id="@+id/buttonClose"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/iconx"
+        />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonClose"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:paddingLeft="2dp"
+        android:text="Sign Up Using Phone Number"
+        android:textSize="24sp"
+        android:textColor="@color/colorBlack" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="3"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/textView">
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:maxLength="30"
+            android:hint="Name"
+            android:paddingBottom="15dp"
+            android:paddingLeft="5dp"
+            android:textSize="20sp"
+            />
+
+        <EditText
+            android:id="@+id/phoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="20dp"
+            android:maxLength="13"
+            android:layout_marginRight="20dp"
+            android:hint="Phone Number"
+            android:inputType="phone"
+            android:paddingBottom="15dp"
+            android:paddingLeft="5dp"
+            android:textSize="20sp"
+            />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:hint="Password"
+            android:maxLength="16"
+            android:inputType="textPassword"
+            android:paddingBottom="15dp"
+            android:paddingLeft="5dp"
+            android:textSize="20sp"
+            />
+
+        <Button
+            android:id="@+id/buttonSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:background="@color/colorButton"
+            android:text="Sign Up"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:textColor="@color/colorWhite"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="45dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginBottom="15dp"
+        android:gravity="center"
+        android:lines="2"
+        android:textSize="10sp"
+        android:text="By creating an account, you agree to Khanval's Terms Of Service, Privacy Policy and Content Policies"
+        />
+
+
+</RelativeLayout>
