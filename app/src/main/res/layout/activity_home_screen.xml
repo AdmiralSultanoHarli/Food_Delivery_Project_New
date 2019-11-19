@@ -67,14 +67,24 @@
     </RelativeLayout>
 
 
-    <androidx.viewpager.widget.ViewPager
+    <!--<androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/topMenu"
         android:layout_above="@+id/nav_view">
 
-    </androidx.viewpager.widget.ViewPager>
+    </androidx.viewpager.widget.ViewPager>-->
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/foodCategoriesFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/topMenu"
+        android:layout_above="@+id/nav_view">
+
+    </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"

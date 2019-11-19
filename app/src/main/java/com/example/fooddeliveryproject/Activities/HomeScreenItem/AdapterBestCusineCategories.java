@@ -62,6 +62,4 @@ public class AdapterBestCusineCategories extends RecyclerView.Adapter<AdapterBes
         }
     }
 
-
-
 }

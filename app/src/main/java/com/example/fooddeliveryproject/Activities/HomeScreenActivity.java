@@ -10,19 +10,29 @@ import com.example.fooddeliveryproject.Activities.HomeScreenItem.ViewPagerAdapte
 import com.example.fooddeliveryproject.R;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 public class HomeScreenActivity extends AppCompatActivity {
 
-    ViewPager viewPager;
+    //ViewPager viewPager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
-        viewPager = findViewById(R.id.viewPager);
-        setupViewPager(viewPager);
+        TopFragment fragment = new TopFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.foodCategoriesFragment, fragment);
+        fragmentTransaction.commit();
+
+        //ViewPagerTest
+        /*viewPager = findViewById(R.id.viewPager);
+        setupViewPager(viewPager);*/
 
 
         /*ArrayList<ListTopClass> items = new ArrayList<>();
@@ -60,7 +70,8 @@ public class HomeScreenActivity extends AppCompatActivity {
 
     }
 
-    private void setupViewPager(ViewPager viewPager){
+    //ViewPagerTest
+    /*private void setupViewPager(ViewPager viewPager){
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         //adapter.addFragment(new BestCusineFragment(), null);
@@ -69,7 +80,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
 
 
-    }
+    }*/
 
     /*private void setupLinearLayout(View view){
 

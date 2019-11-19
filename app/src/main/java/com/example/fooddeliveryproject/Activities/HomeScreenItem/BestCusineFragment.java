@@ -47,13 +47,10 @@ public class BestCusineFragment extends Fragment{
 
         ArrayList<DataFood> dataFoods = getData();
 
-        //return super.onCreateView(inflater, container, savedInstanceState);
-
         bestCusineCategories = new AdapterBestCusineCategories(dataFoods, getActivity());
         secondCategories.setAdapter(bestCusineCategories);
 
         return v;
-
 
     }
 
