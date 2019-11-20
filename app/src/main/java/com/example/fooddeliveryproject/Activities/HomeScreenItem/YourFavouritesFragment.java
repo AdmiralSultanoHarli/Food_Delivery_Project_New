@@ -21,8 +21,8 @@ public class YourFavouritesFragment extends Fragment {
     RecyclerView fourthCategories;
     AdapterFavouriteCategories adapterFavouriteCategories;
 
-    String foods[] = {"Gado - Gado", "Ketoprak", "Ayam Goreng", "Nasi Padang"};
-    int img[] = {R.drawable.gado_gado, R.drawable.ketoprak, R.drawable.ayam_goreng, R.drawable.nasi_padang};
+    String foods[] = {"Maha Thali", "Samosa", "Murg Mussalam"};
+    int img[] = {R.drawable.maharashtra_thali, R.drawable.snacks, R.drawable.murg_musallam};
 
     public YourFavouritesFragment() {
 
