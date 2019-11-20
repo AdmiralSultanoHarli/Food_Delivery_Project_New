@@ -28,6 +28,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.foodCategoriesFragment, fragment);
+        
         fragmentTransaction.commit();
 
         //ViewPagerTest
