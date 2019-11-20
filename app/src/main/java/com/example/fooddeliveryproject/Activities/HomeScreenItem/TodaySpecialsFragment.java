@@ -25,8 +25,8 @@ public class TodaySpecialsFragment extends Fragment {
     RecyclerView thirdCategories;
     AdapterTodayCategories adapterTodayCategories;
 
-    String foods[] = {"Nasi Goreng", "Sate", "Bakso", "Pempek"};
-    int img[] = {R.drawable.nasi_goreng, R.drawable.sate, R.drawable.bakso, R.drawable.pempek};
+    String foods[] = {"Goan Special", "Maha Thali", "Panang Curry", "Chapati"};
+    int img[] = {R.drawable.goan_vegetarian_thali, R.drawable.maharashtra_thali, R.drawable.panang_curry, R.drawable.chapati};
 
     public TodaySpecialsFragment() {
 

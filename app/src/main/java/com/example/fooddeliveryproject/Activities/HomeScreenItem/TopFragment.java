@@ -25,7 +25,7 @@ public class TopFragment extends Fragment {
     RecyclerView top_categories ;
     AdapterTopCategories adapterTopCategories;
 
-    String foods[] = {"Maha Thali", "Dal Tadkda", "Goan Special", "Butter Chicken"};
+    //String foods[] = {"Maha Thali", "Dal Tadkda", "Goan Special", "Butter Chicken"};
     int img[] = {R.drawable.maharashtra_thali, R.drawable.dal_tadkda, R.drawable.goan_vegetarian_thali, R.drawable.butter_chicken};
 
     public TopFragment() {
@@ -60,10 +60,10 @@ public class TopFragment extends Fragment {
     private ArrayList<DataFood> getData(){
 
         ArrayList<DataFood> foodArrayList = new ArrayList<>();
-        for (int i = 0; i < foods.length; i++){
+        for (int i = 0; i < img.length; i++){
 
             DataFood dataFood = new DataFood();
-            dataFood.setFoodName(foods[i]);
+            //dataFood.setFoodName(foods[i]);
             dataFood.setImg(img[i]);
             foodArrayList.add(dataFood);
         }

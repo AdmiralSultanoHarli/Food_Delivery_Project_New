@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class YourFavouritesFragment extends Fragment {
 
-    RecyclerView fourthCategories, fourthCategoriesTwo;
+    RecyclerView fourthCategories;
     AdapterFavouriteCategories adapterFavouriteCategories;
 
     String foods[] = {"Gado - Gado", "Ketoprak", "Ayam Goreng", "Nasi Padang"};
@@ -36,22 +36,16 @@ public class YourFavouritesFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_your_favourites, container, false);
 
         fourthCategories = v.findViewById(R.id.fourth_categories);
-        fourthCategoriesTwo = v.findViewById(R.id.fourth_categories_two);
 
         fourthCategories.setHasFixedSize(true);
-        fourthCategoriesTwo.setHasFixedSize(true);
 
         RecyclerView.LayoutManager layoutManager4 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         fourthCategories.setLayoutManager(layoutManager4);
-
-        RecyclerView.LayoutManager layoutManager4_2 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        fourthCategoriesTwo.setLayoutManager(layoutManager4_2);
 
         ArrayList<DataFood> dataFoods = getData();
 
         adapterFavouriteCategories = new AdapterFavouriteCategories(dataFoods, getActivity());
         fourthCategories.setAdapter(adapterFavouriteCategories);
-        fourthCategoriesTwo.setAdapter(adapterFavouriteCategories);
 
         return v;
     }

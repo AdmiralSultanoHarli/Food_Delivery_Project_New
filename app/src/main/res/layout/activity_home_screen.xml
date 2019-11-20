@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.HomeScreenActivity">
+    tools:context=".Activities.Activity.HomeScreenActivity">
 
     <RelativeLayout
         android:id="@+id/topMenu"
@@ -118,6 +118,13 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/yourFavouritesFragment"
                 android:layout_below="@+id/todaySpecialsFragment"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/customFragment"
+                android:layout_below="@+id/yourFavouritesFragment"/>
 
         </RelativeLayout>
 

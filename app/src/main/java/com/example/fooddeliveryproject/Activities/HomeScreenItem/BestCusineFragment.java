@@ -23,8 +23,8 @@ public class BestCusineFragment extends Fragment{
 
     RecyclerView secondCategories;
     AdapterBestCusineCategories bestCusineAdapter;
-    String[] foods = {"Butter Chicken", "Goan Special", "Dal Tadka", "Maha Thali"};
-    int[] img = {R.drawable.butter_chicken, R.drawable.goan_vegetarian_thali, R.drawable.dal_tadkda, R.drawable.maharashtra_thali, R.drawable.butter_chicken};
+    String[] foods = {"Thai Special", "Indian", "Chinese", "Maha Thali"};
+    int[] img = {R.drawable.panang_curry, R.drawable.dal_tadkda, R.drawable.chow_mein, R.drawable.maharashtra_thali};
 
     public BestCusineFragment() {
 
