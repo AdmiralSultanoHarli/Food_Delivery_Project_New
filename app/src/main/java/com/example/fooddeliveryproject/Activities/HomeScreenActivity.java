@@ -24,11 +24,15 @@ public class HomeScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
-        TopFragment fragment = new TopFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.foodCategoriesFragment, fragment);
-        
+
+        TopFragment topFragment = new TopFragment();
+        fragmentTransaction.add(R.id.foodCategoriesFragment, topFragment, topFragment.getTag());
+
+//        BestCusineFragment bestCusineFragment = new BestCusineFragment();
+//        fragmentTransaction.add(R.id.bestCusineFragment, bestCusineFragment, bestCusineFragment.getTag());
+
         fragmentTransaction.commit();
 
         //ViewPagerTest

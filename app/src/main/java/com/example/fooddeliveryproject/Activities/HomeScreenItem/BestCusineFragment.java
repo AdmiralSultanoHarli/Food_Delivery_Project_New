@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class BestCusineFragment extends Fragment{
 
     RecyclerView secondCategories;
-    AdapterBestCusineCategories bestCusineCategories;
+    AdapterBestCusineCategories bestCusineAdapter;
     String[] foods = {"Ayam", "Nasi", "Soto", "Nasi Padang"};
     int[] img = {R.drawable.butter_chicken, R.drawable.goan_vegetarian_thali, R.drawable.dal_tadkda, R.drawable.maharashtra_thali, R.drawable.butter_chicken};
 
@@ -47,8 +47,8 @@ public class BestCusineFragment extends Fragment{
 
         ArrayList<DataFood> dataFoods = getData();
 
-        bestCusineCategories = new AdapterBestCusineCategories(dataFoods, getActivity());
-        secondCategories.setAdapter(bestCusineCategories);
+        bestCusineAdapter = new AdapterBestCusineCategories(dataFoods, getActivity());
+        secondCategories.setAdapter(bestCusineAdapter);
 
         return v;
 

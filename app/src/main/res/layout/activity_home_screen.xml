@@ -77,15 +77,31 @@
 
     </androidx.viewpager.widget.ViewPager>-->
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:id="@+id/foodCategoriesFragment"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/topMenu"
         android:layout_above="@+id/nav_view">
 
-    </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/bestCusineFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/foodCategoriesFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bestCusineFragment"
+            />
+
+
+
+    </RelativeLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"

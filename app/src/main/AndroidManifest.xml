@@ -13,7 +13,7 @@
 
         </activity>
         <activity
-            android:name=".Activities.HomeScreenActivity"
+            android:name=".Activities.SplashScreenActivity"
             android:label="@string/title_activity_home_screen"
             android:theme="@style/BlackStatusBar"></activity>
         <activity
@@ -27,7 +27,7 @@
             android:theme="@style/AppStatusBar" />
         <activity android:name=".MainActivity" />
 
-        <activity android:name=".Activities.SplashScreenActivity">
+        <activity android:name=".Activities.HomeScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

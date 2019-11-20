@@ -22,9 +22,9 @@ import java.util.ArrayList;
 
 public class TopFragment extends Fragment {
 
-    RecyclerView top_categories ,second_categories, third_categories, fourth_categories, fifth_categories;
+    RecyclerView top_categories ,/*second_categories,*/ third_categories, fourth_categories, fifth_categories;
     AdapterTopCategories mAdapter;
-    AdapterBestCusineCategories mAdapter2;
+   /* AdapterBestCusineCategories mAdapter2;*/
     AdapterTodayCategories mAdapter3;
     AdapterFavouriteCategories mAdapter4;
     AdapterTestCategories mAdapter5;
@@ -44,13 +44,13 @@ public class TopFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_food_categories, container, false);
 
         top_categories = v.findViewById(R.id.top_categories);
-        second_categories = v.findViewById(R.id.second_categories);
+//        second_categories = v.findViewById(R.id.second_categories);
         third_categories = v.findViewById(R.id.third_categories);
         fourth_categories = v.findViewById(R.id.fourth_categories);
         fifth_categories = v.findViewById(R.id.fifth_categories);
 
         top_categories.setHasFixedSize(true);
-        second_categories.setHasFixedSize(true);
+//        second_categories.setHasFixedSize(true);
         third_categories.setHasFixedSize(true);
         fourth_categories.setHasFixedSize(true);
         fifth_categories.setHasFixedSize(true);
@@ -58,8 +58,8 @@ public class TopFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         top_categories.setLayoutManager(layoutManager);
 
-        RecyclerView.LayoutManager layoutManager2 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        second_categories.setLayoutManager(layoutManager2);
+//        RecyclerView.LayoutManager layoutManager2 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+//        second_categories.setLayoutManager(layoutManager2);
 
         RecyclerView.LayoutManager layoutManager3 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         third_categories.setLayoutManager(layoutManager3);
@@ -75,8 +75,8 @@ public class TopFragment extends Fragment {
         mAdapter = new AdapterTopCategories(dataFoods, getActivity());
         top_categories.setAdapter(mAdapter);
 
-        mAdapter2 = new AdapterBestCusineCategories(dataFoods, getActivity());
-        second_categories.setAdapter(mAdapter2);
+//        mAdapter2 = new AdapterBestCusineCategories(dataFoods, getActivity());
+//        second_categories.setAdapter(mAdapter2);
 
         mAdapter3 = new AdapterTodayCategories(dataFoods, getActivity());
         third_categories.setAdapter(mAdapter3);

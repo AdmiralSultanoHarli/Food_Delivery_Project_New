@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/bestCruisine"
+                    android:id="@+id/bestCusine"
                     android:textSize="15sp"
                     android:text="Best Cusine"
                     android:textColor="@color/colorBlack"
@@ -66,7 +66,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/second_categories"
                     android:layout_marginTop="2dp"
-                    android:layout_below="@+id/bestCruisine"
+                    android:layout_below="@+id/bestCusine"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     />
