@@ -17,6 +17,7 @@ import androidx.viewpager.widget.ViewPager;
 public class HomeScreenActivity extends AppCompatActivity {
 
     //ViewPager viewPager;
+    //Admiral
 
 
     @Override
