@@ -77,31 +77,51 @@
 
     </androidx.viewpager.widget.ViewPager>-->
 
-    <RelativeLayout
+    <ScrollView
+        android:layout_below="@id/topMenu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/topMenu"
         android:layout_above="@+id/nav_view">
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:id="@+id/bestCusineFragment"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
+            android:layout_height="match_parent"
+            android:layout_below="@+id/topMenu"
+            android:layout_above="@+id/nav_view">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/topFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
 
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:id="@+id/foodCategoriesFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/bestCusineFragment"
-            />
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/bestCusineFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/topFragment"
+                />
 
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/todaySpecialsFragment"
+                android:layout_below="@+id/bestCusineFragment"/>
 
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/yourFavouritesFragment"
+                android:layout_below="@+id/todaySpecialsFragment"/>
 
-    </RelativeLayout>
+        </RelativeLayout>
+
+    </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"

@@ -5,8 +5,10 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BestCusineFragment;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.TodaySpecialsFragment;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.TopFragment;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.ViewPagerAdapter;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.YourFavouritesFragment;
 import com.example.fooddeliveryproject.R;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,10 +31,16 @@ public class HomeScreenActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         TopFragment topFragment = new TopFragment();
-        fragmentTransaction.add(R.id.foodCategoriesFragment, topFragment, topFragment.getTag());
+        fragmentTransaction.add(R.id.topFragment, topFragment , topFragment.getTag());
 
-//        BestCusineFragment bestCusineFragment = new BestCusineFragment();
-//        fragmentTransaction.add(R.id.bestCusineFragment, bestCusineFragment, bestCusineFragment.getTag());
+        BestCusineFragment bestCusineFragment = new BestCusineFragment();
+        fragmentTransaction.add(R.id.bestCusineFragment, bestCusineFragment, bestCusineFragment.getTag());
+
+        TodaySpecialsFragment todaySpecialsFragment = new TodaySpecialsFragment();
+        fragmentTransaction.add(R.id.todaySpecialsFragment, todaySpecialsFragment, todaySpecialsFragment.getTag());
+
+        YourFavouritesFragment yourFavouritesFragment = new YourFavouritesFragment();
+        fragmentTransaction.add(R.id.yourFavouritesFragment, yourFavouritesFragment, yourFavouritesFragment.getTag());
 
         fragmentTransaction.commit();
 

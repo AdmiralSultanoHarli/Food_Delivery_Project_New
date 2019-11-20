@@ -23,7 +23,7 @@ public class BestCusineFragment extends Fragment{
 
     RecyclerView secondCategories;
     AdapterBestCusineCategories bestCusineAdapter;
-    String[] foods = {"Ayam", "Nasi", "Soto", "Nasi Padang"};
+    String[] foods = {"Butter Chicken", "Goan Special", "Dal Tadka", "Maha Thali"};
     int[] img = {R.drawable.butter_chicken, R.drawable.goan_vegetarian_thali, R.drawable.dal_tadkda, R.drawable.maharashtra_thali, R.drawable.butter_chicken};
 
     public BestCusineFragment() {
@@ -36,7 +36,7 @@ public class BestCusineFragment extends Fragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_food_categories, container, false);
+        View v = inflater.inflate(R.layout.fragment_best_cusine, container, false);
 
         secondCategories = v.findViewById(R.id.second_categories);
 

@@ -25,7 +25,6 @@
         <activity
             android:name=".Activities.AppScreenActivity"
             android:theme="@style/AppStatusBar" />
-        <activity android:name=".MainActivity" />
 
         <activity android:name=".Activities.HomeScreenActivity">
             <intent-filter>

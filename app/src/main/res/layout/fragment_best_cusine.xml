@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp">
+
+    <!--Second Categories(Best Cusine) -->
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="2dp"
+        android:background="@color/line"/>
+
+    <TextView
+        android:id="@+id/test"
+        android:textSize="15sp"
+        android:layout_marginTop="10dp"
+        android:text="Best Cusine"
+        android:layout_below="@+id/line"
+        android:textColor="@color/colorBlack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_alignParentLeft="true"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/second_categories"
+        android:layout_marginTop="2dp"
+        android:layout_below="@+id/test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+
+</RelativeLayout>
