@@ -4,19 +4,18 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:hardwareAccelerated="true">
-        <activity android:name=".Activities.Activity.MenuDetailsScreenActivity">
-
-        </activity>
+        android:theme="@style/AppTheme">
+        <activity android:name=".Activities.ViewPager.MainActivity"></activity>
+        <activity android:name=".Activities.Activity.MenuDetailsScreenActivity"></activity>
         <activity
-            android:name=".Activities.Activity.SplashScreenActivity"
+            android:name=".Activities.Activity.HomeScreenActivity"
             android:label="@string/title_activity_home_screen"
-            android:theme="@style/BlackStatusBar"></activity>
+            android:theme="@style/BlackStatusBar" />
         <activity
             android:name=".Activities.Activity.LoginScreenActivity"
             android:theme="@style/BlackStatusBar" />
@@ -26,15 +25,13 @@
         <activity
             android:name=".Activities.Activity.AppScreenActivity"
             android:theme="@style/AppStatusBar" />
-
-        <activity android:name=".Activities.Activity.HomeScreenActivity">
+        <activity android:name=".Activities.Activity.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

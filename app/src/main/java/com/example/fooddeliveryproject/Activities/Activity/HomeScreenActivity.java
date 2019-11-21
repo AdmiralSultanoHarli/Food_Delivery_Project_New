@@ -10,29 +10,60 @@ import com.example.fooddeliveryproject.Activities.HomeScreenItem.TodaySpecialsFr
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.TopFragment;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.ViewPagerAdapter;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.YourFavouritesFragment;
+import com.example.fooddeliveryproject.Activities.ViewPager.Slide;
+import com.example.fooddeliveryproject.Activities.ViewPager.SliderPagerAdapter;
 import com.example.fooddeliveryproject.R;
+import com.google.android.material.tabs.TabLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class HomeScreenActivity extends AppCompatActivity {
 
-    //ViewPager viewPager;
-    //Admiral
-
+    private List<Slide> slideList;
+    private ViewPager sliderPager;
+    private TabLayout indicator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
+        sliderPager = findViewById(R.id.sliderPager);
+        indicator = findViewById(R.id.indicator);
+
+        slideList = new ArrayList<>();
+        slideList.add(new Slide(R.drawable.panang_curry));
+        slideList.add(new Slide(R.drawable.butter_chicken));
+        slideList.add(new Slide(R.drawable.maharashtra_thali));
+        slideList.add(new Slide(R.drawable.cashback));
+        slideList.add(new Slide(R.drawable.chow_mein));
+
+        SliderPagerAdapter adapter = new SliderPagerAdapter(this, slideList);
+        sliderPager.setAdapter(adapter);
+
+        //important
+        //for setting the padding to see the previous and next card view
+        sliderPager.setPadding(50,0,50,0);
+
+        //Setup time
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new HomeScreenActivity.SliderTimer(),0,4000);
+
+        indicator.setupWithViewPager(sliderPager, true);
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        TopFragment topFragment = new TopFragment();
-        fragmentTransaction.add(R.id.topFragment, topFragment , topFragment.getTag());
+        /*TopFragment topFragment = new TopFragment();
+        fragmentTransaction.add(R.id.topFragment, topFragment , topFragment.getTag());*/
 
         BestCusineFragment bestCusineFragment = new BestCusineFragment();
         fragmentTransaction.add(R.id.bestCusineFragment, bestCusineFragment, bestCusineFragment.getTag());
@@ -86,6 +117,32 @@ public class HomeScreenActivity extends AppCompatActivity {
 
         }*/
 
+    }
+
+    class SliderTimer extends TimerTask{
+
+
+        @Override
+        public void run() {
+
+            HomeScreenActivity.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+
+                    if (sliderPager.getCurrentItem()<slideList.size()-1){
+
+                        sliderPager.setCurrentItem(sliderPager.getCurrentItem()+1);
+
+                    }else {
+
+                        sliderPager.setCurrentItem(0);
+
+                    }
+
+                }
+            });
+
+        }
     }
 
     //ViewPagerTest
