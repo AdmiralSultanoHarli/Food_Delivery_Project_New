@@ -1,6 +1,7 @@
 package com.example.fooddeliveryproject.Activities.ViewPager;
 
 import android.content.Context;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.DataFood;
 import com.example.fooddeliveryproject.R;
 
 import java.util.List;
@@ -35,7 +37,19 @@ public class SliderPagerAdapter extends PagerAdapter {
         slideImage.setImageResource(mList.get(position).getImage());
 
         container.addView(slideLayout);
+
+        slideLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+
+            }
+        });
+
         return  slideLayout;
+
+
 
     }
 

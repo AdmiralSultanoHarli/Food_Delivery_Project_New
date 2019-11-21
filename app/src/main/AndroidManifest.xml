@@ -10,8 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.ViewPager.MainActivity"></activity>
-        <activity android:name=".Activities.Activity.MenuDetailsScreenActivity"></activity>
+        <activity android:name=".Activities.Activity.MenuScreenActivity"></activity>
+        <activity android:name=".Activities.ViewPager.TestingActivity" />
+        <activity android:name=".Activities.Activity.MenuDetailsScreenActivity" />
         <activity
             android:name=".Activities.Activity.HomeScreenActivity"
             android:label="@string/title_activity_home_screen"

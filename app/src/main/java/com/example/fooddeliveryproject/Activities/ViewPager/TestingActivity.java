@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainActivity extends AppCompatActivity {
+public class TestingActivity extends AppCompatActivity {
 
     private List<Slide> slideList;
     private ViewPager sliderPager;
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_testing);
 
         sliderPager = findViewById(R.id.sliderPager);
         indicator = findViewById(R.id.indicator);
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Setup Time
         Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new MainActivity.SliderTimer(), 0, 4000);
+        timer.scheduleAtFixedRate(new TestingActivity.SliderTimer(), 0, 4000);
 
         indicator.setupWithViewPager(sliderPager, true);
 
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void run() {
 
-            MainActivity.this.runOnUiThread(new Runnable() {
+            TestingActivity.this.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
 

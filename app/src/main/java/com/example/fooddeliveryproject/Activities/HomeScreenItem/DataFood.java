@@ -7,6 +7,7 @@ public class DataFood {
 
     public DataFood() {
 
+
     }
 
     public DataFood(String foodName, int img) {
