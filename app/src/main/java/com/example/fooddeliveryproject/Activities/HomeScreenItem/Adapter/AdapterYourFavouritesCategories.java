@@ -1,4 +1,4 @@
-package com.example.fooddeliveryproject.Activities.HomeScreenItem;
+package com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,23 +10,24 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.DataFood;
 import com.example.fooddeliveryproject.R;
 
 import java.util.List;
 
-public class AdapterTodayCategories extends RecyclerView.Adapter<AdapterTodayCategories.ViewHolder> {
+public class AdapterYourFavouritesCategories extends RecyclerView.Adapter<AdapterYourFavouritesCategories.ViewHolder> {
 
     List<DataFood> topList;
     Context context;
 
-    public AdapterTodayCategories(List<DataFood> topList, Context context) {
+    public AdapterYourFavouritesCategories(List<DataFood> topList, Context context) {
         this.topList = topList;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public AdapterTodayCategories.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public AdapterYourFavouritesCategories.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.view_item_categories, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(v);
@@ -35,7 +36,7 @@ public class AdapterTodayCategories extends RecyclerView.Adapter<AdapterTodayCat
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdapterTodayCategories.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull AdapterYourFavouritesCategories.ViewHolder viewHolder, int i) {
 
         viewHolder.foodName.setText(topList.get(i).getFoodName());
         viewHolder.img.setImageResource(topList.get(i).getImg());

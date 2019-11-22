@@ -1,4 +1,4 @@
-package com.example.fooddeliveryproject.Activities.HomeScreenItem;
+package com.example.fooddeliveryproject.Activities.HomeScreenItem.Fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,10 +11,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterTodayCategories;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.DataFood;
 import com.example.fooddeliveryproject.R;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -44,8 +45,8 @@ public class TodaySpecialsFragment extends Fragment {
 
         thirdCategories.setHasFixedSize(true);
 
-        RecyclerView.LayoutManager layoutManager3 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        thirdCategories.setLayoutManager(layoutManager3);
+        RecyclerView.LayoutManager layoutManagerTodaySpecials = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        thirdCategories.setLayoutManager(layoutManagerTodaySpecials);
 
         ArrayList <DataFood> dataFoods = getData();
 

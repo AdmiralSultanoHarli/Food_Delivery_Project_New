@@ -1,4 +1,4 @@
-package com.example.fooddeliveryproject.Activities.HomeScreenItem;
+package com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,42 +10,44 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.DataFood;
 import com.example.fooddeliveryproject.R;
 
 import java.util.List;
 
-public class AdapterCustomCategories extends RecyclerView.Adapter<AdapterCustomCategories.ViewHolder> {
+public class AdapterBestCusineCategories extends RecyclerView.Adapter<AdapterBestCusineCategories.ViewHolder> {
 
     List<DataFood> topList;
     Context context;
 
-    public AdapterCustomCategories(List<DataFood> topList, Context context) {
+    public AdapterBestCusineCategories(List<DataFood> topList, Context context) {
         this.topList = topList;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public AdapterCustomCategories.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public AdapterBestCusineCategories.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.view_item_categories, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(v);
         return viewHolder;
+
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdapterCustomCategories.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull AdapterBestCusineCategories.ViewHolder viewHolder, int i) {
 
         viewHolder.foodName.setText(topList.get(i).getFoodName());
         viewHolder.img.setImageResource(topList.get(i).getImg());
 
     }
 
+
     @Override
     public int getItemCount() {
         return topList.size();
     }
-
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
@@ -57,6 +59,7 @@ public class AdapterCustomCategories extends RecyclerView.Adapter<AdapterCustomC
 
             img = itemView.findViewById(R.id.img);
             foodName = itemView.findViewById(R.id.tvNameFood);
+
         }
     }
 

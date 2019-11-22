@@ -1,7 +1,6 @@
-package com.example.fooddeliveryproject.Activities.HomeScreenItem;
+package com.example.fooddeliveryproject.Activities.HomeScreenItem.Fragment;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterYourFavouritesCategories;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.DataFood;
 import com.example.fooddeliveryproject.R;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 public class YourFavouritesFragment extends Fragment {
 
     RecyclerView fourthCategories;
-    AdapterFavouriteCategories adapterFavouriteCategories;
+    AdapterYourFavouritesCategories adapterYourFavouritesCategories;
 
     String foods[] = {"Maha Thali", "Samosa", "Murg Mussalam"};
     int img[] = {R.drawable.maharashtra_thali, R.drawable.snacks, R.drawable.murg_musallam};
@@ -39,13 +40,13 @@ public class YourFavouritesFragment extends Fragment {
 
         fourthCategories.setHasFixedSize(true);
 
-        RecyclerView.LayoutManager layoutManager4 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        fourthCategories.setLayoutManager(layoutManager4);
+        RecyclerView.LayoutManager layoutManagerYourFavourites = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        fourthCategories.setLayoutManager(layoutManagerYourFavourites);
 
         ArrayList<DataFood> dataFoods = getData();
 
-        adapterFavouriteCategories = new AdapterFavouriteCategories(dataFoods, getActivity());
-        fourthCategories.setAdapter(adapterFavouriteCategories);
+        adapterYourFavouritesCategories = new AdapterYourFavouritesCategories(dataFoods, getActivity());
+        fourthCategories.setAdapter(adapterYourFavouritesCategories);
 
         return v;
     }

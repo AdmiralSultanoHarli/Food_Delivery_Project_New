@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Activities.Activity.MenuScreenActivity"></activity>
-        <activity android:name=".Activities.ViewPager.TestingActivity" />
+        <activity android:name=".Activities.JustForTest.TestingActivity" />
         <activity android:name=".Activities.Activity.MenuDetailsScreenActivity" />
         <activity
             android:name=".Activities.Activity.HomeScreenActivity"

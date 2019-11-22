@@ -1,17 +1,13 @@
 package com.example.fooddeliveryproject.Activities.Activity;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.LinearLayout;
 
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.BestCusineFragment;
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.CustomFragment;
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.TodaySpecialsFragment;
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.TopFragment;
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.ViewPagerAdapter;
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.YourFavouritesFragment;
-import com.example.fooddeliveryproject.Activities.ViewPager.Slide;
-import com.example.fooddeliveryproject.Activities.ViewPager.SliderPagerAdapter;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.Fragment.BestCusineFragment;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.Fragment.CustomFragment;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.Fragment.TodaySpecialsFragment;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.Fragment.YourFavouritesFragment;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.DataTopSlide;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterTopSliderPager;
 import com.example.fooddeliveryproject.R;
 import com.google.android.material.tabs.TabLayout;
 
@@ -27,7 +23,7 @@ import java.util.TimerTask;
 
 public class HomeScreenActivity extends AppCompatActivity {
 
-    private List<Slide> slideList;
+    private List<DataTopSlide> slideList;
     private ViewPager sliderPager;
     private TabLayout indicator;
 
@@ -40,13 +36,13 @@ public class HomeScreenActivity extends AppCompatActivity {
         indicator = findViewById(R.id.indicator);
 
         slideList = new ArrayList<>();
-        slideList.add(new Slide(R.drawable.panang_curry));
-        slideList.add(new Slide(R.drawable.butter_chicken));
-        slideList.add(new Slide(R.drawable.maharashtra_thali));
-        slideList.add(new Slide(R.drawable.cashback));
-        slideList.add(new Slide(R.drawable.chow_mein));
+        slideList.add(new DataTopSlide(R.drawable.panang_curry));
+        slideList.add(new DataTopSlide(R.drawable.butter_chicken));
+        slideList.add(new DataTopSlide(R.drawable.maharashtra_thali));
+        slideList.add(new DataTopSlide(R.drawable.cashback));
+        slideList.add(new DataTopSlide(R.drawable.chow_mein));
 
-        SliderPagerAdapter adapter = new SliderPagerAdapter(this, slideList);
+        AdapterTopSliderPager adapter = new AdapterTopSliderPager(this, slideList);
         sliderPager.setAdapter(adapter);
 
         //important

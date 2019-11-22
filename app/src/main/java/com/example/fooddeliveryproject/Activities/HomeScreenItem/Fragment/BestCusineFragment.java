@@ -1,4 +1,4 @@
-package com.example.fooddeliveryproject.Activities.HomeScreenItem;
+package com.example.fooddeliveryproject.Activities.HomeScreenItem.Fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterBestCusineCategories;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.DataFood;
 import com.example.fooddeliveryproject.R;
 
 import java.util.ArrayList;
@@ -42,8 +44,8 @@ public class BestCusineFragment extends Fragment{
 
         secondCategories.setHasFixedSize(true);
 
-        RecyclerView.LayoutManager layoutManager2 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        secondCategories.setLayoutManager(layoutManager2);
+        RecyclerView.LayoutManager layoutManagerBestCusine = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        secondCategories.setLayoutManager(layoutManagerBestCusine);
 
         ArrayList<DataFood> dataFoods = getData();
 

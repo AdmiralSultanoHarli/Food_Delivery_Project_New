@@ -1,10 +1,12 @@
-package com.example.fooddeliveryproject.Activities.ViewPager;
+package com.example.fooddeliveryproject.Activities.JustForTest;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterTopSliderPager;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.DataTopSlide;
 import com.example.fooddeliveryproject.R;
 import com.google.android.material.tabs.TabLayout;
 
@@ -15,7 +17,7 @@ import java.util.TimerTask;
 
 public class TestingActivity extends AppCompatActivity {
 
-    private List<Slide> slideList;
+    private List<DataTopSlide> slideList;
     private ViewPager sliderPager;
     private TabLayout indicator;
 
@@ -31,12 +33,12 @@ public class TestingActivity extends AppCompatActivity {
         // Prepare a list of slides
 
         slideList = new ArrayList<>();
-        slideList.add(new Slide(R.drawable.beverage));
-        slideList.add(new Slide(R.drawable.butter_chicken));
-        slideList.add(new Slide(R.drawable.chapati));
-        slideList.add(new Slide(R.drawable.cashback));
+        slideList.add(new DataTopSlide(R.drawable.beverage));
+        slideList.add(new DataTopSlide(R.drawable.butter_chicken));
+        slideList.add(new DataTopSlide(R.drawable.chapati));
+        slideList.add(new DataTopSlide(R.drawable.cashback));
 
-        SliderPagerAdapter adapter = new SliderPagerAdapter(this, slideList);
+        AdapterTopSliderPager adapter = new AdapterTopSliderPager(this, slideList);
         sliderPager.setAdapter(adapter);
 
         //Setup Time

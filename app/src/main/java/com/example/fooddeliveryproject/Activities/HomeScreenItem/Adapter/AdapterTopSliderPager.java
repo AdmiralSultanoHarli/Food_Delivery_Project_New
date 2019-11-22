@@ -1,7 +1,6 @@
-package com.example.fooddeliveryproject.Activities.ViewPager;
+package com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter;
 
 import android.content.Context;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,17 +9,17 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.DataFood;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.DataTopSlide;
 import com.example.fooddeliveryproject.R;
 
 import java.util.List;
 
-public class SliderPagerAdapter extends PagerAdapter {
+public class AdapterTopSliderPager extends PagerAdapter {
 
     private Context mContext;
-    private List<Slide> mList;
+    private List<DataTopSlide> mList;
 
-    public SliderPagerAdapter(Context mContext, List<Slide> mList) {
+    public AdapterTopSliderPager(Context mContext, List<DataTopSlide> mList) {
         this.mContext = mContext;
         this.mList = mList;
     }
@@ -30,7 +29,7 @@ public class SliderPagerAdapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
 
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View slideLayout = inflater.inflate(R.layout.view_top_categories, null);
+        View slideLayout = inflater.inflate(R.layout.view_top_categories, container,false);
 
         ImageView slideImage = slideLayout.findViewById(R.id.img);
 

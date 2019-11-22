@@ -1,11 +1,11 @@
-package com.example.fooddeliveryproject.Activities.ViewPager;
+package com.example.fooddeliveryproject.Activities.HomeScreenItem;
 
-public class Slide {
+public class DataTopSlide {
 
     private int image;
     // Add more field depending what you want
 
-    public Slide(int image) {
+    public DataTopSlide(int image) {
         this.image = image;
     }
 
