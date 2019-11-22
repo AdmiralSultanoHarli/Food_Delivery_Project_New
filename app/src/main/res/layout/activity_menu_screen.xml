@@ -11,10 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="50dp">
 
-        <ImageView
+        <ImageButton
+            android:id="@+id/backButton"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/iconback"
+            android:background="@drawable/iconback"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
@@ -31,23 +32,32 @@
             android:textSize="20sp"
             />
 
-        <ImageView
+        <ImageButton
+            android:id="@+id/cartButton"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/iconshop"/>
+            android:background="@drawable/iconshop"/>
 
     </RelativeLayout>
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/menu1">
 
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/menuScreenFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            />
 
-    </RelativeLayout>
+    </ScrollView>
 
 
 

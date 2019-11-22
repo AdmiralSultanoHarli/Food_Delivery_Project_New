@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class CustomFragment extends Fragment {
 
     RecyclerView customCategories;
-    AdapterCustomCategories customCategoriesAdapter;
+    AdapterCustomCategories adapterCustomCategories;
 
     String foods[] = {"Beverages", "Snacks", "Sweets"};
     int img[] = {R.drawable.beverage, R.drawable.snacks, R.drawable.sweets};
@@ -45,8 +45,8 @@ public class CustomFragment extends Fragment {
 
         ArrayList<DataFood> dataFoods = getData();
 
-        customCategoriesAdapter = new AdapterCustomCategories(dataFoods, getActivity());
-        customCategories.setAdapter(customCategoriesAdapter);
+        adapterCustomCategories = new AdapterCustomCategories(dataFoods, getActivity());
+        customCategories.setAdapter(adapterCustomCategories);
 
         return v;
     }

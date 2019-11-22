@@ -12,5 +12,6 @@
     <color name="colorBlack">#000000</color>
     <color name="colorButton">#4A86E8</color>
     <color name="textGreyColor">#464646</color>
+    <color name="colorButtonAddToChart">#E8E8E8</color>
     <color name="line">#D1D1D1</color>
 </resources>

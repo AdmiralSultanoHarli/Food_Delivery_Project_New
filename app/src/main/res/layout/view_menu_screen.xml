@@ -1,17 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="100dp"
+    android:layout_gravity="center"
+    android:layout_marginBottom="3dp">
 
-    <androidx.cardview.widget.CardView
+    <RelativeLayout
+        android:id="@+id/menuScreen"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="86dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/imgCard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="4dp"
+                android:layout_marginTop="5dp">
         
-        <ImageView
-            android:layout_width="120dp"
-            android:layout_height="80dp"
-            />
-        
-    </androidx.cardview.widget.CardView>
+                <ImageView
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:id="@+id/img"
+                    android:background="@drawable/rounded_image_corner"
+                    android:layout_width="120dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/maharashtra_thali"
+                    android:scaleType="fitXY"
+                    />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/foodName"
+                android:layout_width="137dp"
+                android:layout_height="wrap_content"
+                android:text="Veg Thali"
+                android:textColor="@color/colorBlack"
+                android:layout_toRightOf="@+id/imgCard"
+                android:layout_marginLeft="10dp"
+                android:textSize="17sp"
+                android:layout_alignParentTop="true"
+                />
+
+            <TextView
+                android:id="@+id/foodDescription"
+                android:layout_width="114dp"
+                android:layout_height="wrap_content"
+                android:text="3 puri + 2 vegitable dish + rice + dal + sweet"
+                android:layout_toRightOf="@+id/imgCard"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="3dp"
+                android:textSize="11sp"
+                android:lines="3"
+                android:layout_below="@+id/foodName"/>
+
+            <TextView
+                android:id="@+id/foodPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="10dp"
+                android:text="30.000"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                />
+
+            <Button
+                android:id="@+id/buttonAddToChart"
+                android:layout_width="88dp"
+                android:layout_height="19dp"
+                android:background="@drawable/rounded_button_addtochart"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5dp"
+                android:textAllCaps="false"
+                android:text="Add To Chart"
+                android:textColor="#747474"
+                android:textSize="12sp"
+                android:translationY="-6dp"
+                />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/line"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/menuScreen"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="2dp"
+        android:background="@color/line"/>
 
 </RelativeLayout>

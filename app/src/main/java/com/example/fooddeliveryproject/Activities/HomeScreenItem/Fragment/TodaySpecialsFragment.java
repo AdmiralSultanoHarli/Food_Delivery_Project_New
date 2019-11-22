@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class TodaySpecialsFragment extends Fragment {
 
-    RecyclerView thirdCategories;
+    RecyclerView todaySpecialsCategories;
     AdapterTodayCategories adapterTodayCategories;
 
     String foods[] = {"Goan Special", "Maha Thali", "Panang Curry", "Chapati"};
@@ -41,17 +41,17 @@ public class TodaySpecialsFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_today_special, container, false);
 
-        thirdCategories = v.findViewById(R.id.third_categories);
+        todaySpecialsCategories = v.findViewById(R.id.third_categories);
 
-        thirdCategories.setHasFixedSize(true);
+        todaySpecialsCategories.setHasFixedSize(true);
 
         RecyclerView.LayoutManager layoutManagerTodaySpecials = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        thirdCategories.setLayoutManager(layoutManagerTodaySpecials);
+        todaySpecialsCategories.setLayoutManager(layoutManagerTodaySpecials);
 
         ArrayList <DataFood> dataFoods = getData();
 
         adapterTodayCategories = new AdapterTodayCategories(dataFoods, getActivity());
-        thirdCategories.setAdapter(adapterTodayCategories);
+        todaySpecialsCategories.setAdapter(adapterTodayCategories);
 
         return v;
     }

@@ -23,8 +23,8 @@ import java.util.ArrayList;
 
 public class BestCusineFragment extends Fragment{
 
-    RecyclerView secondCategories;
-    AdapterBestCusineCategories bestCusineAdapter;
+    RecyclerView bestCusineCategories;
+    AdapterBestCusineCategories adapterBestCusineCategories;
     String[] foods = {"Thai Special", "Indian", "Chinese", "Maha Thali"};
     int[] img = {R.drawable.panang_curry, R.drawable.dal_tadkda, R.drawable.chow_mein, R.drawable.maharashtra_thali};
 
@@ -40,17 +40,17 @@ public class BestCusineFragment extends Fragment{
 
         View v = inflater.inflate(R.layout.fragment_best_cusine, container, false);
 
-        secondCategories = v.findViewById(R.id.second_categories);
+        bestCusineCategories = v.findViewById(R.id.second_categories);
 
-        secondCategories.setHasFixedSize(true);
+        bestCusineCategories.setHasFixedSize(true);
 
         RecyclerView.LayoutManager layoutManagerBestCusine = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        secondCategories.setLayoutManager(layoutManagerBestCusine);
+        bestCusineCategories.setLayoutManager(layoutManagerBestCusine);
 
         ArrayList<DataFood> dataFoods = getData();
 
-        bestCusineAdapter = new AdapterBestCusineCategories(dataFoods, getActivity());
-        secondCategories.setAdapter(bestCusineAdapter);
+        adapterBestCusineCategories = new AdapterBestCusineCategories(dataFoods, getActivity());
+        bestCusineCategories.setAdapter(adapterBestCusineCategories);
 
         return v;
 
