@@ -5,16 +5,18 @@ public class DataFoodMenu {
     String foodName;
     String foodDescription;
     String foodPrice;
+    String foodPriceDiscount;
     int img;
 
     public DataFoodMenu() {
 
     }
 
-    public DataFoodMenu(String foodName, String foodDescription, String foodPrice, int img) {
+    public DataFoodMenu(String foodName, String foodDescription, String foodPrice, String foodPriceDiscount, int img) {
         this.foodName = foodName;
         this.foodDescription = foodDescription;
         this.foodPrice = foodPrice;
+        this.foodPriceDiscount = foodPriceDiscount;
         this.img = img;
     }
 
@@ -28,6 +30,10 @@ public class DataFoodMenu {
 
     public String getFoodPrice() {
         return foodPrice;
+    }
+
+    public String getFoodPriceDiscount() {
+        return foodPriceDiscount;
     }
 
     public int getImg() {
@@ -44,6 +50,10 @@ public class DataFoodMenu {
 
     public void setFoodPrice(String foodPrice) {
         this.foodPrice = foodPrice;
+    }
+
+    public void setFoodPriceDiscount(String foodPriceDiscount) {
+        this.foodPriceDiscount = foodPriceDiscount;
     }
 
     public void setImg(int img) {

@@ -69,6 +69,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:layout_marginBottom="15dp"
             android:layout_centerInParent="true"
             android:layout_width="match_parent"
             android:layout_height="172.3dp"
@@ -80,7 +81,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/itemName"
@@ -98,19 +99,31 @@
                     android:id="@+id/itemTotalPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
+                    android:textSize="14sp"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="10dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:text="40.0000"
                     />
 
+                <TextView
+                    android:id="@+id/itemTotalPriceDiscount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="55.000"
+                    android:textSize="12sp"
+                    android:layout_below="@+id/itemTotalPrice"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="8dp"/>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_below="@id/itemTotalPrice"
                     android:layout_centerInParent="true"
-                    android:layout_margin="13dp">
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="15dp">
 
 
                     <TextView
@@ -163,16 +176,6 @@
                         android:textSize="15sp"
                         android:text="Quantity"
                         android:textColor="@color/textGreyColor"
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/quantity"
-                        android:textSize="14sp"
-                        android:text="Butter Roti"
-                        android:layout_marginTop="10dp"
-                        android:layout_alignParentRight="true"
                         />
 
 

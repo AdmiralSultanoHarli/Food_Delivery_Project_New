@@ -17,23 +17,27 @@
         android:weightSum="3"
         android:orientation="vertical">
 
+
         <Button
             android:id="@+id/facebookButton"
             android:layout_width="290dp"
             android:layout_height="50dp"
-            android:layout_weight="1"
-            android:background="@drawable/rounded_button_facebook"
             android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="12dp"
             android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
             android:layout_marginBottom="12dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_button_facebook"
+            android:drawableLeft="@drawable/facebook20"
+            android:drawablePadding="-55dp"
+            android:paddingLeft="35dp"
             android:text="Facebook"
-            android:gravity="center"
+            android:textAlignment="center"
             android:textAllCaps="false"
-            android:textSize="24sp"
             android:textColor="@color/colorWhite"
-            />
+            android:textSize="24sp"
+            tools:ignore="RtlCompat" />
 
         <Button
             android:id="@+id/googleButton"
@@ -50,6 +54,9 @@
             android:textAllCaps="false"
             android:textSize="24sp"
             android:textColor="@color/colorWhite"
+            android:drawableLeft="@drawable/google20"
+            android:paddingLeft="35dp"
+            android:drawablePadding="-55dp"
             />
 
         <Button

@@ -27,7 +27,7 @@ public class AdapterTopSliderPager extends PagerAdapter {
 
     @NonNull
     @Override
-    public Object instantiateItem(@NonNull ViewGroup container, int position) {
+    public Object instantiateItem(@NonNull ViewGroup container, final int position) {
 
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View slideLayout = inflater.inflate(R.layout.view_top_categories, container,false);
@@ -42,14 +42,12 @@ public class AdapterTopSliderPager extends PagerAdapter {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(mContext, "Not Yet", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Not Yet " + mList.get(position).getImage(), Toast.LENGTH_SHORT).show();
 
             }
         });
 
         return  slideLayout;
-
-
 
     }
 

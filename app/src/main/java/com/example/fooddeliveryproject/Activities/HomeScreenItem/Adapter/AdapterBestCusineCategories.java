@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,6 +39,7 @@ public class AdapterBestCusineCategories extends RecyclerView.Adapter<AdapterBes
             @Override
             public void onClick(View view) {
 
+                //Toast.makeText(context, "Test Click! " + String.valueOf(viewHolder.getAdapterPosition()), Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(context, MenuScreenActivity.class);
                 context.startActivity(i);
 
@@ -66,7 +68,7 @@ public class AdapterBestCusineCategories extends RecyclerView.Adapter<AdapterBes
         public ImageView img;
         public TextView foodName;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull final View itemView) {
             super(itemView);
 
             img = itemView.findViewById(R.id.img);

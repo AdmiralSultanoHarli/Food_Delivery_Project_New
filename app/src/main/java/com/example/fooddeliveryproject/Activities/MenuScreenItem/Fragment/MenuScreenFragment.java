@@ -29,6 +29,7 @@ public class MenuScreenFragment extends Fragment {
     String[] foodName = {"Veg Thali", "Goan Special", "Butter Chicken", "Bhendi Masala", "Murg Musallam", "Basmati Rice Chicken Biryani", "Jeera Alo", "Mix Veggies"};
     String[] foodDescription = {"3 puri + 2 vegitable dish + rice + dal + sweet", "3 Goan special dish + rice + dal + sweet", "3 Butter Roti + Butter chicken + rice", "3 Butter Roti + Bhendi Masala + rice", "3 Butter Roti + rostated chicken + rice", "basmati rice chicken biryani", "3 Butter Roti + Jeera alo + rice", "3 Butter Roti + mix vegitables + rice"};
     String[] foodPrice = {"30.000", "50.000", "40.000", "40.000", "100.000", "50.000", "30.000", "40.000"};
+    String[] foodPriceDiscount = {"40.000", "65.000", "55.000", "50.000", "115.000", "55.000", "40.000", "45.000"};
     int[] img = {R.drawable.maharashtra_thali, R.drawable.goan_vegetarian_thali, R.drawable.butter_chicken, R.drawable.bhindi_masala, R.drawable.murg_musallam, R.drawable.basmati_rice_chicken_biryani, R.drawable.jeera_alo, R.drawable.mix_veggies};
 
     public MenuScreenFragment() {
@@ -69,6 +70,7 @@ public class MenuScreenFragment extends Fragment {
             dataFoodMenu.setFoodName(foodName[i]);
             dataFoodMenu.setFoodDescription(foodDescription[i]);
             dataFoodMenu.setFoodPrice(foodPrice[i]);
+            dataFoodMenu.setFoodPriceDiscount(foodPriceDiscount[i]);
             foodMenuArrayList.add(dataFoodMenu);
         }
 
