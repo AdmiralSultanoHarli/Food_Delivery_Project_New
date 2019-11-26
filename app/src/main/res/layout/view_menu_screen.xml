@@ -98,6 +98,61 @@
                 android:translationY="-6dp"
                 />
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/buttonAddPlusMinusChart"
+                android:visibility="gone"
+                android:layout_width="57dp"
+                android:layout_height="22dp"
+                android:background="@color/colorWhite"
+                app:cardCornerRadius="4dp"
+                android:elevation="5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="6dp"
+                >
+
+                <RelativeLayout
+                    android:background="@color/colorWhite"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/decreaseChartQuantity"
+                        android:layout_width="19dp"
+                        android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:text="-"
+                        android:gravity="center"
+                        android:textColor="@color/colorButton"
+                        android:textSize="14sp"
+                        android:layout_alignParentLeft="true"/>
+
+                    <TextView
+                        android:id="@+id/chartQuantity"
+                        android:layout_width="19dp"
+                        android:layout_height="match_parent"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:layout_centerInParent="true"/>
+
+                    <TextView
+                        android:id="@+id/increaseChartQuantity"
+                        android:layout_width="19dp"
+                        android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:text="+"
+                        android:textColor="@color/colorButton"
+                        android:textSize="14sp"
+                        android:layout_alignParentRight="true"/>
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
         </RelativeLayout>
 
     </RelativeLayout>

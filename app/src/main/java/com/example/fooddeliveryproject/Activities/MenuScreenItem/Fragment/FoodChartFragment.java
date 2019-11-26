@@ -29,7 +29,7 @@ public class FoodChartFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.dialog_food_chart,container, false);
+        View v = inflater.inflate(R.layout.view_floating_food_chart,container, false);
 
         buttonAddToChartThenOrder = v.findViewById(R.id.buttonAddToChartThenOrder);
 

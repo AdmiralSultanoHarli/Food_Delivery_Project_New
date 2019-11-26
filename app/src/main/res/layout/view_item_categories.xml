@@ -4,15 +4,17 @@
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp"
     android:layout_gravity="center">
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="8dp"
         app:cardCornerRadius="5dp"
-        app:cardElevation="5dp">
+        app:cardElevation="3dp">
 
         <RelativeLayout
             android:layout_width="130dp"

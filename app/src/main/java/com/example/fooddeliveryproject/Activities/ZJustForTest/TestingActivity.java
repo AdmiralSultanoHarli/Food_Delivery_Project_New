@@ -1,4 +1,4 @@
-package com.example.fooddeliveryproject.Activities.JustForTest;
+package com.example.fooddeliveryproject.Activities.ZJustForTest;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;

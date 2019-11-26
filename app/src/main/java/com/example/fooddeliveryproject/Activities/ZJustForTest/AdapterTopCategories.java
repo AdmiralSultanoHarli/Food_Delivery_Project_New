@@ -1,4 +1,4 @@
-package com.example.fooddeliveryproject.Activities.JustForTest;
+package com.example.fooddeliveryproject.Activities.ZJustForTest;
 
 import android.content.Context;
 import android.view.LayoutInflater;

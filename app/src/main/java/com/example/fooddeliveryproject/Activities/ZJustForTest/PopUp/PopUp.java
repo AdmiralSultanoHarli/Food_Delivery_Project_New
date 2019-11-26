@@ -1,4 +1,4 @@
-package com.example.fooddeliveryproject.Activities.JustForTest.PopUp;
+package com.example.fooddeliveryproject.Activities.ZJustForTest.PopUp;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -14,7 +14,7 @@ public class PopUp extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialog_food_chart);
+        setContentView(R.layout.view_floating_food_chart);
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);

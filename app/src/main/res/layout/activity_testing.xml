@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".Activities.JustForTest.TestingActivity">
+    tools:context=".Activities.ZJustForTest.TestingActivity">
 
    <androidx.viewpager.widget.ViewPager
        android:layout_width="match_parent"
