@@ -16,6 +16,10 @@
             android:theme="@style/BlackStatusBar"></activity>
         <activity android:name=".Activities.JustForTest.TestingActivity" />
         <activity android:name=".Activities.Activity.MenuDetailsScreenActivity" />
+
+        <activity
+            android:name=".Activities.JustForTest.PopUp.PopUp"
+            android:theme="@style/AppTheme.CustomTheme"></activity>
         <activity
             android:name=".Activities.Activity.HomeScreenActivity"
             android:label="@string/title_activity_home_screen"

@@ -10,18 +10,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddeliveryproject.Activities.MenuScreenItem.DataFoodMenu;
+import com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment.FoodChartFragment;
 import com.example.fooddeliveryproject.R;
-import com.google.android.material.bottomnavigation.BottomNavigationMenu;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.ViewHolder> {
@@ -85,6 +82,17 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
         viewHolder.foodPrice.setText(menuList.get(i).getFoodPrice());
         viewHolder.foodPriceDiscount.setText(menuList.get(i).getFoodPriceDiscount());
 
+        viewHolder.buttonAddToChart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                FoodChartFragment myFragment = new FoodChartFragment();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.foodChartFragment, myFragment).addToBackStack(null).commit();
+
+            }
+        });
+
     }
 
     @Override
@@ -98,8 +106,9 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
       public ImageView img;
       public TextView foodName, foodDescription, foodPrice, foodPriceDiscount;
       public Button buttonAddToChart;
+      //private PopupWindow mPopupWindow;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull final View itemView) {
             super(itemView);
 
             item_food = itemView.findViewById(R.id.food_item_id);
@@ -111,6 +120,26 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
             buttonAddToChart = itemView.findViewById(R.id.buttonAddToChart);
 
             foodPriceDiscount.setPaintFlags(foodPriceDiscount.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+            /*buttonAddToChart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent i = new Intent(context, PopUp.class);
+                    context.startActivity(i);
+
+
+                    *//*LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+                    View customView = inflater.inflate(R.layout.dialog_food_chart, null);
+
+                    mPopupWindow = new PopupWindow(
+                            customView,
+                            RelativeLayout.LayoutParams.WRAP_CONTENT,
+                            RelativeLayout.LayoutParams.WRAP_CONTENT
+                    );*//*
+                }
+            });*/
 
         }
     }

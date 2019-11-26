@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment.FoodChartFragment;
 import com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment.MenuScreenFragment;
 import com.example.fooddeliveryproject.R;
 
@@ -39,6 +40,9 @@ public class MenuScreenActivity extends AppCompatActivity {
 
         MenuScreenFragment menuScreenFragment = new MenuScreenFragment();
         fragmentTransaction.add(R.id.menuScreenFragment, menuScreenFragment, menuScreenFragment.getTag());
+
+       /* FoodChartFragment foodChartFragment = new FoodChartFragment();
+        fragmentTransaction.add(R.id.foodChartFragment, foodChartFragment, foodChartFragment.getTag());*/
 
         fragmentTransaction.commit();
 
