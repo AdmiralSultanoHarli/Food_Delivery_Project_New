@@ -1,7 +1,9 @@
 package com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment;
 
+import android.content.Context;
 import android.media.TimedMetaData;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,14 +35,16 @@ public class HomeFragment extends Fragment {
     private List<DataTopSlide> slideList;
     private ViewPager sliderPager;
     private TabLayout indicator;
+    private Context mContext;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        sliderPager = container.findViewById(R.id.sliderPager);
-        indicator = container.findViewById(R.id.indicator);
+        View mView= inflater.inflate(R.layout.fragment_home_home, container, false);
+        sliderPager = mView.findViewById(R.id.sliderPager);
+        indicator = mView.findViewById(R.id.indicator);
 
         slideList = new ArrayList<>();
         slideList.add(new DataTopSlide(R.drawable.panang_curry));
@@ -49,10 +53,14 @@ public class HomeFragment extends Fragment {
         slideList.add(new DataTopSlide(R.drawable.cashback));
         slideList.add(new DataTopSlide(R.drawable.chow_mein));
 
-        AdapterTopSliderPager adapter = new AdapterTopSliderPager(container.getContext(), slideList);
-        sliderPager.setAdapter(adapter);
+        Log.d("context", String .valueOf(sliderPager));
+        if(mContext!=null) {
+            AdapterTopSliderPager adapter = new AdapterTopSliderPager(mContext, slideList);
+            sliderPager.setAdapter(adapter);
+        }
 
         sliderPager.setPadding(50,0,50,0);
+
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new HomeFragment.SliderTimer(), 0, 4000);
 
@@ -75,7 +83,15 @@ public class HomeFragment extends Fragment {
 
         fragmentTransaction.commit();
 
-        return inflater.inflate(R.layout.fragment_home_home, container, false);
+        return mView;
+    }
+
+
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mContext =  context;
     }
 
     class SliderTimer extends TimerTask{
@@ -83,15 +99,25 @@ public class HomeFragment extends Fragment {
         @Override
         public void run() {
 
-            if (sliderPager.getCurrentItem()<slideList.size()-1){
+            if(getActivity() == null)
+                return;
 
-                sliderPager.setCurrentItem(sliderPager.getCurrentItem()+1);
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (sliderPager.getCurrentItem()<slideList.size()-1){
 
-            }else {
+                        sliderPager.setCurrentItem(sliderPager.getCurrentItem()+1);
 
-                sliderPager.setCurrentItem(0);
+                    }else {
 
-            }
+                        sliderPager.setCurrentItem(0);
+
+                    }
+                }
+            });
+
+
 
         }
     }

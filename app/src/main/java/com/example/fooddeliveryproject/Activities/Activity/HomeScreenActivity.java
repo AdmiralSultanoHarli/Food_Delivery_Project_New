@@ -14,6 +14,7 @@ import com.example.fooddeliveryproject.Activities.HomeScreenItem.Fragment.YourFa
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.DataTopSlide;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterTopSliderPager;
 import com.example.fooddeliveryproject.R;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
@@ -85,8 +86,6 @@ public class HomeScreenActivity extends AppCompatActivity {
 
         fragmentTransaction.commit();*/
 
-        bottomNav.setOnNavigationItemSelectedListener(navListener);
-
         //ViewPagerTest
         /*viewPager = findViewById(R.id.viewPager);
         setupViewPager(viewPager);*/
@@ -124,38 +123,37 @@ public class HomeScreenActivity extends AppCompatActivity {
             adapter.notifyDataSetChanged();
 
         }*/
+        bottomNav.setSelectedItemId(R.id.navigation_home);
+        getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, new HomeFragment()).commit();
+
+        bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                Fragment selectedFragment = null;
+
+                switch (menuItem.getItemId()){
+
+                    case R.id.navigation_home:
+                        selectedFragment = new HomeFragment();
+                        break;
+                    case R.id.navigation_orders:
+                        selectedFragment = new OrdersFragment();
+                        break;
+                    case R.id.navigation_account:
+                        selectedFragment = new AccountFragment();
+                        break;
+                    case R.id.navigation_inbox:
+                        selectedFragment = new InboxFragment();
+                        break;
+                }
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, selectedFragment).commit();
+
+                return true;
+            }
+        });
 
     }
-
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
-                    Fragment selectedFragment = null;
-
-                    switch (menuItem.getItemId()){
-
-                        case R.id.navigation_home:
-                            selectedFragment = new HomeFragment();
-                            break;
-                        case R.id.navigation_orders:
-                            selectedFragment = new OrdersFragment();
-                            break;
-                        case R.id.navigation_account:
-                            selectedFragment = new AccountFragment();
-                            break;
-                        case R.id.navigation_inbox:
-                            selectedFragment = new InboxFragment();
-                            break;
-                    }
-
-                    getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, selectedFragment).commit();
-
-                    return true;
-
-                }
-            };
 
     /*class SliderTimer extends TimerTask{
 
