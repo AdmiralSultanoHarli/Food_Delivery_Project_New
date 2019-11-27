@@ -29,8 +29,9 @@ public class MenuScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent backHomeScreenActivity = new Intent(MenuScreenActivity.this, HomeScreenActivity.class);
-                startActivity(backHomeScreenActivity);
+                onBackPressed();
+                /*Intent backHomeScreenActivity = new Intent(MenuScreenActivity.this, HomeScreenActivity.class);
+                startActivity(backHomeScreenActivity);*/
 
             }
         });

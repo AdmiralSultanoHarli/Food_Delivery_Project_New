@@ -51,8 +51,9 @@ public class SignUpScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent closeSignUp = new Intent(SignUpScreenActivity.this, LoginScreenActivity.class);
-                startActivity(closeSignUp);
+                onBackPressed();
+                /*Intent closeSignUp = new Intent(SignUpScreenActivity.this, LoginScreenActivity.class);
+                startActivity(closeSignUp);*/
 
             }
         });

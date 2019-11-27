@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -91,9 +92,11 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
                 FoodChartFragment myFragment = new FoodChartFragment();
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.foodChartFragment, myFragment).addToBackStack(null).commit();
+
+                //viewHolder.foodChartFragment.animate().translationY(100).setDuration(2000);
+
                 viewHolder.buttonAddToChart.setVisibility(View.GONE);
                 viewHolder.buttonAddPlusMinusChart.setVisibility(View.VISIBLE);
-
                 quantity = 1;
                 viewHolder.displayQuantity(quantity);
 
@@ -111,7 +114,8 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-      public RelativeLayout item_food;
+      //public RelativeLayout item_food;
+      //public LinearLayout foodChartFragment;
       public ImageView img;
       public TextView foodName, foodDescription, foodPrice, foodPriceDiscount, decreaseChartQuantity, increaseChartQuantity, chartQuantity;
       public Button buttonAddToChart;
@@ -127,7 +131,8 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
         public ViewHolder(@NonNull final View itemView) {
             super(itemView);
 
-            item_food = itemView.findViewById(R.id.food_item_id);
+            //item_food = itemView.findViewById(R.id.food_item_id);
+            //foodChartFragment = itemView.findViewById(R.id.foodChartFragment);
             img = itemView.findViewById(R.id.img);
             foodName = itemView.findViewById(R.id.foodName);
             foodDescription = itemView.findViewById(R.id.foodDescription);
@@ -177,7 +182,7 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                     context.startActivity(i);
 
 
-                    *//*LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
                     View customView = inflater.inflate(R.layout.view_floating_food_chart, null);
 
@@ -185,10 +190,10 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                             customView,
                             RelativeLayout.LayoutParams.WRAP_CONTENT,
                             RelativeLayout.LayoutParams.WRAP_CONTENT
-                    );*//*
+                    );
                 }
-            });*/
-
+            });
+*/
         }
     }
 

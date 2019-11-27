@@ -19,6 +19,7 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_orders">Orders</string>
+    <string name="title_account">Account</string>
+    <string name="title_inbox">Inbox</string>
 </resources>

@@ -1,7 +1,12 @@
 package com.example.fooddeliveryproject.Activities.Activity;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.AccountFragment;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.HomeFragment;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.InboxFragment;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.OrdersFragment;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Fragment.BestCusineFragment;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Fragment.CustomFragment;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Fragment.TodaySpecialsFragment;
@@ -9,9 +14,12 @@ import com.example.fooddeliveryproject.Activities.HomeScreenItem.Fragment.YourFa
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.DataTopSlide;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterTopSliderPager;
 import com.example.fooddeliveryproject.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
@@ -23,19 +31,21 @@ import java.util.TimerTask;
 
 public class HomeScreenActivity extends AppCompatActivity {
 
-    private List<DataTopSlide> slideList;
+   /* private List<DataTopSlide> slideList;
     private ViewPager sliderPager;
-    private TabLayout indicator;
+    private TabLayout indicator;*/
+    BottomNavigationView bottomNav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
-        sliderPager = findViewById(R.id.sliderPager);
-        indicator = findViewById(R.id.indicator);
+       /* sliderPager = findViewById(R.id.sliderPager);
+        indicator = findViewById(R.id.indicator);*/
+        bottomNav = findViewById(R.id.nav_view);
 
-        slideList = new ArrayList<>();
+        /*slideList = new ArrayList<>();
         slideList.add(new DataTopSlide(R.drawable.panang_curry));
         slideList.add(new DataTopSlide(R.drawable.butter_chicken));
         slideList.add(new DataTopSlide(R.drawable.maharashtra_thali));
@@ -53,13 +63,13 @@ public class HomeScreenActivity extends AppCompatActivity {
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new HomeScreenActivity.SliderTimer(),0,4000);
 
-        indicator.setupWithViewPager(sliderPager, true);
+        indicator.setupWithViewPager(sliderPager, true);*/
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        /*FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        /*TopFragment topFragment = new TopFragment();
-        fragmentTransaction.add(R.id.topFragment, topFragment , topFragment.getTag());*/
+        *//*TopFragment topFragment = new TopFragment();
+        fragmentTransaction.add(R.id.topFragment, topFragment , topFragment.getTag());*//*
 
         BestCusineFragment bestCusineFragment = new BestCusineFragment();
         fragmentTransaction.add(R.id.bestCusineFragment, bestCusineFragment, bestCusineFragment.getTag());
@@ -73,7 +83,9 @@ public class HomeScreenActivity extends AppCompatActivity {
         CustomFragment customFragment = new CustomFragment();
         fragmentTransaction.add(R.id.customFragment, customFragment, customFragment.getTag());
 
-        fragmentTransaction.commit();
+        fragmentTransaction.commit();*/
+
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         //ViewPagerTest
         /*viewPager = findViewById(R.id.viewPager);
@@ -115,7 +127,37 @@ public class HomeScreenActivity extends AppCompatActivity {
 
     }
 
-    class SliderTimer extends TimerTask{
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+                    Fragment selectedFragment = null;
+
+                    switch (menuItem.getItemId()){
+
+                        case R.id.navigation_home:
+                            selectedFragment = new HomeFragment();
+                            break;
+                        case R.id.navigation_orders:
+                            selectedFragment = new OrdersFragment();
+                            break;
+                        case R.id.navigation_account:
+                            selectedFragment = new AccountFragment();
+                            break;
+                        case R.id.navigation_inbox:
+                            selectedFragment = new InboxFragment();
+                            break;
+                    }
+
+                    getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, selectedFragment).commit();
+
+                    return true;
+
+                }
+            };
+
+    /*class SliderTimer extends TimerTask{
 
 
         @Override
@@ -139,7 +181,7 @@ public class HomeScreenActivity extends AppCompatActivity {
             });
 
         }
-    }
+    }*/
 
     //ViewPagerTest
     /*private void setupViewPager(ViewPager viewPager){
