@@ -41,6 +41,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.4.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.4.0'
 
+    implementation 'de.hdodenhof:circleimageview:3.0.1'
 
     implementation 'com.jcminarro:RoundKornerLayouts:0.4.0'
 

@@ -2,6 +2,7 @@ package com.example.fooddeliveryproject.Activities.MenuScreenItem.Adapter;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddeliveryproject.Activities.MenuScreenItem.DataFoodMenu;
 import com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment.FoodChartFragment;
+import com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment.MenuScreenFragment;
 import com.example.fooddeliveryproject.R;
 
 import java.util.List;
@@ -29,6 +31,7 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
     Context context;
     Dialog mDialog;
     public int quantity = 1;
+    boolean foodChartIsShowing = true;
 
     public AdapterMenuScreen(List<DataFoodMenu> menuList, Context context) {
         this.menuList = menuList;
@@ -97,9 +100,13 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
                 viewHolder.buttonAddToChart.setVisibility(View.GONE);
                 viewHolder.buttonAddPlusMinusChart.setVisibility(View.VISIBLE);
+
                 quantity = 1;
                 viewHolder.displayQuantity(quantity);
 
+                foodChartIsShowing = false;
+
+                
             }
         });
 
@@ -125,6 +132,8 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
         public void displayQuantity(int number){
 
             chartQuantity.setText(""+number);
+            /*Intent intent = new Intent(context, MenuScreenFragment.class);
+            intent.putExtra("ss", chartQuantity);*/
 
         }
 

@@ -1,7 +1,6 @@
 package com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment;
 
 import android.content.Context;
-import android.media.TimedMetaData;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,14 +16,13 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterTopSliderPager;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.DataTopSlide;
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.Fragment.BestCusineFragment;
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.Fragment.CustomFragment;
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.Fragment.TodaySpecialsFragment;
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.Fragment.YourFavouritesFragment;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.HomeFragmentAttributes.BestCusineFragment;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.HomeFragmentAttributes.CustomFragment;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.HomeFragmentAttributes.TodaySpecialsFragment;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.HomeFragmentAttributes.YourFavouritesFragment;
 import com.example.fooddeliveryproject.R;
 import com.google.android.material.tabs.TabLayout;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -102,7 +100,8 @@ public class HomeFragment extends Fragment {
             if(getActivity() == null)
                 return;
 
-            getActivity().runOnUiThread(new Runnable() {
+            getActivity().runOnUiThread(
+                    new Runnable() {
                 @Override
                 public void run() {
                     if (sliderPager.getCurrentItem()<slideList.size()-1){

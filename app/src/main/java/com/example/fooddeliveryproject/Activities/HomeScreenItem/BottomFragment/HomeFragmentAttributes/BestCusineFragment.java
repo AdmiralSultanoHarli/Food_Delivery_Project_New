@@ -1,4 +1,4 @@
-package com.example.fooddeliveryproject.Activities.HomeScreenItem.Fragment;
+package com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.HomeFragmentAttributes;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

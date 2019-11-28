@@ -7,28 +7,12 @@ import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.HomeFragment;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.InboxFragment;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.OrdersFragment;
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.Fragment.BestCusineFragment;
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.Fragment.CustomFragment;
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.Fragment.TodaySpecialsFragment;
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.Fragment.YourFavouritesFragment;
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.DataTopSlide;
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterTopSliderPager;
 import com.example.fooddeliveryproject.R;
-import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager.widget.ViewPager;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class HomeScreenActivity extends AppCompatActivity {
 

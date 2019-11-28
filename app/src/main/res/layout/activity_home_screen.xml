@@ -7,67 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".Activities.Activity.HomeScreenActivity">
 
-    <RelativeLayout
-        android:id="@+id/topMenu"
-        android:layout_width="match_parent"
-        android:layout_height="115dp">
-
-        <TextView
-            android:id="@+id/textViewMap"
-            android:layout_width="168dp"
-            android:layout_height="30dp"
-            android:background="@drawable/rounded_shape"
-            android:elevation="8dp"
-            android:textSize="12sp"
-            android:textColor="@color/colorButton"
-            android:text="Map Configuration"
-            android:layout_centerInParent="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="5dp"
-            android:gravity="center"
-            android:textStyle="bold"
-            />
-
-        <ImageButton
-
-            android:id="@+id/shoppingCartButton"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="15dp"
-            android:background="@drawable/iconshop"
-            />
-
-        <TextView
-            android:id="@+id/textViewExplore"
-            android:layout_below="@+id/textViewMap"
-            android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="15dp"
-            android:textColor="@color/colorBlack"
-            android:text="Explore"
-            android:textSize="15sp"/>
-
-        <SearchView
-            android:id="@+id/searchView"
-            android:layout_below="@id/textViewExplore"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/rounded_shape"
-            android:elevation="5dp"
-            android:inputType="textPersonName"
-            />
-
-
-    </RelativeLayout>
-
 
     <!--<androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
@@ -80,7 +19,6 @@
 
     <FrameLayout
         android:id="@+id/layout_selected"
-        android:layout_below="@+id/topMenu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/nav_view">
