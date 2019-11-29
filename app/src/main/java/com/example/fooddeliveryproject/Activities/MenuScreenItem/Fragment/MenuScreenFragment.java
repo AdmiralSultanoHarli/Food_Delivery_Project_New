@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -53,7 +55,7 @@ public class MenuScreenFragment extends Fragment {
 
         ArrayList<DataFoodMenu> dataFoodMenus = getData();
 
-        menuScreenAdapter = new AdapterMenuScreen(dataFoodMenus, getActivity());
+        menuScreenAdapter = new AdapterMenuScreen(dataFoodMenus, getActivity()/*, communication*/);
         menuScreenCategories.setAdapter(menuScreenAdapter);
 
         return v;
@@ -76,5 +78,20 @@ public class MenuScreenFragment extends Fragment {
 
         return foodMenuArrayList;
     }
+
+    /*AdapterMenuScreen.FragmentCommunication communication = new AdapterMenuScreen.FragmentCommunication() {
+        @Override
+        public void respond(int i, String foodName) {
+
+            FoodChartFragment foodChartFragment = new FoodChartFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("FoodName", foodName);
+            foodChartFragment.setArguments(bundle);
+            FragmentManager manager = getFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.replace(R.id.foodChartFragment, foodChartFragment).commit();
+
+        }
+    };*/
 
 }

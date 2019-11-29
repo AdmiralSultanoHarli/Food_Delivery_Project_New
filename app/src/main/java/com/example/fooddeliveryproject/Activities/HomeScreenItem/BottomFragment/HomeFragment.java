@@ -100,6 +100,7 @@ public class HomeFragment extends Fragment {
             if(getActivity() == null)
                 return;
 
+
             getActivity().runOnUiThread(
                     new Runnable() {
                 @Override

@@ -2,6 +2,7 @@ package com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,8 +22,17 @@ public class FoodChartFragment extends Fragment {
 
     CardView buttonAddToChartThenOrder;
     TextView itemCount, price, discountPrice, itemName;
+    String foodName;
 
     public FoodChartFragment() {
+
+
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
 
 
     }
@@ -34,11 +44,20 @@ public class FoodChartFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.view_floating_food_chart,container, false);
 
+//        Log.d(getArguments().getString("FoodName"), "There is");
+
         buttonAddToChartThenOrder = v.findViewById(R.id.buttonAddToChartThenOrder);
         itemCount = v.findViewById(R.id.itemCount);
         price = v.findViewById(R.id.price);
         discountPrice = v.findViewById(R.id.discountPrice);
         itemName = v.findViewById(R.id.itemName);
+
+
+        Bundle testBundle = this.getArguments();
+        Log.e("bundle", String.valueOf(testBundle));
+        foodName = this.getArguments().getString("Food");
+
+        itemName.setText(foodName);
 
         buttonAddToChartThenOrder.setOnClickListener(new View.OnClickListener() {
             @Override

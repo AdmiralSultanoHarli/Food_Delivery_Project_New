@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -33,6 +34,7 @@ public class MenuScreenActivity extends AppCompatActivity {
                 /*Intent backHomeScreenActivity = new Intent(MenuScreenActivity.this, HomeScreenActivity.class);
                 startActivity(backHomeScreenActivity);*/
 
+
             }
         });
 
@@ -49,4 +51,8 @@ public class MenuScreenActivity extends AppCompatActivity {
 
     }
 
+    /*@Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }*/
 }
