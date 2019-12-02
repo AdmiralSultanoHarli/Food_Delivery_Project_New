@@ -27,7 +27,10 @@ import com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment.FoodCh
 import com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment.MenuScreenFragment;
 import com.example.fooddeliveryproject.R;
 
+import java.lang.reflect.Array;
+import java.security.PublicKey;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.ViewHolder> {
@@ -35,8 +38,9 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
     List<DataFoodMenu> menuList;
     Context context;
     Dialog mDialog;
-    public int quantity = 1;
+    //public int quantity = 1;
     FoodChartFragment foodChartFragment = new FoodChartFragment();
+    TextView chartQuantity;
     //boolean foodChartIsShowing = true;
 
 
@@ -90,6 +94,13 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
     }
 
+   /* public void displayQuantity(int number){
+
+        chartQuantity.setText(""+number);
+        *//*Intent intent = new Intent(context, MenuScreenFragment.class);
+        intent.putExtra("ss", chartQuantity);*//*
+
+    }*/
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int i) {
 
@@ -101,34 +112,31 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
         viewHolder.foodDescription.setText(menuList.get(i).getFoodDescription());
         viewHolder.foodPrice.setText(menuList.get(i).getFoodPrice());
         viewHolder.foodPriceDiscount.setText(menuList.get(i).getFoodPriceDiscount());
-
-
-
-
+        Log.e("test", String.valueOf(menuList.get(i).getChartQuantity()));
+        final int[] quantity = {menuList.get(i).getChartQuantity()};
+        final Bundle bundle = new Bundle();
 
         viewHolder.buttonAddToChart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-
-
 
                 //viewHolder.foodChartFragment.animate().translationY(100).setDuration(2000);
 
                 viewHolder.buttonAddToChart.setVisibility(View.GONE);
                 viewHolder.buttonAddPlusMinusChart.setVisibility(View.VISIBLE);
 
-                quantity = 1;
-                viewHolder.displayQuantity(quantity);
-                Bundle bundle = new Bundle();
+//                quantity = 1;
+                //viewHolder.displayQuantity(quantity);
+                //final Bundle bundle = new Bundle();
                 bundle.putString("Food", menuList.get(i).getFoodName());
                 Log.e("test Bundle", menuList.get(i).getFoodName());
                 foodChartFragment.setArguments(bundle);
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.foodChartFragment, foodChartFragment).addToBackStack(null).commit();
 
-                //foodChartIsShowing = false;
+                quantity[0] = 1;
+                Log.e(menuList.get(i).getFoodName(), String.valueOf(quantity[0]));
+                viewHolder.chartQuantity.setText(String.valueOf(quantity[0] = 1));
 
+                viewHolder.activity.getSupportFragmentManager().beginTransaction().replace(R.id.foodChartFragment, foodChartFragment).commit();
 
             }
         });
@@ -136,27 +144,79 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
         viewHolder.decreaseChartQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                if (quantity == 1){
+
+                //AppCompatActivity activity = (AppCompatActivity) view.getContext();
+
+                if (quantity[0] == 1){
+
                     viewHolder.buttonAddToChart.setVisibility(View.VISIBLE);
                     viewHolder.buttonAddPlusMinusChart.setVisibility(View.GONE);
-                    activity.getSupportFragmentManager().beginTransaction().remove(foodChartFragment).commit();
+                    viewHolder.activity.getSupportFragmentManager().beginTransaction().remove(foodChartFragment).commit();
                     return;
+
                 }
-                quantity = quantity-1;
-                viewHolder.displayQuantity(quantity);
+
+                quantity[0]--;
+                Log.e(menuList.get(i).getFoodName(), String.valueOf(quantity[0]));
+                viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
+                bundle.putString("Item", String.valueOf(quantity[0]));
+                foodChartFragment.setArguments(bundle);
+                viewHolder.activity.getSupportFragmentManager().beginTransaction().replace(R.id.foodChartFragment, foodChartFragment).commit();
+
+
+
+
+                //foodChartFragment.setArguments(bundle);
+
+                        /*if (menuList.get(i).isAddedToCart()){
+
+                            if (quantity == 1) {
+                                viewHolder.buttonAddToChart.setVisibility(View.VISIBLE);
+                                viewHolder.buttonAddPlusMinusChart.setVisibility(View.GONE);
+                                activity.getSupportFragmentManager().beginTransaction().remove(foodChartFragment).commit();
+                                Log.e("menuList", String.valueOf(menuList.get(i).getFoodName()));
+                                menuList.get(i).setAddedToCart(false);
+                                return;
+                            }
+                            quantity--;
+                            viewHolder.displayQuantity(quantity);
+
+                        }*/
+
             }
         });
 
         viewHolder.increaseChartQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //AppCompatActivity activity = (AppCompatActivity) view.getContext();
 
-                if (quantity == 100){
+                if (quantity[0] == 100){
+
                     return;
+
                 }
-                quantity = quantity+1;
-                viewHolder.displayQuantity(quantity);
+
+                quantity[0]++;
+                Log.e(menuList.get(i).getFoodName(), String.valueOf(quantity[0]));
+                viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
+                bundle.putString("Item", String.valueOf(quantity[0]));
+                foodChartFragment.setArguments(bundle);
+                viewHolder.activity.getSupportFragmentManager().beginTransaction().replace(R.id.foodChartFragment, foodChartFragment).commit();
+
+
+                //foodChartFragment.setArguments(bundle);
+
+                        /*if (menuList.get(i).isAddedToCart()) {
+
+                            if (quantity == 100) {
+                                return;
+                            }
+                            quantity++;
+                            menuList.get(i).setChartQuantity(quantity);
+                            viewHolder.displayQuantity(quantity);
+
+                        }*/
 
             }
         });
@@ -164,6 +224,8 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
 
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -180,20 +242,23 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
       //public RelativeLayout item_food;
       //public LinearLayout foodChartFragment;
+
       public ImageView img;
       public TextView foodName, foodDescription, foodPrice, foodPriceDiscount, decreaseChartQuantity, increaseChartQuantity, chartQuantity;
       public Button buttonAddToChart;
       public CardView buttonAddPlusMinusChart;
+      public AppCompatActivity activity;
       /*FragmentCommunication mCommunication;*/
       //private PopupWindow mPopupWindow;
 
-        public void displayQuantity(int number){
+       /* public void displayQuantity(int number){
 
             chartQuantity.setText(""+number);
-            /*Intent intent = new Intent(context, MenuScreenFragment.class);
-            intent.putExtra("ss", chartQuantity);*/
+            *//*Intent intent = new Intent(context, MenuScreenFragment.class);
+            intent.putExtra("ss", chartQuantity);*//*
 
-        }
+        }*/
+
 
         public ViewHolder(@NonNull final View itemView/*, final FragmentCommunication mCommunicator*/) {
             super(itemView);
@@ -210,6 +275,7 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
             decreaseChartQuantity = itemView.findViewById(R.id.decreaseChartQuantity);
             increaseChartQuantity = itemView.findViewById(R.id.increaseChartQuantity);
             chartQuantity = itemView.findViewById(R.id.chartQuantity);
+            activity = (AppCompatActivity) itemView.getContext();
 
             /*mCommunication = mCommunicator;*/
 

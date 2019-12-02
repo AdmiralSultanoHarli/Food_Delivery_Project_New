@@ -6,18 +6,31 @@ public class DataFoodMenu {
     String foodDescription;
     String foodPrice;
     String foodPriceDiscount;
+    int chartQuantity;
     int img;
+    boolean addedToCart = false;
 
     public DataFoodMenu() {
 
     }
 
-    public DataFoodMenu(String foodName, String foodDescription, String foodPrice, String foodPriceDiscount, int img) {
+
+    public DataFoodMenu(String foodName, String foodDescription, String foodPrice, String foodPriceDiscount, int chartQuantity, int img, boolean addedToCart) {
         this.foodName = foodName;
         this.foodDescription = foodDescription;
         this.foodPrice = foodPrice;
         this.foodPriceDiscount = foodPriceDiscount;
+        this.chartQuantity = chartQuantity;
         this.img = img;
+        this.addedToCart = addedToCart;
+    }
+
+    public int getChartQuantity() {
+        return chartQuantity;
+    }
+
+    public boolean isAddedToCart() {
+        return addedToCart;
     }
 
     public String getFoodName() {
@@ -38,6 +51,14 @@ public class DataFoodMenu {
 
     public int getImg() {
         return img;
+    }
+
+    public void setChartQuantity(int chartQuantity) {
+        this.chartQuantity = chartQuantity;
+    }
+
+    public void setAddedToCart(boolean addedToCart) {
+        this.addedToCart = addedToCart;
     }
 
     public void setFoodName(String foodName) {

@@ -22,7 +22,7 @@ public class FoodChartFragment extends Fragment {
 
     CardView buttonAddToChartThenOrder;
     TextView itemCount, price, discountPrice, itemName;
-    String foodName;
+    String foodName, foodCount;
 
     public FoodChartFragment() {
 
@@ -54,10 +54,13 @@ public class FoodChartFragment extends Fragment {
 
 
         Bundle testBundle = this.getArguments();
-        Log.e("bundle", String.valueOf(testBundle));
-        foodName = this.getArguments().getString("Food");
+        Log.e("bundlesss", String.valueOf(testBundle));
+        foodCount = testBundle.getString("Item");
+        foodName = testBundle.getString("Food");
 
         itemName.setText(foodName);
+        itemCount.setText(foodCount + " item");
+
 
         buttonAddToChartThenOrder.setOnClickListener(new View.OnClickListener() {
             @Override
