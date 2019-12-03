@@ -113,11 +113,13 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
         viewHolder.foodPrice.setText(String.valueOf(menuList.get(i).getFoodPrice()));
         viewHolder.foodPriceDiscount.setText(String.valueOf(menuList.get(i).getFoodPriceDiscount()));
         final int[] quantity = {menuList.get(i).getChartQuantity()};
-        final int priceTotal = menuList.get(i).getFoodPrice();
-        final int priceDiscountTotal = menuList.get(i).getFoodPriceDiscount();
+        final int[] priceTotal = {menuList.get(i).getFoodPrice()};
+        final int[] priceDiscountTotal = {menuList.get(i).getFoodPriceDiscount()};
         final Bundle bundle = new Bundle();
         /*priceTotal = menuList.get(i).getFoodPrice();
         priceDiscountTotal= menuList.get(i).getFoodPriceDiscount();*/
+        priceTotal[0] = menuList.get(i).getFoodPrice();
+        priceDiscountTotal[0] = menuList.get(i).getFoodPriceDiscount();
         quantity[0] = 0;
 
 
@@ -125,6 +127,7 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
             @Override
             public void onClick(View view) {
 
+                Log.e("priceFood", String.valueOf(priceTotal[0] + 20000));
                 Log.e("Button test", String.valueOf(quantity[0]));
                 Log.e("The position is", String.valueOf(viewHolder.getAdapterPosition()));
 
@@ -137,8 +140,8 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
                         bundle.putString("FoodName", menuList.get(i).getFoodName());
                         bundle.putString("FoodCount", String.valueOf(quantity[0]));
-                        bundle.putString("FoodPrice", String.valueOf(priceTotal));
-                        bundle.putString("FoodDiscount", String.valueOf(priceDiscountTotal));
+                        bundle.putString("FoodPrice", String.valueOf(priceTotal[0]));
+                        bundle.putString("FoodDiscount", String.valueOf(priceDiscountTotal[0]));
 
                         Log.e("test Bundle", menuList.get(i).getFoodName());
                         foodChartFragment.setArguments((bundle));
@@ -212,13 +215,13 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                 }
 
                 quantity[0]++;
-                priceTotal++;
-                priceDiscountTotal++;
+                priceTotal[0] = priceTotal[0] + priceTotal[0];
+                priceDiscountTotal[0] = priceDiscountTotal[0] + priceDiscountTotal[0];
                 Log.e(menuList.get(i).getFoodName(), String.valueOf(quantity[0]));
                 viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
                 bundle.putString("FoodCount", String.valueOf(quantity[0]));
-                bundle.putString("FoodPrice", String.valueOf(priceTotal));
-                bundle.putString("FoodDiscount", String.valueOf(priceDiscountTotal));
+                bundle.putString("FoodPrice", String.valueOf(priceTotal[0]));
+                bundle.putString("FoodDiscount", String.valueOf(priceDiscountTotal[0]));
                 foodChartFragment.setArguments(bundle);
 
                 viewHolder.activity.getSupportFragmentManager().beginTransaction().detach(foodChartFragment).attach(foodChartFragment).commit();
@@ -257,8 +260,8 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
                 }
 
-                priceDiscountTotal[0]--;
-                priceTotal[0]--;
+                priceDiscountTotal[0] = priceDiscountTotal[0] - priceDiscountTotal[0];
+                priceTotal[0] = priceTotal[0] - priceTotal[0];
                 quantity[0]--;
                 Log.e(menuList.get(i).getFoodName(), String.valueOf(quantity[0]));
                 viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
