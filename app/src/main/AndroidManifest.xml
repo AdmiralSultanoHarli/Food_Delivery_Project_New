@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Activities.ZJustForTest.MainActivity" />
         <activity
-            android:name=".Activities.Activity.MenuScreenActivity"
+            android:name=".Activities.Activity.SplashScreenActivity"
             android:theme="@style/BlackStatusBar" />
         <activity android:name=".Activities.ZJustForTest.TestingActivity" />
         <activity android:name=".Activities.Activity.MenuDetailsScreenActivity" />
@@ -32,7 +32,7 @@
         <activity
             android:name=".Activities.Activity.AppScreenActivity"
             android:theme="@style/AppStatusBar" />
-        <activity android:name=".Activities.Activity.SplashScreenActivity">
+        <activity android:name=".Activities.Activity.MenuScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

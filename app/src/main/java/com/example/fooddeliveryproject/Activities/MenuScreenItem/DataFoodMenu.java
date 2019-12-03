@@ -4,8 +4,8 @@ public class DataFoodMenu {
 
     String foodName;
     String foodDescription;
-    String foodPrice;
-    String foodPriceDiscount;
+    int foodPrice;
+    int foodPriceDiscount;
     int chartQuantity;
     int img;
     boolean addedToCart = false;
@@ -15,7 +15,7 @@ public class DataFoodMenu {
     }
 
 
-    public DataFoodMenu(String foodName, String foodDescription, String foodPrice, String foodPriceDiscount, int chartQuantity, int img, boolean addedToCart) {
+    public DataFoodMenu(String foodName, String foodDescription, int foodPrice, int foodPriceDiscount, int chartQuantity, int img, boolean addedToCart) {
         this.foodName = foodName;
         this.foodDescription = foodDescription;
         this.foodPrice = foodPrice;
@@ -41,11 +41,11 @@ public class DataFoodMenu {
         return foodDescription;
     }
 
-    public String getFoodPrice() {
+    public int getFoodPrice() {
         return foodPrice;
     }
 
-    public String getFoodPriceDiscount() {
+    public int getFoodPriceDiscount() {
         return foodPriceDiscount;
     }
 
@@ -69,11 +69,11 @@ public class DataFoodMenu {
         this.foodDescription = foodDescription;
     }
 
-    public void setFoodPrice(String foodPrice) {
+    public void setFoodPrice(int foodPrice) {
         this.foodPrice = foodPrice;
     }
 
-    public void setFoodPriceDiscount(String foodPriceDiscount) {
+    public void setFoodPriceDiscount(int foodPriceDiscount) {
         this.foodPriceDiscount = foodPriceDiscount;
     }
 

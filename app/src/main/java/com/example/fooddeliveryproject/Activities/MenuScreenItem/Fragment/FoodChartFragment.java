@@ -1,6 +1,7 @@
 package com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,7 +23,7 @@ public class FoodChartFragment extends Fragment {
 
     CardView buttonAddToChartThenOrder;
     TextView itemCount, price, discountPrice, itemName;
-    String foodName, foodCount;
+    String foodName, foodCount, foodPrice, foodDiscount;
 
     public FoodChartFragment() {
 
@@ -55,11 +56,17 @@ public class FoodChartFragment extends Fragment {
 
         Bundle testBundle = this.getArguments();
         Log.e("bundlesss", String.valueOf(testBundle));
-        foodCount = testBundle.getString("Item");
-        foodName = testBundle.getString("Food");
+        foodCount = testBundle.getString("FoodCount");
+        foodName = testBundle.getString("FoodName");
+        foodPrice = testBundle.getString("FoodPrice");
+        foodDiscount = testBundle.getString("FoodDiscount");
 
         itemName.setText(foodName);
         itemCount.setText(foodCount + " item");
+        price.setText(foodPrice);
+        discountPrice.setText(foodDiscount);
+
+        discountPrice.setPaintFlags(discountPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
 
         buttonAddToChartThenOrder.setOnClickListener(new View.OnClickListener() {

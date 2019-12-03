@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.DataFood;
@@ -46,10 +47,9 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
     //private FragmentCommunication mCommunicator;
 
-    public AdapterMenuScreen(List<DataFoodMenu> menuList, Context context/*, FragmentCommunication mCommunicator*/) {
+    public AdapterMenuScreen(List<DataFoodMenu> menuList, Context context) {
         this.menuList = menuList;
         this.context = context;
-        /*this.mCommunicator = mCommunicator;*/
     }
 
 
@@ -101,43 +101,142 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
         intent.putExtra("ss", chartQuantity);*//*
 
     }*/
+
+
+
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int i) {
-
-        //final DataFoodMenu dataFoodMenu = menuList.get(i);
-
 
         viewHolder.img.setImageResource(menuList.get(i).getImg());
         viewHolder.foodName.setText(menuList.get(i).getFoodName());
         viewHolder.foodDescription.setText(menuList.get(i).getFoodDescription());
-        viewHolder.foodPrice.setText(menuList.get(i).getFoodPrice());
-        viewHolder.foodPriceDiscount.setText(menuList.get(i).getFoodPriceDiscount());
-        Log.e("test", String.valueOf(menuList.get(i).getChartQuantity()));
+        viewHolder.foodPrice.setText(String.valueOf(menuList.get(i).getFoodPrice()));
+        viewHolder.foodPriceDiscount.setText(String.valueOf(menuList.get(i).getFoodPriceDiscount()));
         final int[] quantity = {menuList.get(i).getChartQuantity()};
+        final int priceTotal = menuList.get(i).getFoodPrice();
+        final int priceDiscountTotal = menuList.get(i).getFoodPriceDiscount();
         final Bundle bundle = new Bundle();
+        /*priceTotal = menuList.get(i).getFoodPrice();
+        priceDiscountTotal= menuList.get(i).getFoodPriceDiscount();*/
+        quantity[0] = 0;
+
 
         viewHolder.buttonAddToChart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                //viewHolder.foodChartFragment.animate().translationY(100).setDuration(2000);
+                Log.e("Button test", String.valueOf(quantity[0]));
+                Log.e("The position is", String.valueOf(viewHolder.getAdapterPosition()));
 
-                viewHolder.buttonAddToChart.setVisibility(View.GONE);
-                viewHolder.buttonAddPlusMinusChart.setVisibility(View.VISIBLE);
+                if (!foodChartFragment.isAdded()) {
+                    if (quantity[0] == 0) {
 
-//                quantity = 1;
-                //viewHolder.displayQuantity(quantity);
-                //final Bundle bundle = new Bundle();
-                bundle.putString("Food", menuList.get(i).getFoodName());
+                        quantity[0] = 1;
+                        viewHolder.buttonAddToChart.setVisibility(View.INVISIBLE);
+                        viewHolder.buttonAddPlusMinusChart.setVisibility(View.VISIBLE);
+
+                        bundle.putString("FoodName", menuList.get(i).getFoodName());
+                        bundle.putString("FoodCount", String.valueOf(quantity[0]));
+                        bundle.putString("FoodPrice", String.valueOf(priceTotal));
+                        bundle.putString("FoodDiscount", String.valueOf(priceDiscountTotal));
+
+                        Log.e("test Bundle", menuList.get(i).getFoodName());
+                        foodChartFragment.setArguments((bundle));
+
+                        viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
+
+                        viewHolder.activity.getSupportFragmentManager().beginTransaction().replace(R.id.foodChartFragment, foodChartFragment).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
+
+                        Log.e(menuList.get(i).getFoodName(), String.valueOf(quantity[0]));
+
+                    }
+                }/*else if (foodChartFragment.isAdded()){
+
+                    viewHolder.activity.getSupportFragmentManager().beginTransaction().replace(R.id.foodChartFragment, foodChartFragment).commit();
+                    bundle.putString("FoodName", menuList.get(i).getFoodName());
+                    bundle.putString("FoodCount", String.valueOf(quantity[0]));
+                    bundle.putString("FoodPrice", menuList.get(i).getFoodPrice());
+                    bundle.putString("FoodDiscount", menuList.get(i).getFoodPriceDiscount());
+                    foodChartFragment.setArguments((bundle));
+
+
+                }*//*else {
+
+                    viewHolder.activity.getSupportFragmentManager().beginTransaction().detach(foodChartFragment).attach(foodChartFragment).commit();
+
+                }*/
+                /*viewHolder.buttonAddToChart.setVisibility(View.GONE);
+                viewHolder.buttonAddPlusMinusChart.setVisibility(View.VISIBLE);*/
+
+//
+                /*bundle.putString("Food", menuList.get(i).getFoodName());
                 Log.e("test Bundle", menuList.get(i).getFoodName());
-                foodChartFragment.setArguments(bundle);
+                foodChartFragment.setArguments(bundle);*/
 
-                quantity[0] = 1;
-                Log.e(menuList.get(i).getFoodName(), String.valueOf(quantity[0]));
+
+               /* Log.e(menuList.get(i).getFoodName(), String.valueOf(quantity[0]));
                 viewHolder.chartQuantity.setText(String.valueOf(quantity[0] = 1));
 
-                viewHolder.activity.getSupportFragmentManager().beginTransaction().replace(R.id.foodChartFragment, foodChartFragment).commit();
+                if (quantity[0] == 1){
 
+                    if(foodChartFragment.isAdded()){
+
+                        viewHolder.activity.getSupportFragmentManager().beginTransaction().replace(R.id.foodChartFragment, foodChartFragment).commit();
+                        Log.e("Already added", String.valueOf(viewHolder.activity.getContentTransitionManager()));
+
+                    }else{
+
+                        viewHolder.activity.getSupportFragmentManager().beginTransaction().add(R.id.foodChartFragment, foodChartFragment).commit();
+
+                    }
+
+                }*/
+
+            }
+        });
+
+        viewHolder.increaseChartQuantity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //AppCompatActivity activity = (AppCompatActivity) view.getContext();
+
+                Log.e("Where is the button", menuList.get(i).getFoodName());
+                Log.e("The position is", String.valueOf(viewHolder.getAdapterPosition()));
+
+
+
+                if (quantity[0] == 100){
+
+                    return;
+
+                }
+
+                quantity[0]++;
+                priceTotal++;
+                priceDiscountTotal++;
+                Log.e(menuList.get(i).getFoodName(), String.valueOf(quantity[0]));
+                viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
+                bundle.putString("FoodCount", String.valueOf(quantity[0]));
+                bundle.putString("FoodPrice", String.valueOf(priceTotal));
+                bundle.putString("FoodDiscount", String.valueOf(priceDiscountTotal));
+                foodChartFragment.setArguments(bundle);
+
+                viewHolder.activity.getSupportFragmentManager().beginTransaction().detach(foodChartFragment).attach(foodChartFragment).commit();
+
+
+
+                //foodChartFragment.setArguments(bundle);
+
+                        /*if (menuList.get(i).isAddedToCart()) {
+
+                            if (quantity == 100) {
+                                return;
+                            }
+                            quantity++;
+                            menuList.get(i).setChartQuantity(quantity);
+                            viewHolder.displayQuantity(quantity);
+
+                        }*/
             }
         });
 
@@ -147,8 +246,10 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
                 //AppCompatActivity activity = (AppCompatActivity) view.getContext();
 
-                if (quantity[0] == 1){
 
+                if (quantity[0] == 1) {
+
+                    quantity[0] = 0;
                     viewHolder.buttonAddToChart.setVisibility(View.VISIBLE);
                     viewHolder.buttonAddPlusMinusChart.setVisibility(View.GONE);
                     viewHolder.activity.getSupportFragmentManager().beginTransaction().remove(foodChartFragment).commit();
@@ -156,15 +257,17 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
                 }
 
+                priceDiscountTotal[0]--;
+                priceTotal[0]--;
                 quantity[0]--;
                 Log.e(menuList.get(i).getFoodName(), String.valueOf(quantity[0]));
                 viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
-                bundle.putString("Item", String.valueOf(quantity[0]));
+                bundle.putString("FoodCount", String.valueOf(quantity[0]));
+                bundle.putString("FoodPrice", String.valueOf(priceTotal[0]));
+                bundle.putString("FoodDiscount", String.valueOf(priceDiscountTotal[0]));
                 foodChartFragment.setArguments(bundle);
-                viewHolder.activity.getSupportFragmentManager().beginTransaction().replace(R.id.foodChartFragment, foodChartFragment).commit();
-
-
-
+                viewHolder.activity.getSupportFragmentManager().beginTransaction().detach(foodChartFragment).attach(foodChartFragment).commit();
+                //viewHolder.activity.getSupportFragmentManager().beginTransaction().replace(R.id.foodChartFragment, foodChartFragment).commit();
 
                 //foodChartFragment.setArguments(bundle);
 
@@ -186,40 +289,7 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
             }
         });
 
-        viewHolder.increaseChartQuantity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //AppCompatActivity activity = (AppCompatActivity) view.getContext();
 
-                if (quantity[0] == 100){
-
-                    return;
-
-                }
-
-                quantity[0]++;
-                Log.e(menuList.get(i).getFoodName(), String.valueOf(quantity[0]));
-                viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
-                bundle.putString("Item", String.valueOf(quantity[0]));
-                foodChartFragment.setArguments(bundle);
-                viewHolder.activity.getSupportFragmentManager().beginTransaction().replace(R.id.foodChartFragment, foodChartFragment).commit();
-
-
-                //foodChartFragment.setArguments(bundle);
-
-                        /*if (menuList.get(i).isAddedToCart()) {
-
-                            if (quantity == 100) {
-                                return;
-                            }
-                            quantity++;
-                            menuList.get(i).setChartQuantity(quantity);
-                            viewHolder.displayQuantity(quantity);
-
-                        }*/
-
-            }
-        });
 
 
 
@@ -239,9 +309,6 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
     }*/
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-
-      //public RelativeLayout item_food;
-      //public LinearLayout foodChartFragment;
 
       public ImageView img;
       public TextView foodName, foodDescription, foodPrice, foodPriceDiscount, decreaseChartQuantity, increaseChartQuantity, chartQuantity;
@@ -281,59 +348,6 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
             foodPriceDiscount.setPaintFlags(foodPriceDiscount.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
-            /*final AppCompatActivity activity = (AppCompatActivity) itemView.getContext();
-            final FoodChartFragment myFragment = new FoodChartFragment();*/
-
-            /*decreaseChartQuantity.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    if (quantity == 1){
-                        buttonAddToChart.setVisibility(View.VISIBLE);
-                        buttonAddPlusMinusChart.setVisibility(View.GONE);
-                        activity.getSupportFragmentManager().beginTransaction().remove(myFragment).commit();
-                        return;
-                    }
-                    quantity = quantity-1;
-                    displayQuantity(quantity);
-                }
-            });
-
-            increaseChartQuantity.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    if (quantity == 100){
-                        return;
-                    }
-                    quantity = quantity+1;
-                    displayQuantity(quantity);
-
-                }
-            });*/
-
-
-
-            /*buttonAddToChart.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    Intent i = new Intent(context, PopUp.class);
-                    context.startActivity(i);
-
-
-                    LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-                    View customView = inflater.inflate(R.layout.view_floating_food_chart, null);
-
-                    mPopupWindow = new PopupWindow(
-                            customView,
-                            RelativeLayout.LayoutParams.WRAP_CONTENT,
-                            RelativeLayout.LayoutParams.WRAP_CONTENT
-                    );
-                }
-            });
-*/
         }
     }
 
