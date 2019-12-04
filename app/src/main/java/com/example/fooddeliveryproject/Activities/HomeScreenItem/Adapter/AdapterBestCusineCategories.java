@@ -2,28 +2,30 @@ package com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddeliveryproject.Activities.Activity.MenuScreenActivity;
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.DataFood;
+import com.example.fooddeliveryproject.Activities.Data.DataKhanaval;
 import com.example.fooddeliveryproject.R;
 
 import java.util.List;
 
 public class AdapterBestCusineCategories extends RecyclerView.Adapter<AdapterBestCusineCategories.ViewHolder> {
 
-    List<DataFood> topList;
+    List<DataKhanaval> topList;
     Context context;
+    //BestCusineFragment bestCusineFragment = new BestCusineFragment();
 
-    public AdapterBestCusineCategories(List<DataFood> topList, Context context) {
+    public AdapterBestCusineCategories(List<DataKhanaval> topList, Context context) {
         this.topList = topList;
         this.context = context;
     }
@@ -33,28 +35,43 @@ public class AdapterBestCusineCategories extends RecyclerView.Adapter<AdapterBes
     public AdapterBestCusineCategories.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.view_item_categories, viewGroup, false);
-        final ViewHolder viewHolder = new ViewHolder(v);
+        ViewHolder viewHolder = new ViewHolder(v);
 
-        v.setOnClickListener(new View.OnClickListener() {
+        /*v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 //Toast.makeText(context, "Test Click! " + String.valueOf(viewHolder.getAdapterPosition()), Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(context, MenuScreenActivity.class);
-                context.startActivity(i);
+
 
             }
-        });
+        });*/
 
         return viewHolder;
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdapterBestCusineCategories.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull AdapterBestCusineCategories.ViewHolder viewHolder, final int i) {
 
         viewHolder.foodName.setText(topList.get(i).getFoodName());
         viewHolder.img.setImageResource(topList.get(i).getImg());
+        /*final Bundle bundle = new Bundle();*/
+
+        viewHolder.itemCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent b = new Intent(context, MenuScreenActivity.class);
+                /*bundle.putString("FoodShop", topList.get(i).getFoodName());
+                foodChartFragment.setArguments(bundle);*/
+
+                b.putExtra("FoodShop", topList.get(i).getFoodName());
+                Log.e("item food name bundle", topList.get(i).getFoodName());
+                context.startActivity(b);
+
+            }
+        });
 
     }
 
@@ -67,12 +84,14 @@ public class AdapterBestCusineCategories extends RecyclerView.Adapter<AdapterBes
 
         public ImageView img;
         public TextView foodName;
+        public CardView itemCard;
 
         public ViewHolder(@NonNull final View itemView) {
             super(itemView);
 
             img = itemView.findViewById(R.id.img);
             foodName = itemView.findViewById(R.id.tvNameFood);
+            itemCard = itemView.findViewById(R.id.itemCard);
 
         }
     }

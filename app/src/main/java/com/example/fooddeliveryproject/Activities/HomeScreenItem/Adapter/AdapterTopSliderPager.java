@@ -10,19 +10,27 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.DataTopSlide;
+import com.example.fooddeliveryproject.Activities.Data.DataKhanaval;
 import com.example.fooddeliveryproject.R;
 
 import java.util.List;
 
 public class AdapterTopSliderPager extends PagerAdapter {
 
-    private Context mContext;
-    private List<DataTopSlide> mList;
+   /* private Context mContext;
+    private List<DataFood> mList;*/
 
-    public AdapterTopSliderPager(Context mContext, List<DataTopSlide> mList) {
+    List<DataKhanaval> mList;
+    Context mContext;
+
+    /*public AdapterTopSliderPager(ArrayList<DataFood> mContext, FragmentActivity mList) {
         this.mContext = mContext;
         this.mList = mList;
+    }*/
+
+    public AdapterTopSliderPager(List<DataKhanaval> mList, Context mContext) {
+        this.mList = mList;
+        this.mContext = mContext;
     }
 
     @NonNull
@@ -34,7 +42,7 @@ public class AdapterTopSliderPager extends PagerAdapter {
 
         ImageView slideImage = slideLayout.findViewById(R.id.img);
 
-        slideImage.setImageResource(mList.get(position).getImage());
+        slideImage.setImageResource(mList.get(position).getImg());
 
         container.addView(slideLayout);
 
@@ -42,7 +50,7 @@ public class AdapterTopSliderPager extends PagerAdapter {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(mContext, "Not Yet " + mList.get(position).getImage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Not Yet " + mList.get(position).getImg(), Toast.LENGTH_SHORT).show();
 
             }
         });

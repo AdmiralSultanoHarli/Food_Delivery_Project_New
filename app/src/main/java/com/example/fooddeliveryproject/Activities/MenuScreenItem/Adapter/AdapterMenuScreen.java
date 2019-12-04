@@ -2,52 +2,43 @@ package com.example.fooddeliveryproject.Activities.MenuScreenItem.Adapter;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.DataFood;
-import com.example.fooddeliveryproject.Activities.MenuScreenItem.DataFoodMenu;
+import com.example.fooddeliveryproject.Activities.Data.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment.FoodChartFragment;
-import com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment.MenuScreenFragment;
 import com.example.fooddeliveryproject.R;
 
-import java.lang.reflect.Array;
-import java.security.PublicKey;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.ViewHolder> {
 
-    List<DataFoodMenu> menuList;
+    List<DataKhanaval> menuList;
     Context context;
     Dialog mDialog;
-    //public int quantity = 1;
+    //int totalQuantity;
     FoodChartFragment foodChartFragment = new FoodChartFragment();
-    TextView chartQuantity;
     //boolean foodChartIsShowing = true;
 
 
     //private FragmentCommunication mCommunicator;
 
-    public AdapterMenuScreen(List<DataFoodMenu> menuList, Context context) {
+    public AdapterMenuScreen(List<DataKhanaval> menuList, Context context) {
         this.menuList = menuList;
         this.context = context;
     }
@@ -118,18 +109,18 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
         final Bundle bundle = new Bundle();
         /*priceTotal = menuList.get(i).getFoodPrice();
         priceDiscountTotal= menuList.get(i).getFoodPriceDiscount();*/
-        priceTotal[0] = menuList.get(i).getFoodPrice();
-        priceDiscountTotal[0] = menuList.get(i).getFoodPriceDiscount();
+        final int foodPriceItem = menuList.get(i).getFoodPrice();
+        final int foodPriceDiscountItem = menuList.get(i).getFoodPriceDiscount();
         quantity[0] = 0;
-
 
         viewHolder.buttonAddToChart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Log.e("priceFood", String.valueOf(priceTotal[0] + 20000));
+                Log.e("priceFood", String.valueOf(foodPriceItem));
                 Log.e("Button test", String.valueOf(quantity[0]));
                 Log.e("The position is", String.valueOf(viewHolder.getAdapterPosition()));
+                Log.e("quantity each product", String.valueOf(foodPriceItem + menuList.get(i).getFoodPrice()));
 
                 if (!foodChartFragment.isAdded()) {
                     if (quantity[0] == 0) {
@@ -153,48 +144,20 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                         Log.e(menuList.get(i).getFoodName(), String.valueOf(quantity[0]));
 
                     }
-                }/*else if (foodChartFragment.isAdded()){
+                }else if (foodChartFragment.isAdded()){
 
-                    viewHolder.activity.getSupportFragmentManager().beginTransaction().replace(R.id.foodChartFragment, foodChartFragment).commit();
+                    quantity[0] = 1;
+                    viewHolder.buttonAddToChart.setVisibility(View.INVISIBLE);
+                    viewHolder.buttonAddPlusMinusChart.setVisibility(View.VISIBLE);
+                    viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
                     bundle.putString("FoodName", menuList.get(i).getFoodName());
                     bundle.putString("FoodCount", String.valueOf(quantity[0]));
-                    bundle.putString("FoodPrice", menuList.get(i).getFoodPrice());
-                    bundle.putString("FoodDiscount", menuList.get(i).getFoodPriceDiscount());
-                    foodChartFragment.setArguments((bundle));
-
-
-                }*//*else {
-
+                    bundle.putString("FoodPrice", String.valueOf(priceTotal[0]));
+                    bundle.putString("FoodDiscount", String.valueOf(priceDiscountTotal[0]));
+                    foodChartFragment.setArguments(bundle);
                     viewHolder.activity.getSupportFragmentManager().beginTransaction().detach(foodChartFragment).attach(foodChartFragment).commit();
-
-                }*/
-                /*viewHolder.buttonAddToChart.setVisibility(View.GONE);
-                viewHolder.buttonAddPlusMinusChart.setVisibility(View.VISIBLE);*/
-
-//
-                /*bundle.putString("Food", menuList.get(i).getFoodName());
-                Log.e("test Bundle", menuList.get(i).getFoodName());
-                foodChartFragment.setArguments(bundle);*/
-
-
-               /* Log.e(menuList.get(i).getFoodName(), String.valueOf(quantity[0]));
-                viewHolder.chartQuantity.setText(String.valueOf(quantity[0] = 1));
-
-                if (quantity[0] == 1){
-
-                    if(foodChartFragment.isAdded()){
-
-                        viewHolder.activity.getSupportFragmentManager().beginTransaction().replace(R.id.foodChartFragment, foodChartFragment).commit();
-                        Log.e("Already added", String.valueOf(viewHolder.activity.getContentTransitionManager()));
-
-                    }else{
-
-                        viewHolder.activity.getSupportFragmentManager().beginTransaction().add(R.id.foodChartFragment, foodChartFragment).commit();
-
-                    }
-
-                }*/
-
+                    //return;
+                }
             }
         });
 
@@ -206,24 +169,22 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                 Log.e("Where is the button", menuList.get(i).getFoodName());
                 Log.e("The position is", String.valueOf(viewHolder.getAdapterPosition()));
 
-
-
                 if (quantity[0] == 100){
 
+                    Toast.makeText(context, "Iam sorry only 100 item can be added", Toast.LENGTH_SHORT).show();
                     return;
 
                 }
 
                 quantity[0]++;
-                priceTotal[0] = priceTotal[0] + priceTotal[0];
-                priceDiscountTotal[0] = priceDiscountTotal[0] + priceDiscountTotal[0];
+                priceTotal[0] += foodPriceItem;
+                priceDiscountTotal[0] += foodPriceDiscountItem;
                 Log.e(menuList.get(i).getFoodName(), String.valueOf(quantity[0]));
                 viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
                 bundle.putString("FoodCount", String.valueOf(quantity[0]));
                 bundle.putString("FoodPrice", String.valueOf(priceTotal[0]));
                 bundle.putString("FoodDiscount", String.valueOf(priceDiscountTotal[0]));
                 foodChartFragment.setArguments(bundle);
-
                 viewHolder.activity.getSupportFragmentManager().beginTransaction().detach(foodChartFragment).attach(foodChartFragment).commit();
 
 
@@ -260,8 +221,8 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
                 }
 
-                priceDiscountTotal[0] = priceDiscountTotal[0] - priceDiscountTotal[0];
-                priceTotal[0] = priceTotal[0] - priceTotal[0];
+                priceTotal[0] -= foodPriceItem;
+                priceDiscountTotal[0] -= foodPriceDiscountItem;
                 quantity[0]--;
                 Log.e(menuList.get(i).getFoodName(), String.valueOf(quantity[0]));
                 viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
@@ -305,12 +266,6 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
         return menuList.size();
     }
 
-   /* public interface FragmentCommunication{
-
-        void respond(int i, String foodName);
-
-    }*/
-
     public class ViewHolder extends RecyclerView.ViewHolder{
 
       public ImageView img;
@@ -321,13 +276,13 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
       /*FragmentCommunication mCommunication;*/
       //private PopupWindow mPopupWindow;
 
-       /* public void displayQuantity(int number){
+        public void displayQuantity(int number){
 
-            chartQuantity.setText(""+number);
-            *//*Intent intent = new Intent(context, MenuScreenFragment.class);
-            intent.putExtra("ss", chartQuantity);*//*
+            chartQuantity.setText(String.valueOf(number));
+            /*Intent intent = new Intent(context, MenuScreenFragment.class);
+            intent.putExtra("ss", chartQuantity);*/
 
-        }*/
+        }
 
 
         public ViewHolder(@NonNull final View itemView/*, final FragmentCommunication mCommunicator*/) {

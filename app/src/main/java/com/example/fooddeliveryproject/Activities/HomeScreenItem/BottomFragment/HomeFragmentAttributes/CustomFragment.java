@@ -11,8 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fooddeliveryproject.Activities.Data.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterCustomCategories;
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.DataFood;
 import com.example.fooddeliveryproject.R;
 
 import java.util.ArrayList;
@@ -43,7 +43,7 @@ public class CustomFragment extends Fragment {
         RecyclerView.LayoutManager layoutManagerCustom = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         customCategories.setLayoutManager(layoutManagerCustom);
 
-        ArrayList<DataFood> dataFoods = getData();
+        ArrayList<DataKhanaval> dataFoods = getData();
 
         adapterCustomCategories = new AdapterCustomCategories(dataFoods, getActivity());
         customCategories.setAdapter(adapterCustomCategories);
@@ -51,13 +51,13 @@ public class CustomFragment extends Fragment {
         return v;
     }
 
-    private ArrayList<DataFood> getData(){
+    private ArrayList<DataKhanaval> getData(){
 
-        ArrayList<DataFood> foodArrayList = new ArrayList<>();
+        ArrayList<DataKhanaval> foodArrayList = new ArrayList<>();
 
         for(int i = 0; i<foods.length; i++){
 
-            DataFood dataFood = new DataFood();
+            DataKhanaval dataFood = new DataKhanaval();
             dataFood.setFoodName(foods[i]);
             dataFood.setImg(img[i]);
             foodArrayList.add(dataFood);

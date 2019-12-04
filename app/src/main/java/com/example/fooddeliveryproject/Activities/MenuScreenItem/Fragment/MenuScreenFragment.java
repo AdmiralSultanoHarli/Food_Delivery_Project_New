@@ -8,16 +8,13 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fooddeliveryproject.Activities.Data.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.MenuScreenItem.Adapter.AdapterMenuScreen;
-import com.example.fooddeliveryproject.Activities.MenuScreenItem.DataFoodMenu;
 import com.example.fooddeliveryproject.R;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -55,27 +52,27 @@ public class MenuScreenFragment extends Fragment {
         RecyclerView.LayoutManager layoutManagerMenuScreen = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         menuScreenCategories.setLayoutManager(layoutManagerMenuScreen);
 
-        ArrayList<DataFoodMenu> dataFoodMenus = getData();
+        ArrayList<DataKhanaval> dataKhanavals = getData();
 
-        menuScreenAdapter = new AdapterMenuScreen(dataFoodMenus, getActivity()/*, communication*/);
+        menuScreenAdapter = new AdapterMenuScreen(dataKhanavals, getActivity());
         menuScreenCategories.setAdapter(menuScreenAdapter);
 
         return v;
 
     }
 
-    private ArrayList<DataFoodMenu> getData(){
+    private ArrayList<DataKhanaval> getData(){
 
-        ArrayList<DataFoodMenu> foodMenuArrayList = new ArrayList<>();
+        ArrayList<DataKhanaval> foodMenuArrayList = new ArrayList<>();
         for (int i = 0; i < foodName.length ; i++){
 
-            DataFoodMenu dataFoodMenu = new DataFoodMenu();
-            dataFoodMenu.setImg(img[i]);
-            dataFoodMenu.setFoodName(foodName[i]);
-            dataFoodMenu.setFoodDescription(foodDescription[i]);
-            dataFoodMenu.setFoodPrice(Integer.parseInt(String.valueOf(foodPrice[i])));
-            dataFoodMenu.setFoodPriceDiscount(Integer.parseInt(String.valueOf(foodPriceDiscount[i])));
-            foodMenuArrayList.add(dataFoodMenu);
+            DataKhanaval dataKhanaval = new DataKhanaval();
+            dataKhanaval.setImg(img[i]);
+            dataKhanaval.setFoodName(foodName[i]);
+            dataKhanaval.setFoodDescription(foodDescription[i]);
+            dataKhanaval.setFoodPrice(Integer.parseInt(String.valueOf(foodPrice[i])));
+            dataKhanaval.setFoodPriceDiscount(Integer.parseInt(String.valueOf(foodPriceDiscount[i])));
+            foodMenuArrayList.add(dataKhanaval);
         }
 
         return foodMenuArrayList;

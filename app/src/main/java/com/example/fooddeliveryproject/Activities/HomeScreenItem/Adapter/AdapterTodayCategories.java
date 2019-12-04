@@ -2,6 +2,7 @@ package com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,20 +10,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddeliveryproject.Activities.Activity.MenuScreenActivity;
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.DataFood;
+
+import com.example.fooddeliveryproject.Activities.Data.DataKhanaval;
 import com.example.fooddeliveryproject.R;
 
 import java.util.List;
 
 public class AdapterTodayCategories extends RecyclerView.Adapter<AdapterTodayCategories.ViewHolder> {
 
-    List<DataFood> topList;
+    List<DataKhanaval> topList;
     Context context;
 
-    public AdapterTodayCategories(List<DataFood> topList, Context context) {
+    public AdapterTodayCategories(List<DataKhanaval> topList, Context context) {
         this.topList = topList;
         this.context = context;
     }
@@ -49,10 +52,25 @@ public class AdapterTodayCategories extends RecyclerView.Adapter<AdapterTodayCat
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdapterTodayCategories.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull AdapterTodayCategories.ViewHolder viewHolder, final int i) {
 
         viewHolder.foodName.setText(topList.get(i).getFoodName());
         viewHolder.img.setImageResource(topList.get(i).getImg());
+
+        viewHolder.itemCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent b = new Intent(context, MenuScreenActivity.class);
+                /*bundle.putString("FoodShop", topList.get(i).getFoodName());
+                foodChartFragment.setArguments(bundle);*/
+
+                b.putExtra("FoodShop", topList.get(i).getFoodName());
+                Log.e("item food name bundle", topList.get(i).getFoodName());
+                context.startActivity(b);
+
+            }
+        });
 
     }
 
@@ -66,12 +84,14 @@ public class AdapterTodayCategories extends RecyclerView.Adapter<AdapterTodayCat
 
         public ImageView img;
         public TextView foodName;
+        public CardView itemCard;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             img = itemView.findViewById(R.id.img);
             foodName = itemView.findViewById(R.id.tvNameFood);
+            itemCard = itemView.findViewById(R.id.itemCard);
 
         }
     }

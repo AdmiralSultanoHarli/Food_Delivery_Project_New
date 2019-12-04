@@ -1,6 +1,6 @@
-package com.example.fooddeliveryproject.Activities.MenuScreenItem;
+package com.example.fooddeliveryproject.Activities.Data;
 
-public class DataFoodMenu {
+public class DataKhanaval {
 
     String foodName;
     String foodDescription;
@@ -10,12 +10,12 @@ public class DataFoodMenu {
     int img;
     boolean addedToCart = false;
 
-    public DataFoodMenu() {
+    public DataKhanaval() {
 
     }
 
 
-    public DataFoodMenu(String foodName, String foodDescription, int foodPrice, int foodPriceDiscount, int chartQuantity, int img, boolean addedToCart) {
+    public DataKhanaval(String foodName, String foodDescription, int foodPrice, int foodPriceDiscount, int chartQuantity, int img, boolean addedToCart) {
         this.foodName = foodName;
         this.foodDescription = foodDescription;
         this.foodPrice = foodPrice;

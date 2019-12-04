@@ -14,8 +14,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.fooddeliveryproject.Activities.Data.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterTopSliderPager;
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.DataTopSlide;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.HomeFragmentAttributes.BestCusineFragment;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.HomeFragmentAttributes.CustomFragment;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.HomeFragmentAttributes.TodaySpecialsFragment;
@@ -24,16 +24,16 @@ import com.example.fooddeliveryproject.R;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class HomeFragment extends Fragment {
 
-    private List<DataTopSlide> slideList;
+    //private List<DataKhanaval> slideList;
     private ViewPager sliderPager;
     private TabLayout indicator;
     private Context mContext;
+    int[] img = {R.drawable.panang_curry, R.drawable.butter_chicken, R.drawable.maharashtra_thali, R.drawable.cashback, R.drawable.chow_mein};
 
 
     @Nullable
@@ -44,16 +44,18 @@ public class HomeFragment extends Fragment {
         sliderPager = mView.findViewById(R.id.sliderPager);
         indicator = mView.findViewById(R.id.indicator);
 
-        slideList = new ArrayList<>();
-        slideList.add(new DataTopSlide(R.drawable.panang_curry));
-        slideList.add(new DataTopSlide(R.drawable.butter_chicken));
-        slideList.add(new DataTopSlide(R.drawable.maharashtra_thali));
-        slideList.add(new DataTopSlide(R.drawable.cashback));
-        slideList.add(new DataTopSlide(R.drawable.chow_mein));
+       /* slideList = new ArrayList<>();
+        slideList.add(new DataKhanaval(R.drawable.panang_curry, "PanangCurry", ));
+        slideList.add(new DataFood(R.drawable.butter_chicken, "ButterChicken"));
+        slideList.add(new DataFood(R.drawable.maharashtra_thali, "MaharashtraThali"));
+        slideList.add(new DataFood(R.drawable.cashback, "Cashback"));
+        slideList.add(new DataFood(R.drawable.chow_mein, "ChowMein"));*/
+
+        ArrayList<DataKhanaval> dataKhanavals = getData();
 
         Log.d("context", String .valueOf(sliderPager));
         if(mContext!=null) {
-            AdapterTopSliderPager adapter = new AdapterTopSliderPager(mContext, slideList);
+            AdapterTopSliderPager adapter = new AdapterTopSliderPager(dataKhanavals, getActivity());
             sliderPager.setAdapter(adapter);
         }
 
@@ -92,6 +94,23 @@ public class HomeFragment extends Fragment {
         mContext =  context;
     }
 
+    private ArrayList<DataKhanaval> getData(){
+
+
+        ArrayList<DataKhanaval> foodMenuArrayList = new ArrayList<>();
+        for (int i = 0; i<img.length; i++){
+
+            DataKhanaval dataKhanaval = new DataKhanaval();
+            dataKhanaval.setImg(img[i]);
+            foodMenuArrayList.add(dataKhanaval);
+
+        }
+
+        return foodMenuArrayList;
+
+    }
+
+
     class SliderTimer extends TimerTask{
 
         @Override
@@ -105,7 +124,7 @@ public class HomeFragment extends Fragment {
                     new Runnable() {
                 @Override
                 public void run() {
-                    if (sliderPager.getCurrentItem()<slideList.size()-1){
+                    if (sliderPager.getCurrentItem()<getData().size()-1){
 
                         sliderPager.setCurrentItem(sliderPager.getCurrentItem()+1);
 
