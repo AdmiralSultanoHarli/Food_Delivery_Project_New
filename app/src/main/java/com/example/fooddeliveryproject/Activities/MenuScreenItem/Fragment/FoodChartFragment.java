@@ -54,7 +54,7 @@ public class FoodChartFragment extends Fragment {
         itemName = v.findViewById(R.id.itemName);
 
         Bundle testBundle = this.getArguments(), home = getActivity().getIntent().getExtras();
-        Log.e("bundlesss", String.valueOf(testBundle));
+        //Log.e("bundlesss", String.valueOf(testBundle));
         foodName = home.getString("FoodShop");
         foodCount = testBundle.getString("FoodCount");
         foodPrice = testBundle.getString("FoodPrice");
