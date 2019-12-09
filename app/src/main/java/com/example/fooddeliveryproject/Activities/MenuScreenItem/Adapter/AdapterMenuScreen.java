@@ -109,6 +109,9 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                     if (quantity[0] == 0) {
 
                         quantity[0] = 1;
+                        priceTotal[0] = foodPriceItem;
+                        priceDiscountTotal[0] = foodPriceDiscountItem;
+
                         quantityTotal = 1;
                         foodPriceTotal = foodPriceItem;
                         foodPriceDiscountTotal = foodPriceDiscountItem;
@@ -150,6 +153,9 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                     }
 
                     quantity[0] = 1;
+                    priceTotal[0] = foodPriceItem;
+                    priceDiscountTotal[0] = foodPriceDiscountItem;
+
                     quantityTotal++;
                     foodPriceTotal+= foodPriceItem;
                     foodPriceDiscountTotal+= foodPriceDiscountItem;
@@ -237,52 +243,53 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                     if (quantityTotal == 1) {
 
                         quantityTotal = 0;
+                        foodPriceTotal = 0;
+                        foodPriceDiscountTotal = 0;
+
                         quantity[0] = 0;
+                        priceTotal[0] = 0;
+                        priceDiscountTotal[0] = 0;
 
                         viewHolder.buttonAddToChart.setVisibility(View.VISIBLE);
                         viewHolder.buttonAddPlusMinusChart.setVisibility(View.GONE);
 
                         /*bundle.putString("FoodCount", String.valueOf(quantityTotal));
                         bundle.putString("FoodPrice", String.valueOf(foodPriceTotal));
+                        bundle.putString("FoodDiscount", String.valueOf(foodPriceDiscountTotal));*/
+
+                        Log.e("FoodCount", menuList.get(i).getFoodName() + " = " + String.valueOf(quantity[0]));
+                        Log.e("FoodPrice", menuList.get(i).getFoodName() + " = " + String.valueOf(priceTotal[0]));
+                        Log.e("FoodDiscount", menuList.get(i).getFoodName() + " = " + String.valueOf(priceDiscountTotal[0]));
+
+                        viewHolder.activity.getSupportFragmentManager().beginTransaction().remove(foodChartFragment).commit();
+
+                    }else if(quantityTotal > 1) {
+
+                        // Total All Item
+                        quantityTotal--;
+                        foodPriceTotal -= foodPriceItem;
+                        foodPriceDiscountTotal -= foodPriceDiscountItem;
+
+                        // Total 1 item
+                        quantity[0]--;
+                        priceTotal[0] -= foodPriceItem;
+                        priceDiscountTotal[0] -= foodPriceDiscountItem;
+
+                        bundle.putString("FoodCount", String.valueOf(quantityTotal));
+                        bundle.putString("FoodPrice", String.valueOf(foodPriceTotal));
                         bundle.putString("FoodDiscount", String.valueOf(foodPriceDiscountTotal));
 
                         Log.e("FoodCount", menuList.get(i).getFoodName() + " = " + String.valueOf(quantity[0]));
                         Log.e("FoodPrice", menuList.get(i).getFoodName() + " = " + String.valueOf(priceTotal[0]));
-                        Log.e("FoodDiscount", menuList.get(i).getFoodName() + " = " + String.valueOf(priceDiscountTotal[0]));*/
+                        Log.e("FoodDiscount", menuList.get(i).getFoodName() + " = " + String.valueOf(priceDiscountTotal[0]));
 
-                        viewHolder.activity.getSupportFragmentManager().beginTransaction().remove(foodChartFragment).commit();
-                        return;
+                        viewHolder.buttonAddToChart.setVisibility(View.VISIBLE);
+                        viewHolder.buttonAddPlusMinusChart.setVisibility(View.GONE);
+                        viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
 
+                        foodChartFragment.setArguments(bundle);
+                        viewHolder.activity.getSupportFragmentManager().beginTransaction().detach(foodChartFragment).attach(foodChartFragment).commit();
                     }
-
-                    // Total All Item
-                    quantityTotal--;
-                    foodPriceTotal -= foodPriceItem;
-                    foodPriceDiscountTotal -= foodPriceDiscountItem;
-
-                    // Total 1 item
-                    /*quantity[0]--;
-                    priceTotal[0] -= foodPriceItem;
-                    priceDiscountTotal[0] -= foodPriceDiscountItem;*/
-
-                    quantity[0] = 0;
-                    priceTotal[0] = foodPriceItem;
-                    priceDiscountTotal[0] = foodPriceDiscountItem;
-
-                    bundle.putString("FoodCount", String.valueOf(quantityTotal));
-                    bundle.putString("FoodPrice", String.valueOf(foodPriceTotal));
-                    bundle.putString("FoodDiscount", String.valueOf(foodPriceDiscountTotal));
-
-                    Log.e("FoodCount", menuList.get(i).getFoodName() + " = " + String.valueOf(quantity[0]));
-                    Log.e("FoodPrice", menuList.get(i).getFoodName() + " = " + String.valueOf(priceTotal[0]));
-                    Log.e("FoodDiscount", menuList.get(i).getFoodName() + " = " + String.valueOf(priceDiscountTotal[0]));
-
-                    viewHolder.buttonAddToChart.setVisibility(View.VISIBLE);
-                    viewHolder.buttonAddPlusMinusChart.setVisibility(View.GONE);
-                    viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
-
-                    foodChartFragment.setArguments(bundle);
-                    viewHolder.activity.getSupportFragmentManager().beginTransaction().detach(foodChartFragment).attach(foodChartFragment).commit();
 
                 } else if(quantity[0] > 1){
 
@@ -297,8 +304,6 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                         quantity[0]--;
                         priceTotal[0] -= foodPriceItem;
                         priceDiscountTotal[0] -= foodPriceDiscountItem;
-
-                        /**/
 
                         // Showing the text that Counting number in the middle button Decrement and Increment
                         viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
