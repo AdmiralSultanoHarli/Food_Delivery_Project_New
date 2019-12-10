@@ -2,7 +2,7 @@ package com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,14 +15,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddeliveryproject.Activities.Activity.MenuScreenActivity;
 import com.example.fooddeliveryproject.Activities.Data.DataKhanaval;
+import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.R;
 
 import java.util.List;
+
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_CATEGORY;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.MY_PREFERENCE;
 
 public class AdapterBestCusineCategories extends RecyclerView.Adapter<AdapterBestCusineCategories.ViewHolder> {
 
     List<DataKhanaval> topList;
     Context context;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
     //BestCusineFragment bestCusineFragment = new BestCusineFragment();
 
     public AdapterBestCusineCategories(List<DataKhanaval> topList, Context context) {
@@ -57,6 +63,8 @@ public class AdapterBestCusineCategories extends RecyclerView.Adapter<AdapterBes
         viewHolder.foodName.setText(topList.get(i).getFoodName());
         viewHolder.img.setImageResource(topList.get(i).getImg());
         /*final Bundle bundle = new Bundle();*/
+        sharedPreferences = context.getSharedPreferences(MY_PREFERENCE, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
         viewHolder.itemCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,8 +74,11 @@ public class AdapterBestCusineCategories extends RecyclerView.Adapter<AdapterBes
                 /*bundle.putString("FoodShop", topList.get(i).getFoodName());
                 foodChartFragment.setArguments(bundle);*/
 
-                b.putExtra("FoodShop", topList.get(i).getFoodName());
-                Log.e("item food name bundle", topList.get(i).getFoodName());
+                SaveSharedPreference.setFoodCategory(context, topList.get(i).getFoodName());
+                editor.putString(FOOD_CATEGORY, topList.get(i).getFoodName());
+
+                //b.putExtra("FoodShop", topList.get(i).getFoodName());
+                //Log.e("item food name bundle", topList.get(i).getFoodName());
                 context.startActivity(b);
 
             }

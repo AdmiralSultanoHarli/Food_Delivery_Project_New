@@ -1,13 +1,15 @@
 package com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment;
 
+import android.content.ClipData;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,13 +19,21 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.example.fooddeliveryproject.Activities.Activity.MenuDetailsScreenActivity;
+import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.R;
+
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.ALL_QUANTITY;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_CATEGORY;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_PRICE_DISCOUNT_TOTAL;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_PRICE_TOTAL;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.MY_PREFERENCE;
 
 public class FoodChartFragment extends Fragment {
 
     CardView buttonAddToChartThenOrder;
     TextView itemCount, price, discountPrice, itemName;
-    String foodName, foodCount, foodPrice, foodDiscount;
+    String foodCategoryName, foodCountTotal, foodPriceTotal, foodDiscountTotal;
+    SharedPreferences sharedPreferences;
 
     public FoodChartFragment() {
 
@@ -52,21 +62,42 @@ public class FoodChartFragment extends Fragment {
         price = v.findViewById(R.id.price);
         discountPrice = v.findViewById(R.id.discountPrice);
         itemName = v.findViewById(R.id.itemName);
+        sharedPreferences = getContext().getSharedPreferences(MY_PREFERENCE, Context.MODE_PRIVATE);
 
-        Bundle testBundle = this.getArguments(), home = getActivity().getIntent().getExtras();
+        /*Bundle testBundle = this.getArguments()*//*, home = getActivity().getIntent().getExtras()*//*;
         //Log.e("bundlesss", String.valueOf(testBundle));
-        foodName = home.getString("FoodShop");
+        //foodName = home.getString("FoodShop");
         foodCount = testBundle.getString("FoodCount");
         foodPrice = testBundle.getString("FoodPrice");
-        foodDiscount = testBundle.getString("FoodDiscount");
+        foodDiscount = testBundle.getString("FoodDiscount");*/
 
-        itemName.setText(foodName);
-        itemCount.setText(foodCount + " item");
-        price.setText(foodPrice);
-        discountPrice.setText(foodDiscount);
+
+        foodCategoryName = SaveSharedPreference.getFoodCategory(getContext(), "");
+        foodCountTotal = String.valueOf(SaveSharedPreference.getAllQuantity(getContext(), 0));
+        foodPriceTotal = String.valueOf(SaveSharedPreference.getFoodPriceTotal(getContext(), 0));
+        foodDiscountTotal = String.valueOf(SaveSharedPreference.getFoodPriceDiscountTotal(getContext(), 0));
+
+        Log.e("FoodQuantity", String.valueOf(SaveSharedPreference.getQuantity(getContext(), 0)));
+
+        itemName.setText(foodCategoryName);
+        itemCount.setText(foodCountTotal + " Item");
+        price.setText(foodPriceTotal);
+        discountPrice.setText(foodDiscountTotal);
+
+        /*if (sharedPreferences.contains(FOOD_CATEGORY)){
+            itemName.setText(foodCategoryName);
+        }
+        if(sharedPreferences.contains(ALL_QUANTITY)){
+            itemCount.setText(foodCountTotal);
+        }
+        if(sharedPreferences.contains(FOOD_PRICE_TOTAL)){
+            price.setText(foodPriceTotal);
+        }
+        if(sharedPreferences.contains(FOOD_PRICE_DISCOUNT_TOTAL)){
+            discountPrice.setText(foodDiscountTotal);
+        }*/
 
         discountPrice.setPaintFlags(discountPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-
 
         buttonAddToChartThenOrder.setOnClickListener(new View.OnClickListener() {
             @Override

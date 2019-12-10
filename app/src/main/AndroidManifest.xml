@@ -19,7 +19,7 @@
             android:name=".Activities.ZJustForTest.PopUp.PopUp"
             android:theme="@style/AppTheme.CustomTheme" />
         <activity
-            android:name=".Activities.Activity.SplashScreenActivity"
+            android:name=".Activities.Activity.HomeScreenActivity"
             android:label="@string/title_activity_home_screen"
             android:theme="@style/BlackStatusBar" />
         <activity
@@ -31,7 +31,7 @@
         <activity
             android:name=".Activities.Activity.AppScreenActivity"
             android:theme="@style/AppStatusBar" />
-        <activity android:name=".Activities.Activity.HomeScreenActivity">
+        <activity android:name=".Activities.Activity.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
