@@ -80,4 +80,5 @@ public class DataKhanaval {
     public void setImg(int img) {
         this.img = img;
     }
+
 }

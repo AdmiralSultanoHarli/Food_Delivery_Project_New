@@ -1,6 +1,7 @@
 package com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,9 @@ public class MenuScreenFragment extends Fragment {
     int[] foodPriceDiscount = {40000, 65000, 55000, 50000, 115000, 55000, 40000, 45000};
     int[] img = {R.drawable.maharashtra_thali, R.drawable.goan_vegetarian_thali, R.drawable.butter_chicken, R.drawable.bhindi_masala, R.drawable.murg_musallam, R.drawable.basmati_rice_chicken_biryani, R.drawable.jeera_alo, R.drawable.mix_veggies};
 
+
+    private static Bundle mBundleRecyclerViewState;
+    private final String KEY_RECYCLER_STATE = "recycler_state";
     public MenuScreenFragment() {
 
 
@@ -93,4 +97,28 @@ public class MenuScreenFragment extends Fragment {
         }
     };*/
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Parcelable mListState = menuScreenCategories.getLayoutManager().onSaveInstanceState();
+        outState.putParcelable(KEY_RECYCLER_STATE, mListState);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mBundleRecyclerViewState = new Bundle();
+        Parcelable liststate = menuScreenCategories.getLayoutManager().onSaveInstanceState();
+        mBundleRecyclerViewState.putParcelable(KEY_RECYCLER_STATE,liststate);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mBundleRecyclerViewState = new Bundle();
+        if (mBundleRecyclerViewState != null) {
+            Parcelable listState = mBundleRecyclerViewState.getParcelable(KEY_RECYCLER_STATE);
+            menuScreenCategories.getLayoutManager().onRestoreInstanceState(listState);
+        }
+    }
 }

@@ -66,7 +66,7 @@ public class AdapterBestCusineCategories extends RecyclerView.Adapter<AdapterBes
         sharedPreferences = context.getSharedPreferences(MY_PREFERENCE, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
-        viewHolder.itemCard.setOnClickListener(new View.OnClickListener() {
+        viewHolder.itemCard.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 

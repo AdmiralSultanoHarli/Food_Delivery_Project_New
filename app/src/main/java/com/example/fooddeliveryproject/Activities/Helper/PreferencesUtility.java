@@ -28,4 +28,6 @@ public class PreferencesUtility {
 
     public static final String EMAIL = "Email";
 
+    public static final String IS_ADDTOCART_VISIBLE = "AddToCart";
+
 }

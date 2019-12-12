@@ -16,6 +16,7 @@ import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtili
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_PRICE_DISCOUNT;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_PRICE_DISCOUNT_TOTAL;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_PRICE_TOTAL;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_ADDTOCART_VISIBLE;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.PASSWORD;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.QUANTITY;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.USERNAME;
@@ -311,6 +312,24 @@ public class SaveSharedPreference {
 
         return getPreferences(context).getString(EMAIL, "");
 
+    }
+
+    /**
+     * setIsAddToCartVisible
+     *
+     * @param context
+     * @param isAddToCartVisble
+     */
+    public static void setIsAddToCartVisible(Context context, boolean isAddToCartVisble){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putBoolean(IS_ADDTOCART_VISIBLE, isAddToCartVisble);
+        editor.apply();
+
+    }
+
+    public static boolean getIsAddToCartVisible(Context context, boolean isAddToCart){
+        return getPreferences(context).getBoolean(IS_ADDTOCART_VISIBLE, true);
     }
 
 }

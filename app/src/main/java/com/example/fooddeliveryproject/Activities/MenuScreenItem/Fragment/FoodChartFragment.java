@@ -77,25 +77,12 @@ public class FoodChartFragment extends Fragment {
         foodPriceTotal = String.valueOf(SaveSharedPreference.getFoodPriceTotal(getContext(), 0));
         foodDiscountTotal = String.valueOf(SaveSharedPreference.getFoodPriceDiscountTotal(getContext(), 0));
 
-        Log.e("FoodQuantity", String.valueOf(SaveSharedPreference.getQuantity(getContext(), 0)));
+        //Log.e("FoodQuantity", String.valueOf(SaveSharedPreference.getQuantity(getContext(), 0)));
 
         itemName.setText(foodCategoryName);
         itemCount.setText(foodCountTotal + " Item");
         price.setText(foodPriceTotal);
         discountPrice.setText(foodDiscountTotal);
-
-        /*if (sharedPreferences.contains(FOOD_CATEGORY)){
-            itemName.setText(foodCategoryName);
-        }
-        if(sharedPreferences.contains(ALL_QUANTITY)){
-            itemCount.setText(foodCountTotal);
-        }
-        if(sharedPreferences.contains(FOOD_PRICE_TOTAL)){
-            price.setText(foodPriceTotal);
-        }
-        if(sharedPreferences.contains(FOOD_PRICE_DISCOUNT_TOTAL)){
-            discountPrice.setText(foodDiscountTotal);
-        }*/
 
         discountPrice.setPaintFlags(discountPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
