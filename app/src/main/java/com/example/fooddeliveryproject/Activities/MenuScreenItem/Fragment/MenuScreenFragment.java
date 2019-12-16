@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddeliveryproject.Activities.Data.DataKhanaval;
+import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.MenuScreenItem.Adapter.AdapterMenuScreen;
 import com.example.fooddeliveryproject.R;
 
@@ -33,6 +34,7 @@ public class MenuScreenFragment extends Fragment {
     int[] foodPrice = {30000, 50000, 40000, 40000, 100000, 50000, 30000, 40000};
     int[] foodPriceDiscount = {40000, 65000, 55000, 50000, 115000, 55000, 40000, 45000};
     int[] img = {R.drawable.maharashtra_thali, R.drawable.goan_vegetarian_thali, R.drawable.butter_chicken, R.drawable.bhindi_masala, R.drawable.murg_musallam, R.drawable.basmati_rice_chicken_biryani, R.drawable.jeera_alo, R.drawable.mix_veggies};
+    int[] buttonPosition = {0, 1, 2, 3, 4, 5, 6, 7};
 
 
     private static Bundle mBundleRecyclerViewState;
@@ -76,6 +78,7 @@ public class MenuScreenFragment extends Fragment {
             dataKhanaval.setFoodDescription(foodDescription[i]);
             dataKhanaval.setFoodPrice(Integer.parseInt(String.valueOf(foodPrice[i])));
             dataKhanaval.setFoodPriceDiscount(Integer.parseInt(String.valueOf(foodPriceDiscount[i])));
+            dataKhanaval.setButtonPosition(Integer.parseInt(String.valueOf(buttonPosition[i])));
             foodMenuArrayList.add(dataKhanaval);
         }
 

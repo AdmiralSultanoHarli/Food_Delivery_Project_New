@@ -10,11 +10,17 @@
         android:roundIcon="@mipmap/khanal_test_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.ZJustForTest.MainActivity" />
+        <activity
+            android:name=".Activities.Activity.OrderScreenActivity"
+            android:theme="@style/BlackStatusBar"/>
+        <activity
+            android:name=".Activities.ZJustForTest.MainActivity"/>
         <activity
             android:name=".Activities.Activity.MenuScreenActivity"
             android:theme="@style/BlackStatusBar" />
-        <activity android:name=".Activities.Activity.MenuDetailsScreenActivity" />
+        <activity
+            android:name=".Activities.Activity.MenuDetailsScreenActivity"
+            android:theme="@style/BlackStatusBar" />
         <activity
             android:name=".Activities.ZJustForTest.PopUp.PopUp"
             android:theme="@style/AppTheme.CustomTheme" />

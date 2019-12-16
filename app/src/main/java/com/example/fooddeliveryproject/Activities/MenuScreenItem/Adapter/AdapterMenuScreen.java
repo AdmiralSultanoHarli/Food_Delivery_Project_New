@@ -25,6 +25,8 @@ import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment.FoodChartFragment;
 import com.example.fooddeliveryproject.R;
 
+import org.xml.sax.SAXException;
+
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.ALL_QUANTITY;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_NAME;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_PRICE;
@@ -42,7 +44,6 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
     List<DataKhanaval> menuList;
     Context context;
     Dialog mDialog;
-    //int totalQuantity;
     FoodChartFragment foodChartFragment = new FoodChartFragment();
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -109,20 +110,20 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
         viewHolder.foodDescription.setText(menuList.get(i).getFoodDescription());
         viewHolder.foodPrice.setText(String.valueOf(menuList.get(i).getFoodPrice()));
         viewHolder.foodPriceDiscount.setText(String.valueOf(menuList.get(i).getFoodPriceDiscount()));
+        //viewHolder.buttonAddToChart.setVisibility(menuList.get(i).getButtonPosition());
         //int position = viewHolder.getAdapterPosition();
-
-        DataKhanaval currentItem = menuList.get(i);
 
         final Bundle bundle = new Bundle();
 
         final int[] quantity = {menuList.get(i).getChartQuantity()};
         final int[] priceTotal = {menuList.get(i).getFoodPrice()};
         final int[] priceDiscountTotal = {menuList.get(i).getFoodPriceDiscount()};
+        final int[] buttonPosition = {menuList.get(i).getButtonPosition()};
 
         final int foodPriceItem = menuList.get(i).getFoodPrice();
         final int foodPriceDiscountItem = menuList.get(i).getFoodPriceDiscount();
 
-        currentPos = menuList.get(i).getChartQuantity();
+        //currentPos = menuList.get(i).getChartQuantity();
 
         final int position = viewHolder.getAdapterPosition();
         quantity[0] = 0;
@@ -130,9 +131,6 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
         //Log.e("Old Position", String.valueOf(viewHolder.getAdapterPosition()));
 
         //viewHolder.activity.getSupportFragmentManager().beginTransaction().replace(R.id.foodChartFragment, foodChartFragment).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
-        if (SaveSharedPreference.getAllQuantity(context, quantityTotal) >= 1 ) {
-            viewHolder.activity.getSupportFragmentManager().beginTransaction().replace(R.id.foodChartFragment, foodChartFragment).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
-        }
 
         //viewHolder.buttonAddToChart.setVisibility(SaveSharedPreference.getIsAddToCartVisible(context, true) ? View.VISIBLE : View.GONE);
         //viewHolder.buttonAddPlusMinusChart.setVisibility(SaveSharedPreference.getIsAddToCartVisible(context, true)? View.GONE : View.VISIBLE);
@@ -141,21 +139,36 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
         sharedPreferences = context.getSharedPreferences(MY_PREFERENCE, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
-        viewHolder.buttonAddToChart.getTag(i);
+        viewHolder.buttonAddToChart.setTag(0);
+
+        Log.e("Button Adapter", String.valueOf(viewHolder.buttonAddToChart.getTag(0)));
+
+        if (SaveSharedPreference.getAllQuantity(context, quantityTotal) >= 1 ) {
+            quantity[0] = SaveSharedPreference.getQuantity(context, quantity[0]);
+            quantityTotal = SaveSharedPreference.getAllQuantity(context, quantityTotal);
+            SaveSharedPreference.setQuantity(context, quantity[0]);
+            SaveSharedPreference.setAllQuantity(context, quantityTotal);
+            editor.putInt(QUANTITY, quantity[0]);
+            editor.putInt(ALL_QUANTITY, quantityTotal);
+
+            viewHolder.activity.getSupportFragmentManager().beginTransaction().replace(R.id.foodChartFragment, foodChartFragment).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
+        }
 
         viewHolder.buttonAddToChart.setVisibility(SaveSharedPreference.getIsAddToCartVisible(context, true) ? View.VISIBLE : View.INVISIBLE);
         viewHolder.buttonAddPlusMinusChart.setVisibility(SaveSharedPreference.getIsAddToCartVisible(context, true) ? View.INVISIBLE : View.VISIBLE);
         viewHolder.chartQuantity.setText(String.valueOf(SaveSharedPreference.getQuantity(context, quantity[0])));
 
+        /*if (row_index != -1) {
+            viewHolder.chartQuantity.setText(row_index);
+        }*/
         //Log.e("Adapter Test", String.valueOf(viewHolder.getAdapterPosition()));
-
 
         //viewHolder.buttonAddToChart.getTag(menuList.get(i));
 
         //viewHolder.buttonAddToChart.setVisibility(i == currentPos || currentPos == -1 ? View.VISIBLE : View.INVISIBLE);
         //viewHolder.buttonAddPlusMinusChart.setVisibility(i == currentPos || currentPos != -1 ? View.VISIBLE : View.INVISIBLE);
 
-        Log.e("where is i,", String.valueOf(i));
+        //Log.e("where is i,", String.valueOf(i));
 
         viewHolder.buttonAddToChart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,7 +181,8 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
                         Log.e("Tag", String.valueOf(viewHolder.buttonAddToChart.getTag()));
 
-                        viewHolder.buttonAddToChart.setTag(i);
+                        //viewHolder.buttonAddToChart.setTag(i);
+                        notifyItemChanged(foodPriceItem);
 
                         quantity[0] = 1;
                         priceTotal[0] = foodPriceItem;
@@ -561,6 +575,13 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
     public int getItemCount() {
         return menuList.size();
     }
+
+    @Override
+    public int getItemViewType(int position) {
+        return super.getItemViewType(position);
+    }
+
+
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 

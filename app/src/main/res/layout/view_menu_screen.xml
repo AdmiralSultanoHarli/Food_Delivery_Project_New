@@ -24,8 +24,6 @@
                 android:layout_marginTop="5dp">
         
                 <ImageView
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
                     android:id="@+id/img"
                     android:background="@drawable/rounded_image_corner"
                     android:layout_width="120dp"
