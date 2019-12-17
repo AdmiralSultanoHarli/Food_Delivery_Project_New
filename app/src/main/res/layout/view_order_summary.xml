@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="7dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/maharashtra_thali"
+                android:scaleType="fitXY"
+                android:layout_centerInParent="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"/>
+
+            <TextView
+                android:id="@+id/foodName"
+                android:text="Butter Chicken"
+                android:textSize="14sp"
+                android:textColor="@color/colorBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/img"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="8dp"
+                />
+
+            <TextView
+                android:id="@+id/foodPrice"
+                android:text="40.000"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/img"
+                android:layout_below="@+id/foodName"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="8dp"/>
+
+            <TextView
+                android:id="@+id/foodPriceDiscount"
+                android:text="55.000"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/foodPrice"
+                android:layout_below="@id/foodName"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="8dp"/>
+
+            <ImageButton
+                android:id="@+id/favouriteFood"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/heart"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/buttonAddPlusMinusChart"
+                android:layout_width="57dp"
+                android:layout_height="22dp"
+                android:background="@color/colorWhite"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="10dp"
+                app:cardCornerRadius="4dp"
+                android:elevation="5dp"
+                >
+
+                <RelativeLayout
+                    android:background="@color/colorWhite"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/decreaseChartQuantity"
+                        android:layout_width="19dp"
+                        android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:text="-"
+                        android:gravity="center"
+                        android:textColor="@color/colorButton"
+                        android:textSize="14sp"
+                        android:layout_alignParentLeft="true"/>
+
+                    <TextView
+                        android:id="@+id/chartQuantity"
+                        android:layout_width="19dp"
+                        android:layout_height="match_parent"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:layout_centerInParent="true"/>
+
+                    <TextView
+                        android:id="@+id/increaseChartQuantity"
+                        android:layout_width="19dp"
+                        android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:gravity="center"
+                        android:text="+"
+                        android:textColor="@color/colorButton"
+                        android:textSize="14sp"
+                        android:layout_alignParentRight="true"/>
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <ImageButton
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_toLeftOf="@+id/buttonAddPlusMinusChart"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/pen"
+                />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

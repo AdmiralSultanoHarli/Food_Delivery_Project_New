@@ -1,12 +1,15 @@
 package com.example.fooddeliveryproject.Activities.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.example.fooddeliveryproject.Activities.OrderScreenItem.Fragment.OrderScreenOrderFragment;
 import com.example.fooddeliveryproject.R;
 
 public class OrderScreenActivity extends AppCompatActivity {
@@ -28,6 +31,14 @@ public class OrderScreenActivity extends AppCompatActivity {
 
             }
         });
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        OrderScreenOrderFragment orderScreenOrderFragment = new OrderScreenOrderFragment();
+        fragmentTransaction.add(R.id.orderSummaryFragment, orderScreenOrderFragment, orderScreenOrderFragment.getTag());
+
+        fragmentTransaction.commit();
 
     }
 }
