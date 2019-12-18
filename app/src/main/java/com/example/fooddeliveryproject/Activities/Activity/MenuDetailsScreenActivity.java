@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.fooddeliveryproject.Activities.MenuDetailScreenItem.Fragment.MenuDetailScreenAddOnFragment;
@@ -19,7 +20,7 @@ import com.example.fooddeliveryproject.R;
 public class MenuDetailsScreenActivity extends AppCompatActivity {
 
     TextView itemTotalPriceDiscount;
-    ImageButton backButton;
+    ImageView backButton;
     Button buttonOrder, buttonCancel;
 
     @Override

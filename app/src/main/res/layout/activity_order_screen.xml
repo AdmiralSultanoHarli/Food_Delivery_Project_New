@@ -11,11 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="50dp">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/backButton"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:background="@drawable/iconback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:src="@drawable/ic_icon_back_black_24dp"
+            android:tint="@color/colorButton"
             android:foreground="?attr/selectableItemBackground"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="10dp"
@@ -29,25 +31,29 @@
             android:gravity="center"
             android:layout_alignParentTop="true"
             android:layout_marginTop="8dp"
-            android:text="Order"
+            android:text="Menu"
             android:textColor="@color/colorBlack"
             android:textSize="20sp"
             />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/cartButton"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:foreground="?attr/selectableItemBackground"
             android:layout_alignParentRight="true"
+            android:clickable="true"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/iconshop"/>
+            android:src="@drawable/ic_shopping_cart_blue_24dp"
+            android:tint="@color/colorButton"/>
 
     </RelativeLayout>
 
     <ScrollView
+        android:id="@+id/menu2"
         android:layout_below="@+id/menu1"
+        android:layout_above="@+id/paymentBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -224,6 +230,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerInParent="true"
                         android:background="@drawable/rounded_button_change_promo"
+                        android:foreground="?attr/selectableItemBackground"
                         android:layout_width="57dp"
                         android:layout_height="23dp"
                         android:layout_marginRight="10dp"/>
@@ -361,7 +368,7 @@
                                 android:layout_height="17dp"/>
 
                             <RadioButton
-                                android:id="@+id/radiButtonGojek"
+                                android:id="@+id/radioButtonGojek"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentRight="true"
@@ -439,7 +446,7 @@
                                 android:layout_height="wrap_content"/>
 
                             <RadioButton
-                                android:id="@+id/radiButtonOvo"
+                                android:id="@+id/radioButtonOvo"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentRight="true"
@@ -505,8 +512,7 @@
                 android:id="@+id/paymentDetailsCategories"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/selectPaymentCategories"
-                android:layout_marginBottom="40dp">
+                android:layout_below="@+id/selectPaymentCategories">
 
                 <TextView
                     android:id="@+id/textViewPaymentDetails"
@@ -642,5 +648,57 @@
         </RelativeLayout>
 
     </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/paymentBar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:outlineProvider="bounds"
+        android:elevation="1dp">
+
+        <TextView
+            android:id="@+id/totalPriceBar"
+            android:text="53.000"
+            android:textSize="12sp"
+            android:textColor="@color/colorBlack"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/viewPayment"
+            android:text="OVO"
+            android:textSize="10sp"
+            android:textColor="@color/colorWhite"
+            android:gravity="center"
+            android:layout_toRightOf="@+id/totalPriceBar"
+            android:layout_width="44.5dp"
+            android:layout_height="17.3dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/rounded_view_ovo"/>
+
+        <Button
+            android:id="@+id/buttonPayment"
+            android:text="Order"
+            android:textColor="@color/colorWhite"
+            android:textSize="14sp"
+            android:textAllCaps="false"
+            android:layout_below="@+id/viewPayment"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/rounded_button_payment_ovo"
+            android:foreground="?attr/selectableItemBackground"
+            />
+
+    </RelativeLayout>
 
 </RelativeLayout>

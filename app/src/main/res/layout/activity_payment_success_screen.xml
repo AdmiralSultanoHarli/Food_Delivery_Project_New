@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.Activity.PaymentSuccessScreenActivity">
+
+    <RelativeLayout
+        android:id="@+id/menu1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:src="@drawable/ic_home_black_24dp"
+            android:tint="@color/ovo"
+            android:foreground="?attr/selectableItemBackground"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="8dp"
+            android:text="Payment"
+            android:textColor="@color/colorBlack"
+            android:textSize="20sp"
+            />
+
+        <ImageView
+            android:id="@+id/cartButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:foreground="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_shopping_cart_blue_24dp"
+            android:tint="@color/ovo"/>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_below="@+id/menu1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/paymentSuccessCategories"
+                android:layout_width="match_parent"
+                android:layout_height="318dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="5dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/imagePaymentSuccess"
+                        android:layout_width="189.1dp"
+                        android:layout_height="130dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/payment_success" />
+
+                    <TextView
+                        android:id="@+id/textPaymentSuccess"
+                        android:text="Payment Success"
+                        android:textColor="@color/textGreyColor"
+                        android:textSize="20sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/imagePaymentSuccess"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="30dp"/>
+
+                    <TextView
+                        android:text="Yay we recived your payment, Sit relax, your food will delivered to you shortaly, You can check the order status in order menu"
+                        android:textSize="14sp"
+                        android:textAlignment="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textPaymentSuccess"
+                        android:layout_marginRight="70dp"
+                        android:layout_marginLeft="70dp"
+                        android:layout_marginTop="20dp"
+                        android:lines="4"/>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/textViewPaymentDetails"
+                android:text="Payment Details"
+                android:textColor="@color/colorBlack"
+                android:layout_below="@+id/paymentSuccessCategories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/paymentDetailsCategories"
+                android:layout_below="@+id/textViewPaymentDetails"
+                android:layout_width="match_parent"
+                android:layout_height="124dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="5dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textViewOrderId"
+                        android:text="Order Id:"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"/>
+
+                    <TextView
+                        android:id="@+id/orderId"
+                        android:text="KNH001252"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="170dp"
+                        android:layout_alignParentTop="true"/>
+
+                    <TextView
+                        android:id="@+id/textViewTransactionId"
+                        android:text="Transaction Id:"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_below="@+id/textViewOrderId"/>
+
+                    <TextView
+                        android:id="@+id/transactionId"
+                        android:text="TXN00125635"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="170dp"
+                        android:layout_below="@id/orderId"/>
+
+                    <TextView
+                        android:id="@+id/textViewPaymentMode"
+                        android:text="Payment Mode:"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_below="@+id/textViewTransactionId"/>
+
+                    <TextView
+                        android:id="@+id/paymentMode"
+                        android:text="OVO"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="170dp"
+                        android:layout_below="@id/transactionId"/>
+
+                    <TextView
+                        android:id="@+id/textViewPaymentAmount"
+                        android:text="Payment Amount:"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_below="@+id/textViewPaymentMode"/>
+
+                    <TextView
+                        android:id="@+id/paymentAmount"
+                        android:text="49.000"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="170dp"
+                        android:layout_below="@id/paymentMode"/>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/buttonMyOrder"
+                android:text="My Orders"
+                android:textSize="15sp"
+                android:textColor="@color/colorWhite"
+                android:textAllCaps="false"
+                android:layout_below="@+id/paymentDetailsCategories"
+                android:background="@drawable/rounded_button_payment_ovo"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_marginTop="180dp"
+                android:layout_marginBottom="30dp"
+                android:layout_centerInParent="true"
+                android:layout_width="180dp"
+                android:layout_height="45dp"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

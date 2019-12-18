@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.Activity.PaymentScreenActivity"
+    android:background="@color/colorWhite">
+    
+    <ImageView
+        android:id="@+id/imagePayment"
+        android:layout_width="90dp"
+        android:layout_height="44.1dp"
+        android:background="@drawable/ovo2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"/>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_below="@+id/imagePayment"
+        android:layout_marginTop="5dp"
+        android:background="@color/ovo"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/paymentDescription"
+        android:layout_below="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="53.2dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="Total payment to be made to Khanaval"
+                android:textSize="14sp"
+                android:layout_width="225dp"
+                android:layout_height="wrap_content"
+                android:lines="2"
+                android:layout_centerInParent="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"/>
+
+            <TextView
+                android:id="@+id/paymentTotal"
+                android:text="50.000"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="8dp"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <TextView
+        android:id="@+id/textViewPayUsing"
+        android:text="Pay using OVO"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="16dp"
+        android:layout_below="@+id/paymentDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/balanceCategories"
+        android:layout_width="match_parent"
+        android:layout_height="157.5dp"
+        android:layout_below="@+id/textViewPayUsing"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        app:cardCornerRadius="7dp"
+        app:cardElevation="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textViewBalance"
+                android:text="Available OVO Balance"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/availableBalance"
+                android:text="100.000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/minusPayment"
+                android:text="-49.000"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/availableBalance"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="15dp"
+                />
+
+            <Button
+                android:id="@+id/payNowButton"
+                android:text="Pay now"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+                android:layout_below="@+id/minusPayment"
+                android:layout_centerInParent="true"
+                android:background="@drawable/rounded_button_payment_ovo"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_width="139.5dp"
+                android:layout_height="26.1dp"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/cancelButton"
+                android:text="Cancel"
+                android:textColor="@color/ovo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/payNowButton"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

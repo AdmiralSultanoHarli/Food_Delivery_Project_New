@@ -11,10 +11,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Activities.Activity.OrderScreenActivity"
+            android:name=".Activities.Activity.PaymentSuccessScreenActivity"
             android:theme="@style/BlackStatusBar"/>
         <activity
-            android:name=".Activities.ZJustForTest.MainActivity"/>
+            android:name=".Activities.Activity.PaymentScreenActivity"
+            android:theme="@style/BlackStatusBar"/>
+        <activity
+            android:name=".Activities.Activity.OrderScreenActivity"
+            android:theme="@style/BlackStatusBar" />
+        <activity android:name=".Activities.ZJustForTest.MainActivity" />
         <activity
             android:name=".Activities.Activity.MenuScreenActivity"
             android:theme="@style/BlackStatusBar" />

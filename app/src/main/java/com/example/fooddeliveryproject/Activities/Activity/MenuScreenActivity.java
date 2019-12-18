@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment.FoodChartFragment;
 import com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment.MenuScreenFragment;
@@ -16,7 +17,7 @@ import com.example.fooddeliveryproject.R;
 
 public class MenuScreenActivity extends AppCompatActivity {
 
-    ImageButton backButton, cartButton;
+    ImageView backButton, cartButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

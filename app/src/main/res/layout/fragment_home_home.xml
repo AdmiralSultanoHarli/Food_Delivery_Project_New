@@ -25,15 +25,18 @@
             android:textStyle="bold"
             />
 
-        <ImageButton
+        <ImageView
 
             android:id="@+id/shoppingCartButton"
             android:layout_width="24dp"
+            android:clickable="true"
             android:layout_height="24dp"
             android:layout_alignParentRight="true"
             android:layout_marginTop="10dp"
             android:layout_marginRight="15dp"
-            android:background="@drawable/iconshop"
+            android:src="@drawable/ic_shopping_cart_blue_24dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:tint="@color/colorButton"
             />
 
         <TextView

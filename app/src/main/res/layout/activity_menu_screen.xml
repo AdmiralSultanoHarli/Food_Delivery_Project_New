@@ -11,11 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="50dp">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/backButton"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:background="@drawable/iconback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:src="@drawable/ic_icon_back_black_24dp"
+            android:tint="@color/colorButton"
             android:foreground="?attr/selectableItemBackground"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="10dp"
@@ -34,15 +36,17 @@
             android:textSize="20sp"
             />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/cartButton"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:foreground="?attr/selectableItemBackground"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
+            android:clickable="true"
             android:layout_marginTop="10dp"
-            android:background="@drawable/iconshop"/>
+            android:src="@drawable/ic_shopping_cart_blue_24dp"
+            android:tint="@color/colorButton"/>
 
     </RelativeLayout>
 
