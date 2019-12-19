@@ -8,11 +8,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.OrdersFragmentAttributes.PastFragment;
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.OrdersFragmentAttributes.RecentFragment;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.OrdersFragmentAttributes.Fragment.PastFragment;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.OrdersFragmentAttributes.Fragment.CurrentFragment;
 import com.example.fooddeliveryproject.R;
 import com.google.android.material.tabs.TabLayout;
 
@@ -30,7 +28,7 @@ public class OrdersFragment extends Fragment {
 
         /*final FragmentManager fragmentManager = getFragmentManager();
         final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();*/
-        getFragmentManager().beginTransaction().replace(R.id.selectedFragment, new RecentFragment()).commit();
+        getFragmentManager().beginTransaction().replace(R.id.selectedFragment, new CurrentFragment()).commit();
        /* tabLayout.addTab(tabLayout.newTab().setText("Current"));
         tabLayout.addTab(tabLayout.newTab().setText("Past"));*/
 
@@ -42,7 +40,7 @@ public class OrdersFragment extends Fragment {
 
                 if(tab.getPosition() == 0){
 
-                    selectedFragment = new RecentFragment();
+                    selectedFragment = new CurrentFragment();
 
                 }else if(tab.getPosition() == 1){
 

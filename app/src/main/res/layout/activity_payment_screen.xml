@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.Activity.PaymentScreenActivity"
-    android:background="@color/colorWhite">
+    tools:context=".Activities.Activity.PaymentScreenActivity">
     
     <ImageView
         android:id="@+id/imagePayment"
@@ -142,6 +141,7 @@
                 android:id="@+id/cancelButton"
                 android:text="Cancel"
                 android:textColor="@color/ovo"
+                android:clickable="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/payNowButton"

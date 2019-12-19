@@ -1,5 +1,7 @@
 package com.example.fooddeliveryproject.Activities.Helper;
 
+import java.security.PublicKey;
+
 public class PreferencesUtility {
 
     public static final String MY_PREFERENCE = "MyPreference";
@@ -29,5 +31,7 @@ public class PreferencesUtility {
     public static final String EMAIL = "Email";
 
     public static final String IS_ADDTOCART_VISIBLE = "AddToCart";
+
+    public static final String IS_FRAGMENT_OPENED = "FragmentOpened";
 
 }

@@ -4,6 +4,8 @@ public class DataKhanaval {
 
     String foodName;
     String foodDescription;
+    String date;
+    String orderTracker;
     int foodPrice;
     int foodPriceDiscount;
     int chartQuantity;
@@ -16,9 +18,11 @@ public class DataKhanaval {
     }
 
 
-    public DataKhanaval(String foodName, String foodDescription, int foodPrice, int foodPriceDiscount, int chartQuantity, int img, int buttonPosition) {
+    public DataKhanaval(String foodName, String foodDescription, String date, String orderTracker, int foodPrice, int foodPriceDiscount, int chartQuantity, int img, int buttonPosition) {
         this.foodName = foodName;
         this.foodDescription = foodDescription;
+        this.date = date;
+        this.orderTracker = orderTracker;
         this.foodPrice = foodPrice;
         this.foodPriceDiscount = foodPriceDiscount;
         this.chartQuantity = chartQuantity;
@@ -40,6 +44,14 @@ public class DataKhanaval {
 
     public String getFoodDescription() {
         return foodDescription;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getOrderTracker() {
+        return orderTracker;
     }
 
     public int getFoodPrice() {
@@ -68,6 +80,14 @@ public class DataKhanaval {
 
     public void setFoodDescription(String foodDescription) {
         this.foodDescription = foodDescription;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setOrderTracker(String orderTracker) {
+        this.orderTracker = orderTracker;
     }
 
     public void setFoodPrice(int foodPrice) {

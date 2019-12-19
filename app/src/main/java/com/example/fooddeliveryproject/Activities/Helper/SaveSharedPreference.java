@@ -17,6 +17,7 @@ import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtili
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_PRICE_DISCOUNT_TOTAL;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_PRICE_TOTAL;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_ADDTOCART_VISIBLE;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_FRAGMENT_OPENED;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.PASSWORD;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.QUANTITY;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.USERNAME;
@@ -328,8 +329,35 @@ public class SaveSharedPreference {
 
     }
 
+    /**
+     * getIsAddToCartVisible
+     */
     public static boolean getIsAddToCartVisible(Context context, boolean isAddToCart){
         return getPreferences(context).getBoolean(IS_ADDTOCART_VISIBLE, true);
+    }
+
+
+    /**
+     * setFragmentOpened
+     *
+     * @param context
+     * @param isFragmentOpened
+     */
+    public static void setFragmentOpened(Context context, boolean isFragmentOpened){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putBoolean(IS_FRAGMENT_OPENED, isFragmentOpened);
+        editor.apply();
+
+    }
+
+    /**
+     * getFragmentOpened
+     */
+    public static boolean getFragmentOpened(Context context, boolean isFragmentOpened){
+
+        return getPreferences(context).getBoolean(IS_FRAGMENT_OPENED, true);
+
     }
 
 }

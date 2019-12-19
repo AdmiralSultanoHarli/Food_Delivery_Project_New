@@ -3,6 +3,7 @@ package com.example.fooddeliveryproject.Activities.Activity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.AccountFragment;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.HomeFragment;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.InboxFragment;
@@ -110,6 +111,10 @@ public class HomeScreenActivity extends AppCompatActivity {
         bottomNav.setSelectedItemId(R.id.navigation_home);
         getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, new HomeFragment()).commit();
 
+        SaveSharedPreference.getFragmentOpened(HomeScreenActivity.this, true);
+
+
+
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -129,6 +134,7 @@ public class HomeScreenActivity extends AppCompatActivity {
                     case R.id.navigation_inbox:
                         selectedFragment = new InboxFragment();
                         break;
+
                 }
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, selectedFragment).commit();
