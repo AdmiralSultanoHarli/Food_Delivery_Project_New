@@ -48,7 +48,7 @@ public class PaymentSuccessScreenActivity extends AppCompatActivity {
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(i);
 
-                SaveSharedPreference.setFragmentOpened(PaymentSuccessScreenActivity.this, true);
+                SaveSharedPreference.setFragmentOrderOpened(PaymentSuccessScreenActivity.this, true);
 
 
             }

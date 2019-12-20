@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:id="@+id/topMenuOrders"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textViewHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textSize="20sp"
+            android:layout_centerInParent="true"
+            android:layout_alignParentTop="true"
+            android:textColor="@color/colorBlack"
+            android:textStyle="bold"
+            android:text="Orders"/>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/menu2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/topMenuOrders">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvOrderDetails"
+                android:text="Order details"
+                android:textSize="12sp"
+                android:textColor="@color/colorBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/orderDetails"
+                android:layout_width="match_parent"
+                android:layout_height="97dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/tvOrderDetails"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="3dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/imgCard"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="25dp"
+                        android:layout_centerInParent="true"
+                        app:cardCornerRadius="2dp">
+
+                        <ImageView
+                            android:id="@+id/img"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/butter_chicken"
+                            android:scaleType="fitXY"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:id="@+id/date"
+                        android:text="23 Sept 2013"
+                        android:textSize="12sp"
+                        android:layout_toRightOf="@+id/imgCard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="22dp"
+                        android:layout_marginLeft="20dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/foodName"
+                        android:text="Butter Chicken"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorBlack"
+                        android:layout_toRightOf="@+id/imgCard"
+                        android:layout_below="@+id/date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"/>
+
+                    <TextView
+                        android:id="@+id/orderTracker"
+                        android:text="Order Placed"
+                        android:textSize="12sp"
+                        android:layout_toRightOf="@+id/imgCard"
+                        android:layout_below="@+id/foodName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/orderPrice"
+                        android:text="49.000"
+                        android:textSize="14sp"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="20dp"/>
+
+                    <TextView
+                        android:id="@+id/buttonDetail"
+                        android:text="Details"
+                        android:textColor="@color/colorButton"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/orderPrice"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/tvOrderStatus"
+                android:text="Order Status"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/orderDetails"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="361dp"
+                android:layout_below="@+id/tvOrderStatus"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                app:cardCornerRadius="7dp"
+                app:cardElevation="5dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/orderPlacedCircle"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_circle_black_20dp"
+                        android:tint="@color/circleGreen"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginLeft="20dp"/>
+
+                    <TextView
+                        android:id="@+id/tvOrderPlaced"
+                        android:text="Order Placed"
+                        android:textSize="12sp"
+                        android:layout_toRightOf="@+id/orderPlacedCircle"
+                        android:layout_marginTop="26dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/tvTimeOrderPlaced"
+                        android:text="(12.40pm)"
+                        android:textSize="8sp"
+                        android:layout_toRightOf="@+id/tvOrderPlaced"
+                        android:layout_marginTop="26dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <ImageView
+                        android:id="@+id/paymentDoneLine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="70dp"
+                        android:layout_below="@+id/orderPlacedCircle"
+                        android:layout_marginLeft="21dp"
+                        android:layout_marginTop="-9dp"
+                        android:src="@drawable/ic_vertical_line_black"
+                        android:tint="@color/circleGreen"
+                        android:scaleType="fitXY"/>
+
+                    <ImageView
+                        android:id="@+id/paymentDoneCircle"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@+id/paymentDoneLine"
+                        android:src="@drawable/ic_circle_black_20dp"
+                        android:tint="@color/circleGreen"
+                        android:layout_marginTop="-9dp"
+                        android:layout_marginLeft="20dp"/>
+
+                    <TextView
+                        android:id="@+id/tvPaymentDone"
+                        android:text="Payment Done"
+                        android:textSize="12sp"
+                        android:layout_below="@+id/tvOrderPlaced"
+                        android:layout_toRightOf="@+id/paymentDoneCircle"
+                        android:layout_marginTop="57.5dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/tvTimePaymentDone"
+                        android:text="(12.45pm)"
+                        android:textSize="8sp"
+                        android:layout_below="@+id/tvOrderPlaced"
+                        android:layout_toRightOf="@+id/tvPaymentDone"
+                        android:layout_marginTop="57.5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <ImageView
+                        android:id="@+id/foodPreparingLine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="70dp"
+                        android:layout_below="@+id/paymentDoneCircle"
+                        android:layout_marginLeft="21dp"
+                        android:layout_marginTop="-9dp"
+                        android:src="@drawable/ic_vertical_line_black"
+                        android:tint="@color/circleGreen"
+                        android:scaleType="fitXY"/>
+
+                    <ImageView
+                        android:id="@+id/foodPreparingCircle"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@+id/foodPreparingLine"
+                        android:src="@drawable/ic_circle_black_20dp"
+                        android:tint="@color/circleGreen"
+                        android:layout_marginTop="-9dp"
+                        android:layout_marginLeft="20dp"/>
+
+                    <TextView
+                        android:id="@+id/tvFoodPreparing"
+                        android:text="Food is preparing"
+                        android:textSize="12sp"
+                        android:layout_below="@+id/tvPaymentDone"
+                        android:layout_toRightOf="@+id/paymentDoneCircle"
+                        android:layout_marginTop="56.5dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/tvTimeFoodPreparing"
+                        android:text="(12.45pm)"
+                        android:textSize="8sp"
+                        android:layout_below="@+id/tvPaymentDone"
+                        android:layout_toRightOf="@+id/tvFoodPreparing"
+                        android:layout_marginTop="56.5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <ImageView
+                        android:id="@+id/foodHandedLine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="70dp"
+                        android:layout_below="@+id/foodPreparingCircle"
+                        android:layout_marginLeft="21dp"
+                        android:layout_marginTop="-9dp"
+                        android:src="@drawable/ic_vertical_line_black"
+                        android:tint="@color/grayLine"
+                        android:scaleType="fitXY"/>
+
+                    <ImageView
+                        android:id="@+id/foodHandedCircle"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@+id/foodHandedLine"
+                        android:src="@drawable/ic_circle_black_20dp"
+                        android:tint="@color/circleRed"
+                        android:layout_marginTop="-9dp"
+                        android:layout_marginLeft="20dp"/>
+
+                    <TextView
+                        android:id="@+id/tvFoodHanded"
+                        android:text="Food handed to delivery partner"
+                        android:textSize="12sp"
+                        android:layout_below="@+id/tvFoodPreparing"
+                        android:layout_toRightOf="@+id/paymentDoneCircle"
+                        android:layout_marginTop="56dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/tvTimeFoodHanded"
+                        android:visibility="gone"
+                        android:text="(12.45pm)"
+                        android:textSize="8sp"
+                        android:layout_below="@+id/tvFoodPreparing"
+                        android:layout_toRightOf="@+id/tvFoodHanded"
+                        android:layout_marginTop="56dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <ImageView
+                        android:id="@+id/foodDeliveredLine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="70dp"
+                        android:layout_below="@+id/foodHandedCircle"
+                        android:layout_marginLeft="21dp"
+                        android:layout_marginTop="-9dp"
+                        android:src="@drawable/ic_vertical_line_black"
+                        android:tint="@color/grayLine"
+                        android:scaleType="fitXY"/>
+
+                    <ImageView
+                        android:id="@+id/foodDeliveredCircle"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@+id/foodDeliveredLine"
+                        android:src="@drawable/ic_circle_black_20dp"
+                        android:tint="@color/circleRed"
+                        android:layout_marginTop="-9dp"
+                        android:layout_marginLeft="20dp"/>
+
+                    <TextView
+                        android:id="@+id/tvFoodDelivered"
+                        android:text="Food Delivered"
+                        android:textSize="12sp"
+                        android:layout_below="@+id/tvFoodHanded"
+                        android:layout_toRightOf="@+id/paymentDoneCircle"
+                        android:layout_marginTop="56dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/tvTimeFoodDelivered"
+                        android:visibility="gone"
+                        android:text="(12.45pm)"
+                        android:textSize="8sp"
+                        android:layout_below="@+id/tvFoodHanded"
+                        android:layout_toRightOf="@+id/tvFoodDelivered"
+                        android:layout_marginTop="56dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

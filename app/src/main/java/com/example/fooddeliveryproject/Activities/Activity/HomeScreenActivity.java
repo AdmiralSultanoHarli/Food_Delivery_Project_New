@@ -1,5 +1,7 @@
 package com.example.fooddeliveryproject.Activities.Activity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -7,6 +9,7 @@ import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.AccountFragment;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.HomeFragment;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.InboxFragment;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.OrdersDetailsFragment;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.OrdersFragment;
 import com.example.fooddeliveryproject.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -15,12 +18,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_FRAGMENT_ORDER_OPENED;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.MY_PREFERENCE;
+
 public class HomeScreenActivity extends AppCompatActivity {
 
    /* private List<DataTopSlide> slideList;
     private ViewPager sliderPager;
     private TabLayout indicator;*/
     BottomNavigationView bottomNav;
+    SharedPreferences sharedPreferences;
+    boolean isOrderFragmentOpened = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +38,51 @@ public class HomeScreenActivity extends AppCompatActivity {
        /* sliderPager = findViewById(R.id.sliderPager);
         indicator = findViewById(R.id.indicator);*/
         bottomNav = findViewById(R.id.nav_view);
+
+        bottomNav.setSelectedItemId(R.id.navigation_home);
+
+        isOrderFragmentOpened = SaveSharedPreference.getFragmentOrderOpened(this, false);
+
+        if (isOrderFragmentOpened == true){
+
+            bottomNav.setSelectedItemId(R.id.navigation_orders);
+            getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, new OrdersFragment()).commit();
+            SaveSharedPreference.setFragmentOrderOpened(this, false);
+
+        }else {
+
+            bottomNav.setSelectedItemId(R.id.navigation_home);
+            getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, new HomeFragment()).commit();
+
+        }
+
+        bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                Fragment selectedFragment = null;
+
+                switch (menuItem.getItemId()){
+
+                    case R.id.navigation_home:
+                        selectedFragment = new HomeFragment();
+                        break;
+                    case R.id.navigation_orders:
+                        selectedFragment = new OrdersFragment();
+                        break;
+                    case R.id.navigation_account:
+                        selectedFragment = new AccountFragment();
+                        break;
+                    case R.id.navigation_inbox:
+                        selectedFragment = new InboxFragment();
+                        break;
+
+                }
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, selectedFragment).commit();
+
+                return true;
+            }
+        });
 
         /*slideList = new ArrayList<>();
         slideList.add(new DataTopSlide(R.drawable.panang_curry));
@@ -108,40 +161,6 @@ public class HomeScreenActivity extends AppCompatActivity {
             adapter.notifyDataSetChanged();
 
         }*/
-        bottomNav.setSelectedItemId(R.id.navigation_home);
-        getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, new HomeFragment()).commit();
-
-        SaveSharedPreference.getFragmentOpened(HomeScreenActivity.this, true);
-
-
-
-        bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                Fragment selectedFragment = null;
-
-                switch (menuItem.getItemId()){
-
-                    case R.id.navigation_home:
-                        selectedFragment = new HomeFragment();
-                        break;
-                    case R.id.navigation_orders:
-                        selectedFragment = new OrdersFragment();
-                        break;
-                    case R.id.navigation_account:
-                        selectedFragment = new AccountFragment();
-                        break;
-                    case R.id.navigation_inbox:
-                        selectedFragment = new InboxFragment();
-                        break;
-
-                }
-
-                getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, selectedFragment).commit();
-
-                return true;
-            }
-        });
 
     }
 

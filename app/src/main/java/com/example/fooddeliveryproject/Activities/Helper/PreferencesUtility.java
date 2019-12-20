@@ -32,6 +32,12 @@ public class PreferencesUtility {
 
     public static final String IS_ADDTOCART_VISIBLE = "AddToCart";
 
-    public static final String IS_FRAGMENT_OPENED = "FragmentOpened";
+    public static final String IS_FRAGMENT_ORDER_OPENED = "IsFragmentOrderOpened";
+
+    public static final String IS_FRAGMENT_ORDER_DETAILS_OPENED = "isFragmentOrderDetailsOpened";
+
+    public static final String IS_THERE_IS_USER = "IsThereIsUser";
+
+
 
 }

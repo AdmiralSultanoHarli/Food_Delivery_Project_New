@@ -649,13 +649,18 @@
 
     </ScrollView>
 
+    <View
+        android:id="@+id/shadow"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/shadow"
+        android:layout_above="@+id/paymentBar"/>
+
     <RelativeLayout
         android:id="@+id/paymentBar"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_alignParentBottom="true"
-        android:outlineProvider="bounds"
-        android:elevation="1dp">
+        android:layout_alignParentBottom="true">
 
         <TextView
             android:id="@+id/totalPriceBar"

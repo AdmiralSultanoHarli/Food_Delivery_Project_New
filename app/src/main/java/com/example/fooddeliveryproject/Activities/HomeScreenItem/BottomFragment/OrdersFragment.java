@@ -20,11 +20,12 @@ public class OrdersFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
 
-        View oView = inflater.inflate(R.layout.fragment_home_orders, container, false);
+        View v = inflater.inflate(R.layout.fragment_home_orders, container, false);
 
-        tabLayout = oView.findViewById(R.id.historyTab);
+        tabLayout = v.findViewById(R.id.historyTab);
 
         /*final FragmentManager fragmentManager = getFragmentManager();
         final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();*/
@@ -71,7 +72,7 @@ public class OrdersFragment extends Fragment {
 
 
 
-        return oView;
+        return v;
 
     }
 }

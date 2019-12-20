@@ -1,5 +1,6 @@
 package com.example.fooddeliveryproject.Activities.Helper;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -17,7 +18,9 @@ import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtili
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_PRICE_DISCOUNT_TOTAL;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_PRICE_TOTAL;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_ADDTOCART_VISIBLE;
-import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_FRAGMENT_OPENED;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_FRAGMENT_ORDER_DETAILS_OPENED;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_FRAGMENT_ORDER_OPENED;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_THERE_IS_USER;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.PASSWORD;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.QUANTITY;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.USERNAME;
@@ -341,12 +344,12 @@ public class SaveSharedPreference {
      * setFragmentOpened
      *
      * @param context
-     * @param isFragmentOpened
+     * @param isFragmentOrderOpened
      */
-    public static void setFragmentOpened(Context context, boolean isFragmentOpened){
+    public static void setFragmentOrderOpened(Context context, boolean isFragmentOrderOpened){
 
         SharedPreferences.Editor editor = getPreferences(context).edit();
-        editor.putBoolean(IS_FRAGMENT_OPENED, isFragmentOpened);
+        editor.putBoolean(IS_FRAGMENT_ORDER_OPENED, isFragmentOrderOpened);
         editor.apply();
 
     }
@@ -354,9 +357,47 @@ public class SaveSharedPreference {
     /**
      * getFragmentOpened
      */
-    public static boolean getFragmentOpened(Context context, boolean isFragmentOpened){
+    public static boolean getFragmentOrderOpened(Context context, boolean isFragmentOrderOpened){
 
-        return getPreferences(context).getBoolean(IS_FRAGMENT_OPENED, true);
+        return getPreferences(context).getBoolean(IS_FRAGMENT_ORDER_OPENED, false);
+
+    }
+
+    /**
+     * setFragmentOrderDetailsOpened
+     *
+     * @param context
+     * @param isFragmentOrderDetailsOpened
+     */
+    public static void setFragmentOrderDetailsOpened(Context context, boolean isFragmentOrderDetailsOpened){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putBoolean(IS_FRAGMENT_ORDER_DETAILS_OPENED, isFragmentOrderDetailsOpened);
+        editor.apply();
+
+    }
+
+    /**
+     * getFragmentOrderDetailsOpened
+     */
+    public static boolean getFragmentOrderDetailsOpened(Context context, boolean isFragmentOrderDetailsOpened){
+
+        return getPreferences(context).getBoolean(IS_FRAGMENT_ORDER_DETAILS_OPENED, false);
+
+    }
+
+
+    public static void setThereIsUser(Context context, boolean isThereIsUser){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putBoolean(IS_THERE_IS_USER, isThereIsUser);
+        editor.apply();
+
+    }
+
+    public static boolean getThereIsUser(Context context, boolean isThereIsUser){
+
+        return getPreferences(context).getBoolean(IS_THERE_IS_USER, false);
 
     }
 

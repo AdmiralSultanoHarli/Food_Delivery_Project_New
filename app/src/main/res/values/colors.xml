@@ -18,4 +18,6 @@
     <color name="gray">#EBEBEB</color>
     <color name="grayLine">#8B8B8B</color>
     <color name="promoColor">#FF6B6B</color>
+    <color name="circleGreen">#0DB574</color>
+    <color name="circleRed">#FF0000</color>
 </resources>

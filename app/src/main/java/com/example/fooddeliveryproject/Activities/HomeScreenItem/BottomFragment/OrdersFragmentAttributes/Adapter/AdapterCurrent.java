@@ -1,6 +1,7 @@
 package com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.OrdersFragmentAttributes.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fooddeliveryproject.Activities.Activity.HomeScreenActivity;
 import com.example.fooddeliveryproject.Activities.Data.DataKhanaval;
 import com.example.fooddeliveryproject.R;
 
@@ -45,6 +47,16 @@ public class AdapterCurrent extends RecyclerView.Adapter<AdapterCurrent.ViewHold
         viewHolder.date.setText(historyList.get(i).getDate());
         viewHolder.orderTracker.setText(historyList.get(i).getOrderTracker());
         viewHolder.orderPrice.setText(String.valueOf(historyList.get(i).getFoodPrice()));
+
+        viewHolder.buttonDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent i = new Intent(context, HomeScreenActivity.class);
+                context.startActivity(i);
+
+            }
+        });
 
     }
 
