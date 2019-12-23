@@ -13,10 +13,12 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fooddeliveryproject.Activities.Activity.HomeScreenActivity;
 import com.example.fooddeliveryproject.Activities.Activity.MenuScreenActivity;
 import com.example.fooddeliveryproject.Activities.Data.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterBestCusineCategories;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.OrdersDetailsFragment;
 import com.example.fooddeliveryproject.R;
 
 import java.util.List;
@@ -53,6 +55,16 @@ public class AdapterPast extends RecyclerView.Adapter<AdapterPast.ViewHolder> {
         viewHolder.date.setText(historyList.get(i).getDate());
         viewHolder.orderTracker.setText(historyList.get(i).getOrderTracker());
         viewHolder.orderPrice.setText(String.valueOf(historyList.get(i).getFoodPrice()));
+
+        viewHolder.buttonDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                HomeScreenActivity homeScreenActivity = (HomeScreenActivity) view.getContext();
+                homeScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, new OrdersDetailsFragment()).addToBackStack(null).commit();
+
+            }
+        });
 
     }
 

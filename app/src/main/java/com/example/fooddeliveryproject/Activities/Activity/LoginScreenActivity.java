@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.R;
 
 
@@ -77,11 +78,19 @@ public class LoginScreenActivity extends AppCompatActivity {
         //if this becomes true that means validation is successfull
         if (awesomeValidation.validate()) {
             Toast.makeText(this, "Registration Successfull", Toast.LENGTH_LONG).show();
-
+            SaveSharedPreference.setThereIsUser(LoginScreenActivity.this, true);
             //process the data further
             Intent homeActivity = new Intent(LoginScreenActivity.this, HomeScreenActivity.class);
             startActivity(homeActivity);
+            finish();
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(LoginScreenActivity.this, AppScreenActivity.class);
+        startActivity(i);
+        finish();
+
+    }
 }

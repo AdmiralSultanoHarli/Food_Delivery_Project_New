@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.slidingpanelayout.widget.SlidingPaneLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.Activity.NoteDishScreenActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvAddNotes"
+            android:text="Add notes to chef"
+            android:textSize="16sp"
+            android:textColor="@color/colorBlack"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <androidx.cardview.widget.CardView
+            android:layout_below="@+id/tvAddNotes"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="223dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="200">
+
+                    <EditText
+                        android:id="@+id/notes"
+                        android:textSize="12sp"
+                        android:gravity="top"
+                        android:hint="Example : Make my food spicy!"
+                        android:lines="10"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:maxLength="200"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+</androidx.slidingpanelayout.widget.SlidingPaneLayout>

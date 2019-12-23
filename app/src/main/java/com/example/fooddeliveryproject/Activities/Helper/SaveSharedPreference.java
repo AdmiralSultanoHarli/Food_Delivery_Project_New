@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import java.security.PublicKey;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.SocketHandler;
 
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.ALL_QUANTITY;
@@ -21,6 +22,7 @@ import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtili
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_FRAGMENT_ORDER_DETAILS_OPENED;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_FRAGMENT_ORDER_OPENED;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_THERE_IS_USER;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.NUMBER;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.PASSWORD;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.QUANTITY;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.USERNAME;
@@ -317,6 +319,30 @@ public class SaveSharedPreference {
         return getPreferences(context).getString(EMAIL, "");
 
     }
+
+    /**
+     * setNumber
+     *
+     * @param context
+     * @param number
+     */
+    public static void setNumber(Context context, String number){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putString(NUMBER, number);
+        editor.apply();
+
+    }
+
+    /**
+     * getNumber
+     */
+    public static String getNumber(Context context, String number){
+
+        return getPreferences(context).getString(NUMBER, "");
+
+    }
+
 
     /**
      * setIsAddToCartVisible

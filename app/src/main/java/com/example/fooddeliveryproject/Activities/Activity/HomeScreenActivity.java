@@ -1,9 +1,12 @@
 package com.example.fooddeliveryproject.Activities.Activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.AccountFragment;
@@ -29,6 +32,7 @@ public class HomeScreenActivity extends AppCompatActivity {
     BottomNavigationView bottomNav;
     SharedPreferences sharedPreferences;
     boolean isOrderFragmentOpened = false;
+    boolean isOrderDetailsFragmentOpened = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +57,7 @@ public class HomeScreenActivity extends AppCompatActivity {
 
             bottomNav.setSelectedItemId(R.id.navigation_home);
             getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, new HomeFragment()).commit();
+
 
         }
 
@@ -161,6 +166,20 @@ public class HomeScreenActivity extends AppCompatActivity {
             adapter.notifyDataSetChanged();
 
         }*/
+
+
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        if (getSupportFragmentManager().getBackStackEntryCount() >= 1) {
+            getSupportFragmentManager().popBackStack();
+        }else {
+            super.onBackPressed();
+            finishAffinity();
+        }
 
     }
 

@@ -10,10 +10,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddeliveryproject.Activities.Activity.HomeScreenActivity;
 import com.example.fooddeliveryproject.Activities.Data.DataKhanaval;
+import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.OrdersDetailsFragment;
 import com.example.fooddeliveryproject.R;
 
 import java.util.List;
@@ -40,7 +43,7 @@ public class AdapterCurrent extends RecyclerView.Adapter<AdapterCurrent.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdapterCurrent.ViewHolder viewHolder, final int i) {
+    public void onBindViewHolder(@NonNull final AdapterCurrent.ViewHolder viewHolder, final int i) {
 
         viewHolder.img.setImageResource(historyList.get(i).getImg());
         viewHolder.foodName.setText(historyList.get(i).getFoodName());
@@ -52,8 +55,8 @@ public class AdapterCurrent extends RecyclerView.Adapter<AdapterCurrent.ViewHold
             @Override
             public void onClick(View view) {
 
-                Intent i = new Intent(context, HomeScreenActivity.class);
-                context.startActivity(i);
+                HomeScreenActivity homeScreenActivity = (HomeScreenActivity) view.getContext();
+                homeScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, new OrdersDetailsFragment()).addToBackStack(null).commit();
 
             }
         });

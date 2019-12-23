@@ -11,24 +11,35 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.R;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
     private static int SPLASH_TIME_OUT = 3000;
+    boolean isThereIsUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
+        isThereIsUser = SaveSharedPreference.getThereIsUser(SplashScreenActivity.this, false);
+
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
 
-                Intent appScreen = new Intent(SplashScreenActivity.this, AppScreenActivity.class);
-                startActivity(appScreen);
-                finish();
+                if (isThereIsUser == true){
+                    Intent i = new Intent(SplashScreenActivity.this, HomeScreenActivity.class);
+                    startActivity(i);
+                    finish();
+                }else {
+                    Intent appScreen = new Intent(SplashScreenActivity.this, AppScreenActivity.class);
+                    startActivity(appScreen);
+                    finish();
+                }
             }
         },SPLASH_TIME_OUT);
 

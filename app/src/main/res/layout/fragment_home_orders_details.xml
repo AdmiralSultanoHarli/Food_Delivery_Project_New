@@ -79,12 +79,12 @@
 
                     <TextView
                         android:id="@+id/date"
-                        android:text="23 Sept 2013"
+                        android:text="23 Sept 2019"
                         android:textSize="12sp"
                         android:layout_toRightOf="@+id/imgCard"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="22dp"
+                        android:layout_marginTop="18dp"
                         android:layout_marginLeft="20dp"
                         />
 
@@ -101,7 +101,7 @@
 
                     <TextView
                         android:id="@+id/orderTracker"
-                        android:text="Order Placed"
+                        android:text="Payment done by OVO"
                         android:textSize="12sp"
                         android:layout_toRightOf="@+id/imgCard"
                         android:layout_below="@+id/foodName"
@@ -119,17 +119,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="20dp"
                         android:layout_marginTop="20dp"/>
-
-                    <TextView
-                        android:id="@+id/buttonDetail"
-                        android:text="Details"
-                        android:textColor="@color/colorButton"
-                        android:layout_alignParentRight="true"
-                        android:layout_below="@+id/orderPrice"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
 
                 </RelativeLayout>
 
@@ -217,14 +206,14 @@
 
                     <TextView
                         android:id="@+id/tvPaymentDone"
-                        android:text="Payment Done"
-                        android:textSize="12sp"
-                        android:layout_below="@+id/tvOrderPlaced"
-                        android:layout_toRightOf="@+id/paymentDoneCircle"
-                        android:layout_marginTop="57.5dp"
-                        android:layout_marginLeft="10dp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvOrderPlaced"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="51dp"
+                        android:layout_toRightOf="@+id/paymentDoneCircle"
+                        android:text="Payment Done"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tvTimePaymentDone"
@@ -232,7 +221,7 @@
                         android:textSize="8sp"
                         android:layout_below="@+id/tvOrderPlaced"
                         android:layout_toRightOf="@+id/tvPaymentDone"
-                        android:layout_marginTop="57.5dp"
+                        android:layout_marginTop="51dp"
                         android:layout_marginLeft="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -264,18 +253,18 @@
                         android:textSize="12sp"
                         android:layout_below="@+id/tvPaymentDone"
                         android:layout_toRightOf="@+id/paymentDoneCircle"
-                        android:layout_marginTop="56.5dp"
+                        android:layout_marginTop="52dp"
                         android:layout_marginLeft="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
                     <TextView
                         android:id="@+id/tvTimeFoodPreparing"
-                        android:text="(12.45pm)"
+                        android:text="(12.47pm)"
                         android:textSize="8sp"
                         android:layout_below="@+id/tvPaymentDone"
                         android:layout_toRightOf="@+id/tvFoodPreparing"
-                        android:layout_marginTop="56.5dp"
+                        android:layout_marginTop="52dp"
                         android:layout_marginLeft="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -307,7 +296,7 @@
                         android:textSize="12sp"
                         android:layout_below="@+id/tvFoodPreparing"
                         android:layout_toRightOf="@+id/paymentDoneCircle"
-                        android:layout_marginTop="56dp"
+                        android:layout_marginTop="51dp"
                         android:layout_marginLeft="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -319,7 +308,7 @@
                         android:textSize="8sp"
                         android:layout_below="@+id/tvFoodPreparing"
                         android:layout_toRightOf="@+id/tvFoodHanded"
-                        android:layout_marginTop="56dp"
+                        android:layout_marginTop="51dp"
                         android:layout_marginLeft="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -347,14 +336,14 @@
 
                     <TextView
                         android:id="@+id/tvFoodDelivered"
-                        android:text="Food Delivered"
-                        android:textSize="12sp"
-                        android:layout_below="@+id/tvFoodHanded"
-                        android:layout_toRightOf="@+id/paymentDoneCircle"
-                        android:layout_marginTop="56dp"
-                        android:layout_marginLeft="10dp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvFoodHanded"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="52dp"
+                        android:layout_toRightOf="@+id/paymentDoneCircle"
+                        android:text="Food Delivered"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tvTimeFoodDelivered"
@@ -363,7 +352,7 @@
                         android:textSize="8sp"
                         android:layout_below="@+id/tvFoodHanded"
                         android:layout_toRightOf="@+id/tvFoodDelivered"
-                        android:layout_marginTop="56dp"
+                        android:layout_marginTop="52dp"
                         android:layout_marginLeft="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>

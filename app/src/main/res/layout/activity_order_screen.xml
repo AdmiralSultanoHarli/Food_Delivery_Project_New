@@ -706,4 +706,26 @@
 
     </RelativeLayout>
 
+    <!--<com.sothree.slidinguppanel.SlidingUpPanelLayout
+        android:id="@+id/slidingNotes"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:foregroundGravity="bottom"
+        app:umanoPanelHeight="10dp"
+        app:umanoShadowHeight="4dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:hint="TEST!"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </RelativeLayout>
+
+    </com.sothree.slidinguppanel.SlidingUpPanelLayout>-->
+
 </RelativeLayout>
