@@ -1,19 +1,27 @@
 package com.example.fooddeliveryproject.Activities.OrderScreenItem.Adapter;
 
 import android.content.Context;
+import android.hardware.input.InputManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethod;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fooddeliveryproject.Activities.Activity.OrderScreenActivity;
 import com.example.fooddeliveryproject.Activities.Data.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.MenuDetailScreenItem.Adapter.AdapterMenuDetailScreenAddOn;
 import com.example.fooddeliveryproject.R;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.List;
 
@@ -82,6 +90,31 @@ public class AdapterOrderScreenOrder  extends RecyclerView.Adapter<AdapterOrderS
             }
         });
 
+        viewHolder.openNotes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                OrderScreenActivity orderScreenActivity = (OrderScreenActivity) view.getContext();
+                orderScreenActivity.slidingPanel.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
+                orderScreenActivity.slideOpened = true;
+                orderScreenActivity.editNotes.requestFocus();
+                orderScreenActivity.editNotes.setEnabled(true);
+
+                if (orderScreenActivity.counter == 0) {
+
+                    orderScreenActivity.accNotes.setEnabled(false);
+
+                }else{
+
+                    orderScreenActivity.accNotes.setEnabled(true);
+                    orderScreenActivity.accNotes.setBackgroundResource();
+                }
+
+                //orderScreenActivity.editNotes.setShowSoftInputOnFocus(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+
+            }
+        });
+
     }
 
 
@@ -95,6 +128,7 @@ public class AdapterOrderScreenOrder  extends RecyclerView.Adapter<AdapterOrderS
 
         public ImageView img;
         public TextView foodName, foodPrice, foodPriceDiscount, decreaseChartQuantity, increaseChartQuantity, chartQuantity;
+        public ImageButton openNotes;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -107,6 +141,7 @@ public class AdapterOrderScreenOrder  extends RecyclerView.Adapter<AdapterOrderS
             decreaseChartQuantity = itemView.findViewById(R.id.decreaseChartQuantity);
             increaseChartQuantity = itemView.findViewById(R.id.increaseChartQuantity);
             chartQuantity = itemView.findViewById(R.id.chartQuantity);
+            openNotes = itemView.findViewById(R.id.openNotes);
 
 
         }

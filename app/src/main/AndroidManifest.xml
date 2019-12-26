@@ -13,7 +13,9 @@
         <activity android:name=".Activities.Activity.NoteDishScreenActivity"></activity>
         <activity android:name=".Activities.Activity.PaymentSuccessScreenActivity" />
         <activity android:name=".Activities.Activity.PaymentScreenActivity" />
-        <activity android:name=".Activities.Activity.OrderScreenActivity" />
+        <activity
+            android:name=".Activities.Activity.OrderScreenActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".Activities.Activity.MenuScreenActivity" />
         <activity android:name=".Activities.Activity.MenuDetailsScreenActivity" />
         <activity
