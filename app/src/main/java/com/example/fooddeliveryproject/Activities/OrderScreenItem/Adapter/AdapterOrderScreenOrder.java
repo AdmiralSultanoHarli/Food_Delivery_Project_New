@@ -107,7 +107,7 @@ public class AdapterOrderScreenOrder  extends RecyclerView.Adapter<AdapterOrderS
                 }else{
 
                     orderScreenActivity.accNotes.setEnabled(true);
-                    orderScreenActivity.accNotes.setBackgroundResource();
+                    //orderScreenActivity.accNotes.setBackgroundResource();
                 }
 
                 //orderScreenActivity.editNotes.setShowSoftInputOnFocus(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
