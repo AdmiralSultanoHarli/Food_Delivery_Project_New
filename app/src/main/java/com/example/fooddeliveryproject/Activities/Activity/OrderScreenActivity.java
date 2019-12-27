@@ -192,12 +192,14 @@ public class OrderScreenActivity extends AppCompatActivity {
                 textCount.setText(String.valueOf(charSequence.length()) + "/200");
                 counter = charSequence.length();
                 accNotes.setEnabled(true);
+                accNotes.setBackgroundResource(R.drawable.rounded_button_add_active);
 
             }else if (charSequence.length() == 0){
 
                 textCount.setText(String.valueOf(charSequence.length()) + "/200");
                 counter = charSequence.length();
                 accNotes.setEnabled(false);
+                accNotes.setBackgroundResource(R.drawable.rounded_button_add_nonactive);
 
             }else if(charSequence.length() > 200){
 

@@ -793,9 +793,11 @@
         <Button
             android:id="@+id/accNotes"
             android:text="Done"
+            android:textColor="@color/colorWhite"
             android:textSize="14sp"
             android:textAllCaps="false"
             android:background="@drawable/rounded_button_addtochart"
+            android:foreground="?attr/selectableItemBackground"
             android:layout_marginTop="10dp"
             android:layout_width="50dp"
             android:layout_height="27dp"

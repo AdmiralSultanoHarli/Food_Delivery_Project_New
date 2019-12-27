@@ -1,17 +1,11 @@
 package com.example.fooddeliveryproject.Activities.OrderScreenItem.Adapter;
 
 import android.content.Context;
-import android.hardware.input.InputManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethod;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddeliveryproject.Activities.Activity.OrderScreenActivity;
 import com.example.fooddeliveryproject.Activities.Data.DataKhanaval;
-import com.example.fooddeliveryproject.Activities.MenuDetailScreenItem.Adapter.AdapterMenuDetailScreenAddOn;
 import com.example.fooddeliveryproject.R;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
@@ -103,11 +96,12 @@ public class AdapterOrderScreenOrder  extends RecyclerView.Adapter<AdapterOrderS
                 if (orderScreenActivity.counter == 0) {
 
                     orderScreenActivity.accNotes.setEnabled(false);
+                    orderScreenActivity.accNotes.setBackgroundResource(R.drawable.rounded_button_add_nonactive);
 
                 }else{
 
                     orderScreenActivity.accNotes.setEnabled(true);
-                    //orderScreenActivity.accNotes.setBackgroundResource();
+                    orderScreenActivity.accNotes.setBackgroundResource(R.drawable.rounded_button_add_active);
                 }
 
                 //orderScreenActivity.editNotes.setShowSoftInputOnFocus(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
