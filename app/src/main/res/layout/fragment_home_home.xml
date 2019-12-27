@@ -7,7 +7,7 @@
     <RelativeLayout
         android:id="@+id/topMenu"
         android:layout_width="match_parent"
-        android:layout_height="115dp">
+        android:layout_height="110dp">
 
         <TextView
             android:id="@+id/textViewMap"
@@ -69,7 +69,7 @@
             app:closeIcon="@drawable/ic_close_gray_20dp"
             app:searchHintIcon="@null"
             android:theme="@style/SearchViewTest"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"

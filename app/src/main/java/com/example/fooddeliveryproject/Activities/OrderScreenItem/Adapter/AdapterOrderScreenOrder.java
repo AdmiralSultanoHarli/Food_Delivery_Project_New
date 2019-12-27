@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddeliveryproject.Activities.Activity.OrderScreenActivity;
@@ -22,6 +23,7 @@ public class AdapterOrderScreenOrder  extends RecyclerView.Adapter<AdapterOrderS
 
     List<DataKhanaval> menuDetailList;
     Context context;
+    boolean wishlistAdded = false;
 
     public AdapterOrderScreenOrder(List<DataKhanaval> menuDetailList, Context context) {
         this.menuDetailList = menuDetailList;
@@ -109,6 +111,24 @@ public class AdapterOrderScreenOrder  extends RecyclerView.Adapter<AdapterOrderS
             }
         });
 
+        viewHolder.favouriteFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (wishlistAdded == false) {
+
+                    viewHolder.favouriteFood.setColorFilter(ContextCompat.getColor(context, R.color.circleRed));
+                    wishlistAdded = true;
+
+                }else if (wishlistAdded == true){
+
+                    viewHolder.favouriteFood.setColorFilter(ContextCompat.getColor(context, R.color.colorButtonGray));
+                    wishlistAdded = false;
+
+                }
+            }
+        });
+
     }
 
 
@@ -120,7 +140,7 @@ public class AdapterOrderScreenOrder  extends RecyclerView.Adapter<AdapterOrderS
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        public ImageView img;
+        public ImageView img, favouriteFood;
         public TextView foodName, foodPrice, foodPriceDiscount, decreaseChartQuantity, increaseChartQuantity, chartQuantity;
         public ImageButton openNotes;
 
@@ -136,6 +156,7 @@ public class AdapterOrderScreenOrder  extends RecyclerView.Adapter<AdapterOrderS
             increaseChartQuantity = itemView.findViewById(R.id.increaseChartQuantity);
             chartQuantity = itemView.findViewById(R.id.chartQuantity);
             openNotes = itemView.findViewById(R.id.openNotes);
+            favouriteFood = itemView.findViewById(R.id.favouriteFood);
 
 
         }
