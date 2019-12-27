@@ -6,9 +6,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -33,6 +35,7 @@ public class HomeFragment extends Fragment {
     private ViewPager sliderPager;
     private TabLayout indicator;
     private Context mContext;
+    SearchView searchView;
     int[] img = {R.drawable.panang_curry, R.drawable.butter_chicken, R.drawable.maharashtra_thali, R.drawable.cashback, R.drawable.chow_mein};
 
 
@@ -43,6 +46,7 @@ public class HomeFragment extends Fragment {
         View mView= inflater.inflate(R.layout.fragment_home_home, container, false);
         sliderPager = mView.findViewById(R.id.sliderPager);
         indicator = mView.findViewById(R.id.indicator);
+        searchView = mView.findViewById(R.id.searchView);
 
        /* slideList = new ArrayList<>();
         slideList.add(new DataKhanaval(R.drawable.panang_curry, "PanangCurry", ));
@@ -50,6 +54,15 @@ public class HomeFragment extends Fragment {
         slideList.add(new DataFood(R.drawable.maharashtra_thali, "MaharashtraThali"));
         slideList.add(new DataFood(R.drawable.cashback, "Cashback"));
         slideList.add(new DataFood(R.drawable.chow_mein, "ChowMein"));*/
+
+       searchView.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+
+               searchView.setIconified(false);
+
+           }
+       });
 
         ArrayList<DataKhanaval> dataKhanavals = getData();
 

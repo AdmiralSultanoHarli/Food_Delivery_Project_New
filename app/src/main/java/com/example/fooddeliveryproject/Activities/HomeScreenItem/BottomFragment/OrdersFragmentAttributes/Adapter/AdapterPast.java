@@ -62,6 +62,7 @@ public class AdapterPast extends RecyclerView.Adapter<AdapterPast.ViewHolder> {
 
                 HomeScreenActivity homeScreenActivity = (HomeScreenActivity) view.getContext();
                 homeScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, new OrdersDetailsFragment()).addToBackStack(null).commit();
+                homeScreenActivity.isOrderDetailsFragmentOpened = true;
 
             }
         });

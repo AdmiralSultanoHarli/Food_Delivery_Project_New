@@ -39,6 +39,10 @@
         <item name="textAllCaps">false</item>
     </style>
 
+    <style name="SearchViewTest" parent="Widget.AppCompat.SearchView">
+        <item name="android:textSize">12sp</item>
+    </style>
+
 
 
 

@@ -28,7 +28,8 @@
             android:theme="@style/AppTheme.CustomTheme" />
         <activity
             android:name=".Activities.Activity.HomeScreenActivity"
-            android:label="@string/title_activity_home_screen" />
+            android:label="@string/title_activity_home_screen"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".Activities.Activity.LoginScreenActivity" />
         <activity
