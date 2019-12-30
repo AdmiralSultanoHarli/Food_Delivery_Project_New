@@ -65,8 +65,8 @@
 
             <ImageView
                 android:id="@+id/favouriteFood"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
@@ -75,8 +75,8 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/buttonAddPlusMinusChart"
-                android:layout_width="57dp"
-                android:layout_height="22dp"
+                android:layout_width="75dp"
+                android:layout_height="25dp"
                 android:background="@color/colorWhite"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
@@ -94,7 +94,7 @@
 
                     <TextView
                         android:id="@+id/decreaseChartQuantity"
-                        android:layout_width="19dp"
+                        android:layout_width="25dp"
                         android:layout_height="match_parent"
                         android:clickable="true"
                         android:foreground="?attr/selectableItemBackground"
@@ -106,7 +106,7 @@
 
                     <TextView
                         android:id="@+id/chartQuantity"
-                        android:layout_width="19dp"
+                        android:layout_width="25dp"
                         android:layout_height="match_parent"
                         android:textSize="14sp"
                         android:gravity="center"
@@ -114,7 +114,7 @@
 
                     <TextView
                         android:id="@+id/increaseChartQuantity"
-                        android:layout_width="19dp"
+                        android:layout_width="25dp"
                         android:layout_height="match_parent"
                         android:clickable="true"
                         android:foreground="?attr/selectableItemBackground"
@@ -131,8 +131,8 @@
 
             <ImageButton
                 android:id="@+id/openNotes"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_toLeftOf="@+id/buttonAddPlusMinusChart"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="10dp"

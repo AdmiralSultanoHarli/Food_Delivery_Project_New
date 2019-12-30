@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Paint;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -52,6 +53,7 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
     int quantityTotal;
     int foodPriceTotal;
     int foodPriceDiscountTotal;
+    boolean buttonOpened = false;
 
     public AdapterMenuScreen(List<DataKhanaval> menuList, Context context) {
         this.menuList = menuList;
@@ -66,38 +68,6 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.view_menu_screen, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(v);
 
-       // Log.e("Test", String.valueOf(sharedPreferences.contains(FOOD_CATEGORY)));
-
-        /*//dialog init
-        mDialog = new Dialog(context);
-        mDialog.setContentView(R.layout.view_floating_food_chart);
-
-        viewHolder.item_food.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                //TextView itemCount = mDialog.findViewById(R.id.itemCount);
-                TextView price = mDialog.findViewById(R.id.price);
-                TextView discountPrice = mDialog.findViewById(R.id.discountPrice);
-                TextView itemName = mDialog.findViewById(R.id.itemName);
-                //itemCount.setText(menuList.get(viewHolder.getAdapterPosition()).getFoodName());
-                price.setText(menuList.get(viewHolder.getAdapterPosition()).getFoodPrice());
-                discountPrice.setText(menuList.get(viewHolder.getAdapterPosition()).getFoodPriceDiscount());
-                itemName.setText(menuList.get(viewHolder.getAdapterPosition()).getFoodName());
-                mDialog.show();
-
-            }
-        });*/
-
-        /*v.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Toast.makeText(context, "Test! " + viewHolder.getAdapterPosition(), Toast.LENGTH_SHORT).show();
-
-            }
-        });*/
-
         return viewHolder;
 
     }
@@ -110,8 +80,8 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
         viewHolder.foodDescription.setText(menuList.get(i).getFoodDescription());
         viewHolder.foodPrice.setText(String.valueOf(menuList.get(i).getFoodPrice()));
         viewHolder.foodPriceDiscount.setText(String.valueOf(menuList.get(i).getFoodPriceDiscount()));
-        //viewHolder.buttonAddToChart.setVisibility(menuList.get(i).getButtonPosition());
-        //int position = viewHolder.getAdapterPosition();
+        viewHolder.buttonAddToChart.setTag(menuList.get(i).getButtonPosition());
+        viewHolder.buttonAddPlusMinusChart.setTag(menuList.get(i).getButtonPosition());
 
         final Bundle bundle = new Bundle();
 
@@ -123,27 +93,29 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
         final int foodPriceItem = menuList.get(i).getFoodPrice();
         final int foodPriceDiscountItem = menuList.get(i).getFoodPriceDiscount();
 
-        //currentPos = menuList.get(i).getChartQuantity();
-
         final int position = viewHolder.getAdapterPosition();
         quantity[0] = 0;
-
-        //Log.e("Old Position", String.valueOf(viewHolder.getAdapterPosition()));
-
-        //viewHolder.activity.getSupportFragmentManager().beginTransaction().replace(R.id.foodChartFragment, foodChartFragment).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
-
-        //viewHolder.buttonAddToChart.setVisibility(SaveSharedPreference.getIsAddToCartVisible(context, true) ? View.VISIBLE : View.GONE);
-        //viewHolder.buttonAddPlusMinusChart.setVisibility(SaveSharedPreference.getIsAddToCartVisible(context, true)? View.GONE : View.VISIBLE);
-        //viewHolder.chartQuantity.setText(menuList.get(i).getChartQuantity() + String.valueOf(SaveSharedPreference.getQuantity(context, quantity[0])));
 
         sharedPreferences = context.getSharedPreferences(MY_PREFERENCE, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
-        viewHolder.buttonAddToChart.setTag(0);
+        //viewHolder.buttonAddToChart.setTag(0);
+
+        /*if (viewHolder.buttonAddToChart.getTag().equals(0)){
+
+            *//*viewHolder.buttonAddToChart.setVisibility(View.GONE);
+            viewHolder.buttonAddPlusMinusChart.setVisibility(View.VISIBLE);*//*
+
+            viewHolder.buttonAddToChart.setVisibility(SaveSharedPreference.getIsAddToCartVisible(context, true) ? View.VISIBLE : View.INVISIBLE);
+            viewHolder.buttonAddPlusMinusChart.setVisibility(SaveSharedPreference.getIsAddToCartVisible(context, true) ? View.INVISIBLE : View.VISIBLE);
+            viewHolder.chartQuantity.setText(String.valueOf(SaveSharedPreference.getQuantity(context, quantity[0])));
+
+        }*/
 
         Log.e("Button Adapter", String.valueOf(viewHolder.buttonAddToChart.getTag(0)));
 
         if (SaveSharedPreference.getAllQuantity(context, quantityTotal) >= 1 ) {
+
             quantity[0] = SaveSharedPreference.getQuantity(context, quantity[0]);
             quantityTotal = SaveSharedPreference.getAllQuantity(context, quantityTotal);
             SaveSharedPreference.setQuantity(context, quantity[0]);
@@ -158,28 +130,19 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
         viewHolder.buttonAddPlusMinusChart.setVisibility(SaveSharedPreference.getIsAddToCartVisible(context, true) ? View.INVISIBLE : View.VISIBLE);
         viewHolder.chartQuantity.setText(String.valueOf(SaveSharedPreference.getQuantity(context, quantity[0])));
 
-        /*if (row_index != -1) {
-            viewHolder.chartQuantity.setText(row_index);
-        }*/
-        //Log.e("Adapter Test", String.valueOf(viewHolder.getAdapterPosition()));
-
-        //viewHolder.buttonAddToChart.getTag(menuList.get(i));
-
-        //viewHolder.buttonAddToChart.setVisibility(i == currentPos || currentPos == -1 ? View.VISIBLE : View.INVISIBLE);
-        //viewHolder.buttonAddPlusMinusChart.setVisibility(i == currentPos || currentPos != -1 ? View.VISIBLE : View.INVISIBLE);
-
-        //Log.e("where is i,", String.valueOf(i));
-
         viewHolder.buttonAddToChart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 
                 if (!foodChartFragment.isAdded()) {
                     if (quantity[0] == 0) {
 
                         Log.e("Adapter Position", String.valueOf(position));
 
-                        Log.e("Tag", String.valueOf(viewHolder.buttonAddToChart.getTag()));
+                        Log.e("Tag Position", String.valueOf(viewHolder.buttonAddToChart.getTag()));
+
+                        viewHolder.buttonAddToChart.getTag();
 
                         //viewHolder.buttonAddToChart.setTag(i);
                         notifyItemChanged(foodPriceItem);
@@ -275,6 +238,8 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                     bundle.putString("FoodDiscount", String.valueOf(foodPriceDiscountTotal));*/
 
                     Log.e("Adapter Position", String.valueOf(position));
+
+                    Log.e("Tag Position", String.valueOf(viewHolder.buttonAddToChart.getTag()));
 
                     viewHolder.buttonAddToChart.getTag();
 
@@ -521,7 +486,8 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
                         // Showing the text that Counting number in the middle button Decrement and Increment
                         viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
-                        //viewHolder.chartQuantity.setText(String.valueOf(SaveSharedPreference.getQuantity(context, 0)));
+
+                        // viewHolder.chartQuantity.setText(String.valueOf(SaveSharedPreference.getQuantity(context, 0)));
 
                         // Showing the showing all item total quantity for the FoodChartFragment
                         /*bundle.putString("FoodCount", String.valueOf(quantityTotal));

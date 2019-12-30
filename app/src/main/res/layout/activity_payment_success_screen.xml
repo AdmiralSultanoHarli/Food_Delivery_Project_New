@@ -80,7 +80,7 @@
                         android:layout_height="130dp"
                         android:layout_alignParentTop="true"
                         android:layout_centerInParent="true"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="25dp"
                         android:background="@drawable/payment_success" />
 
                     <TextView
@@ -92,7 +92,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/imagePaymentSuccess"
                         android:layout_centerInParent="true"
-                        android:layout_marginTop="30dp"/>
+                        android:layout_marginTop="20dp"/>
 
                     <TextView
                         android:text="Yay we recived your payment, Sit relax, your food will delivered to you shortaly, You can check the order status in order menu"
@@ -103,7 +103,7 @@
                         android:layout_below="@+id/textPaymentSuccess"
                         android:layout_marginRight="70dp"
                         android:layout_marginLeft="70dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="10dp"
                         android:lines="4"/>
 
                 </RelativeLayout>

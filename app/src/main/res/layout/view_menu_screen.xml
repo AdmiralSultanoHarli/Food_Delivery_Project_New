@@ -84,7 +84,7 @@
             <Button
                 android:id="@+id/buttonAddToChart"
                 android:layout_width="88dp"
-                android:layout_height="19dp"
+                android:layout_height="25dp"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:background="@drawable/rounded_button_addtochart"
                 android:layout_alignParentBottom="true"
@@ -99,8 +99,8 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/buttonAddPlusMinusChart"
-                android:layout_width="57dp"
-                android:layout_height="22dp"
+                android:layout_width="75dp"
+                android:layout_height="25dp"
                 android:background="@color/colorWhite"
                 app:cardCornerRadius="4dp"
                 android:elevation="5dp"
@@ -119,7 +119,7 @@
 
                     <TextView
                         android:id="@+id/decreaseChartQuantity"
-                        android:layout_width="19dp"
+                        android:layout_width="25dp"
                         android:layout_height="match_parent"
                         android:clickable="true"
                         android:foreground="?attr/selectableItemBackground"
@@ -131,7 +131,7 @@
 
                     <TextView
                         android:id="@+id/chartQuantity"
-                        android:layout_width="19dp"
+                        android:layout_width="25dp"
                         android:layout_height="match_parent"
                         android:textSize="14sp"
                         android:gravity="center"
@@ -139,7 +139,7 @@
 
                     <TextView
                         android:id="@+id/increaseChartQuantity"
-                        android:layout_width="19dp"
+                        android:layout_width="25dp"
                         android:layout_height="match_parent"
                         android:clickable="true"
                         android:foreground="?attr/selectableItemBackground"

@@ -90,7 +90,7 @@ public class FoodChartFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(container.getContext(), "Test", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(container.getContext(), "Test", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(container.getContext(), MenuDetailsScreenActivity.class);
                 startActivity(i);
 
