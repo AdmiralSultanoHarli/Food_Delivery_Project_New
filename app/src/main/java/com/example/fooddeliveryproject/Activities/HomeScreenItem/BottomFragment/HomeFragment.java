@@ -135,11 +135,15 @@ public class HomeFragment extends Fragment {
 
             getActivity().runOnUiThread(
                     new Runnable() {
+
+
                 @Override
                 public void run() {
+
                     if (sliderPager.getCurrentItem()<getData().size()-1){
 
                         sliderPager.setCurrentItem(sliderPager.getCurrentItem()+1);
+
 
                     }else {
 

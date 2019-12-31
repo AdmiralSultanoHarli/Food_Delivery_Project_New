@@ -65,6 +65,7 @@
             android:layout_below="@+id/menu1"
             android:layout_above="@+id/paymentBar"
             android:layout_width="match_parent"
+            android:scrollbars="none"
             android:layout_height="match_parent">
 
             <RelativeLayout

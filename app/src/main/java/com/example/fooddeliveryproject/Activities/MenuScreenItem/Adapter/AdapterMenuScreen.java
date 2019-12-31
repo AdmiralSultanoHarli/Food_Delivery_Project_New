@@ -128,7 +128,8 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
         viewHolder.buttonAddToChart.setVisibility(SaveSharedPreference.getIsAddToCartVisible(context, true) ? View.VISIBLE : View.INVISIBLE);
         viewHolder.buttonAddPlusMinusChart.setVisibility(SaveSharedPreference.getIsAddToCartVisible(context, true) ? View.INVISIBLE : View.VISIBLE);
-        viewHolder.chartQuantity.setText(String.valueOf(SaveSharedPreference.getQuantity(context, quantity[0])));
+        //viewHolder.chartQuantity.setText(String.valueOf(SaveSharedPreference.getQuantity(context, quantity[0])));
+        viewHolder.chartQuantity.setText(String.valueOf(SaveSharedPreference.getAllQuantity(context, quantityTotal)));
 
         viewHolder.buttonAddToChart.setOnClickListener(new View.OnClickListener() {
             @Override

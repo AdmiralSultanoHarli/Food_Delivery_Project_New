@@ -1,0 +1,15 @@
+Index: app/src/main/java/com/example/fooddeliveryproject/Activities/MenuScreenItem/Fragment/MenuScreenFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/fooddeliveryproject/Activities/MenuScreenItem/Fragment/MenuScreenFragment.java	(date 1577703990000)
++++ app/src/main/java/com/example/fooddeliveryproject/Activities/MenuScreenItem/Fragment/MenuScreenFragment.java	(date 1577760648248)
+@@ -25,6 +25,7 @@
+ 
+ public class MenuScreenFragment extends Fragment {
+ 
++    //this is test
+     RecyclerView menuScreenCategories;
+     AdapterMenuScreen menuScreenAdapter;
+     String[] foodName = {"Veg Thali", "Goan Special", "Butter Chicken", "Bhendi Masala", "Murg Musallam", "Basmati Rice Chicken Biryani", "Jeera Alo", "Mix Veggies"};

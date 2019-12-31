@@ -111,6 +111,7 @@
         android:layout_height="wrap_content"
         app:itemIconTint="@color/navigation_button_color"
         app:itemTextColor="@color/navigation_button_color"
+        app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav_menu" />
 
 

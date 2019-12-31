@@ -53,7 +53,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/menu1">
+        android:layout_below="@+id/menu1"
+        android:scrollbars="none">
 
         <LinearLayout
             android:orientation="vertical"
@@ -71,8 +72,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="10dp"/>
+        android:layout_alignParentBottom="true" />
 
         <!--<include layout="@layout/view_floating_food_chart"/>
 
