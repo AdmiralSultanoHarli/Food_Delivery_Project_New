@@ -25,6 +25,7 @@ import java.util.ArrayList;
 
 public class MenuScreenFragment extends Fragment {
 
+    //this is test
     RecyclerView menuScreenCategories;
     AdapterMenuScreen menuScreenAdapter;
     String[] foodName = {"Veg Thali", "Goan Special", "Butter Chicken", "Bhendi Masala", "Murg Musallam", "Basmati Rice Chicken Biryani", "Jeera Alo", "Mix Veggies", "Panang Curry", "Chapati", "Samosa"};
