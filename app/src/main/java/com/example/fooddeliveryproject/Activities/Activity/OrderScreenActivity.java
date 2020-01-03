@@ -36,6 +36,7 @@ public class OrderScreenActivity extends AppCompatActivity {
 
     public SlidingUpPanelLayout slidingPanel;
     public boolean slideOpened = false;
+    public boolean wishlistAdded = false;
 
     public int counter;
 

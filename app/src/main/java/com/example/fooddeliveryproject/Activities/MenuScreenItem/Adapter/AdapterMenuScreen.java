@@ -1,5 +1,6 @@
 package com.example.fooddeliveryproject.Activities.MenuScreenItem.Adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -21,6 +22,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fooddeliveryproject.Activities.Activity.MenuScreenActivity;
 import com.example.fooddeliveryproject.Activities.Data.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment.FoodChartFragment;
@@ -132,9 +134,11 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
         viewHolder.chartQuantity.setText(String.valueOf(SaveSharedPreference.getAllQuantity(context, quantityTotal)));
 
         viewHolder.buttonAddToChart.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("RestrictedApi")
             @Override
             public void onClick(View view) {
 
+                MenuScreenActivity menuScreenActivity = (MenuScreenActivity) view.getContext();
 
                 if (!foodChartFragment.isAdded()) {
                     if (quantity[0] == 0) {
@@ -147,6 +151,7 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
                         //viewHolder.buttonAddToChart.setTag(i);
                         notifyItemChanged(foodPriceItem);
+                        menuScreenActivity.numberCount.setVisibility(View.VISIBLE);
 
                         quantity[0] = 1;
                         priceTotal[0] = foodPriceItem;
@@ -360,8 +365,11 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
         });
 
         viewHolder.decreaseChartQuantity.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("RestrictedApi")
             @Override
             public void onClick(View view) {
+
+                MenuScreenActivity menuScreenActivity = (MenuScreenActivity) view.getContext();
 
                 if (quantity[0] == 1) {
 
@@ -379,6 +387,8 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                         priceTotal[0] = 0;
                         priceDiscountTotal[0] = 0;
 
+
+                        menuScreenActivity.numberCount.setVisibility(View.GONE);
                         /*bundle.putString("FoodCount", String.valueOf(quantityTotal));
                         bundle.putString("FoodPrice", String.valueOf(foodPriceTotal));
                         bundle.putString("FoodDiscount", String.valueOf(foodPriceDiscountTotal));*/

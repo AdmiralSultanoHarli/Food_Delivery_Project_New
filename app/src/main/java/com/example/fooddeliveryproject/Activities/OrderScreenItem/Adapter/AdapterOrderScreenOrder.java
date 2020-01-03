@@ -23,7 +23,7 @@ public class AdapterOrderScreenOrder  extends RecyclerView.Adapter<AdapterOrderS
 
     List<DataKhanaval> menuDetailList;
     Context context;
-    boolean wishlistAdded = false;
+    //boolean wishlistAdded = false;
 
     public AdapterOrderScreenOrder(List<DataKhanaval> menuDetailList, Context context) {
         this.menuDetailList = menuDetailList;
@@ -39,7 +39,6 @@ public class AdapterOrderScreenOrder  extends RecyclerView.Adapter<AdapterOrderS
         return viewHolder;
 
     }
-
 
     @Override
     public void onBindViewHolder(@NonNull final AdapterOrderScreenOrder.ViewHolder viewHolder, int i) {
@@ -115,15 +114,16 @@ public class AdapterOrderScreenOrder  extends RecyclerView.Adapter<AdapterOrderS
             @Override
             public void onClick(View view) {
 
-                if (wishlistAdded == false) {
+                OrderScreenActivity orderScreenActivity = (OrderScreenActivity) view.getContext();
+                if (orderScreenActivity.wishlistAdded == false) {
 
                     viewHolder.favouriteFood.setColorFilter(ContextCompat.getColor(context, R.color.circleRed));
-                    wishlistAdded = true;
+                    orderScreenActivity.wishlistAdded = true;
 
-                }else if (wishlistAdded == true){
+                }else if (orderScreenActivity.wishlistAdded == true){
 
                     viewHolder.favouriteFood.setColorFilter(ContextCompat.getColor(context, R.color.colorButtonGray));
-                    wishlistAdded = false;
+                    orderScreenActivity.wishlistAdded = false;
 
                 }
             }

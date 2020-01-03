@@ -14,10 +14,12 @@ import android.widget.ImageView;
 import com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment.FoodChartFragment;
 import com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment.MenuScreenFragment;
 import com.example.fooddeliveryproject.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MenuScreenActivity extends AppCompatActivity {
 
     ImageView backButton, cartButton;
+    public FloatingActionButton numberCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,9 @@ public class MenuScreenActivity extends AppCompatActivity {
 
         backButton = findViewById(R.id.backButton);
         cartButton = findViewById(R.id.cartButton);
+        numberCount = findViewById(R.id.numberCount);
+
+        //numberCount.se
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
