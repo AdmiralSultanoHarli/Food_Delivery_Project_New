@@ -3,6 +3,9 @@ package com.example.fooddeliveryproject.Activities.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +15,7 @@ import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.R;
 
@@ -22,12 +26,17 @@ public class LoginScreenActivity extends AppCompatActivity {
     ImageButton buttonClose;
     EditText phoneNumber, password;
     private AwesomeValidation awesomeValidation;
+    private SQLiteOpenHelper openHelper;
+    private SQLiteDatabase db;
+    private Cursor cursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_screen);
 
+        openHelper = new DatabaseHelper(this);
+        db = openHelper.getReadableDatabase();
         buttonSignIn = findViewById(R.id.buttonSignIn);
         buttonSignUp = findViewById(R.id.buttonSignUp);
         buttonClose = findViewById(R.id.buttonClose);
@@ -76,13 +85,31 @@ public class LoginScreenActivity extends AppCompatActivity {
     private void submitForm() {
         //first validate the form then move ahead
         //if this becomes true that means validation is successfull
+
+        openHelper = new DatabaseHelper(this);
+        db = openHelper.getReadableDatabase();
+        String phoneNumberStr = phoneNumber.getText().toString().trim();
+        String passwordStr = password.getText().toString().trim();
+
         if (awesomeValidation.validate()) {
-            Toast.makeText(this, "Registration Successfull", Toast.LENGTH_LONG).show();
-            SaveSharedPreference.setThereIsUser(LoginScreenActivity.this, true);
-            //process the data further
-            Intent homeActivity = new Intent(LoginScreenActivity.this, HomeScreenActivity.class);
-            startActivity(homeActivity);
-            finish();
+
+
+            cursor = db.rawQuery("SELECT * FROM " + DatabaseHelper.TABLE_USER + " WHERE " + DatabaseHelper.COLUMN_USER_PHONENUMBER + "=? AND " + DatabaseHelper.COLUMN_USER_PASSWORD + "=?", new String[]{phoneNumberStr, passwordStr});
+            if (cursor != null) {
+
+                if (cursor.getCount() > 0) {
+                    //process the data further
+                    SaveSharedPreference.setThereIsUser(LoginScreenActivity.this, true);
+                    Intent homeActivity = new Intent(LoginScreenActivity.this, HomeScreenActivity.class);
+                    startActivity(homeActivity);
+                    Toast.makeText(this, "Login Successfull", Toast.LENGTH_SHORT).show();
+                    finish();
+                }else {
+
+                    Toast.makeText(this, "No data", Toast.LENGTH_SHORT).show();
+
+                }
+            }
         }
     }
 
