@@ -2,7 +2,7 @@
     <string name="app_name">Khanal Food Delivery</string>
     <string name="nameerror">Enter Valid Name</string>
     <string name="emailerror">Enter Valid Email</string>
-    <string name="passworderror">Enter Some Password</string>
+    <string name="passworderror">Enter Some Password, Password should be character</string>
     <string name="mobileerror">Enter Valid Mobile Number And The First Number Must Be 0</string>
     <string name="title_activity_home_screen">HomeScreenActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

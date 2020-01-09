@@ -1,4 +1,4 @@
-package com.example.fooddeliveryproject.Activities.Data;
+package com.example.fooddeliveryproject.Activities.Model;
 
 public class DataKhanaval {
 

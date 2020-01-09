@@ -8,12 +8,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.fooddeliveryproject.Activities.Data.DataKhanaval;
-import com.example.fooddeliveryproject.Activities.MenuDetailScreenItem.Adapter.AdapterMenuDetailScreenAddOn;
+import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.MenuDetailScreenItem.Adapter.AdapterMenuDetailScreenItems;
 import com.example.fooddeliveryproject.R;
 

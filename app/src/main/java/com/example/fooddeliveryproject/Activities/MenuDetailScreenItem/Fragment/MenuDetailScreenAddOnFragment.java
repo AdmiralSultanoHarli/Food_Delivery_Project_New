@@ -1,8 +1,6 @@
 package com.example.fooddeliveryproject.Activities.MenuDetailScreenItem.Fragment;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +11,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.fooddeliveryproject.Activities.Data.DataKhanaval;
+import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.MenuDetailScreenItem.Adapter.AdapterMenuDetailScreenAddOn;
 import com.example.fooddeliveryproject.R;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 public class MenuDetailScreenAddOnFragment extends Fragment {
 

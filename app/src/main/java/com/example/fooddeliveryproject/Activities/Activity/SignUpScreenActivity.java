@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +30,7 @@ public class SignUpScreenActivity extends AppCompatActivity {
     SQLiteDatabase db;
 
     private AwesomeValidation awesomeValidation;
+    private static int TIME_CHANGING = 300;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +86,17 @@ public class SignUpScreenActivity extends AppCompatActivity {
 
             db = openHelper.getWritableDatabase();
             insertData(nameStr, phoneNumberStr, passwordStr);
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+
+                    Intent i = new Intent(SignUpScreenActivity.this, LoginScreenActivity.class);
+                    startActivity(i);
+                    finish();
+
+                }
+            },TIME_CHANGING);
             //process the data further
         }
 
@@ -99,5 +112,6 @@ public class SignUpScreenActivity extends AppCompatActivity {
         long id = db.insert(DatabaseHelper.TABLE_USER, null, contentValues);
 
     }
+
 
 }

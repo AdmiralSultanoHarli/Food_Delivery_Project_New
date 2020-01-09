@@ -12,8 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.fooddeliveryproject.Activities.Data.DataKhanaval;
-import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
+import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.MenuScreenItem.Adapter.AdapterMenuScreen;
 import com.example.fooddeliveryproject.R;
 

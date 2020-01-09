@@ -13,7 +13,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddeliveryproject.Activities.Activity.OrderScreenActivity;
-import com.example.fooddeliveryproject.Activities.Data.DataKhanaval;
+import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.R;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 

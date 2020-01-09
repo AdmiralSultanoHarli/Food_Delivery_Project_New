@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.security.PublicKey;
 
+import javax.sql.StatementEvent;
+
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -17,6 +19,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_USERNAME = "username";
     public static final String COLUMN_USER_PHONENUMBER = "phonenumber";
     public static final String COLUMN_USER_PASSWORD = "password";
+
+    public static final String TABLE_FOOD = "food";
+    public static final String COLUMN_FOOD_ID = "foodid";
+    public static final String COLUMN_FOOD_NAME = "foodname";
+    public static final String COLUMN_FOOD_DESC = "fooddesc";
+    public static final String COLUMN_FOOD_PRICE = "foodprice";
+    public static final String COLUMN_FOOD_PRICE_DISCOUNT = "foodpricediscount";
+
+    public static final String TABLE_FOOD_TRANSACTION = "foodtransaction";
+    public static final String COLUMN_FOOD_QUANTITY = "foodquantity";
+    public static final String COLUMN_FOOD_ALLQUANTITY = "foodallquantity";
+    public static final String COLUMN_FOOD_PRICE_TOTAL = "foodpricetotal";
+    public static final String COLUMN_FOOD_PRICE_DISCOUNT_TOTAL = "foodpricediscounttotal";
 
     public DatabaseHelper(Context context){
 

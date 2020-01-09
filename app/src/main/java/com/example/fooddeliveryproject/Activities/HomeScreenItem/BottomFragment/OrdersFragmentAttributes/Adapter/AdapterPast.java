@@ -1,8 +1,6 @@
 package com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.OrdersFragmentAttributes.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,21 +8,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddeliveryproject.Activities.Activity.HomeScreenActivity;
-import com.example.fooddeliveryproject.Activities.Activity.MenuScreenActivity;
-import com.example.fooddeliveryproject.Activities.Data.DataKhanaval;
-import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterBestCusineCategories;
+import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.OrdersDetailsFragment;
 import com.example.fooddeliveryproject.R;
 
 import java.util.List;
-
-import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_CATEGORY;
-import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.MY_PREFERENCE;
 
 public class AdapterPast extends RecyclerView.Adapter<AdapterPast.ViewHolder> {
 
