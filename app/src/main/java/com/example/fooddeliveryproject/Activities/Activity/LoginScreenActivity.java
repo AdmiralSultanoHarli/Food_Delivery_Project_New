@@ -104,6 +104,7 @@ public class LoginScreenActivity extends AppCompatActivity {
                     startActivity(homeActivity);
                     Toast.makeText(this, "Login Successfull", Toast.LENGTH_SHORT).show();
                     finish();
+
                 }else {
 
                     Toast.makeText(this, "No data", Toast.LENGTH_SHORT).show();

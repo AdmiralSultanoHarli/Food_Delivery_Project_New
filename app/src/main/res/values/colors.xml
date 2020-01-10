@@ -21,4 +21,5 @@
     <color name="promoColor">#FF6B6B</color>
     <color name="circleGreen">#0DB574</color>
     <color name="circleRed">#FF0000</color>
+    <color name="textColorGray">#747474</color>
 </resources>

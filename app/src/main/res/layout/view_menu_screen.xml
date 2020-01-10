@@ -93,7 +93,7 @@
                 android:layout_marginRight="5dp"
                 android:textAllCaps="false"
                 android:text="Add To Chart"
-                android:textColor="#747474"
+                android:textColor="@color/textGreyColor"
                 android:textSize="12sp"
                 android:translationY="-6dp"
                 />

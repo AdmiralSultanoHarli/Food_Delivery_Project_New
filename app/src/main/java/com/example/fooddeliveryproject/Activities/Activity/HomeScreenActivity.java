@@ -73,7 +73,6 @@ public class HomeScreenActivity extends AppCompatActivity {
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, selectedFragment).commit();
 
-
                 return true;
             }
         });
