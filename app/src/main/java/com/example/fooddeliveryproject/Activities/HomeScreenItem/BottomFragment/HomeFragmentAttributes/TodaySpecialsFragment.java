@@ -11,8 +11,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterCustomCategories;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterTodayCategories;
+import com.example.fooddeliveryproject.Activities.Model.DataTest;
 import com.example.fooddeliveryproject.R;
 
 import java.util.ArrayList;
@@ -25,9 +28,11 @@ public class TodaySpecialsFragment extends Fragment {
 
     RecyclerView todaySpecialsCategories;
     AdapterTodayCategories adapterTodayCategories;
+    ArrayList<DataTest> allData = new ArrayList<>();
+    private DatabaseHelper helper;
 
-    String foods[] = {"Goan Special", "Maha Thali", "Panang Curry", "Chapati"};
-    int img[] = {R.drawable.goan_vegetarian_thali, R.drawable.maharashtra_thali, R.drawable.panang_curry, R.drawable.chapati};
+    /*String foods[] = {"Goan Special", "Maha Thali", "Panang Curry", "Chapati"};
+    int img[] = {R.drawable.goan_vegetarian_thali, R.drawable.maharashtra_thali, R.drawable.panang_curry, R.drawable.chapati};*/
 
     public TodaySpecialsFragment() {
 
@@ -41,22 +46,29 @@ public class TodaySpecialsFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_today_special, container, false);
 
+        helper = new DatabaseHelper(getActivity());
         todaySpecialsCategories = v.findViewById(R.id.third_categories);
-
+        allData = helper.listDataTodaySpecial();
         todaySpecialsCategories.setHasFixedSize(true);
-
         RecyclerView.LayoutManager layoutManagerTodaySpecials = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         todaySpecialsCategories.setLayoutManager(layoutManagerTodaySpecials);
 
-        ArrayList <DataKhanaval> dataFoods = getData();
+        if (allData.size() > 0){
 
+            todaySpecialsCategories.setVisibility(View.VISIBLE);
+            adapterTodayCategories = new AdapterTodayCategories(allData, getActivity());
+            todaySpecialsCategories.setAdapter(adapterTodayCategories);
+
+        }
+
+        /*ArrayList <DataKhanaval> dataFoods = getData();
         adapterTodayCategories = new AdapterTodayCategories(dataFoods, getActivity());
-        todaySpecialsCategories.setAdapter(adapterTodayCategories);
+        todaySpecialsCategories.setAdapter(adapterTodayCategories);*/
 
         return v;
     }
 
-    private ArrayList<DataKhanaval> getData(){
+    /*private ArrayList<DataKhanaval> getData(){
 
         ArrayList<DataKhanaval> foodArrayList = new ArrayList<>();
         for(int i = 0; i<foods.length; i++){
@@ -69,6 +81,6 @@ public class TodaySpecialsFragment extends Fragment {
         }
 
         return foodArrayList;
-    }
+    }*/
 
 }

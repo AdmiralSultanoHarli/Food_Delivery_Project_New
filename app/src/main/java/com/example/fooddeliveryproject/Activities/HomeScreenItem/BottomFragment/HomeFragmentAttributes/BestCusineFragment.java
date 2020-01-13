@@ -11,8 +11,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterCustomCategories;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterBestCusineCategories;
+import com.example.fooddeliveryproject.Activities.Model.DataTest;
 import com.example.fooddeliveryproject.R;
 
 import java.util.ArrayList;
@@ -25,8 +28,8 @@ public class BestCusineFragment extends Fragment{
 
     RecyclerView bestCusineCategories;
     AdapterBestCusineCategories adapterBestCusineCategories;
-    String[] foods = {"Thai Special", "Indian", "Chinese", "Maha Thali"};
-    int[] img = {R.drawable.panang_curry, R.drawable.dal_tadkda, R.drawable.chow_mein, R.drawable.maharashtra_thali};
+    ArrayList<DataTest> allData = new ArrayList<>();
+    private DatabaseHelper helper;
 
     public BestCusineFragment() {
 
@@ -40,23 +43,32 @@ public class BestCusineFragment extends Fragment{
 
         View v = inflater.inflate(R.layout.fragment_best_cusine, container, false);
 
+        helper = new DatabaseHelper(getActivity());
         bestCusineCategories = v.findViewById(R.id.second_categories);
-
+        allData = helper.listDataBestCusine();
         bestCusineCategories.setHasFixedSize(true);
-
         RecyclerView.LayoutManager layoutManagerBestCusine = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         bestCusineCategories.setLayoutManager(layoutManagerBestCusine);
 
-        ArrayList<DataKhanaval> dataFoods = getData();
+        if (allData.size() > 0){
+
+            bestCusineCategories.setVisibility(View.VISIBLE);
+            adapterBestCusineCategories = new AdapterBestCusineCategories(allData, getActivity());
+            bestCusineCategories.setAdapter(adapterBestCusineCategories);
+
+        }
+
+        /*ArrayList<DataKhanaval> dataFoods = getData();
 
         adapterBestCusineCategories = new AdapterBestCusineCategories(dataFoods, getActivity());
-        bestCusineCategories.setAdapter(adapterBestCusineCategories);
+        bestCusineCategories.setAdapter(adapterBestCusineCategories);*/
+
 
         return v;
 
     }
 
-    private ArrayList<DataKhanaval> getData() {
+    /*private ArrayList<DataKhanaval> getData() {
 
         ArrayList<DataKhanaval> foodArrayList = new ArrayList<>();
         for (int i = 0; i < foods.length; i++){
@@ -68,5 +80,5 @@ public class BestCusineFragment extends Fragment{
 
         return foodArrayList;
 
-    }
+    }*/
 }

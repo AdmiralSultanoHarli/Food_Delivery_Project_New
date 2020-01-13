@@ -15,19 +15,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddeliveryproject.Activities.Activity.MenuScreenActivity;
 
+import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
+import com.example.fooddeliveryproject.Activities.Model.DataTest;
 import com.example.fooddeliveryproject.R;
 
 import java.util.List;
 
 public class AdapterTodayCategories extends RecyclerView.Adapter<AdapterTodayCategories.ViewHolder> {
 
-    List<DataKhanaval> topList;
+    List<DataTest> topList;
+    List<DataTest> mTopList;
     Context context;
+    private DatabaseHelper helper;
 
-    public AdapterTodayCategories(List<DataKhanaval> topList, Context context) {
+    public AdapterTodayCategories(List<DataTest> topList, Context context) {
         this.topList = topList;
         this.context = context;
+        this.mTopList = topList;
+        helper = new DatabaseHelper(context);
     }
 
     @NonNull
@@ -37,7 +43,7 @@ public class AdapterTodayCategories extends RecyclerView.Adapter<AdapterTodayCat
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.view_item_categories, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(v);
 
-        v.setOnClickListener(new View.OnClickListener() {
+        /*v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -45,7 +51,7 @@ public class AdapterTodayCategories extends RecyclerView.Adapter<AdapterTodayCat
                 context.startActivity(i);
 
             }
-        });
+        });*/
 
         return viewHolder;
 
@@ -54,8 +60,10 @@ public class AdapterTodayCategories extends RecyclerView.Adapter<AdapterTodayCat
     @Override
     public void onBindViewHolder(@NonNull AdapterTodayCategories.ViewHolder viewHolder, final int i) {
 
-        viewHolder.foodName.setText(topList.get(i).getFoodName());
-        viewHolder.img.setImageResource(topList.get(i).getImg());
+        final DataTest data = topList.get(i);
+
+        viewHolder.foodName.setText(data.getFoodName());
+        viewHolder.img.setImageResource(data.getImg());
 
         viewHolder.itemCard.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -15,6 +15,7 @@ import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 import com.example.fooddeliveryproject.Activities.Model.Data;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterCustomCategories;
+import com.example.fooddeliveryproject.Activities.Model.DataTest;
 import com.example.fooddeliveryproject.R;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class CustomFragment extends Fragment {
 
     RecyclerView customCategories;
     AdapterCustomCategories adapterCustomCategories;
-    ArrayList<Data> allData = new ArrayList<>();
+    ArrayList<DataTest> allData = new ArrayList<>();
     private DatabaseHelper helper;
 
     //String foods[] = {"Beverages", "Snacks", "Sweets"};
@@ -42,7 +43,7 @@ public class CustomFragment extends Fragment {
 
         helper = new DatabaseHelper(getActivity());
         customCategories = v.findViewById(R.id.custom_categories);
-        allData = helper.listData();
+        allData = helper.listDataCustom();
         customCategories.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManagerCustom = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         customCategories.setLayoutManager(layoutManagerCustom);
@@ -55,21 +56,21 @@ public class CustomFragment extends Fragment {
 
         }
 
-        ArrayList<Data> dataFoods = getData();
+        /*ArrayList<Data> dataFoods = getData();
 
         adapterCustomCategories = new AdapterCustomCategories(dataFoods, getActivity());
-        customCategories.setAdapter(adapterCustomCategories);
+        customCategories.setAdapter(adapterCustomCategories);*/
 
         return v;
     }
 
-    private ArrayList<Data> getData(){
+    /*private ArrayList<DataTest> getData(){
 
-        ArrayList<Data> foodArrayList = new ArrayList<>();
+        ArrayList<DataTest> foodArrayList = new ArrayList<>();
 
         for(int i = 0; i<img.length; i++){
 
-            Data dataFood = new Data();
+            DataTest dataFood = new DataTest();
             //dataFood.setFoodName(foods[i]);
             dataFood.setImg(img[i]);
             foodArrayList.add(dataFood);
@@ -78,5 +79,5 @@ public class CustomFragment extends Fragment {
 
         return foodArrayList;
 
-    }
+    }*/
 }

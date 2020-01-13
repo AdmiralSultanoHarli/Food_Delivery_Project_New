@@ -16,20 +16,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fooddeliveryproject.Activities.Activity.MenuScreenActivity;
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 import com.example.fooddeliveryproject.Activities.Model.Data;
-import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
+
+import com.example.fooddeliveryproject.Activities.Model.DataTest;
 import com.example.fooddeliveryproject.R;
 
 import java.util.List;
 
 public class AdapterCustomCategories extends RecyclerView.Adapter<AdapterCustomCategories.ViewHolder> {
 
-    List<Data> topList;
-    List<Data> mTopList;
+    List<DataTest> topList;
+    List<DataTest> mTopList;
     Context context;
 
     private DatabaseHelper helper;
 
-    public AdapterCustomCategories(List<Data> topList, Context context) {
+    public AdapterCustomCategories(List<DataTest> topList, Context context) {
         this.topList = topList;
         this.context = context;
         this.mTopList = topList;
@@ -59,7 +60,7 @@ public class AdapterCustomCategories extends RecyclerView.Adapter<AdapterCustomC
     @Override
     public void onBindViewHolder(@NonNull AdapterCustomCategories.ViewHolder viewHolder, final int i) {
 
-        final Data data = topList.get(i);
+        final DataTest data = topList.get(i);
 
         viewHolder.foodName.setText(data.getFoodName());
         viewHolder.img.setImageResource(data.getImg());
