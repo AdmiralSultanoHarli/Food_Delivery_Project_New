@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
+import com.example.fooddeliveryproject.Activities.Model.Data;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterCustomCategories;
 import com.example.fooddeliveryproject.R;
@@ -21,8 +23,10 @@ public class CustomFragment extends Fragment {
 
     RecyclerView customCategories;
     AdapterCustomCategories adapterCustomCategories;
+    ArrayList<Data> allData = new ArrayList<>();
+    private DatabaseHelper helper;
 
-    String foods[] = {"Beverages", "Snacks", "Sweets"};
+    //String foods[] = {"Beverages", "Snacks", "Sweets"};
     int img[] = {R.drawable.beverage, R.drawable.snacks, R.drawable.sweets};
 
     public CustomFragment() {
@@ -36,14 +40,22 @@ public class CustomFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_custom_categories, container, false);
 
+        helper = new DatabaseHelper(getActivity());
         customCategories = v.findViewById(R.id.custom_categories);
-
+        allData = helper.listData();
         customCategories.setHasFixedSize(true);
-
         RecyclerView.LayoutManager layoutManagerCustom = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         customCategories.setLayoutManager(layoutManagerCustom);
 
-        ArrayList<DataKhanaval> dataFoods = getData();
+        if (allData.size() > 0){
+
+            customCategories.setVisibility(View.VISIBLE);
+            adapterCustomCategories = new AdapterCustomCategories(allData, getActivity());
+            customCategories.setAdapter(adapterCustomCategories);
+
+        }
+
+        ArrayList<Data> dataFoods = getData();
 
         adapterCustomCategories = new AdapterCustomCategories(dataFoods, getActivity());
         customCategories.setAdapter(adapterCustomCategories);
@@ -51,14 +63,14 @@ public class CustomFragment extends Fragment {
         return v;
     }
 
-    private ArrayList<DataKhanaval> getData(){
+    private ArrayList<Data> getData(){
 
-        ArrayList<DataKhanaval> foodArrayList = new ArrayList<>();
+        ArrayList<Data> foodArrayList = new ArrayList<>();
 
-        for(int i = 0; i<foods.length; i++){
+        for(int i = 0; i<img.length; i++){
 
-            DataKhanaval dataFood = new DataKhanaval();
-            dataFood.setFoodName(foods[i]);
+            Data dataFood = new Data();
+            //dataFood.setFoodName(foods[i]);
             dataFood.setImg(img[i]);
             foodArrayList.add(dataFood);
 

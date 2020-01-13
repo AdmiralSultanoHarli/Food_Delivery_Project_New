@@ -14,6 +14,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddeliveryproject.Activities.Activity.MenuScreenActivity;
+import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
+import com.example.fooddeliveryproject.Activities.Model.Data;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.R;
 
@@ -21,12 +23,17 @@ import java.util.List;
 
 public class AdapterCustomCategories extends RecyclerView.Adapter<AdapterCustomCategories.ViewHolder> {
 
-    List<DataKhanaval> topList;
+    List<Data> topList;
+    List<Data> mTopList;
     Context context;
 
-    public AdapterCustomCategories(List<DataKhanaval> topList, Context context) {
+    private DatabaseHelper helper;
+
+    public AdapterCustomCategories(List<Data> topList, Context context) {
         this.topList = topList;
         this.context = context;
+        this.mTopList = topList;
+        helper = new DatabaseHelper(context);
     }
 
     @NonNull
@@ -52,8 +59,10 @@ public class AdapterCustomCategories extends RecyclerView.Adapter<AdapterCustomC
     @Override
     public void onBindViewHolder(@NonNull AdapterCustomCategories.ViewHolder viewHolder, final int i) {
 
-        viewHolder.foodName.setText(topList.get(i).getFoodName());
-        viewHolder.img.setImageResource(topList.get(i).getImg());
+        final Data data = topList.get(i);
+
+        viewHolder.foodName.setText(data.getFoodName());
+        viewHolder.img.setImageResource(data.getImg());
         viewHolder.itemCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,8 +71,9 @@ public class AdapterCustomCategories extends RecyclerView.Adapter<AdapterCustomC
                 /*bundle.putString("FoodShop", topList.get(i).getFoodName());
                 foodChartFragment.setArguments(bundle);*/
 
-                b.putExtra("FoodShop", topList.get(i).getFoodName());
-                Log.e("item food name bundle", topList.get(i).getFoodName());
+                //that i comment below
+                /*b.putExtra("FoodShop", topList.get(i).getFoodName());
+                Log.e("item food name bundle", topList.get(i).getFoodName());*/
                 context.startActivity(b);
 
             }

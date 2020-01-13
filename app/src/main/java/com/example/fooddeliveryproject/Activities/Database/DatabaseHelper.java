@@ -1,10 +1,15 @@
 package com.example.fooddeliveryproject.Activities.Database;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.fooddeliveryproject.Activities.Model.Data;
+
 import java.security.PublicKey;
+import java.util.ArrayList;
 
 import javax.sql.StatementEvent;
 
@@ -93,5 +98,41 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public ArrayList<Data> listData(){
+
+        String sql = "select * from " + TABLE_FOOD;
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<Data> storeData = new ArrayList<>();
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor.moveToFirst()){
+
+            do {
+
+                int foodId = Integer.parseInt(cursor.getString(0));
+                String foodName = cursor.getString(1);
+                storeData.add(new Data(foodId, foodName));
+            }while (cursor.moveToNext());
+
+        }
+
+        cursor.close();
+        return storeData;
+
+    }
+
+    public void addData(Data data){
+
+        ContentValues values = new ContentValues();
+        if (values.equals(COLUMN_FOOD_NAME)){
+
+            return;
+
+        }
+
+        values.put(COLUMN_FOOD_NAME, data.getFoodName());
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        sqLiteDatabase.insert(TABLE_FOOD, null, values);
+
+    }
 
 }

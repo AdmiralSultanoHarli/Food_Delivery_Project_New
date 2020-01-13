@@ -2,6 +2,7 @@ package com.example.fooddeliveryproject.Activities.Model;
 
 public class DataKhanaval {
 
+    int id;
     String foodName;
     String foodDescription;
     String date;
