@@ -15,7 +15,7 @@ import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterCustomCategories;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterYourFavouritesCategories;
-import com.example.fooddeliveryproject.Activities.Model.DataTest;
+import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.R;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class YourFavouritesFragment extends Fragment {
 
     RecyclerView yourFavouritesCategories;
     AdapterYourFavouritesCategories adapterYourFavouritesCategories;
-    ArrayList<DataTest> allData = new ArrayList<>();
+    ArrayList<DataKhanaval> allData = new ArrayList<>();
     private DatabaseHelper helper;
 
     /*String foods[] = {"Maha Thali", "Samosa", "Murg Mussalam"};

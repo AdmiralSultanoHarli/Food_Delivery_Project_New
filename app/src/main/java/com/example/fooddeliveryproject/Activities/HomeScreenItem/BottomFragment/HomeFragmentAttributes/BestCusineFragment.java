@@ -15,7 +15,7 @@ import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterCustomCategories;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterBestCusineCategories;
-import com.example.fooddeliveryproject.Activities.Model.DataTest;
+
 import com.example.fooddeliveryproject.R;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class BestCusineFragment extends Fragment{
 
     RecyclerView bestCusineCategories;
     AdapterBestCusineCategories adapterBestCusineCategories;
-    ArrayList<DataTest> allData = new ArrayList<>();
+    ArrayList<DataKhanaval> allData = new ArrayList<>();
     private DatabaseHelper helper;
 
     public BestCusineFragment() {

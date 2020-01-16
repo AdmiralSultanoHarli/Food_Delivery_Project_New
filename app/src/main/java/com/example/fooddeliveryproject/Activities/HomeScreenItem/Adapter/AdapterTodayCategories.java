@@ -17,19 +17,19 @@ import com.example.fooddeliveryproject.Activities.Activity.MenuScreenActivity;
 
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
-import com.example.fooddeliveryproject.Activities.Model.DataTest;
+import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.R;
 
 import java.util.List;
 
 public class AdapterTodayCategories extends RecyclerView.Adapter<AdapterTodayCategories.ViewHolder> {
 
-    List<DataTest> topList;
-    List<DataTest> mTopList;
+    List<DataKhanaval> topList;
+    List<DataKhanaval> mTopList;
     Context context;
     private DatabaseHelper helper;
 
-    public AdapterTodayCategories(List<DataTest> topList, Context context) {
+    public AdapterTodayCategories(List<DataKhanaval> topList, Context context) {
         this.topList = topList;
         this.context = context;
         this.mTopList = topList;
@@ -60,7 +60,7 @@ public class AdapterTodayCategories extends RecyclerView.Adapter<AdapterTodayCat
     @Override
     public void onBindViewHolder(@NonNull AdapterTodayCategories.ViewHolder viewHolder, final int i) {
 
-        final DataTest data = topList.get(i);
+        final DataKhanaval data = topList.get(i);
 
         viewHolder.foodName.setText(data.getFoodName());
         viewHolder.img.setImageResource(data.getImg());

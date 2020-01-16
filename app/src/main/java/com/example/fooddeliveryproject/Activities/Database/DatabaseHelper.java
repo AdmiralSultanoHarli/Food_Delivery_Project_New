@@ -6,15 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.fooddeliveryproject.Activities.Model.Data;
-import com.example.fooddeliveryproject.Activities.Model.DataTest;
+import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.R;
 
-import java.security.PublicKey;
-import java.sql.Blob;
 import java.util.ArrayList;
-
-import javax.sql.StatementEvent;
 
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -36,6 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_FOOD_DESC = "fooddesc";
     public static final String COLUMN_FOOD_PRICE = "foodprice";
     public static final String COLUMN_FOOD_PRICE_DISCOUNT = "foodpricediscount";
+    public static final String COLUMN_FOOD_IMG = "foodimage";
 
     //Food Transaction Data
     public static final String TABLE_FOOD_TRANSACTION = "foodtransaction";
@@ -107,7 +103,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_FOOD_NAME + " TEXT, " +
                 COLUMN_FOOD_DESC + " TEXT, " +
                 COLUMN_FOOD_PRICE + " TEXT, " +
-                COLUMN_FOOD_PRICE_DISCOUNT + " TEXT " + " )";
+                COLUMN_FOOD_PRICE_DISCOUNT + " TEXT, " +
+                COLUMN_FOOD_IMG + " BLOB " + " )";
 
         String CREATE_FOOD_TABLE_TRANSACTION = "CREATE TABLE " + TABLE_FOOD_TRANSACTION + " (" +
                 COLUMN_FOOD_TRANSACTION_ID + " INTEGER PRIMARY KEY, " +
@@ -136,18 +133,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_CUSTOM_NAME + " TEXT, " +
                 COLUMN_CUSTOM_IMG + " BLOB " + " )";
 
-        String DATA_FOOD = "INSERT INTO " + TABLE_FOOD + "(foodname, fooddesc, foodprice, foodpricediscount) " +
-                "VALUES ('Veg Thali', '3 puri + 2 vegetable dish + rice + dal + sweet', 30000, 40000), " +
-                "('Goan Special', '3 Goan special dish + rice + dal + sweet', 50000, 65000), " +
-                "('Butter Chicken', '3 Butter roti + butter chicken + rice', 40000, 55000), " +
-                "('Bhendi Masala', '3 Butter roti + bhendi masala + rice', 40000, 50000), " +
-                "('Murg Musallam', '3 Butter roti + roasted chicken + rice', 100000, 1150000), " +
-                "('Basmati Rice Chicken Biryani', 'Basmati rice chicken biryani', 50000, 30000), " +
-                "('Jeera Alo', '3 Butter roti + Jeera alo + rice', 30000, 40000), " +
-                "('Mix Veggies', '3 Butter roti + Mix veggies + rice', 40000, 45000), " +
-                "('Panang Curry', '3 Butter roti + Mix veggies + rice', 20000, 35000), " +
-                "('Chapati', '3 Butter roti + mix chapati + rice', 50000, 65000), " +
-                "('Samosa', '1 Butter roti + vegitables + rice', 10000, 25000)";
+        String DATA_FOOD = "INSERT INTO " + TABLE_FOOD + "(foodname, fooddesc, foodprice, foodpricediscount, foodimage) " +
+                "VALUES ('Veg Thali', '3 puri + 2 vegetable dish + rice + dal + sweet', 30000, 40000," + R.drawable.maharashtra_thali + ")," +
+                "('Goan Special', '3 Goan special dish + rice + dal + sweet', 50000, 65000," + R.drawable.goan_vegetarian_thali + ")," +
+                "('Butter Chicken', '3 Butter roti + butter chicken + rice', 40000, 55000," + R.drawable.butter_chicken + ")," +
+                "('Bhendi Masala', '3 Butter roti + bhendi masala + rice', 40000, 50000," + R.drawable.bhindi_masala + ")," +
+                "('Murg Musallam', '3 Butter roti + roasted chicken + rice', 100000, 1150000," + R.drawable.murg_musallam + ")," +
+                "('Basmati Rice Chicken Biryani', 'Basmati rice chicken biryani', 50000, 30000," + R.drawable.basmati_rice_chicken_biryani + ")," +
+                "('Jeera Alo', '3 Butter roti + Jeera alo + rice', 30000, 40000," + R.drawable.jeera_alo + ")," +
+                "('Mix Veggies', '3 Butter roti + Mix veggies + rice', 40000, 45000," + R.drawable.mix_veggies + ")," +
+                "('Panang Curry', '3 Butter roti + Mix veggies + rice', 20000, 35000," + R.drawable.panang_curry + ")," +
+                "('Chapati', '3 Butter roti + mix chapati + rice', 50000, 65000," + R.drawable.chapati + ")," +
+                "('Samosa', '1 Butter roti + vegitables + rice', 10000, 25000," + R.drawable.snacks + ")";
 
         String DATA_BESTCUSINE = "INSERT INTO " + TABLE_BESTCUSINE_FRAGMENT + "(foodname, foodimage)" +
                 "VALUES ('Thai Special'," + panang_curry + ")," +
@@ -203,11 +200,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public ArrayList<Data> listData(){
+    public ArrayList<DataKhanaval> listDataMenuScreen(){
 
         String sql = "select * from " + TABLE_FOOD;
         SQLiteDatabase db = this.getReadableDatabase();
-        ArrayList<Data> storeData = new ArrayList<>();
+        ArrayList<DataKhanaval> storeData = new ArrayList<>();
         Cursor cursor = db.rawQuery(sql, null);
         if (cursor.moveToFirst()){
 
@@ -215,7 +212,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 int foodId = Integer.parseInt(cursor.getString(0));
                 String foodName = cursor.getString(1);
-                storeData.add(new Data(foodId, foodName));
+                String foodDesc = cursor.getString(2);
+                int foodPrice = Integer.parseInt(cursor.getString(3));
+                int foodPriceDiscount = Integer.parseInt(cursor.getString(4));
+                int foodImg = Integer.parseInt(cursor.getString(5));
+                storeData.add(new DataKhanaval(foodId, foodName, foodDesc, foodPrice, foodPriceDiscount, foodImg));
             }while (cursor.moveToNext());
 
         }
@@ -225,11 +226,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public ArrayList<DataTest> listDataBestCusine(){
+    public ArrayList<DataKhanaval> listDataBestCusine(){
 
         String sql = "select * from " + TABLE_BESTCUSINE_FRAGMENT;
         SQLiteDatabase db = this.getReadableDatabase();
-        ArrayList<DataTest> storeData = new ArrayList<>();
+        ArrayList<DataKhanaval> storeData = new ArrayList<>();
         Cursor cursor = db.rawQuery(sql, null);
         if (cursor.moveToFirst()){
 
@@ -238,7 +239,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 int foodTestId = Integer.parseInt(cursor.getString(0));
                 String foodTestName = cursor.getString(1);
                 int img = Integer.parseInt(cursor.getString(2));
-                storeData.add(new DataTest(foodTestId, foodTestName, img));
+                storeData.add(new DataKhanaval(foodTestId, foodTestName, img));
             }while (cursor.moveToNext());
 
         }
@@ -248,11 +249,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public ArrayList<DataTest> listDataTodaySpecial(){
+    public ArrayList<DataKhanaval> listDataTodaySpecial(){
 
         String sql = "select * from " + TABLE_TODAYSPECIAL_FRAGMENT;
         SQLiteDatabase db = this.getReadableDatabase();
-        ArrayList<DataTest> storeData = new ArrayList<>();
+        ArrayList<DataKhanaval> storeData = new ArrayList<>();
         Cursor cursor = db.rawQuery(sql, null);
         if (cursor.moveToFirst()){
 
@@ -261,7 +262,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 int foodTestId = Integer.parseInt(cursor.getString(0));
                 String foodTestName = cursor.getString(1);
                 int img = Integer.parseInt(cursor.getString(2));
-                storeData.add(new DataTest(foodTestId, foodTestName, img));
+                storeData.add(new DataKhanaval(foodTestId, foodTestName, img));
             }while (cursor.moveToNext());
 
         }
@@ -271,11 +272,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public ArrayList<DataTest> listDataYourFavourites(){
+    public ArrayList<DataKhanaval> listDataYourFavourites(){
 
         String sql = "select * from " + TABLE_YOURFAVOURITES_FRAGMENT;
         SQLiteDatabase db = this.getReadableDatabase();
-        ArrayList<DataTest> storeData = new ArrayList<>();
+        ArrayList<DataKhanaval> storeData = new ArrayList<>();
         Cursor cursor = db.rawQuery(sql, null);
         if (cursor.moveToFirst()){
 
@@ -284,7 +285,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 int foodTestId = Integer.parseInt(cursor.getString(0));
                 String foodTestName = cursor.getString(1);
                 int img = Integer.parseInt(cursor.getString(2));
-                storeData.add(new DataTest(foodTestId, foodTestName, img));
+                storeData.add(new DataKhanaval(foodTestId, foodTestName, img));
             }while (cursor.moveToNext());
 
         }
@@ -294,11 +295,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public ArrayList<DataTest> listDataCustom(){
+    public ArrayList<DataKhanaval> listDataCustom(){
 
         String sql = "select * from " + TABLE_CUSTOM_FRAGMENT;
         SQLiteDatabase db = this.getReadableDatabase();
-        ArrayList<DataTest> storeData = new ArrayList<>();
+        ArrayList<DataKhanaval> storeData = new ArrayList<>();
         Cursor cursor = db.rawQuery(sql, null);
         if (cursor.moveToFirst()){
 
@@ -307,7 +308,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 int foodTestId = Integer.parseInt(cursor.getString(0));
                 String foodTestName = cursor.getString(1);
                 int img = Integer.parseInt(cursor.getString(2));
-                storeData.add(new DataTest(foodTestId, foodTestName, img));
+                storeData.add(new DataKhanaval(foodTestId, foodTestName, img));
             }while (cursor.moveToNext());
 
         }
@@ -318,7 +319,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public void addData(Data data){
+    /*public void addData(Data data){
 
         ContentValues values = new ContentValues();
         if (values.equals(COLUMN_FOOD_NAME)){
@@ -331,6 +332,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         sqLiteDatabase.insert(TABLE_FOOD, null, values);
 
-    }
+    }*/
 
 }

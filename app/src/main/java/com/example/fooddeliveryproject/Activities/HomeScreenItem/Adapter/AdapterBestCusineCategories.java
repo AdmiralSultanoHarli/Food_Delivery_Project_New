@@ -17,25 +17,21 @@ import com.example.fooddeliveryproject.Activities.Activity.MenuScreenActivity;
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
-import com.example.fooddeliveryproject.Activities.Model.DataTest;
 import com.example.fooddeliveryproject.R;
 
 import java.util.List;
 
-import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_CATEGORY;
-import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.MY_PREFERENCE;
-
 public class AdapterBestCusineCategories extends RecyclerView.Adapter<AdapterBestCusineCategories.ViewHolder> {
 
-    List<DataTest> topList;
-    List<DataTest> mTopList;
+    List<DataKhanaval> topList;
+    List<DataKhanaval> mTopList;
     Context context;
     private DatabaseHelper helper;
     /*SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;*/
     //BestCusineFragment bestCusineFragment = new BestCusineFragment();
 
-    public AdapterBestCusineCategories(List<DataTest> topList, Context context) {
+    public AdapterBestCusineCategories(List<DataKhanaval> topList, Context context) {
         this.topList = topList;
         this.context = context;
         this.mTopList = topList;
@@ -66,7 +62,7 @@ public class AdapterBestCusineCategories extends RecyclerView.Adapter<AdapterBes
     @Override
     public void onBindViewHolder(@NonNull AdapterBestCusineCategories.ViewHolder viewHolder, final int i) {
 
-        final DataTest data = topList.get(i);
+        final DataKhanaval data = topList.get(i);
 
         viewHolder.foodName.setText(data.getFoodName());
         viewHolder.img.setImageResource(data.getImg());

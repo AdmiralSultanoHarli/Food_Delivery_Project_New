@@ -15,7 +15,7 @@ import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterCustomCategories;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterTodayCategories;
-import com.example.fooddeliveryproject.Activities.Model.DataTest;
+import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.R;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class TodaySpecialsFragment extends Fragment {
 
     RecyclerView todaySpecialsCategories;
     AdapterTodayCategories adapterTodayCategories;
-    ArrayList<DataTest> allData = new ArrayList<>();
+    ArrayList<DataKhanaval> allData = new ArrayList<>();
     private DatabaseHelper helper;
 
     /*String foods[] = {"Goan Special", "Maha Thali", "Panang Curry", "Chapati"};

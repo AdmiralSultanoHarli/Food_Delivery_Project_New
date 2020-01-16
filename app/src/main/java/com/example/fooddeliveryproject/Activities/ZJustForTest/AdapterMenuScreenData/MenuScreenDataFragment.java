@@ -1,4 +1,5 @@
-package com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment;
+package com.example.fooddeliveryproject.Activities.ZJustForTest.AdapterMenuScreenData;
+
 
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -19,26 +20,27 @@ import com.example.fooddeliveryproject.Activities.MenuScreenItem.Adapter.Adapter
 import com.example.fooddeliveryproject.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 
-public class MenuScreenFragment extends Fragment {
+public class MenuScreenDataFragment extends Fragment {
 
     //this is test
+
     RecyclerView menuScreenCategories;
     AdapterMenuScreen menuScreenAdapter;
-    ArrayList<DataKhanaval> allData = new ArrayList<>();
-    private DatabaseHelper helper;
-    /*String[] foodName = {"Veg Thali", "Goan Special", "Butter Chicken", "Bhendi Masala", "Murg Musallam", "Basmati Rice Chicken Biryani", "Jeera Alo", "Mix Veggies", "Panang Curry", "Chapati", "Samosa"};
+
+    String[] foodName = {"Veg Thali", "Goan Special", "Butter Chicken", "Bhendi Masala", "Murg Musallam", "Basmati Rice Chicken Biryani", "Jeera Alo", "Mix Veggies", "Panang Curry", "Chapati", "Samosa"};
     String[] foodDescription = {"3 puri + 2 vegitable dish + rice + dal + sweet", "3 Goan special dish + rice + dal + sweet", "3 Butter Roti + Butter chicken + rice", "3 Butter Roti + Bhendi Masala + rice", "3 Butter Roti + rostated chicken + rice", "basmati rice chicken biryani", "3 Butter Roti + Jeera alo + rice", "3 Butter Roti + mix vegitables + rice", "3 Butter Roti + mix vegitables + rice", "3 Butter Roti + mix chapati + rice", "1 Butter Roti + vegitables + rice"};
     int[] foodPrice = {30000, 50000, 40000, 40000, 100000, 50000, 30000, 40000, 20000, 50000, 10000};
     int[] foodPriceDiscount = {40000, 65000, 55000, 50000, 115000, 55000, 40000, 45000, 35000, 65000, 25000};
     int[] img = {R.drawable.maharashtra_thali, R.drawable.goan_vegetarian_thali, R.drawable.butter_chicken, R.drawable.bhindi_masala, R.drawable.murg_musallam, R.drawable.basmati_rice_chicken_biryani, R.drawable.jeera_alo, R.drawable.mix_veggies, R.drawable.panang_curry, R.drawable.chapati, R.drawable.snacks};
-    int[] buttonPosition = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};*/
+    int[] buttonPosition = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
-    public MenuScreenFragment() {
+    public MenuScreenDataFragment() {
 
 
     }
@@ -50,23 +52,9 @@ public class MenuScreenFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_menu_screen, container, false);
 
-        helper = new DatabaseHelper(getActivity());
-        menuScreenCategories = v.findViewById(R.id.menuScreenRecyclerView);
-        allData = helper.listDataMenuScreen();
-        menuScreenCategories.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManagerMenuScreen = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        menuScreenCategories.setLayoutManager(layoutManagerMenuScreen);
-
-        if (allData.size() > 0){
-
-            menuScreenCategories.setVisibility(View.VISIBLE);
-            menuScreenAdapter = new AdapterMenuScreen(allData, getActivity());
-            menuScreenCategories.setAdapter(menuScreenAdapter);
-
-        }
 
         //before after using database
-        /*menuScreenCategories = v.findViewById(R.id.menuScreenRecyclerView);
+        menuScreenCategories = v.findViewById(R.id.menuScreenRecyclerView);
         menuScreenCategories.setHasFixedSize(true);
 
         RecyclerView.LayoutManager layoutManagerMenuScreen = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
@@ -75,13 +63,13 @@ public class MenuScreenFragment extends Fragment {
         ArrayList<DataKhanaval> dataKhanavals = getData();
 
         menuScreenAdapter = new AdapterMenuScreen(dataKhanavals, getActivity());
-        menuScreenCategories.setAdapter(menuScreenAdapter);*/
+        menuScreenCategories.setAdapter(menuScreenAdapter);
 
         return v;
 
     }
 
-   /* private ArrayList<DataKhanaval> getData(){
+    private ArrayList<DataKhanaval> getData(){
 
         ArrayList<DataKhanaval> foodMenuArrayList = new ArrayList<>();
         for (int i = 0; i < foodName.length ; i++){
@@ -97,7 +85,7 @@ public class MenuScreenFragment extends Fragment {
         }
 
         return foodMenuArrayList;
-    }*/
+    }
 
     /*AdapterMenuScreen.FragmentCommunication communication = new AdapterMenuScreen.FragmentCommunication() {
         @Override
@@ -115,3 +103,4 @@ public class MenuScreenFragment extends Fragment {
     };*/
 
 }
+
