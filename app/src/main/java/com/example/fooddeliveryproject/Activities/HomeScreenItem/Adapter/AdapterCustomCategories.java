@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fooddeliveryproject.Activities.Activity.MenuScreenActivity;
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 
+import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.R;
 
@@ -69,6 +70,8 @@ public class AdapterCustomCategories extends RecyclerView.Adapter<AdapterCustomC
                 Intent b = new Intent(context, MenuScreenActivity.class);
                 /*bundle.putString("FoodShop", topList.get(i).getFoodName());
                 foodChartFragment.setArguments(bundle);*/
+
+                SaveSharedPreference.setFoodCategory(context, data.getFoodName());
 
                 //that i comment below
                 /*b.putExtra("FoodShop", topList.get(i).getFoodName());

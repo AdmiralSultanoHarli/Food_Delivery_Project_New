@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddeliveryproject.Activities.Activity.MenuScreenActivity;
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
+import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.R;
@@ -73,8 +74,10 @@ public class AdapterYourFavouritesCategories extends RecyclerView.Adapter<Adapte
                 /*bundle.putString("FoodShop", topList.get(i).getFoodName());
                 foodChartFragment.setArguments(bundle);*/
 
-                b.putExtra("FoodShop", topList.get(i).getFoodName());
-                Log.e("item food name bundle", topList.get(i).getFoodName());
+                SaveSharedPreference.setFoodCategory(context, data.getFoodName());
+
+               /* b.putExtra("FoodShop", topList.get(i).getFoodName());
+                Log.e("item food name bundle", topList.get(i).getFoodName());*/
                 context.startActivity(b);
 
             }

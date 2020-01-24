@@ -3,6 +3,7 @@ package com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +16,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddeliveryproject.Activities.Activity.MenuScreenActivity;
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
+import com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment.FoodChartFragment;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.R;
 
 import java.util.List;
+
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_CATEGORY;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.MY_PREFERENCE;
 
 public class AdapterBestCusineCategories extends RecyclerView.Adapter<AdapterBestCusineCategories.ViewHolder> {
 
@@ -27,8 +32,8 @@ public class AdapterBestCusineCategories extends RecyclerView.Adapter<AdapterBes
     List<DataKhanaval> mTopList;
     Context context;
     private DatabaseHelper helper;
-    /*SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;*/
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
     //BestCusineFragment bestCusineFragment = new BestCusineFragment();
 
     public AdapterBestCusineCategories(List<DataKhanaval> topList, Context context) {
@@ -66,20 +71,18 @@ public class AdapterBestCusineCategories extends RecyclerView.Adapter<AdapterBes
 
         viewHolder.foodName.setText(data.getFoodName());
         viewHolder.img.setImageResource(data.getImg());
-        /*final Bundle bundle = new Bundle();*/
-        /*sharedPreferences = context.getSharedPreferences(MY_PREFERENCE, Context.MODE_PRIVATE);
-        editor = sharedPreferences.edit();*/
+        //final Bundle bundle = new Bundle();
 
         viewHolder.itemCard.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Intent b = new Intent(context, MenuScreenActivity.class);
-                /*bundle.putString("FoodShop", topList.get(i).getFoodName());
+                /*FoodChartFragment foodChartFragment = new FoodChartFragment();
+                bundle.putString("FoodShop", topList.get(i).getFoodName());
                 foodChartFragment.setArguments(bundle);*/
 
-                /*SaveSharedPreference.setFoodCategory(context, topList.get(i).getFoodName());
-                editor.putString(FOOD_CATEGORY, topList.get(i).getFoodName());*/
+                SaveSharedPreference.setFoodCategory(context, data.getFoodName());
 
                 //b.putExtra("FoodShop", topList.get(i).getFoodName());
                 //Log.e("item food name bundle", topList.get(i).getFoodName());
