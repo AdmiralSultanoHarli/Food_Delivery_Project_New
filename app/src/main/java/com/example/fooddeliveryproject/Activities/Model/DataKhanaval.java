@@ -12,6 +12,7 @@ public class DataKhanaval {
     int chartQuantity;
     int img;
     int buttonPosition;
+    boolean button;
     int btnPosition;
 
     public DataKhanaval(){
@@ -28,12 +29,13 @@ public class DataKhanaval {
 
     }
 
-    public DataKhanaval(int id, String foodName, String foodDescription, int foodPrice, int foodPriceDiscount, int img) {
+    public DataKhanaval(int id, String foodName, String foodDescription, int foodPrice, int foodPriceDiscount, int buttonPosition, int img) {
         this.id = id;
         this.foodName = foodName;
         this.foodDescription = foodDescription;
         this.foodPrice = foodPrice;
         this.foodPriceDiscount = foodPriceDiscount;
+        this.buttonPosition = buttonPosition;
         this.img = img;
     }
 
@@ -89,6 +91,10 @@ public class DataKhanaval {
         return img;
     }
 
+    public boolean isButton() {
+        return button;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -129,4 +135,7 @@ public class DataKhanaval {
         this.img = img;
     }
 
+    public void setButton(boolean button) {
+        this.button = button;
+    }
 }

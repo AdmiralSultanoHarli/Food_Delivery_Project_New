@@ -31,6 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_FOOD_DESC = "fooddesc";
     public static final String COLUMN_FOOD_PRICE = "foodprice";
     public static final String COLUMN_FOOD_PRICE_DISCOUNT = "foodpricediscount";
+    public static final String COLUMN_BUTTON = "button";
     public static final String COLUMN_FOOD_IMG = "foodimage";
 
     //Food Transaction Data
@@ -104,6 +105,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_FOOD_DESC + " TEXT, " +
                 COLUMN_FOOD_PRICE + " TEXT, " +
                 COLUMN_FOOD_PRICE_DISCOUNT + " TEXT, " +
+                COLUMN_BUTTON + " INTEGER, " +
                 COLUMN_FOOD_IMG + " BLOB " + " )";
 
         String CREATE_FOOD_TABLE_TRANSACTION = "CREATE TABLE " + TABLE_FOOD_TRANSACTION + " (" +
@@ -133,18 +135,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_CUSTOM_NAME + " TEXT, " +
                 COLUMN_CUSTOM_IMG + " BLOB " + " )";
 
-        String DATA_FOOD = "INSERT INTO " + TABLE_FOOD + "(foodname, fooddesc, foodprice, foodpricediscount, foodimage) " +
-                "VALUES ('Veg Thali', '3 puri + 2 vegetable dish + rice + dal + sweet', 30000, 40000," + R.drawable.maharashtra_thali + ")," +
-                "('Goan Special', '3 Goan special dish + rice + dal + sweet', 50000, 65000," + R.drawable.goan_vegetarian_thali + ")," +
-                "('Butter Chicken', '3 Butter roti + butter chicken + rice', 40000, 55000," + R.drawable.butter_chicken + ")," +
-                "('Bhendi Masala', '3 Butter roti + bhendi masala + rice', 40000, 50000," + R.drawable.bhindi_masala + ")," +
-                "('Murg Musallam', '3 Butter roti + roasted chicken + rice', 100000, 1150000," + R.drawable.murg_musallam + ")," +
-                "('Basmati Rice Chicken Biryani', 'Basmati rice chicken biryani', 50000, 30000," + R.drawable.basmati_rice_chicken_biryani + ")," +
-                "('Jeera Alo', '3 Butter roti + Jeera alo + rice', 30000, 40000," + R.drawable.jeera_alo + ")," +
-                "('Mix Veggies', '3 Butter roti + Mix veggies + rice', 40000, 45000," + R.drawable.mix_veggies + ")," +
-                "('Panang Curry', '3 Butter roti + Mix veggies + rice', 20000, 35000," + R.drawable.panang_curry + ")," +
-                "('Chapati', '3 Butter roti + mix chapati + rice', 50000, 65000," + R.drawable.chapati + ")," +
-                "('Samosa', '1 Butter roti + vegitables + rice', 10000, 25000," + R.drawable.snacks + ")";
+        String DATA_FOOD = "INSERT INTO " + TABLE_FOOD + "(foodname, fooddesc, foodprice, foodpricediscount, button, foodimage) " +
+                "VALUES ('Veg Thali', '3 puri + 2 vegetable dish + rice + dal + sweet', 30000, 40000, 0," + R.drawable.maharashtra_thali + ")," +
+                "('Goan Special', '3 Goan special dish + rice + dal + sweet', 50000, 65000, 0," + R.drawable.goan_vegetarian_thali + ")," +
+                "('Butter Chicken', '3 Butter roti + butter chicken + rice', 40000, 55000, 0," + R.drawable.butter_chicken + ")," +
+                "('Bhendi Masala', '3 Butter roti + bhendi masala + rice', 40000, 50000, 0," + R.drawable.bhindi_masala + ")," +
+                "('Murg Musallam', '3 Butter roti + roasted chicken + rice', 100000, 1150000, 1," + R.drawable.murg_musallam + ")," +
+                "('Basmati Rice Chicken Biryani', 'Basmati rice chicken biryani', 50000, 30000, 0," + R.drawable.basmati_rice_chicken_biryani + ")," +
+                "('Jeera Alo', '3 Butter roti + Jeera alo + rice', 30000, 40000, 0," + R.drawable.jeera_alo + ")," +
+                "('Mix Veggies', '3 Butter roti + Mix veggies + rice', 40000, 45000, 0," + R.drawable.mix_veggies + ")," +
+                "('Panang Curry', '3 Butter roti + Mix veggies + rice', 20000, 35000, 0," + R.drawable.panang_curry + ")," +
+                "('Chapati', '3 Butter roti + mix chapati + rice', 50000, 65000, 0," + R.drawable.chapati + ")," +
+                "('Samosa', '1 Butter roti + vegitables + rice', 10000, 25000, 0," + R.drawable.snacks + ")";
 
         String DATA_BESTCUSINE = "INSERT INTO " + TABLE_BESTCUSINE_FRAGMENT + "(foodname, foodimage)" +
                 "VALUES ('Thai Special'," + panang_curry + ")," +
@@ -215,8 +217,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String foodDesc = cursor.getString(2);
                 int foodPrice = Integer.parseInt(cursor.getString(3));
                 int foodPriceDiscount = Integer.parseInt(cursor.getString(4));
-                int foodImg = Integer.parseInt(cursor.getString(5));
-                storeData.add(new DataKhanaval(foodId, foodName, foodDesc, foodPrice, foodPriceDiscount, foodImg));
+                int button = cursor.getInt(5);
+                int foodImg = Integer.parseInt(cursor.getString(6));
+                storeData.add(new DataKhanaval(foodId, foodName, foodDesc, foodPrice, foodPriceDiscount, button, foodImg));
             }while (cursor.moveToNext());
 
         }

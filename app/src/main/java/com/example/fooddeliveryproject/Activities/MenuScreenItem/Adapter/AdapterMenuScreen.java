@@ -87,10 +87,11 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
         viewHolder.foodDescription.setText(data.getFoodDescription());
         viewHolder.foodPrice.setText(String.valueOf(data.getFoodPrice()));
         viewHolder.foodPriceDiscount.setText(String.valueOf(data.getFoodPriceDiscount()));
+        //viewHolder.buttonAddToChart.setEnabled(data.getButtonPosition() == 0 ? true : false);
+        viewHolder.buttonAddToChart.setVisibility(data.getButtonPosition() == 0 ? View.VISIBLE : View.GONE);
+        viewHolder.buttonAddPlusMinusChart.setVisibility(data.getButtonPosition() == 1 ? View.VISIBLE : View.GONE);
 
         //0
-        viewHolder.buttonAddToChart.setTag(data.getButtonPosition());
-        viewHolder.buttonAddPlusMinusChart.setTag(data.getButtonPosition());
 
         //1
         final Bundle bundle = new Bundle();
@@ -126,7 +127,7 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
         Log.e("Button Adapter", String.valueOf(viewHolder.buttonAddToChart.getTag(0)));
 
         //3
-        if (SaveSharedPreference.getAllQuantity(context, quantityTotal) >= 1 ) {
+        /*if (SaveSharedPreference.getAllQuantity(context, quantityTotal) >= 1 ) {
 
             quantity[0] = SaveSharedPreference.getQuantity(context, quantity[0]);
             quantityTotal = SaveSharedPreference.getAllQuantity(context, quantityTotal);
@@ -142,7 +143,7 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
         viewHolder.buttonAddToChart.setVisibility(SaveSharedPreference.getIsAddToCartVisible(context, true) ? View.VISIBLE : View.INVISIBLE);
         viewHolder.buttonAddPlusMinusChart.setVisibility(SaveSharedPreference.getIsAddToCartVisible(context, true) ? View.INVISIBLE : View.VISIBLE);
         //viewHolder.chartQuantity.setText(String.valueOf(SaveSharedPreference.getQuantity(context, quantity[0])));
-        viewHolder.chartQuantity.setText(String.valueOf(SaveSharedPreference.getAllQuantity(context, quantityTotal)));
+        viewHolder.chartQuantity.setText(String.valueOf(SaveSharedPreference.getAllQuantity(context, quantityTotal)));*/
 
         viewHolder.buttonAddToChart.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("RestrictedApi")
