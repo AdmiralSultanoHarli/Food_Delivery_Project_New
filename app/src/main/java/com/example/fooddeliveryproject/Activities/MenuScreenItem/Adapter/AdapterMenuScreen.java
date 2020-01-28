@@ -575,6 +575,7 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
         return super.getItemViewType(position);
     }
 
+    //fix this
     @Override
     public Filter getFilter() {
 
