@@ -48,7 +48,7 @@ public class PreferencesUtility {
 
     public static final String payment_method = "payment";
 
-
+    public static final String SEARCH_OPENED = "search";
 
 
 

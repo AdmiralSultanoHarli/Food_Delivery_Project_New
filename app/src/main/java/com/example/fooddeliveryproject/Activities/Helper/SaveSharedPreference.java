@@ -26,6 +26,7 @@ import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtili
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.NUMBER;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.PASSWORD;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.QUANTITY;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.SEARCH_OPENED;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.USERNAME;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.main_item;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.payment_method;
@@ -491,6 +492,20 @@ public class SaveSharedPreference {
     public static int getPayment(Context context, int payment){
 
         return getPreferences(context).getInt(payment_method, 0);
+
+    }
+
+    public static void setSearchOpened(Context context, boolean isSearchOpened){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putBoolean(SEARCH_OPENED, isSearchOpened);
+        editor.apply();
+
+    }
+
+    public static boolean getSearchOpened(Context context, boolean isSearchOpened){
+
+        return getPreferences(context).getBoolean(SEARCH_OPENED, false);
 
     }
 

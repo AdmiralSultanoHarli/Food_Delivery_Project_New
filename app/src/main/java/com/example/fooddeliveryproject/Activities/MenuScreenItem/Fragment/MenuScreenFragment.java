@@ -2,17 +2,20 @@ package com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment;
 
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
+import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterBestCusineCategories;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.MenuScreenItem.Adapter.AdapterMenuScreen;
@@ -27,10 +30,13 @@ import java.util.ArrayList;
 public class MenuScreenFragment extends Fragment {
 
     //this is test
-    RecyclerView menuScreenCategories;
+    public RecyclerView menuScreenCategories;
+    public SearchView searchView;
     AdapterMenuScreen menuScreenAdapter;
     ArrayList<DataKhanaval> allData = new ArrayList<>();
     private DatabaseHelper helper;
+
+    boolean searchOpened = false;
     /*String[] foodName = {"Veg Thali", "Goan Special", "Butter Chicken", "Bhendi Masala", "Murg Musallam", "Basmati Rice Chicken Biryani", "Jeera Alo", "Mix Veggies", "Panang Curry", "Chapati", "Samosa"};
     String[] foodDescription = {"3 puri + 2 vegitable dish + rice + dal + sweet", "3 Goan special dish + rice + dal + sweet", "3 Butter Roti + Butter chicken + rice", "3 Butter Roti + Bhendi Masala + rice", "3 Butter Roti + rostated chicken + rice", "basmati rice chicken biryani", "3 Butter Roti + Jeera alo + rice", "3 Butter Roti + mix vegitables + rice", "3 Butter Roti + mix vegitables + rice", "3 Butter Roti + mix chapati + rice", "1 Butter Roti + vegitables + rice"};
     int[] foodPrice = {30000, 50000, 40000, 40000, 100000, 50000, 30000, 40000, 20000, 50000, 10000};
@@ -50,12 +56,48 @@ public class MenuScreenFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_menu_screen, container, false);
 
+        searchView = v.findViewById(R.id.searchView);
+
         helper = new DatabaseHelper(getActivity());
         menuScreenCategories = v.findViewById(R.id.menuScreenRecyclerView);
         allData = helper.listDataMenuScreen();
         menuScreenCategories.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManagerMenuScreen = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         menuScreenCategories.setLayoutManager(layoutManagerMenuScreen);
+        searchOpened = SaveSharedPreference.getSearchOpened(getActivity(), false);
+
+        searchView.setVisibility(searchOpened == true ? View.VISIBLE : View.GONE);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                Log.e("Adapter", String.valueOf(menuScreenAdapter));
+
+                if (menuScreenAdapter != null){
+
+                    menuScreenAdapter.getFilter().filter(newText);
+
+                }
+
+                return true;
+            }
+        });
+
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+
+                searchView.setVisibility(View.GONE);
+                SaveSharedPreference.setSearchOpened(getActivity(), false);
+                return true;
+            }
+        });
+
 
         if (allData.size() > 0){
 

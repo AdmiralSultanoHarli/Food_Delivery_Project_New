@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -15,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
+import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.MenuScreenItem.Adapter.AdapterMenuScreen;
 import com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment.FoodChartFragment;
 import com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment.MenuScreenFragment;
@@ -51,9 +53,12 @@ public class MenuScreenActivity extends AppCompatActivity {
         mDatabase = new DatabaseHelper(this);
         allData = mDatabase.listDataMenuScreen();
         mAdapter = new AdapterMenuScreen(allData, this);
+
+
+
         //numberCount.se
 
-        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+        /*searchView.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
 
@@ -61,9 +66,9 @@ public class MenuScreenActivity extends AppCompatActivity {
                 menuSearch.setVisibility(View.GONE);
                 return true;
             }
-        });
+        });*/
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        /*searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 return false;
@@ -72,26 +77,34 @@ public class MenuScreenActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
 
-                /*DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+                *//*DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
 
-                databaseHelper.findDataFood(newText);*/
+                databaseHelper.findDataFood(newText);*//*
+                Log.e("Adapter", String.valueOf(mAdapter));
+
                 if (mAdapter != null){
 
                     mAdapter.getFilter().filter(newText);
+                    Log.e("What", newText);
 
                 }
 
                 return true;
             }
-        });
+        });*/
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        final MenuScreenFragment menuScreenFragment = new MenuScreenFragment();
+        fragmentTransaction.add(R.id.menuScreenFragment, menuScreenFragment, menuScreenFragment.getTag());
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                menu1.setVisibility(View.GONE);
-                menuSearch.setVisibility(View.VISIBLE);
-
+                SaveSharedPreference.setSearchOpened(MenuScreenActivity.this, true);
+                fragmentTransaction.add(R.id.menuScreenFragment, menuScreenFragment, menuScreenFragment.getTag());
             }
         });
 
@@ -109,11 +122,8 @@ public class MenuScreenActivity extends AppCompatActivity {
             }
         });
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        MenuScreenFragment menuScreenFragment = new MenuScreenFragment();
-        fragmentTransaction.add(R.id.menuScreenFragment, menuScreenFragment, menuScreenFragment.getTag());
+
 
        /* FoodChartFragment foodChartFragment = new FoodChartFragment();
         fragmentTransaction.add(R.id.foodChartFragment, foodChartFragment, foodChartFragment.getTag());*/
