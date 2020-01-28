@@ -13,15 +13,17 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.MenuDetailScreenItem.Fragment.MenuDetailScreenAddOnFragment;
 import com.example.fooddeliveryproject.Activities.MenuDetailScreenItem.Fragment.MenuDetailScreenItemsFragment;
 import com.example.fooddeliveryproject.R;
 
 public class MenuDetailsScreenActivity extends AppCompatActivity {
 
-    TextView itemTotalPriceDiscount;
+    TextView itemTotalPriceDiscount, itemTotalPrice;
     ImageView backButton;
     Button buttonOrder, buttonCancel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +31,15 @@ public class MenuDetailsScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu_details_screen);
 
         itemTotalPriceDiscount = findViewById(R.id.itemTotalPriceDiscount);
+        itemTotalPrice = findViewById(R.id.itemTotalPrice);
         backButton = findViewById(R.id.backButton);
         buttonOrder = findViewById(R.id.buttonOrder);
         buttonCancel = findViewById(R.id.buttonCancel);
 
         itemTotalPriceDiscount.setPaintFlags(itemTotalPriceDiscount.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+        itemTotalPrice.setText(String.valueOf(SaveSharedPreference.getFoodPriceTotal(this, 0)));
+        itemTotalPriceDiscount.setText(String.valueOf(SaveSharedPreference.getFoodPriceDiscountTotal(this, 0)));
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override

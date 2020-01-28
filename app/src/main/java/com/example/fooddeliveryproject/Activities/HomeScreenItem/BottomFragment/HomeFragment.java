@@ -30,6 +30,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
+import com.example.fooddeliveryproject.Activities.MenuScreenItem.Adapter.AdapterMenuScreen;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterTopSliderPager;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.HomeFragmentAttributes.BestCusineFragment;
@@ -67,6 +69,8 @@ import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import kotlin.jvm.internal.PropertyReference0Impl;
+
 public class HomeFragment extends Fragment {
 
     //private List<DataKhanaval> slideList;
@@ -75,10 +79,15 @@ public class HomeFragment extends Fragment {
     private Context mContext;
     private TextView textViewMap;
 
+    private AdapterMenuScreen mAdapter;
+
     private static final String TAG = "Location Report";
     private String lastUpdateTime;
-    private static final long WAIT_TIME = 10000;
+    private static final long WAIT_TIME = 5000;
+    private static final long UPDATE_INTERVAL_IN_MILLISECONDS = 10000;
+    private static final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS = 5000;
     private static final int REQUEST_CHECK_SETTINGS = 100;
+
 
     private FusedLocationProviderClient fusedLocationProviderClient;
     private SettingsClient settingsClient;
@@ -91,7 +100,7 @@ public class HomeFragment extends Fragment {
     private boolean requestingLocationUpdates;
 
     SearchView searchView;
-    int[] img = {R.drawable.panang_curry, R.drawable.butter_chicken, R.drawable.maharashtra_thali, R.drawable.cashback, R.drawable.chow_mein};
+    int[] img = {R.drawable.muamalat_cashback, R.drawable.domino_cashback, R.drawable.pizza_cashback, R.drawable.cashback, R.drawable.flipburger_cashback, R.drawable.cashback_s};
 
 
     @Nullable
@@ -111,28 +120,34 @@ public class HomeFragment extends Fragment {
         slideList.add(new DataFood(R.drawable.cashback, "Cashback"));
         slideList.add(new DataFood(R.drawable.chow_mein, "ChowMein"));*/
 
-       searchView.setOnClickListener(new View.OnClickListener() {
+        searchView.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
 
                searchView.setIconified(false);
 
            }
-       });
+        });
 
-       textViewMap.setOnClickListener(new View.OnClickListener() {
+
+        /*textViewMap.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
 
                 startLocationButtonClick();
+                textViewMap.setEnabled(false);
 
            }
-       });
+        });*/
 
-       //startLocationButtonClick();
+        //startLocationButtonClick();
 
-       init();
-       restoreValuesFromBundle(savedInstanceState);
+        //init();
+        init();
+
+        startLocationButtonClick();
+
+        restoreValuesFromBundle(savedInstanceState);
 
         ArrayList<DataKhanaval> dataKhanavals = getData();
 
@@ -177,10 +192,10 @@ public class HomeFragment extends Fragment {
         mContext =  context;
     }
 
-    private void init(){
+    public void init(){
 
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getContext());
-        settingsClient = LocationServices.getSettingsClient(getContext());
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(mContext);
+        settingsClient = LocationServices.getSettingsClient(mContext);
 
         locationCallback = new LocationCallback(){
             @Override
@@ -197,6 +212,8 @@ public class HomeFragment extends Fragment {
         requestingLocationUpdates = false;
 
         locationRequest = new LocationRequest();
+        /*locationRequest.setInterval(UPDATE_INTERVAL_IN_MILLISECONDS);
+        locationRequest.setFastestInterval(FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS);*/
         locationRequest.setMaxWaitTime(WAIT_TIME);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
@@ -209,7 +226,7 @@ public class HomeFragment extends Fragment {
     /**
      * Restoring values from saved instance state
      */
-    private void restoreValuesFromBundle(Bundle savedInstanceState){
+    public void restoreValuesFromBundle(Bundle savedInstanceState){
 
         if (savedInstanceState != null){
 
@@ -241,7 +258,7 @@ public class HomeFragment extends Fragment {
      * Update the UI displaying the location data
      * and toggling the buttons
      */
-    private void updateLocationUI(){
+    public void updateLocationUI(){
 
         if (location != null){
 
@@ -266,7 +283,7 @@ public class HomeFragment extends Fragment {
      * Check whether location settings are satisfied and then
      * location updates will be requested
      */
-    private void startLocationUpdates() {
+    public void startLocationUpdates() {
         settingsClient
                 .checkLocationSettings(locationSettingsRequest)
                 .addOnSuccessListener(getActivity(), new OnSuccessListener<LocationSettingsResponse>() {
@@ -296,7 +313,7 @@ public class HomeFragment extends Fragment {
                                     // Show the dialog by calling startResolutionForResult(), and check the
                                     // result in onActivityResult().
                                     ResolvableApiException rae = (ResolvableApiException) e;
-                                    rae.startResolutionForResult((Activity) getContext(), REQUEST_CHECK_SETTINGS);
+                                    rae.startResolutionForResult(getActivity(), REQUEST_CHECK_SETTINGS);
                                 } catch (IntentSender.SendIntentException sie) {
                                     Log.i(TAG, "PendingIntent unable to execute request.");
                                 }
@@ -353,7 +370,7 @@ public class HomeFragment extends Fragment {
                         // Nothing to do. startLocationupdates() gets called in onResume again.
                         break;
                     case Activity.RESULT_CANCELED:
-                        Log.e(TAG, "User chose not to make required location settings changes.");
+                        Log.e(TAG, "User choose not to make required location settings changes.");
                         requestingLocationUpdates = false;
                         break;
                 }
@@ -362,7 +379,7 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private void openSettings() {
+    public void openSettings() {
         Intent intent = new Intent();
         intent.setAction(
                 Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
@@ -384,19 +401,20 @@ public class HomeFragment extends Fragment {
         }
 
         updateLocationUI();
+
     }
 
 
 
-    private boolean checkPermissions() {
+    public boolean checkPermissions() {
         int permissionState = ActivityCompat.checkSelfPermission(getContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION);
         return permissionState == PackageManager.PERMISSION_GRANTED;
     }
 
-    private String getCompleteAddressString(double LATITUDE, double LONGITUDE) {
+    public String getCompleteAddressString(double LATITUDE, double LONGITUDE) {
         String strAdd = "";
-        Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
+        Geocoder geocoder = new Geocoder(mContext, Locale.getDefault());
         try {
             List<Address> addresses = geocoder.getFromLocation(LATITUDE, LONGITUDE, 1);
             if (addresses != null) {
@@ -407,16 +425,16 @@ public class HomeFragment extends Fragment {
                     strReturnedAddress.append(returnedAddress.getAddressLine(i)).append("\n");
                 }
                 strAdd = strReturnedAddress.toString();
-                Log.e("My Current loction ", strReturnedAddress.toString());
+                Log.e("My Current location ", strReturnedAddress.toString());
 
                 textViewMap.setText(strReturnedAddress.toString());
 
             } else {
-                Log.e("My Current loction ", "No Address returned!");
+                Log.e("My Current location ", "No Address returned!");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Log.e("My Current loction ", "Cannot get Address!");
+            Log.e("My Current location ", "Cannot get Address!");
         }
         return strAdd;
     }

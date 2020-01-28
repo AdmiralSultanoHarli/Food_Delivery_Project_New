@@ -17,7 +17,7 @@
         android:id="@+id/test"
         android:textSize="15sp"
         android:layout_marginTop="10dp"
-        android:text="Today Special's"
+        android:text="Best Cusine"
         android:layout_below="@+id/line"
         android:textColor="@color/colorBlack"
         android:layout_width="wrap_content"

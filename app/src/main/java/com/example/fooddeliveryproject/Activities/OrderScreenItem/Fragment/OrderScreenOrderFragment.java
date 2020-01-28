@@ -21,10 +21,10 @@ public class OrderScreenOrderFragment extends Fragment {
 
     RecyclerView orderScreenOrder;
     AdapterOrderScreenOrder orderScreenOrderAdapter;
-    String foodName[] = {"Rice", "Dal", "Roti"};
-    int foodPrice[] = {40000, 50000, 60000};
-    int foodPriceDiscount[] = {55000, 65000, 75000};
-    int img[] = {R.drawable.basmati_rice, R.drawable.dal_tadkda, R.drawable.chapati};
+    String foodName[] = {"Veg Thali"};
+    /*int foodPrice[] = {40000, 50000, 60000};
+    int foodPriceDiscount[] = {55000, 65000, 75000};*/
+    int img[] = {R.drawable.maharashtra_thali};
 
     public OrderScreenOrderFragment() {
 
@@ -62,8 +62,8 @@ public class OrderScreenOrderFragment extends Fragment {
             DataKhanaval dataKhanaval = new DataKhanaval();
             dataKhanaval.setImg(img[i]);
             dataKhanaval.setFoodName(foodName[i]);
-            dataKhanaval.setFoodPrice(Integer.parseInt(String.valueOf(foodPrice[i])));
-            dataKhanaval.setFoodPriceDiscount(Integer.parseInt(String.valueOf(foodPriceDiscount[i])));
+            /*dataKhanaval.setFoodPrice(Integer.parseInt(String.valueOf(foodPrice[i])));
+            dataKhanaval.setFoodPriceDiscount(Integer.parseInt(String.valueOf(foodPriceDiscount[i])));*/
             foodAddOnArrayList.add(dataKhanaval);
 
         }

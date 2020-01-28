@@ -45,7 +45,7 @@ public class BestCusineFragment extends Fragment{
 
         helper = new DatabaseHelper(getActivity());
         bestCusineCategories = v.findViewById(R.id.second_categories);
-        allData = helper.listDataBestCusine();
+        allData = helper.listDataRestaurant();
         bestCusineCategories.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManagerBestCusine = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         bestCusineCategories.setLayoutManager(layoutManagerBestCusine);

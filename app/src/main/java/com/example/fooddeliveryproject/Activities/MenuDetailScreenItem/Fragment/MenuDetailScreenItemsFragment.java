@@ -21,7 +21,10 @@ public class MenuDetailScreenItemsFragment extends Fragment {
 
     RecyclerView menuDetailItem;
     AdapterMenuDetailScreenItems menuDetailItemAdapter;
-    String foodName[] = {"Butter Roti", "Butter Chicken", "Rice", "Sate", "Gado - gado"};
+    String foodName[] = {"Roti", "Chicken Curry", "Rice", "Dal", "Sweet"};
+    int foodQuantity[] = {3, 2, 1, 1, 1};
+
+
 
     public MenuDetailScreenItemsFragment() {
 
@@ -58,6 +61,7 @@ public class MenuDetailScreenItemsFragment extends Fragment {
 
             DataKhanaval dataKhanaval = new DataKhanaval();
             dataKhanaval.setFoodName(foodName[i]);
+            dataKhanaval.setFoodQuantity(foodQuantity[i]);
             foodItemsArrayList.add(dataKhanaval);
 
         }

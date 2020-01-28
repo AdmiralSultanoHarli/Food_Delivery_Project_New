@@ -9,12 +9,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.R;
 
+import java.security.PublicKey;
 import java.util.ArrayList;
 
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "khanaval.db";
 
     //User Data
@@ -23,6 +24,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_USERNAME = "username";
     public static final String COLUMN_USER_PHONENUMBER = "phonenumber";
     public static final String COLUMN_USER_PASSWORD = "password";
+
+    //Restaurant Data
+    public static final String TABLE_RESTAURANT = "restaurant";
+    public static final String COLUMN_REST_ID = "restaurantid";
+    public static final String COLUMN_REST_NAME = "restaurantname";
+    public static final String COLUMN_REST_ADDRESS = "restaurantaddress";
+    public static final String COLUMN_REST_IMG = "restaurantimage";
 
     //Food Data
     public static final String TABLE_FOOD = "food";
@@ -135,33 +143,67 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_CUSTOM_NAME + " TEXT, " +
                 COLUMN_CUSTOM_IMG + " BLOB " + " )";
 
+        String CREATE_RESTAURANT_TABLE = "CREATE TABLE " + TABLE_RESTAURANT + " (" +
+                COLUMN_REST_ID + " INTEGER PRIMARY KEY, " +
+                COLUMN_REST_NAME + " TEXT, " +
+                COLUMN_REST_ADDRESS + " TEXT, " +
+                COLUMN_REST_IMG + " BLOB " + " )";
+
+        String DATA_RESTAURANT = "INSERT INTO " + TABLE_RESTAURANT + "(restaurantname, restaurantaddress, restaurantimage) " +
+                "VALUES ('Ayam Gepuk Pak Gembus', 'Jl. Guru Mughni No.7, RT.1/RW.3, Karet Kuningan',"  + R.drawable.ayam_gepuk_pakgembus + ")," +
+                "('Bakaro Grill Express', 'Jl. Ir H. Juanda No.164, Pisangan, Kec. Ciputat Tim.'," + R.drawable.bakaro_grill_express + ")," +
+                "('Chat Time', 'Kuningan City Lt. LG Blok FE No.72, Jl. Prof. Dr. Satrio Kav. 18'," + R.drawable.chat_time + ")," +
+                "('Dcrepes', 'Itc Ambassador, Jl. Prof. DR. Satrio No.Lt. Ub, RT.11/RW.4, Kuningan'," + R.drawable.dcrepes + ")," +
+                "('Eatlah', 'Jl. M.H. Thamrin No.28-30, RT.9/RW.5, Gondangdia, Kec. Menteng'," + R.drawable.eatlah + ")," +
+                "('Geprek Bensu', 'Jl. M.H. Thamrin No.28-30, RT.9/RW.5, Gondangdia, Kec. Menteng'," + R.drawable.geprek_bensu + ")," +
+                "('Hokben', 'Jl. Prof. Dr.Satrio, Lantai 4 Mal Ambasador, RT.11/RW.4, Kuningan'," + R.drawable.hokben + ")," +
+                "('KFC', 'Mall Ambasador, Jl. Prof. DR. Satrio, RT.11/RW.4, Kuningan'," + R.drawable.kfc + ")," +
+                "('Koppi', 'Oakwood, Jl. Mega Kuningan Barat, RT.5/RW.2, Kuningan'," + R.drawable.kopi_koppi_item + ")," +
+                "('Lotteria', 'Jl. Prof. DR. Satrio No.3-5, RT.18/RW.4, Kuningan, Karet Kuningan'," + R.drawable.lotteria + ")," +
+                "('Martabak Orins', 'Jl. Prof. DR. Satrio No.39A, RT.17/RW.4, Kuningan'," + R.drawable.martabak_orins + ")," +
+                "('McDonalds', 'Plaza Festival, Jl. H. R. Rasuna Said No.9, RW.5, Karet Kuningan'," + R.drawable.mcdonald + ")," +
+                "('Mie Aceh Ayah', 'Jl. Dr. Saharjo No.RT. 9, RT.9/RW.5, Menteng Dalam'," + R.drawable.mie_aceh_ayah + ")," +
+                "('Restoran Sederhana', 'Rifa, Kav. 8, Jl. Prof. DR. Satrio No.7, RT.7/RW.2, Kuningan'," + R.drawable.padang_sederhana + ")," +
+                "('Pizza Hut', 'ITC Kuningan Ground Floor, Jl. Prof. DR. Satrio, RT.11/RW.4'," + R.drawable.pizza_hut + ")," +
+                "('Raffles Pattiserie', ' Ciputra World 1, Jl. Prof. DR. Satrio No.Kav 3-5, RT.18/RW.4, Kuningan'," + R.drawable.raffles_pattiserie + ")," +
+                "('Seblak Edan Bunda', 'Jl. Perbanas No.1, RT.15/RW.7, Kuningan, Karet Kuningan'," + R.drawable.seblak_edan_bunda + ")," +
+                "('Solaria', 'Jl. Prof. DR. Satrio No.18, RT.14/RW.4, Kuningan'," + R.drawable.solaria + ")," +
+                "('Tahu Kriuk Yes', 'Jl. Muara Karang Raya No.125, RW.12, Pluit, Kec. Penjaringan'," + R.drawable.tahu_kriuk_yes + ")," +
+                "('Wingstop', 'Generali Tower (next to MMC Hospital), Gran Rubina Business Park'," + R.drawable.wingstop + ")";
+
+
         String DATA_FOOD = "INSERT INTO " + TABLE_FOOD + "(foodname, fooddesc, foodprice, foodpricediscount, button, foodimage) " +
-                "VALUES ('Veg Thali', '3 puri + 2 vegetable dish + rice + dal + sweet', 30000, 40000, 0," + R.drawable.maharashtra_thali + ")," +
+                "VALUES ('Vegetable Thali', '3 roti + 2 chicken curry + rice + dal + sweet', 30000, 40000, 0," + R.drawable.maharashtra_thali + ")," +
                 "('Goan Special', '3 Goan special dish + rice + dal + sweet', 50000, 65000, 0," + R.drawable.goan_vegetarian_thali + ")," +
                 "('Butter Chicken', '3 Butter roti + butter chicken + rice', 40000, 55000, 0," + R.drawable.butter_chicken + ")," +
-                "('Bhendi Masala', '3 Butter roti + bhendi masala + rice', 40000, 50000, 0," + R.drawable.bhindi_masala + ")," +
-                "('Murg Musallam', '3 Butter roti + roasted chicken + rice', 100000, 1150000, 1," + R.drawable.murg_musallam + ")," +
+                "('Spicy Okra', '3 Butter roti + bhendi masala + rice', 40000, 50000, 0," + R.drawable.bhindi_masala + ")," +
+                "('Murg Musallam', '3 Butter roti + roasted chicken + rice', 100000, 1150000, 0," + R.drawable.murg_musallam + ")," +
                 "('Basmati Rice Chicken Biryani', 'Basmati rice chicken biryani', 50000, 30000, 0," + R.drawable.basmati_rice_chicken_biryani + ")," +
                 "('Jeera Alo', '3 Butter roti + Jeera alo + rice', 30000, 40000, 0," + R.drawable.jeera_alo + ")," +
                 "('Mix Veggies', '3 Butter roti + Mix veggies + rice', 40000, 45000, 0," + R.drawable.mix_veggies + ")," +
                 "('Panang Curry', '3 Butter roti + Mix veggies + rice', 20000, 35000, 0," + R.drawable.panang_curry + ")," +
                 "('Chapati', '3 Butter roti + mix chapati + rice', 50000, 65000, 0," + R.drawable.chapati + ")," +
-                "('Samosa', '1 Butter roti + vegitables + rice', 10000, 25000, 0," + R.drawable.snacks + ")";
+                "('Samosa', '1 Butter roti + vegitables + rice', 30000, 45000, 0," + R.drawable.snacks + ")";
 
         String DATA_BESTCUSINE = "INSERT INTO " + TABLE_BESTCUSINE_FRAGMENT + "(foodname, foodimage)" +
                 "VALUES ('Thai Special'," + panang_curry + ")," +
                 "('Indian'," + dal_tadkda + ")," +
+                "('Indonesian'," + R.drawable.nasi_padang_s + ")," +
+                "('Malysian'," + R.drawable.nasi_lemak + ")," +
                 "('Chinese'," + chow_mein + ")";
 
         String DATA_TODAYSPECIAL = "INSERT INTO " + TABLE_TODAYSPECIAL_FRAGMENT + "(foodname, foodimage)" +
                 "VALUES ('Goan Special'," + goan_special + ")," +
-                "('Maha Thali'," + maharashtra_thali + ")," +
+                "('Indian Curry'," + maharashtra_thali + ")," +
                 "('Panang Curry'," + panang_curry + ")," +
                 "('Chapati'," + chapati + ")";
 
         String DATA_YOURFAVOURITES = "INSERT INTO " + TABLE_YOURFAVOURITES_FRAGMENT + "(foodname, foodimage)" +
-                "VALUES ('Maha Thali'," + maharashtra_thali + ")," +
-                "('Samosa'," + snacks + ")," +
+                "VALUES ('Nasi Padang'," + R.drawable.nasi_padang_s + ")," +
+                "('Soto'," + R.drawable.soto + ")," +
+                "('Bakso'," + R.drawable.bakso + ")," +
+                "('Sate Ayam'," + R.drawable.sate_ayam + ")," +
+                "('Sate Padang'," + R.drawable.sate_padang + ")," +
                 "('Murg Musallam'," + murg_musallam + ")," +
                 "('Goan Special'," + goan_special + ")";
 
@@ -178,8 +220,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TODAYSPECIAL_TABLE);
         db.execSQL(CREATE_YOURFAVOURITES_TABLE);
         db.execSQL(CREATE_CUSTOM_TABLE);
+        db.execSQL(CREATE_RESTAURANT_TABLE);
 
         db.execSQL(DATA_FOOD);
+        db.execSQL(DATA_RESTAURANT);
 
         db.execSQL(DATA_BESTCUSINE);
         db.execSQL(DATA_TODAYSPECIAL);
@@ -199,6 +243,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_YOURFAVOURITES_FRAGMENT);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CUSTOM_FRAGMENT);
         onCreate(db);
+
+    }
+
+    public ArrayList<DataKhanaval> listDataRestaurant() {
+
+        String sql = "select * from " + TABLE_RESTAURANT + " limit 10";
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<DataKhanaval> storeData = new ArrayList<>();
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor.moveToFirst()){
+
+            do {
+
+                int restId = Integer.parseInt(cursor.getString(0));
+                String restName = cursor.getString(1);
+                String restAddress = cursor.getString(2);
+                int img = Integer.parseInt(cursor.getString(3));
+                storeData.add(new DataKhanaval(restId, restName, restAddress, img));
+            }while (cursor.moveToNext());
+
+        }
+
+        cursor.close();
+        return storeData;
 
     }
 
@@ -320,6 +388,47 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return storeData;
 
     }
+
+    public DataKhanaval findDataFood(String name){
+
+        String query = "Select * FROM " + TABLE_FOOD + " WHERE " + COLUMN_FOOD_NAME + " = " + "foodname";
+        SQLiteDatabase db = this.getWritableDatabase();
+        DataKhanaval data = null;
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()){
+
+            int id = Integer.parseInt(cursor.getString(0));
+            String foodName = cursor.getString(1);
+            String foodDesc = cursor.getString(2);
+            int img = Integer.parseInt(cursor.getString(3));
+            data = new DataKhanaval(id, foodName, foodDesc, img);
+
+        }
+        cursor.close();
+        return data;
+
+    }
+
+    public DataKhanaval findDataRestaurant(String name){
+
+        String query = "Select * FROM " + TABLE_FOOD + " WHERE " + COLUMN_FOOD_NAME + " = " + "foodname";
+        SQLiteDatabase db = this.getWritableDatabase();
+        DataKhanaval data = null;
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()){
+
+            int id = Integer.parseInt(cursor.getString(0));
+            String restName = cursor.getString(1);
+            String restAddress = cursor.getString(2);
+            int img = Integer.parseInt(cursor.getString(2));
+            data = new DataKhanaval(id, restName, restAddress,img);
+
+        }
+        cursor.close();
+        return data;
+
+    }
+
 
 
     /*public void addData(Data data){

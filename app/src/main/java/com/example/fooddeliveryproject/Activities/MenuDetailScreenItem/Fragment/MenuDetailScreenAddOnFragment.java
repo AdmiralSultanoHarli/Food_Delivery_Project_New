@@ -21,9 +21,9 @@ public class MenuDetailScreenAddOnFragment extends Fragment {
 
     RecyclerView menuDetailAddOn;
     AdapterMenuDetailScreenAddOn menuDetailAddOnAdapter;
-    String foodName[] = {"Rice", "Dal", "Roti", "Mango Shake", "Samosa", "Test", "Test", "Test", "Test"};
-    int foodPrice[] = {10000, 10000, 10000, 20000, 25000, 0, 0, 0, 0 };
-    int img[] = {R.drawable.basmati_rice, R.drawable.dal_tadkda, R.drawable.chapati, R.drawable.beverage, R.drawable.snacks, R.drawable.chow_mein, R.drawable.chow_mein, R.drawable.chow_mein, R.drawable.chow_mein};
+    String foodName[] = {"Rice", "Dal", "Roti", "Mango Shake", "Samosa"};
+    int foodPrice[] = {10000, 10000, 10000, 20000, 25000};
+    int img[] = {R.drawable.basmati_rice, R.drawable.dal_tadkda, R.drawable.chapati, R.drawable.beverage, R.drawable.snacks};
 
     public MenuDetailScreenAddOnFragment() {
 

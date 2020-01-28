@@ -20,6 +20,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.OrderScreenItem.Fragment.OrderScreenOrderFragment;
 import com.example.fooddeliveryproject.R;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
@@ -29,7 +30,7 @@ public class OrderScreenActivity extends AppCompatActivity {
     ImageView backButton;
     RadioButton radioButtonGrab, radioButtonGojek, radioButtonOvo, radioButtonGopay;
     Button buttonPayment;
-    TextView textCount;
+    TextView textCount,foodCategoriesPrice, deliveryPrice, totalPrice, totalPriceBar;
 
     public Button accNotes;
     public EditText editNotes;
@@ -39,6 +40,12 @@ public class OrderScreenActivity extends AppCompatActivity {
     public boolean wishlistAdded = false;
 
     public int counter;
+
+    public int gopay = 10000;
+    public int ovo = 9000;
+    public int driverPrice;
+    public int foodPrice;
+    public int tax = 4000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +62,10 @@ public class OrderScreenActivity extends AppCompatActivity {
         accNotes = findViewById(R.id.accNotes);
         textCount = findViewById(R.id.textCount);
         editNotes = findViewById(R.id.editNotes);
+        foodCategoriesPrice = findViewById(R.id.foodCategoriesPrice);
+        deliveryPrice = findViewById(R.id.deliveryPrice);
+        totalPrice = findViewById(R.id.totalPrice);
+        totalPriceBar = findViewById(R.id.totalPriceBar);
 
         //slidingPanel.setPanelState(SlidingUpPanelLayout.PanelState.HIDDEN);
         editNotes.addTextChangedListener(textCounter);
@@ -64,7 +75,7 @@ public class OrderScreenActivity extends AppCompatActivity {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);*/
 
-
+        foodCategoriesPrice.setText(String.valueOf(SaveSharedPreference.getFoodPriceTotal(this, 0)));
 
         slidingPanel.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -109,6 +120,13 @@ public class OrderScreenActivity extends AppCompatActivity {
 
                 if (radioButtonGrab.isChecked()){
 
+                    SaveSharedPreference.setPayment(OrderScreenActivity.this, ovo);
+                    foodPrice = SaveSharedPreference.getFoodPriceTotal(getApplicationContext(), 0);
+                    driverPrice = SaveSharedPreference.getPayment(getApplicationContext(), 0);
+                    deliveryPrice.setText(String.valueOf(driverPrice));
+                    int allFoodPrice = driverPrice + tax + foodPrice;
+                    totalPrice.setText(String.valueOf(allFoodPrice));
+                    totalPriceBar.setText(String.valueOf(allFoodPrice));
                     radioButtonGrab.setChecked(true);
                     radioButtonGojek.setChecked(false);
 
@@ -122,7 +140,13 @@ public class OrderScreenActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (radioButtonGojek.isChecked()){
-
+                    SaveSharedPreference.setPayment(OrderScreenActivity.this, gopay);
+                    foodPrice = SaveSharedPreference.getFoodPriceTotal(getApplicationContext(), 0);
+                    driverPrice = SaveSharedPreference.getPayment(getApplicationContext(), 0);
+                    deliveryPrice.setText(String.valueOf(driverPrice));
+                    int allFoodPrice = driverPrice + tax + foodPrice;
+                    totalPrice.setText(String.valueOf(allFoodPrice));
+                    totalPriceBar.setText(String.valueOf(allFoodPrice));
                     radioButtonGojek.setChecked(true);
                     radioButtonGrab.setChecked(false);
 
@@ -139,6 +163,7 @@ public class OrderScreenActivity extends AppCompatActivity {
 
                     radioButtonOvo.setChecked(true);
                     radioButtonGopay.setChecked(false);
+
 
                 }
 

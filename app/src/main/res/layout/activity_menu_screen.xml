@@ -7,93 +7,127 @@
     tools:context=".Activities.Activity.MenuScreenActivity">
 
     <RelativeLayout
-        android:id="@+id/menu1"
+        android:id="@+id/menuTop"
         android:layout_width="match_parent"
         android:layout_height="50dp">
 
-        <ImageView
-            android:id="@+id/backButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:src="@drawable/ic_icon_back_black_24dp"
-            android:tint="@color/colorButton"
-            android:foreground="?attr/selectableItemBackground"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            />
+        <RelativeLayout
+            android:id="@+id/menu1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="8dp"
-            android:text="Menu"
-            android:textColor="@color/colorBlack"
-            android:textSize="20sp"
-            />
-
-        <ImageView
-            android:id="@+id/cartButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:foreground="?attr/selectableItemBackground"
-            android:layout_toLeftOf="@+id/searchButton"
-            android:layout_marginRight="10dp"
-            android:clickable="true"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/ic_shopping_cart_blue_24dp"
-            android:tint="@color/colorButton"/>
-
-        <ImageView
-            android:id="@+id/searchButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:foreground="?attr/selectableItemBackground"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:clickable="true"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/ic_search_black_24dp"
-            android:tint="@color/colorButton"/>
-
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_toLeftOf="@+id/searchButton">
-
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/numberCount"
-                android:tooltipText="22"
-                android:layout_width="13dp"
-                android:layout_height="13dp"
-                android:backgroundTint="@color/circleRed"
-                app:backgroundTint="@color/colorWhite"
-                app:borderWidth="0.5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="5dp"
-                app:elevation="2dp"
-                android:visibility="gone"
+            <ImageView
+                android:id="@+id/backButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:src="@drawable/ic_icon_back_black_24dp"
+                android:tint="@color/colorButton"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="8dp"
+                android:text="Menu"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                />
 
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <ImageView
+                android:id="@+id/cartButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_toLeftOf="@+id/searchButton"
+                android:layout_marginRight="10dp"
+                android:clickable="true"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_shopping_cart_blue_24dp"
+                android:tint="@color/colorButton"/>
 
+            <ImageView
+                android:id="@+id/searchButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:clickable="true"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_search_black_24dp"
+                android:tint="@color/colorButton"/>
+
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_toLeftOf="@+id/searchButton">
+
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/numberCount"
+                    android:tooltipText="22"
+                    android:layout_width="13dp"
+                    android:layout_height="13dp"
+                    android:backgroundTint="@color/circleRed"
+                    app:backgroundTint="@color/colorWhite"
+                    app:borderWidth="0.5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    app:elevation="2dp"
+                    android:visibility="gone"
+                    />
+
+
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/menuSearch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchView"
+                android:layout_width="match_parent"
+                app:queryHint="Search"
+                app:queryBackground="@color/colorWhite"
+                app:searchIcon="@drawable/ic_search_gray_20dp"
+                app:closeIcon="@drawable/ic_close_gray_20dp"
+                app:searchHintIcon="@null"
+                android:theme="@style/SearchViewTest"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/rounded_shape_search"
+                android:elevation="5dp"
+                />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/menu1"
+        android:layout_below="@+id/menuTop"
         android:scrollbars="none">
 
         <LinearLayout

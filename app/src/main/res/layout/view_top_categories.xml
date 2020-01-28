@@ -15,25 +15,31 @@
         app:cardCornerRadius="5dp"
         >
 
-        <ImageView
-            android:id="@+id/img"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:src="@drawable/maharashtra_thali"
-            android:scaleType="fitXY"
-            android:contentDescription="menu items"
-            />
+            android:layout_height="match_parent">
 
-        <!--<RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:src="@drawable/maharashtra_thali"
+                android:scaleType="fitXY"
+                android:contentDescription="menu items"
+                />
 
+            <ImageView
+                android:src="@drawable/halal"
+                android:alpha="0.8"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="5dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"/>
 
+        </RelativeLayout>
 
-
-
-        </RelativeLayout>-->
 
     </androidx.cardview.widget.CardView>
 

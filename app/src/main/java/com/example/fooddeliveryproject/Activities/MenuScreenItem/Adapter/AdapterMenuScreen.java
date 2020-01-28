@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,9 +40,10 @@ import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtili
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.MY_PREFERENCE;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.QUANTITY;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.ViewHolder> {
+public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.ViewHolder> implements Filterable {
 
     List<DataKhanaval> menuList;
     List<DataKhanaval> mTopList;
@@ -570,6 +573,54 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
     @Override
     public int getItemViewType(int position) {
         return super.getItemViewType(position);
+    }
+
+    @Override
+    public Filter getFilter() {
+
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+
+                String charString = charSequence.toString();
+
+                if (charString.isEmpty()){
+
+                    menuList = mTopList;
+
+                }else {
+
+                    ArrayList<DataKhanaval> filteredList = new ArrayList<>();
+                    for (DataKhanaval data : mTopList){
+
+                        if (data.getFoodName().toLowerCase().contains(charString) || data.getFoodName().contains(charString)
+                                || data.getFoodName().toUpperCase().contains(charString)){
+
+                            filteredList.add(data);
+
+                        }
+
+                    }
+
+                    menuList = filteredList;
+
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = menuList;
+                return filterResults;
+
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+
+                menuList = (ArrayList<DataKhanaval>) filterResults.values;
+                notifyDataSetChanged();
+
+            }
+        };
+
     }
 
 

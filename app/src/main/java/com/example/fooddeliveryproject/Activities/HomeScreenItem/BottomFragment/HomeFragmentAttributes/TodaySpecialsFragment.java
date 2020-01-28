@@ -48,7 +48,7 @@ public class TodaySpecialsFragment extends Fragment {
 
         helper = new DatabaseHelper(getActivity());
         todaySpecialsCategories = v.findViewById(R.id.third_categories);
-        allData = helper.listDataTodaySpecial();
+        allData = helper.listDataBestCusine();
         todaySpecialsCategories.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManagerTodaySpecials = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         todaySpecialsCategories.setLayoutManager(layoutManagerTodaySpecials);

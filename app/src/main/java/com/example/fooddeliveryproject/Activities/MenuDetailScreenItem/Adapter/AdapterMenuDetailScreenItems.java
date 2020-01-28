@@ -38,9 +38,10 @@ public class AdapterMenuDetailScreenItems extends RecyclerView.Adapter<AdapterMe
     public void onBindViewHolder(@NonNull final AdapterMenuDetailScreenItems.ViewHolder viewHolder, int i) {
 
         viewHolder.foodName.setText(menuDetailList.get(i).getFoodName());
+        viewHolder.chartQuantity.setText(String.valueOf(menuDetailList.get(i).getFoodQuantity()));
 
         final int quantity[] = {menuDetailList.get(i).getChartQuantity()};
-        quantity[0] = 0;
+        quantity[0] = menuDetailList.get(i).getFoodQuantity();
 
         viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
 

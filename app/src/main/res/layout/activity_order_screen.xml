@@ -553,7 +553,7 @@
 
                             <TextView
                                 android:id="@+id/foodCategoriesName"
-                                android:text="Butter Chicken"
+                                android:text="Veg Thali"
                                 android:textSize="14sp"
                                 android:textColor="@color/colorBlack"
                                 android:layout_width="wrap_content"
@@ -606,7 +606,7 @@
 
                             <TextView
                                 android:id="@+id/deliveryPrice"
-                                android:text="9.000"
+
                                 android:textSize="14sp"
                                 android:textColor="@color/colorBlack"
                                 android:layout_below="@+id/taxPrice"
@@ -617,14 +617,13 @@
 
                             <View
                                 android:id="@+id/line3"
-                                android:layout_below="@+id/textViewDeliveryPrice"
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
-                                android:background="@color/grayLine"
-                                android:layout_marginTop="2dp"
+                                android:layout_below="@+id/textViewDeliveryPrice"
                                 android:layout_marginLeft="20dp"
+                                android:layout_marginTop="-1dp"
                                 android:layout_marginRight="20dp"
-                                />
+                                android:background="@color/grayLine" />
 
                             <TextView
                                 android:id="@+id/textViewTotal"
@@ -640,7 +639,7 @@
 
                             <TextView
                                 android:id="@+id/totalPrice"
-                                android:text="53.000"
+                                android:text=""
                                 android:textSize="14sp"
                                 android:textColor="@color/colorBlack"
                                 android:layout_below="@+id/line3"

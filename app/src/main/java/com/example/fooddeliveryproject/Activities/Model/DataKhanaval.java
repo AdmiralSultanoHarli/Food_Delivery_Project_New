@@ -7,12 +7,14 @@ public class DataKhanaval {
     String foodDescription;
     String date;
     String orderTracker;
+    String address;
     int foodPrice;
     int foodPriceDiscount;
     int chartQuantity;
     int img;
     int buttonPosition;
     boolean button;
+    int foodQuantity;
     int btnPosition;
 
     public DataKhanaval(){
@@ -20,6 +22,16 @@ public class DataKhanaval {
 
 
     }
+
+    public DataKhanaval(int id, String foodName, String address, int img){
+
+        this.id = id;
+        this.foodName = foodName;
+        this.address = address;
+        this.img = img;
+
+    }
+
 
     public DataKhanaval(int id, String foodName, int img) {
 
@@ -50,6 +62,14 @@ public class DataKhanaval {
         this.img = img;
         this.buttonPosition = buttonPosition;
     }*/
+
+    public String getAddress() {
+        return address;
+    }
+
+    public int getFoodQuantity() {
+        return foodQuantity;
+    }
 
     public int getId() {
         return id;
@@ -93,6 +113,14 @@ public class DataKhanaval {
 
     public boolean isButton() {
         return button;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setFoodQuantity(int foodQuantity) {
+        this.foodQuantity = foodQuantity;
     }
 
     public void setId(int id) {

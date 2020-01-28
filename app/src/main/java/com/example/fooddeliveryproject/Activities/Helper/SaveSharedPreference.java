@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import java.security.PublicKey;
+import java.sql.Array;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.SocketHandler;
 
@@ -26,6 +27,9 @@ import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtili
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.PASSWORD;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.QUANTITY;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.USERNAME;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.main_item;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.payment_method;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.sub_item;
 
 public class SaveSharedPreference {
 
@@ -412,6 +416,52 @@ public class SaveSharedPreference {
 
     }
 
+    /**
+     * setFragmentOrderDetailsOpened
+     *
+     * @param context
+     * @param sub_items
+     */
+    public static void setFragmentOrderSubDetailsOpened(Context context, int sub_items){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putInt(sub_item, sub_items);
+        editor.apply();
+
+    }
+
+    /**
+     * getFragmentOrderDetailsOpened
+     */
+    public static int getFragmentOrderSubDetailsOpened(Context context, int sub_items){
+
+        return getPreferences(context).getInt(sub_item, 0);
+
+    }
+
+    /**
+     * setFragmentOrderDetailsOpened
+     *
+     * @param context
+     * @param items
+     */
+    public static void setFragmentOrderMenuDetailsOpened(Context context, int items){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putInt(main_item, items);
+        editor.apply();
+
+    }
+
+    /**
+     * getFragmentOrderDetailsOpened
+     */
+    public static int getFragmentOrderMenuDetailsOpened(Context context, int items){
+
+        return getPreferences(context).getInt(main_item, 0);
+
+    }
+
 
     public static void setThereIsUser(Context context, boolean isThereIsUser){
 
@@ -424,6 +474,23 @@ public class SaveSharedPreference {
     public static boolean getThereIsUser(Context context, boolean isThereIsUser){
 
         return getPreferences(context).getBoolean(IS_THERE_IS_USER, false);
+
+    }
+
+    public static void setPayment(Context context, int payment){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putInt(payment_method, payment);
+        editor.apply();
+
+    }
+
+    /**
+     * getEmail
+     */
+    public static int getPayment(Context context, int payment){
+
+        return getPreferences(context).getInt(payment_method, 0);
 
     }
 

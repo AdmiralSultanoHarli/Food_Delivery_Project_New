@@ -1,6 +1,7 @@
 package com.example.fooddeliveryproject.Activities.OrderScreenItem.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,16 +14,29 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddeliveryproject.Activities.Activity.OrderScreenActivity;
+import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.R;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.List;
 
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.ALL_QUANTITY;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_NAME;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_PRICE;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_PRICE_DISCOUNT;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_PRICE_DISCOUNT_TOTAL;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_PRICE_TOTAL;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_ADDTOCART_VISIBLE;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.QUANTITY;
+
 public class AdapterOrderScreenOrder  extends RecyclerView.Adapter<AdapterOrderScreenOrder.ViewHolder> {
 
     List<DataKhanaval> menuDetailList;
     Context context;
+    int quantityTotal;
+    int foodPriceTotal;
+    int foodPriceDiscountTotal;
     //boolean wishlistAdded = false;
 
     public AdapterOrderScreenOrder(List<DataKhanaval> menuDetailList, Context context) {
@@ -41,15 +55,18 @@ public class AdapterOrderScreenOrder  extends RecyclerView.Adapter<AdapterOrderS
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final AdapterOrderScreenOrder.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull final AdapterOrderScreenOrder.ViewHolder viewHolder, final int i) {
 
         viewHolder.foodName.setText(menuDetailList.get(i).getFoodName());
-        viewHolder.foodPrice.setText(String.valueOf(menuDetailList.get(i).getFoodPrice()));
+        //viewHolder.foodPrice.setText(String.valueOf(menuDetailList.get(i).getFoodPrice()));
         viewHolder.img.setImageResource(menuDetailList.get(i).getImg());
+        viewHolder.foodPrice.setText(String.valueOf(SaveSharedPreference.getFoodPriceTotal(context, 0)));
+        viewHolder.foodPriceDiscount.setText(String.valueOf(SaveSharedPreference.getFoodPriceDiscountTotal(context, 0)));
+        viewHolder.chartQuantity.setText(String.valueOf(SaveSharedPreference.getAllQuantity(context, 0)));
 
         final int quantity[] = {menuDetailList.get(i).getChartQuantity()};
 
-        quantity[0] = 0;
+        quantity[0] = SaveSharedPreference.getAllQuantity(context, 0);
 
         viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
 

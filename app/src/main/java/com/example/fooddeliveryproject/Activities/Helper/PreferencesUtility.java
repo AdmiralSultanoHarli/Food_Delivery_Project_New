@@ -40,6 +40,16 @@ public class PreferencesUtility {
 
     public static final String IS_THERE_IS_USER = "IsThereIsUser";
 
+    public static final String food_items  = "FoodItems";
+
+    public static final String main_item = "MainItem";
+
+    public static final String sub_item = "SubItem";
+
+    public static final String payment_method = "payment";
+
+
+
 
 
 }
