@@ -41,8 +41,8 @@
             android:layout_below="@+id/textViewHistory"
             app:tabTextAppearance="@style/MyCustomTextAppearance"
             android:layout_marginLeft="20dp"
-            app:tabSelectedTextColor="@color/ovo"
-            app:tabIndicatorColor="@color/ovo"
+            app:tabSelectedTextColor="@color/colorButton"
+            app:tabIndicatorColor="@color/colorButton"
             app:tabIndicatorHeight="2dp">
 
             <com.google.android.material.tabs.TabItem

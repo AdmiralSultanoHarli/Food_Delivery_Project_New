@@ -21,8 +21,8 @@ public class MenuDetailScreenItemsFragment extends Fragment {
 
     RecyclerView menuDetailItem;
     AdapterMenuDetailScreenItems menuDetailItemAdapter;
-    String foodName[] = {"Roti", "Chicken Curry", "Rice", "Dal", "Sweet"};
-    int foodQuantity[] = {3, 2, 1, 1, 1};
+    String foodName[] = {"Nasi", "Ayam", "Sayuran", "Sambel"};
+    int foodQuantity[] = {3, 2, 1, 1};
 
 
 

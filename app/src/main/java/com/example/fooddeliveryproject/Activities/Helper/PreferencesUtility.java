@@ -50,6 +50,18 @@ public class PreferencesUtility {
 
     public static final String SEARCH_OPENED = "search";
 
+    public static final String TOTAL_PAYMENT = "totalPayment";
+
+    public static final String DATE = "date";
+
+    public static final String IMAGE_PAYMENT = "imagepayment";
+
+    public static final String COLOR_PAYMENT = "colorpayment";
+
+    public static final String PAYMENT_NAME = "paymentname";
+
+    public static final String BUTTON_COLOR_PAYMENT = "buttoncolor";
+
 
 
 }

@@ -1,6 +1,7 @@
 package com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.OrdersFragmentAttributes.Fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.OrdersFragmentAttributes.Adapter.AdapterCurrent;
 import com.example.fooddeliveryproject.R;
@@ -21,11 +23,15 @@ public class CurrentFragment extends Fragment{
 
     RecyclerView currentCategories;
     AdapterCurrent adapterCurrent;
-    String[] date = {"23 Sept 2019", "24 Sept 2019", "25 Sept 2019", "26 Sept 2019"};
-    String[] foodName = {"Butter Chicken", "Dal Tadkda", "Chow Mein", "Maharashtra Thali"};
-    String[] orderTracker = {"Order Placed", "Order Placed", "Order Placed", "Order Placed"};
-    int[] foodPrice = {49000, 50000, 30000, 20000};
-    int[] img = {R.drawable.butter_chicken, R.drawable.dal_tadkda, R.drawable.chow_mein, R.drawable.maharashtra_thali};
+    String dates;
+
+
+
+    String[] date;
+    String[] foodName = {"Nasi Padang"};
+    String[] orderTracker = {"Order Placed"};
+    int[] foodPrice;
+    int[] img = {R.drawable.nasi_padang_s};
 
     public CurrentFragment() {
 
@@ -43,6 +49,13 @@ public class CurrentFragment extends Fragment{
 
         currentCategories.setHasFixedSize(true);
 
+        date = new String[]{SaveSharedPreference.getDate(getContext(), "")};
+        foodPrice = new int[]{SaveSharedPreference.getTotalPayment(getContext(), 0)};
+
+        dates = SaveSharedPreference.getDate(getContext(), "");
+
+        Log.e("date", dates);
+        Log.e("price", String.valueOf(SaveSharedPreference.getTotalPayment(getContext(), 0)));
         RecyclerView.LayoutManager layoutManagerBestCusine = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         currentCategories.setLayoutManager(layoutManagerBestCusine);
 
@@ -64,7 +77,7 @@ public class CurrentFragment extends Fragment{
             dataFood.setFoodName(foodName[i]);
             dataFood.setImg(img[i]);
             dataFood.setOrderTracker(orderTracker[i]);
-            dataFood.setFoodPrice(Integer.parseInt(String.valueOf(foodPrice[i])));
+            dataFood.setFoodPrice(foodPrice[i]);
             foodArrayList.add(dataFood);
         }
 

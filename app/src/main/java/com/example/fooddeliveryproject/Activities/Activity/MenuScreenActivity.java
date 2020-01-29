@@ -28,7 +28,8 @@ import java.util.ArrayList;
 
 public class MenuScreenActivity extends AppCompatActivity {
 
-    ImageView backButton, cartButton, searchButton;
+    ImageView backButton, cartButton;
+    public static ImageView searchButton;
     RelativeLayout menu1, menuSearch;
     SearchView searchView;
     public FloatingActionButton numberCount;
@@ -103,11 +104,12 @@ public class MenuScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                SaveSharedPreference.setSearchOpened(MenuScreenActivity.this, true);
-                fragmentTransaction.add(R.id.menuScreenFragment, menuScreenFragment, menuScreenFragment.getTag());
+                MenuScreenFragment menuScreenFragment_s = new MenuScreenFragment();
+                menuScreenFragment_s.searchView.setVisibility(View.VISIBLE);
+                menuScreenFragment_s.searchView.setIconified(false);
+
             }
         });
-
 
 
         backButton.setOnClickListener(new View.OnClickListener() {

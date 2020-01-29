@@ -31,12 +31,11 @@ public class MenuScreenFragment extends Fragment {
 
     //this is test
     public RecyclerView menuScreenCategories;
-    public SearchView searchView;
+    public static SearchView searchView;
     AdapterMenuScreen menuScreenAdapter;
     ArrayList<DataKhanaval> allData = new ArrayList<>();
     private DatabaseHelper helper;
 
-    boolean searchOpened = false;
     /*String[] foodName = {"Veg Thali", "Goan Special", "Butter Chicken", "Bhendi Masala", "Murg Musallam", "Basmati Rice Chicken Biryani", "Jeera Alo", "Mix Veggies", "Panang Curry", "Chapati", "Samosa"};
     String[] foodDescription = {"3 puri + 2 vegitable dish + rice + dal + sweet", "3 Goan special dish + rice + dal + sweet", "3 Butter Roti + Butter chicken + rice", "3 Butter Roti + Bhendi Masala + rice", "3 Butter Roti + rostated chicken + rice", "basmati rice chicken biryani", "3 Butter Roti + Jeera alo + rice", "3 Butter Roti + mix vegitables + rice", "3 Butter Roti + mix vegitables + rice", "3 Butter Roti + mix chapati + rice", "1 Butter Roti + vegitables + rice"};
     int[] foodPrice = {30000, 50000, 40000, 40000, 100000, 50000, 30000, 40000, 20000, 50000, 10000};
@@ -64,9 +63,7 @@ public class MenuScreenFragment extends Fragment {
         menuScreenCategories.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManagerMenuScreen = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         menuScreenCategories.setLayoutManager(layoutManagerMenuScreen);
-        searchOpened = SaveSharedPreference.getSearchOpened(getActivity(), false);
 
-        searchView.setVisibility(searchOpened == true ? View.VISIBLE : View.GONE);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -93,7 +90,6 @@ public class MenuScreenFragment extends Fragment {
             public boolean onClose() {
 
                 searchView.setVisibility(View.GONE);
-                SaveSharedPreference.setSearchOpened(getActivity(), false);
                 return true;
             }
         });

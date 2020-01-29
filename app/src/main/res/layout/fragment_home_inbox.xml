@@ -7,8 +7,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Inbox"
-        android:textSize="40sp"
+        android:text="There is no message!"
+        android:textSize="20sp"
         android:gravity="center"/>
 
 

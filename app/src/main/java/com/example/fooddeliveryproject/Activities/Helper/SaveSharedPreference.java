@@ -11,6 +11,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.SocketHandler;
 
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.ALL_QUANTITY;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.BUTTON_COLOR_PAYMENT;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.COLOR_PAYMENT;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.DATE;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.EMAIL;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_CATEGORY;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_DESCRIPTION;
@@ -19,14 +22,17 @@ import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtili
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_PRICE_DISCOUNT;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_PRICE_DISCOUNT_TOTAL;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_PRICE_TOTAL;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IMAGE_PAYMENT;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_ADDTOCART_VISIBLE;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_FRAGMENT_ORDER_DETAILS_OPENED;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_FRAGMENT_ORDER_OPENED;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_THERE_IS_USER;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.NUMBER;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.PASSWORD;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.PAYMENT_NAME;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.QUANTITY;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.SEARCH_OPENED;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.TOTAL_PAYMENT;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.USERNAME;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.main_item;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.payment_method;
@@ -506,6 +512,103 @@ public class SaveSharedPreference {
     public static boolean getSearchOpened(Context context, boolean isSearchOpened){
 
         return getPreferences(context).getBoolean(SEARCH_OPENED, false);
+
+    }
+
+    public static void setTotalPayment(Context context, int totalPayment){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putInt(TOTAL_PAYMENT, totalPayment);
+        editor.apply();
+
+    }
+
+    /**
+     * getEmail
+     */
+    public static int getTotalPayment(Context context, int totalPayment){
+
+        return getPreferences(context).getInt(TOTAL_PAYMENT, 0);
+
+    }
+
+
+    public static void setDate(Context context, String date){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putString(DATE, date);
+        editor.apply();
+
+    }
+
+    public static String getDate(Context context, String date){
+
+        return getPreferences(context).getString(DATE, "");
+
+    }
+
+    public static void setImagePayment(Context context, int imagePayment){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putInt(IMAGE_PAYMENT, imagePayment);
+        editor.apply();
+
+    }
+
+    /**
+     * getEmail
+     */
+    public static int getImagePayment(Context context, int imagePayment){
+
+        return getPreferences(context).getInt(IMAGE_PAYMENT, 0);
+
+    }
+
+    public static void setColorPayment(Context context, int colorPayment){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putInt(COLOR_PAYMENT, colorPayment);
+        editor.apply();
+
+    }
+
+    /**
+     * getEmail
+     */
+    public static int getColorPayment(Context context, int colorPayment){
+
+        return getPreferences(context).getInt(COLOR_PAYMENT, 0);
+
+    }
+
+    public static void setButtonColor(Context context, int buttonColor){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putInt(BUTTON_COLOR_PAYMENT, buttonColor);
+        editor.apply();
+
+    }
+
+    /**
+     * getEmail
+     */
+    public static int getButtonColor(Context context, int buttonColor){
+
+        return getPreferences(context).getInt(BUTTON_COLOR_PAYMENT, 0);
+
+    }
+
+    public static void setPaymentName(Context context, String paymentName){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putString(PAYMENT_NAME, paymentName);
+        editor.apply();
+
+    }
+
+    public static String getPaymentName(Context context, String paymentName){
+
+        return getPreferences(context).getString(PAYMENT_NAME, "");
 
     }
 

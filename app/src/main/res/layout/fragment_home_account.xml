@@ -35,7 +35,7 @@
         android:layout_below="@+id/profileImage"
         android:layout_centerInParent="true"
         android:layout_marginTop="5dp"
-        android:text="Rahul Chavan"/>
+        android:text="Admiral Sultano"/>
 
     <TextView
         android:id="@+id/name"
@@ -58,7 +58,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="21dp"
         android:layout_marginRight="21dp"
-        android:text="Rahul Chavan"/>
+        android:text="Admiral Sultano"/>
 
     <View
         android:id="@+id/line"
@@ -102,7 +102,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="6dp"
         android:layout_marginRight="21dp"
-        android:text="8892208417"/>
+        android:text="895636823830"/>
 
     <View
         android:id="@+id/line2"
@@ -135,7 +135,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="21dp"
         android:layout_marginRight="21dp"
-        android:text="rahul.chavan@gmail.com"
+        android:text="giordano2010@gmail.com"
         android:textSize="15sp"/>
 
     <View

@@ -82,8 +82,8 @@ public class HomeFragment extends Fragment {
     private TabLayout indicator;
     private Context mContext;
     private TextView textViewMap;
-    LinearLayout searchFragment;
-    ScrollView scrollView;
+    public static LinearLayout searchFragment;
+    public static ScrollView scrollView;
 
     private ArrayList<DataKhanaval> allData = new ArrayList<>();
 
@@ -109,7 +109,7 @@ public class HomeFragment extends Fragment {
     // Boolean to toggle the ui
     private boolean requestingLocationUpdates;
 
-    SearchView searchView;
+    public static SearchView searchView;
     int[] img = {R.drawable.muamalat_cashback, R.drawable.domino_cashback, R.drawable.pizza_cashback, R.drawable.cashback, R.drawable.flipburger_cashback, R.drawable.cashback_s};
 
 
@@ -132,58 +132,40 @@ public class HomeFragment extends Fragment {
         slideList.add(new DataFood(R.drawable.cashback, "Cashback"));
         slideList.add(new DataFood(R.drawable.chow_mein, "ChowMein"));*/
 
-        searchView.setOnClickListener(new View.OnClickListener() {
+        final FragmentManager fragmentManager = getFragmentManager();
+        final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        /*searchView.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
 
                searchView.setIconified(false);
+               Log.e("great","in onclick method");
 
 
            }
-        });
+        });*/
 
         searchView.setOnSearchClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Log.e("great","in onsearch method");
                 searchFragment.setVisibility(View.VISIBLE);
                 scrollView.setVisibility(View.GONE);
+                searchView.setVisibility(View.GONE);
+
+               /* SearchViewFragment searchViewFragment = new SearchViewFragment();
+                searchViewFragment.searchView.setIconified(false);*/
+
+                FragmentTransaction searchFragmentTransacation = fragmentManager.beginTransaction();
+
+                SearchViewFragment searchViewFragment = new SearchViewFragment();
+                searchFragmentTransacation.replace(R.id.searchFraegment, searchViewFragment);
+                searchFragmentTransacation.commit();
 
             }
         });
 
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-
-                Log.e("Adapter", String.valueOf(mAdapter));
-
-                if (mAdapter != null){
-
-                    mAdapter.getFilter().filter(newText);
-
-                }
-
-                return true;
-
-            }
-        });
-
-        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
-            @Override
-            public boolean onClose() {
-
-                searchFragment.setVisibility(View.GONE);
-                scrollView.setVisibility(View.VISIBLE);
-                return false;
-            }
-        });
 
         /*textViewMap.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -219,11 +201,10 @@ public class HomeFragment extends Fragment {
 
         indicator.setupWithViewPager(sliderPager, true);
 
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+       /* FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();*/
 
-        SearchViewFragment searchViewFragment = new SearchViewFragment();
-        fragmentTransaction.add(R.id.searchFraegment, searchViewFragment, searchViewFragment.getTag());
+
 
         BestCusineFragment bestCusineFragment = new BestCusineFragment();
         fragmentTransaction.add(R.id.bestCusineFragment, bestCusineFragment, bestCusineFragment.getTag());

@@ -73,7 +73,7 @@
                 app:cardElevation="1dp">
 
                     <ImageView
-                        android:background="@drawable/maharashtra_thali"
+                        android:background="@drawable/nasi_padang_s"
                         android:id="@+id/rectangleTop"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -103,7 +103,7 @@
                         android:id="@+id/itemName"
                         android:layout_width="115dp"
                         android:layout_height="wrap_content"
-                        android:text="Veg Thali"
+                        android:text="Nasi Padang"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_alignParentLeft="true"

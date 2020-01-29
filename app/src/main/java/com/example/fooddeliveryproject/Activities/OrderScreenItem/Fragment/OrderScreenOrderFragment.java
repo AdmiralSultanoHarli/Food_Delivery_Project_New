@@ -21,10 +21,10 @@ public class OrderScreenOrderFragment extends Fragment {
 
     RecyclerView orderScreenOrder;
     AdapterOrderScreenOrder orderScreenOrderAdapter;
-    String foodName[] = {"Veg Thali"};
+    String foodName[] = {"Nasi Padang"};
     /*int foodPrice[] = {40000, 50000, 60000};
     int foodPriceDiscount[] = {55000, 65000, 75000};*/
-    int img[] = {R.drawable.maharashtra_thali};
+    int img[] = {R.drawable.nasi_padang_s};
 
     public OrderScreenOrderFragment() {
 

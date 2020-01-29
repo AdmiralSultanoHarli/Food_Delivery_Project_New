@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterCustomCategories;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterSearchView;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.HomeFragment;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.R;
 
@@ -27,7 +28,7 @@ public class SearchViewFragment extends Fragment {
     AdapterSearchView adapterCustomCategories;
     ArrayList<DataKhanaval> allData = new ArrayList<>();
     private DatabaseHelper helper;
-    SearchView searchView;
+    public static SearchView searchView;
 
     //String foods[] = {"Beverages", "Snacks", "Sweets"};
     int img[] = {R.drawable.beverage, R.drawable.snacks, R.drawable.sweets};
@@ -54,7 +55,26 @@ public class SearchViewFragment extends Fragment {
         helper = new DatabaseHelper(getContext());
         allData = helper.listDataRestaurantMax();
 
+        Log.d("db data",allData.toString());
+
+
         searchView.setIconified(false);
+
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+
+                HomeFragment homeFragment = new HomeFragment();
+                homeFragment.searchView.setVisibility(View.VISIBLE);
+                homeFragment.searchFragment.setVisibility(View.GONE);
+                homeFragment.scrollView.setVisibility(View.VISIBLE);
+                homeFragment.searchView.setIconified(true);
+              //  homeFragment.searchView.
+
+
+                return true;
+            }
+        });
 
 
         searchView.setOnSearchClickListener(new View.OnClickListener() {

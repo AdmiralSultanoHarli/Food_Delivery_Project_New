@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 6;
     private static final String DATABASE_NAME = "khanaval.db";
 
     //User Data
@@ -173,17 +173,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
         String DATA_FOOD = "INSERT INTO " + TABLE_FOOD + "(foodname, fooddesc, foodprice, foodpricediscount, button, foodimage) " +
-                "VALUES ('Vegetable Thali', '3 roti + 2 chicken curry + rice + dal + sweet', 30000, 40000, 0," + R.drawable.maharashtra_thali + ")," +
-                "('Goan Special', '3 Goan special dish + rice + dal + sweet', 50000, 65000, 0," + R.drawable.goan_vegetarian_thali + ")," +
-                "('Butter Chicken', '3 Butter roti + butter chicken + rice', 40000, 55000, 0," + R.drawable.butter_chicken + ")," +
-                "('Spicy Okra', '3 Butter roti + bhendi masala + rice', 40000, 50000, 0," + R.drawable.bhindi_masala + ")," +
-                "('Murg Musallam', '3 Butter roti + roasted chicken + rice', 100000, 1150000, 0," + R.drawable.murg_musallam + ")," +
-                "('Basmati Rice Chicken Biryani', 'Basmati rice chicken biryani', 50000, 30000, 0," + R.drawable.basmati_rice_chicken_biryani + ")," +
-                "('Jeera Alo', '3 Butter roti + Jeera alo + rice', 30000, 40000, 0," + R.drawable.jeera_alo + ")," +
-                "('Mix Veggies', '3 Butter roti + Mix veggies + rice', 40000, 45000, 0," + R.drawable.mix_veggies + ")," +
-                "('Panang Curry', '3 Butter roti + Mix veggies + rice', 20000, 35000, 0," + R.drawable.panang_curry + ")," +
-                "('Chapati', '3 Butter roti + mix chapati + rice', 50000, 65000, 0," + R.drawable.chapati + ")," +
-                "('Samosa', '1 Butter roti + vegitables + rice', 30000, 45000, 0," + R.drawable.snacks + ")";
+                "VALUES ('Nasi Padang', '3 nasi + 2 ayam + sayuran + sambel', 30000, 40000, 0," + R.drawable.nasi_padang_s + ")," +
+                "('Bakso', '2 Bakso besar + 5 Bakso kecil + bihun + bawang', 50000, 65000, 0," + R.drawable.bakso + ")," +
+                "('Soto', 'Suwiran Ayam + Telor + Nasi', 40000, 55000, 0," + R.drawable.soto + ")," +
+                "('Sate Ayam', '10 Tusuk sate ayam + bumbu kacang + nasi', 40000, 50000, 0," + R.drawable.sate_ayam + ")," +
+                "('Sate Padang', '20 Tusuk sate padang + bumbu sate padang + lontong', 100000, 1150000, 0," + R.drawable.sate_padang + ")," +
+                "('Nasi Lemak', 'Nasi lemak + kacang + telor _ sambal', 50000, 30000, 0," + R.drawable.nasi_lemak + ")," +
+                "('Dal Tadkda', '3 Roti butter + kentang india', 30000, 40000, 0," + R.drawable.dal_tadkda + ")," +
+                "('Chinese Food', '1 porsi spagheti chinese + sayuran', 40000, 45000, 0," + R.drawable.chow_mein + ")," +
+                "('Indian Curry', '3 roti butter + Mix sayuran + nasi', 20000, 35000, 0," + R.drawable.maharashtra_thali + ")," +
+                "('Panang Curry', '3 Curry ayam + sayuran', 50000, 65000, 0," + R.drawable.panang_curry + ")," +
+                "('Samosa', '10 Aneka gorengan india', 30000, 45000, 0," + R.drawable.snacks + ")";
 
         String DATA_BESTCUSINE = "INSERT INTO " + TABLE_BESTCUSINE_FRAGMENT + "(foodname, foodimage)" +
                 "VALUES ('Thai Special'," + panang_curry + ")," +

@@ -7,7 +7,7 @@
     <RelativeLayout
         android:id="@+id/topMenu"
         android:layout_width="match_parent"
-        android:layout_height="110dp">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/textViewMap"
@@ -60,32 +60,31 @@
             app:queryHint="Search"
             />-->
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchView"
-            android:layout_below="@id/textViewExplore"
-            android:layout_width="match_parent"
-            app:queryHint="Search"
-            app:queryBackground="@color/colorWhite"
-            app:searchIcon="@drawable/ic_search_gray_20dp"
-            app:closeIcon="@drawable/ic_close_gray_20dp"
-            app:searchHintIcon="@null"
-            android:theme="@style/SearchViewTest"
-            android:layout_height="40dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/rounded_shape_search"
-            android:elevation="5dp"
-            />
-
 
     </RelativeLayout>
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_below="@id/topMenu"
+        android:layout_width="match_parent"
+        app:queryHint="Search"
+        app:queryBackground="@color/colorWhite"
+        app:searchIcon="@drawable/ic_search_gray_20dp"
+        app:closeIcon="@drawable/ic_close_gray_20dp"
+        app:searchHintIcon="@null"
+        android:theme="@style/SearchViewTest"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/rounded_shape_search"
+        android:elevation="5dp"
+        />
 
     <LinearLayout
         android:id="@+id/searchFraegment"
         android:orientation="vertical"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/topMenu">
@@ -98,7 +97,7 @@
         android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/topMenu"
+        android:layout_below="@+id/searchView"
         android:scrollbars="none">
 
         <RelativeLayout

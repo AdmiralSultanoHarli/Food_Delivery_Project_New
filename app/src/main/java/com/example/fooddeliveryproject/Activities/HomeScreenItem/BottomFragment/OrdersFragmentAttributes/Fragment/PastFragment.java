@@ -21,7 +21,7 @@ public class PastFragment extends Fragment{
 
     RecyclerView pastCategories;
     AdapterPast adapterPast;
-    String[] date = {"23 March 2019", "24 March 2019", "25 March 2019", "26 March 2019"};
+    String[] date = {"23 December 2019", "24 December 2019", "25 December 2019", "26 December 2019"};
     String[] foodName = {"Goan Special", "Butter Chicken", "Maha Thali", "Chow Mein"};
     String[] orderTracker = {"Order Delivered", "Order Delivered", "Order Delivered", "Order Delivered"};
     int[] foodPrice = {49000, 50000, 30000, 20000};

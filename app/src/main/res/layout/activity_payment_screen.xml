@@ -105,7 +105,7 @@
 
             <TextView
                 android:id="@+id/availableBalance"
-                android:text="100.000"
+                android:text="200.000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -140,7 +140,7 @@
             <TextView
                 android:id="@+id/cancelButton"
                 android:text="Cancel"
-                android:textColor="@color/ovo"
+                android:textColor="@color/colorButton"
                 android:clickable="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
