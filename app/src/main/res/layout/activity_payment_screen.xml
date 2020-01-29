@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     tools:context=".Activities.Activity.PaymentScreenActivity">
     
     <ImageView
@@ -105,13 +106,13 @@
 
             <TextView
                 android:id="@+id/availableBalance"
-                android:text="200.000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"/>
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="9dp"
+                android:layout_marginRight="9dp"
+                android:text="200.000" />
 
             <TextView
                 android:id="@+id/minusPayment"

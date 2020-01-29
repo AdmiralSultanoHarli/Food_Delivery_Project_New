@@ -62,6 +62,11 @@ public class PreferencesUtility {
 
     public static final String BUTTON_COLOR_PAYMENT = "buttoncolor";
 
+    public static final String GOPAY_BALANCE = "gopaybalance";
+
+    public static final String OVO_BALANCE = "ovobalance";
+
+    public static final String PAYMENT_METHOD_NAME = "paymentmethodname";
 
 
 }

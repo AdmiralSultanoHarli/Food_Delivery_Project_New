@@ -218,6 +218,7 @@ public class OrderScreenActivity extends AppCompatActivity {
                     SaveSharedPreference.setColorPayment(OrderScreenActivity.this, ovoColor);
                     //SaveSharedPreference.setButtonColor(OrderScreenActivity.this, ovoButton);
                     SaveSharedPreference.setPaymentName(OrderScreenActivity.this, ovoName);
+                    SaveSharedPreference.setPaymentMethodName(OrderScreenActivity.this, true);
                     viewPayment.setBackgroundResource(roundedOvo);
                     //buttonPayment.setBackgroundResource(ovoButton);
                     viewPayment.setText(ovoName);
@@ -240,6 +241,7 @@ public class OrderScreenActivity extends AppCompatActivity {
                     SaveSharedPreference.setColorPayment(OrderScreenActivity.this, gopayColor);
                     //SaveSharedPreference.setButtonColor(OrderScreenActivity.this, gopayButton);
                     SaveSharedPreference.setPaymentName(OrderScreenActivity.this, gopayName);
+                    SaveSharedPreference.setPaymentMethodName(OrderScreenActivity.this, false);
                     viewPayment.setBackgroundResource(roundedGopay);
                     //buttonPayment.setBackgroundResource(gopayButton);
                     viewPayment.setText(gopayName);

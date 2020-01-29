@@ -22,10 +22,10 @@ public class PastFragment extends Fragment{
     RecyclerView pastCategories;
     AdapterPast adapterPast;
     String[] date = {"23 December 2019", "24 December 2019", "25 December 2019", "26 December 2019"};
-    String[] foodName = {"Goan Special", "Butter Chicken", "Maha Thali", "Chow Mein"};
+    String[] foodName = {"Soto", "Nasi Lemak", "Sate Ayam", "Nasi Padang"};
     String[] orderTracker = {"Order Delivered", "Order Delivered", "Order Delivered", "Order Delivered"};
     int[] foodPrice = {49000, 50000, 30000, 20000};
-    int[] img = {R.drawable.goan_vegetarian_thali, R.drawable.butter_chicken, R.drawable.maharashtra_thali, R.drawable.chow_mein};
+    int[] img = {R.drawable.soto, R.drawable.nasi_lemak, R.drawable.sate_ayam, R.drawable.nasi_padang_s};
 
     public PastFragment() {
 

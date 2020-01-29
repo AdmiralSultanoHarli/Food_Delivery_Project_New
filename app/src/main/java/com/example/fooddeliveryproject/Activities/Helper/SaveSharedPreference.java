@@ -22,13 +22,16 @@ import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtili
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_PRICE_DISCOUNT;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_PRICE_DISCOUNT_TOTAL;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_PRICE_TOTAL;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.GOPAY_BALANCE;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IMAGE_PAYMENT;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_ADDTOCART_VISIBLE;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_FRAGMENT_ORDER_DETAILS_OPENED;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_FRAGMENT_ORDER_OPENED;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_THERE_IS_USER;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.NUMBER;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.OVO_BALANCE;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.PASSWORD;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.PAYMENT_METHOD_NAME;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.PAYMENT_NAME;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.QUANTITY;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.SEARCH_OPENED;
@@ -609,6 +612,54 @@ public class SaveSharedPreference {
     public static String getPaymentName(Context context, String paymentName){
 
         return getPreferences(context).getString(PAYMENT_NAME, "");
+
+    }
+
+    public static void setOvoBalance(Context context, int ovoBalance){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putInt(OVO_BALANCE, ovoBalance);
+        editor.apply();
+
+    }
+
+    /**
+     * getEmail
+     */
+    public static int getOvoBalance(Context context, int ovoBalance){
+
+        return getPreferences(context).getInt(OVO_BALANCE, 0);
+
+    }
+
+    public static void setGopayBalance(Context context, int gopayBalance){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putInt(GOPAY_BALANCE, gopayBalance);
+        editor.apply();
+
+    }
+
+    /**
+     * getEmail
+     */
+    public static int getGopayBalance(Context context, int gopayBalance){
+
+        return getPreferences(context).getInt(GOPAY_BALANCE, 0);
+
+    }
+
+    public static void setPaymentMethodName(Context context, boolean paymentMethodNamae){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putBoolean(PAYMENT_METHOD_NAME, paymentMethodNamae);
+        editor.apply();
+
+    }
+
+    public static boolean getPaymentMethodName(Context context, boolean paymentMethodNamae){
+
+        return getPreferences(context).getBoolean(PAYMENT_METHOD_NAME, false);
 
     }
 

@@ -67,8 +67,6 @@ public class AdapterSearchView extends RecyclerView.Adapter<AdapterSearchView.Vi
         viewHolder.restAddress.setText(data.getAddress());
         viewHolder.img.setImageResource(data.getImg());
 
-
-
         viewHolder.searchCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

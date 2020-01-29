@@ -37,6 +37,10 @@ public class PaymentScreenActivity extends AppCompatActivity {
     public static TextView minusPayment;
     public static View line;
 
+    int ovoBalance = 200000;
+    int gopayBalance = 200000;
+
+    boolean whichPaymentMethod;
 
 
     @Override
@@ -59,6 +63,20 @@ public class PaymentScreenActivity extends AppCompatActivity {
         textViewPayUsing.setText("Pay using " + SaveSharedPreference.getPaymentName(this, ""));
         textViewBalance.setText("Available " + SaveSharedPreference.getPaymentName(this, "") + " Balance");
 
+        whichPaymentMethod = SaveSharedPreference.getPaymentMethodName(this, false);
+        final int paymentTotalInt = SaveSharedPreference.getTotalPayment(this, 0);
+
+        if (whichPaymentMethod == true){
+
+            availableBalance.setText(String.valueOf(SaveSharedPreference.getOvoBalance(this, 0)));
+
+        }else {
+
+            availableBalance.setText(String.valueOf(SaveSharedPreference.getGopayBalance(this, 0)));
+
+        }
+
+
 
         //Log.e("Image Resource", String.valueOf(SaveSharedPreference.getImagePayment(this, 0)));
 
@@ -70,7 +88,24 @@ public class PaymentScreenActivity extends AppCompatActivity {
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, new Locale("en", "UK"));
                 String date = simpleDateFormat.format(new Date());
                 SaveSharedPreference.setDate(PaymentScreenActivity.this, date);
+
+                if (whichPaymentMethod == true){
+
+                    int ovoBalanceint = ovoBalance - paymentTotalInt;
+                    SaveSharedPreference.setOvoBalance(PaymentScreenActivity.this, ovoBalanceint);
+
+                }else {
+
+                    int gopayBalanceInt = gopayBalance = paymentTotalInt;
+                    SaveSharedPreference.setGopayBalance(PaymentScreenActivity.this, gopayBalanceInt);
+
+                }
+
+
+
+
                 Intent i = new Intent(PaymentScreenActivity.this, PaymentSuccessScreenActivity.class);
+
                 startActivity(i);
 
             }
@@ -86,7 +121,8 @@ public class PaymentScreenActivity extends AppCompatActivity {
             }
         });
 
-        paymentTotal.setText(String.valueOf(SaveSharedPreference.getTotalPayment(this, 0)));
+
+        paymentTotal.setText(String.valueOf(paymentTotalInt));
         minusPayment.setText("-" + SaveSharedPreference.getTotalPayment(this, 0));
 
 
