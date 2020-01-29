@@ -18,6 +18,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +33,8 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterSearchView;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.HomeFragmentAttributes.SearchViewFragment;
 import com.example.fooddeliveryproject.Activities.MenuScreenItem.Adapter.AdapterMenuScreen;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterTopSliderPager;
@@ -78,8 +82,14 @@ public class HomeFragment extends Fragment {
     private TabLayout indicator;
     private Context mContext;
     private TextView textViewMap;
+    LinearLayout searchFragment;
+    ScrollView scrollView;
 
-    private AdapterMenuScreen mAdapter;
+    private ArrayList<DataKhanaval> allData = new ArrayList<>();
+
+    //private AdapterMenuScreen mAdapter;
+    private AdapterSearchView mAdapter;
+    private DatabaseHelper helper;
 
     private static final String TAG = "Location Report";
     private String lastUpdateTime;
@@ -112,6 +122,8 @@ public class HomeFragment extends Fragment {
         indicator = mView.findViewById(R.id.indicator);
         searchView = mView.findViewById(R.id.searchView);
         textViewMap = mView.findViewById(R.id.textViewMap);
+        searchFragment = mView.findViewById(R.id.searchFraegment);
+        scrollView = mView.findViewById(R.id.scrollView);
 
        /* slideList = new ArrayList<>();
         slideList.add(new DataKhanaval(R.drawable.panang_curry, "PanangCurry", ));
@@ -126,9 +138,52 @@ public class HomeFragment extends Fragment {
 
                searchView.setIconified(false);
 
+
            }
         });
 
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                searchFragment.setVisibility(View.VISIBLE);
+                scrollView.setVisibility(View.GONE);
+
+            }
+        });
+
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                Log.e("Adapter", String.valueOf(mAdapter));
+
+                if (mAdapter != null){
+
+                    mAdapter.getFilter().filter(newText);
+
+                }
+
+                return true;
+
+            }
+        });
+
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+
+                searchFragment.setVisibility(View.GONE);
+                scrollView.setVisibility(View.VISIBLE);
+                return false;
+            }
+        });
 
         /*textViewMap.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -166,6 +221,9 @@ public class HomeFragment extends Fragment {
 
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        SearchViewFragment searchViewFragment = new SearchViewFragment();
+        fragmentTransaction.add(R.id.searchFraegment, searchViewFragment, searchViewFragment.getTag());
 
         BestCusineFragment bestCusineFragment = new BestCusineFragment();
         fragmentTransaction.add(R.id.bestCusineFragment, bestCusineFragment, bestCusineFragment.getTag());

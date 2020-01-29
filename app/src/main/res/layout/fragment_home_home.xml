@@ -82,7 +82,20 @@
 
     </RelativeLayout>
 
+    <LinearLayout
+        android:id="@+id/searchFraegment"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/topMenu">
+
+
+    </LinearLayout>
+
     <ScrollView
+        android:id="@+id/scrollView"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/topMenu"

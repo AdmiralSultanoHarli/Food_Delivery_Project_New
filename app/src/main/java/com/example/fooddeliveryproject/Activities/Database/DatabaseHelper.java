@@ -270,6 +270,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public ArrayList<DataKhanaval> listDataRestaurantMax() {
+
+        String sql = "select * from " + TABLE_RESTAURANT;
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<DataKhanaval> storeData = new ArrayList<>();
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor.moveToFirst()){
+
+            do {
+
+                int restId = Integer.parseInt(cursor.getString(0));
+                String restName = cursor.getString(1);
+                String restAddress = cursor.getString(2);
+                int img = Integer.parseInt(cursor.getString(3));
+                storeData.add(new DataKhanaval(restId, restName, restAddress, img));
+            }while (cursor.moveToNext());
+
+        }
+
+        cursor.close();
+        return storeData;
+
+    }
+
     public ArrayList<DataKhanaval> listDataMenuScreen(){
 
         String sql = "select * from " + TABLE_FOOD;
