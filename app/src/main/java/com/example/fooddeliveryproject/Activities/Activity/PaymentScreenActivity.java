@@ -41,7 +41,7 @@ public class PaymentScreenActivity extends AppCompatActivity {
     int ovoBalance;
     int gopayBalance;
 
-    boolean whichPaymentMethod;
+    boolean whichPaymentMethod = false;
     boolean ovoBalanceChanged;
     boolean gopayBalanceChanged;
 
@@ -69,11 +69,12 @@ public class PaymentScreenActivity extends AppCompatActivity {
         textViewPayUsing.setText("Pay using " + SaveSharedPreference.getPaymentName(this, ""));
         textViewBalance.setText("Available " + SaveSharedPreference.getPaymentName(this, "") + " Balance");
 
-        whichPaymentMethod = SaveSharedPreference.getPaymentMethodName(this, false);
         final int paymentTotalInt = SaveSharedPreference.getTotalPayment(this, 0);
 
         ovoBalance = SaveSharedPreference.getOvoBalance(this, 0);
         gopayBalance = SaveSharedPreference.getGopayBalance(this, 0);
+
+        whichPaymentMethod = SaveSharedPreference.getPaymentMethodName(this, false);
 
 
         //Log.e("Image Resource", String.valueOf(SaveSharedPreference.getImagePayment(this, 0)));
@@ -87,43 +88,64 @@ public class PaymentScreenActivity extends AppCompatActivity {
                 String date = simpleDateFormat.format(new Date());
                 SaveSharedPreference.setDate(PaymentScreenActivity.this, date);
 
-                if (whichPaymentMethod == true){
+                if (SaveSharedPreference.getPaymentMethodName(getApplicationContext(), false) == true){
 
-                    int ovoBalanceint = ovoBalance - paymentTotalInt;
-                    SaveSharedPreference.setOvoBalance(PaymentScreenActivity.this, ovoBalanceint);
-                    availableBalanceInt = SaveSharedPreference.getOvoBalance(PaymentScreenActivity.this, 0);
-                    availableBalance.setText(String.valueOf(availableBalanceInt));
-                    paymentSelected = true;
+                    if (SaveSharedPreference.getOvoBalance(getApplicationContext(), 0) > 32000) {
 
-                }else {
+                        int ovoBalanceint = ovoBalance - paymentTotalInt;
+                        SaveSharedPreference.setOvoBalance(PaymentScreenActivity.this, ovoBalanceint);
+                        //availableBalanceInt = SaveSharedPreference.getOvoBalance(getApplicationContext(), 0);
+                        //availableBalance.setText(String.valueOf(availableBalanceInt));
+                        paymentSelected = true;
+                        Intent i = new Intent(PaymentScreenActivity.this, PaymentSuccessScreenActivity.class);
+                        startActivity(i);
 
-                    int gopayBalanceInt = gopayBalance - paymentTotalInt;
-                    SaveSharedPreference.setGopayBalance(PaymentScreenActivity.this, gopayBalanceInt);
-                    availableBalanceInt = SaveSharedPreference.getGopayBalance(PaymentScreenActivity.this, 0);
-                    availableBalance.setText(String.valueOf(availableBalanceInt));
-                    paymentSelected = false;
+                    }else {
+
+                        Toast.makeText(PaymentScreenActivity.this, "You're balance not enough", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                }else if(SaveSharedPreference.getPaymentMethodName(getApplicationContext(), false) == false){
+
+                    if (SaveSharedPreference.getGopayBalance(getApplicationContext(), 0) > 32000) {
+
+                        int gopayBalanceInt = gopayBalance - paymentTotalInt;
+                        SaveSharedPreference.setGopayBalance(PaymentScreenActivity.this, gopayBalanceInt);
+                        //availableBalanceInt = SaveSharedPreference.getGopayBalance(getApplicationContext(), 0);
+                        //availableBalance.setText(String.valueOf(availableBalanceInt));
+                        paymentSelected = false;
+                        Intent i = new Intent(PaymentScreenActivity.this, PaymentSuccessScreenActivity.class);
+                        startActivity(i);
+
+                    }else {
+
+                        Toast.makeText(PaymentScreenActivity.this, "You're balance not enough", Toast.LENGTH_SHORT).show();
+
+                    }
 
                 }
 
-
-                Intent i = new Intent(PaymentScreenActivity.this, PaymentSuccessScreenActivity.class);
-
-                startActivity(i);
 
             }
 
         });
 
-        if (paymentSelected = true){
+        if (SaveSharedPreference.getPaymentMethodName(getApplicationContext(), false) == true){
 
             availableBalance.setText(String.valueOf(SaveSharedPreference.getOvoBalance(this, 0)));
 
-        }else {
+        }else if (SaveSharedPreference.getPaymentMethodName(getApplicationContext(), false) == false){
 
             availableBalance.setText(String.valueOf(SaveSharedPreference.getGopayBalance(this, 0)));
 
         }
 
+        Log.e("Ovo", String.valueOf(SaveSharedPreference.getOvoBalance(this, 0)));
+
+        Log.e("Gopay", String.valueOf(SaveSharedPreference.getGopayBalance(this, 0)));
+
+        Log.e("Which Payment", String.valueOf(whichPaymentMethod));
 
 
         cancelButton.setOnClickListener(new View.OnClickListener() {

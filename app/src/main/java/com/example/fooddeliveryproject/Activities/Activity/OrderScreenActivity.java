@@ -120,6 +120,7 @@ public class OrderScreenActivity extends AppCompatActivity {
             SaveSharedPreference.setColorPayment(OrderScreenActivity.this, ovoColor);
             //SaveSharedPreference.setButtonColor(OrderScreenActivity.this, ovoButton);
             SaveSharedPreference.setPaymentName(OrderScreenActivity.this, ovoName);
+            SaveSharedPreference.setPaymentMethodName(OrderScreenActivity.this, true);
             viewPayment.setBackgroundResource(roundedOvo);
             //buttonPayment.setBackgroundResource(ovoButton);
             viewPayment.setText(ovoName);
