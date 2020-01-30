@@ -1,6 +1,7 @@
 package com.example.fooddeliveryproject.Activities.OrderScreenItem.Adapter;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -127,6 +128,8 @@ public class AdapterOrderScreenOrder  extends RecyclerView.Adapter<AdapterOrderS
             }
         });
 
+        viewHolder.favouriteFood.setColorFilter(ContextCompat.getColor(context, R.color.colorButtonGray));
+
         viewHolder.favouriteFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -174,6 +177,8 @@ public class AdapterOrderScreenOrder  extends RecyclerView.Adapter<AdapterOrderS
             chartQuantity = itemView.findViewById(R.id.chartQuantity);
             openNotes = itemView.findViewById(R.id.openNotes);
             favouriteFood = itemView.findViewById(R.id.favouriteFood);
+
+            foodPriceDiscount.setPaintFlags(foodPriceDiscount.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
 
         }

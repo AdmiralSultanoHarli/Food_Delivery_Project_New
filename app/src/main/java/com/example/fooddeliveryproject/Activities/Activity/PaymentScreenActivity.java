@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.R;
 
@@ -90,37 +91,56 @@ public class PaymentScreenActivity extends AppCompatActivity {
 
                 if (SaveSharedPreference.getPaymentMethodName(getApplicationContext(), false) == true){
 
-                    if (SaveSharedPreference.getOvoBalance(getApplicationContext(), 0) > 32000) {
+                    if (SaveSharedPreference.getOvoBalance(getApplicationContext(), 0) > 32000 &&
+                            SaveSharedPreference.getOvoBalance(getApplicationContext(), 0) >= paymentTotalInt) {
 
                         int ovoBalanceint = ovoBalance - paymentTotalInt;
-                        SaveSharedPreference.setOvoBalance(PaymentScreenActivity.this, ovoBalanceint);
-                        //availableBalanceInt = SaveSharedPreference.getOvoBalance(getApplicationContext(), 0);
-                        //availableBalance.setText(String.valueOf(availableBalanceInt));
-                        paymentSelected = true;
-                        Intent i = new Intent(PaymentScreenActivity.this, PaymentSuccessScreenActivity.class);
-                        startActivity(i);
+
+                        if (ovoBalanceint <= 32000){
+
+                            Toast.makeText(PaymentScreenActivity.this, "We're really sorry the current balance must be 32.000", Toast.LENGTH_LONG).show();
+
+                        }else {
+
+                            SaveSharedPreference.setOvoBalance(PaymentScreenActivity.this, ovoBalanceint);
+                            //availableBalanceInt = SaveSharedPreference.getOvoBalance(getApplicationContext(), 0);
+                            //availableBalance.setText(String.valueOf(availableBalanceInt));
+                            paymentSelected = true;
+                            Intent i = new Intent(PaymentScreenActivity.this, PaymentSuccessScreenActivity.class);
+                            startActivity(i);
+
+                        }
 
                     }else {
 
-                        Toast.makeText(PaymentScreenActivity.this, "You're balance not enough", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PaymentScreenActivity.this, "Not Enough Balance", Toast.LENGTH_SHORT).show();
 
                     }
 
                 }else if(SaveSharedPreference.getPaymentMethodName(getApplicationContext(), false) == false){
 
-                    if (SaveSharedPreference.getGopayBalance(getApplicationContext(), 0) > 32000) {
+                    if (SaveSharedPreference.getGopayBalance(getApplicationContext(), 0) > 32000 &&
+                            SaveSharedPreference.getGopayBalance(getApplicationContext(), 0) >= paymentTotalInt) {
 
                         int gopayBalanceInt = gopayBalance - paymentTotalInt;
-                        SaveSharedPreference.setGopayBalance(PaymentScreenActivity.this, gopayBalanceInt);
-                        //availableBalanceInt = SaveSharedPreference.getGopayBalance(getApplicationContext(), 0);
-                        //availableBalance.setText(String.valueOf(availableBalanceInt));
-                        paymentSelected = false;
-                        Intent i = new Intent(PaymentScreenActivity.this, PaymentSuccessScreenActivity.class);
-                        startActivity(i);
 
+                        if (gopayBalanceInt <= 32000){
+
+                            Toast.makeText(PaymentScreenActivity.this, "We're really sorry the current balance must be 32.000", Toast.LENGTH_LONG).show();
+
+                        }else {
+
+                            SaveSharedPreference.setGopayBalance(PaymentScreenActivity.this, gopayBalanceInt);
+                            //availableBalanceInt = SaveSharedPreference.getGopayBalance(getApplicationContext(), 0);
+                            //availableBalance.setText(String.valueOf(availableBalanceInt));
+                            paymentSelected = false;
+                            Intent i = new Intent(PaymentScreenActivity.this, PaymentSuccessScreenActivity.class);
+                            startActivity(i);
+
+                        }
                     }else {
 
-                        Toast.makeText(PaymentScreenActivity.this, "You're balance not enough", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PaymentScreenActivity.this, "Not Enough Balance", Toast.LENGTH_SHORT).show();
 
                     }
 

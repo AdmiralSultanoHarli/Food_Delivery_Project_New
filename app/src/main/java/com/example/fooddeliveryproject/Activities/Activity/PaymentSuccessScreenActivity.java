@@ -43,10 +43,7 @@ public class PaymentSuccessScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent i = new Intent(PaymentSuccessScreenActivity.this, HomeScreenActivity.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(i);
+                intentMoving();
 
             }
         });
@@ -55,11 +52,7 @@ public class PaymentSuccessScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent i = new Intent(PaymentSuccessScreenActivity.this, HomeScreenActivity.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(i);
-
+                intentMoving();
                 SaveSharedPreference.setFragmentOrderOpened(PaymentSuccessScreenActivity.this, true);
 
 
@@ -70,4 +63,14 @@ public class PaymentSuccessScreenActivity extends AppCompatActivity {
         paymentAmount.setText(String.valueOf(SaveSharedPreference.getTotalPayment(this, 0)));
 
     }
+
+    public void intentMoving(){
+
+        Intent i = new Intent(PaymentSuccessScreenActivity.this, HomeScreenActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(i);
+
+    }
+
 }

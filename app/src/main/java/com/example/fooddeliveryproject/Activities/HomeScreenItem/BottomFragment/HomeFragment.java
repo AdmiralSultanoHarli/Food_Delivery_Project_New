@@ -18,7 +18,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,8 +56,10 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
 import com.karumi.dexter.BuildConfig;
 import com.karumi.dexter.Dexter;
@@ -72,8 +76,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.Executor;
 
 import kotlin.jvm.internal.PropertyReference0Impl;
+
 
 public class HomeFragment extends Fragment {
 
@@ -84,6 +90,9 @@ public class HomeFragment extends Fragment {
     private TextView textViewMap;
     public static LinearLayout searchFragment;
     public static ScrollView scrollView;
+    public ImageView pinPoint;
+    public RelativeLayout searchContainer;
+    public TextView textFindLocation;
 
     private ArrayList<DataKhanaval> allData = new ArrayList<>();
 
@@ -124,6 +133,9 @@ public class HomeFragment extends Fragment {
         textViewMap = mView.findViewById(R.id.textViewMap);
         searchFragment = mView.findViewById(R.id.searchFraegment);
         scrollView = mView.findViewById(R.id.scrollView);
+        pinPoint = mView.findViewById(R.id.pinPoint);
+        searchContainer = mView.findViewById(R.id.searchContainer);
+        textFindLocation = mView.findViewById(R.id.textFindLocation);
 
        /* slideList = new ArrayList<>();
         slideList.add(new DataKhanaval(R.drawable.panang_curry, "PanangCurry", ));
@@ -167,22 +179,19 @@ public class HomeFragment extends Fragment {
         });
 
 
-        /*textViewMap.setOnClickListener(new View.OnClickListener() {
+        searchContainer.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
 
                 startLocationButtonClick();
-                textViewMap.setEnabled(false);
 
            }
-        });*/
+        });
 
         //startLocationButtonClick();
 
         //init();
         init();
-
-        startLocationButtonClick();
 
         restoreValuesFromBundle(savedInstanceState);
 
@@ -418,6 +427,18 @@ public class HomeFragment extends Fragment {
 
     }
 
+    public void stopLocationUpdates() {
+        // Removing location updates
+        fusedLocationProviderClient
+                .removeLocationUpdates(locationCallback)
+                .addOnCompleteListener(getActivity(), new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                          //Toast.makeText(mContext, "Location updates stopped!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
     public void openSettings() {
         Intent intent = new Intent();
         intent.setAction(
@@ -443,12 +464,21 @@ public class HomeFragment extends Fragment {
 
     }
 
-
-
     public boolean checkPermissions() {
         int permissionState = ActivityCompat.checkSelfPermission(getContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION);
         return permissionState == PackageManager.PERMISSION_GRANTED;
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        if (requestingLocationUpdates) {
+            // pausing location updates
+            stopLocationUpdates();
+        }
     }
 
     public String getCompleteAddressString(double LATITUDE, double LONGITUDE) {
@@ -466,6 +496,9 @@ public class HomeFragment extends Fragment {
                 strAdd = strReturnedAddress.toString();
                 Log.e("My Current location ", strReturnedAddress.toString());
 
+                textViewMap.setVisibility(View.VISIBLE);
+                pinPoint.setVisibility(View.VISIBLE);
+                textFindLocation.setVisibility(View.GONE);
                 textViewMap.setText(strReturnedAddress.toString());
 
             } else {

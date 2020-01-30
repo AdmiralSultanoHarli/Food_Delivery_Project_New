@@ -101,30 +101,13 @@ public class OrderScreenActivity extends AppCompatActivity {
 
         if (radioButtonGrab.isChecked()){
 
-
-            foodPrice = SaveSharedPreference.getFoodPriceTotal(getApplicationContext(), 0);
-            driverPrice = ovo;
-            deliveryPrice.setText(String.valueOf(driverPrice));
-            allFoodPrice = driverPrice + tax + foodPrice;
-            totalPrice.setText(String.valueOf(allFoodPrice));
-            totalPriceBar.setText(String.valueOf(allFoodPrice));
-            radioButtonGrab.setChecked(true);
-            radioButtonGojek.setChecked(false);
-            SaveSharedPreference.setTotalPayment(OrderScreenActivity.this, allFoodPrice);
+            grabRadioButton();
 
         }
 
         if (radioButtonOvo.isChecked()){
 
-            SaveSharedPreference.setImagePayment(OrderScreenActivity.this, ovoImage);
-            SaveSharedPreference.setColorPayment(OrderScreenActivity.this, ovoColor);
-            //SaveSharedPreference.setButtonColor(OrderScreenActivity.this, ovoButton);
-            SaveSharedPreference.setPaymentName(OrderScreenActivity.this, ovoName);
-            SaveSharedPreference.setPaymentMethodName(OrderScreenActivity.this, true);
-            viewPayment.setBackgroundResource(roundedOvo);
-            //buttonPayment.setBackgroundResource(ovoButton);
-            viewPayment.setText(ovoName);
-
+            ovoRadioButton();
 
         }
 
@@ -173,15 +156,7 @@ public class OrderScreenActivity extends AppCompatActivity {
 
                 if (radioButtonGrab.isChecked()){
 
-                    foodPrice = SaveSharedPreference.getFoodPriceTotal(getApplicationContext(), 0);
-                    driverPrice = ovo;
-                    deliveryPrice.setText(String.valueOf(driverPrice));
-                    allFoodPrice = driverPrice + tax + foodPrice;
-                    totalPrice.setText(String.valueOf(allFoodPrice));
-                    totalPriceBar.setText(String.valueOf(allFoodPrice));
-                    radioButtonGrab.setChecked(true);
-                    radioButtonGojek.setChecked(false);
-                    SaveSharedPreference.setTotalPayment(OrderScreenActivity.this, allFoodPrice);
+                    grabRadioButton();
 
                 }
 
@@ -194,15 +169,7 @@ public class OrderScreenActivity extends AppCompatActivity {
 
                 if (radioButtonGojek.isChecked()){
 
-                    foodPrice = SaveSharedPreference.getFoodPriceTotal(getApplicationContext(), 0);
-                    driverPrice = gopay;
-                    deliveryPrice.setText(String.valueOf(driverPrice));
-                    allFoodPrice = driverPrice + tax + foodPrice;
-                    totalPrice.setText(String.valueOf(allFoodPrice));
-                    totalPriceBar.setText(String.valueOf(allFoodPrice));
-                    radioButtonGojek.setChecked(true);
-                    radioButtonGrab.setChecked(false);
-                    SaveSharedPreference.setTotalPayment(OrderScreenActivity.this, allFoodPrice);
+                    gojekRadioButton();
 
                 }
 
@@ -215,17 +182,7 @@ public class OrderScreenActivity extends AppCompatActivity {
 
                 if(radioButtonOvo.isChecked()){
 
-                    radioButtonOvo.setChecked(true);
-                    radioButtonGopay.setChecked(false);
-                    SaveSharedPreference.setImagePayment(OrderScreenActivity.this, ovoImage);
-                    SaveSharedPreference.setColorPayment(OrderScreenActivity.this, ovoColor);
-                    //SaveSharedPreference.setButtonColor(OrderScreenActivity.this, ovoButton);
-                    SaveSharedPreference.setPaymentName(OrderScreenActivity.this, ovoName);
-                    SaveSharedPreference.setPaymentMethodName(OrderScreenActivity.this, true);
-                    viewPayment.setBackgroundResource(roundedOvo);
-                    //buttonPayment.setBackgroundResource(ovoButton);
-                    viewPayment.setText(ovoName);
-
+                    ovoRadioButton();
 
                 }
 
@@ -238,16 +195,7 @@ public class OrderScreenActivity extends AppCompatActivity {
 
                 if (radioButtonGopay.isChecked()) {
 
-                    radioButtonGopay.setChecked(true);
-                    radioButtonOvo.setChecked(false);
-                    SaveSharedPreference.setImagePayment(OrderScreenActivity.this, gopayImage);
-                    SaveSharedPreference.setColorPayment(OrderScreenActivity.this, gopayColor);
-                    //SaveSharedPreference.setButtonColor(OrderScreenActivity.this, gopayButton);
-                    SaveSharedPreference.setPaymentName(OrderScreenActivity.this, gopayName);
-                    SaveSharedPreference.setPaymentMethodName(OrderScreenActivity.this, false);
-                    viewPayment.setBackgroundResource(roundedGopay);
-                    //buttonPayment.setBackgroundResource(gopayButton);
-                    viewPayment.setText(gopayName);
+                    gopayRadioButton();
 
                 }
             }
@@ -311,6 +259,64 @@ public class OrderScreenActivity extends AppCompatActivity {
 
         }
     };
+
+    public void gopayRadioButton(){
+
+        radioButtonGopay.setChecked(true);
+        radioButtonOvo.setChecked(false);
+        SaveSharedPreference.setImagePayment(OrderScreenActivity.this, gopayImage);
+        SaveSharedPreference.setColorPayment(OrderScreenActivity.this, gopayColor);
+        //SaveSharedPreference.setButtonColor(OrderScreenActivity.this, gopayButton);
+        SaveSharedPreference.setPaymentName(OrderScreenActivity.this, gopayName);
+        SaveSharedPreference.setPaymentMethodName(OrderScreenActivity.this, false);
+        viewPayment.setBackgroundResource(roundedGopay);
+        //buttonPayment.setBackgroundResource(gopayButton);
+        viewPayment.setText(gopayName);
+
+    }
+
+    public void ovoRadioButton(){
+
+        radioButtonOvo.setChecked(true);
+        radioButtonGopay.setChecked(false);
+        SaveSharedPreference.setImagePayment(OrderScreenActivity.this, ovoImage);
+        SaveSharedPreference.setColorPayment(OrderScreenActivity.this, ovoColor);
+        //SaveSharedPreference.setButtonColor(OrderScreenActivity.this, ovoButton);
+        SaveSharedPreference.setPaymentName(OrderScreenActivity.this, ovoName);
+        SaveSharedPreference.setPaymentMethodName(OrderScreenActivity.this, true);
+        viewPayment.setBackgroundResource(roundedOvo);
+        //buttonPayment.setBackgroundResource(ovoButton);
+        viewPayment.setText(ovoName);
+
+    }
+
+    public void gojekRadioButton(){
+
+        foodPrice = SaveSharedPreference.getFoodPriceTotal(getApplicationContext(), 0);
+        driverPrice = gopay;
+        deliveryPrice.setText(String.valueOf(driverPrice));
+        allFoodPrice = driverPrice + tax + foodPrice;
+        totalPrice.setText(String.valueOf(allFoodPrice));
+        totalPriceBar.setText(String.valueOf(allFoodPrice));
+        radioButtonGojek.setChecked(true);
+        radioButtonGrab.setChecked(false);
+        SaveSharedPreference.setTotalPayment(OrderScreenActivity.this, allFoodPrice);
+
+    }
+
+    public void grabRadioButton(){
+
+        foodPrice = SaveSharedPreference.getFoodPriceTotal(getApplicationContext(), 0);
+        driverPrice = ovo;
+        deliveryPrice.setText(String.valueOf(driverPrice));
+        allFoodPrice = driverPrice + tax + foodPrice;
+        totalPrice.setText(String.valueOf(allFoodPrice));
+        totalPriceBar.setText(String.valueOf(allFoodPrice));
+        radioButtonGrab.setChecked(true);
+        radioButtonGojek.setChecked(false);
+        SaveSharedPreference.setTotalPayment(OrderScreenActivity.this, allFoodPrice);
+
+    }
 
     @Override
     public void onBackPressed() {
