@@ -628,7 +628,7 @@ public class SaveSharedPreference {
      */
     public static int getOvoBalance(Context context, int ovoBalance){
 
-        return getPreferences(context).getInt(OVO_BALANCE, 0);
+        return getPreferences(context).getInt(OVO_BALANCE, 200000);
 
     }
 
@@ -645,7 +645,7 @@ public class SaveSharedPreference {
      */
     public static int getGopayBalance(Context context, int gopayBalance){
 
-        return getPreferences(context).getInt(GOPAY_BALANCE, 0);
+        return getPreferences(context).getInt(GOPAY_BALANCE, 200000);
 
     }
 

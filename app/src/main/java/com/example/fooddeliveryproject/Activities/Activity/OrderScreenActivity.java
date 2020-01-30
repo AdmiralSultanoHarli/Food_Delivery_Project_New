@@ -101,15 +101,16 @@ public class OrderScreenActivity extends AppCompatActivity {
 
         if (radioButtonGrab.isChecked()){
 
-            SaveSharedPreference.setPayment(OrderScreenActivity.this, ovo);
+
             foodPrice = SaveSharedPreference.getFoodPriceTotal(getApplicationContext(), 0);
-            driverPrice = SaveSharedPreference.getPayment(getApplicationContext(), 0);
+            driverPrice = ovo;
             deliveryPrice.setText(String.valueOf(driverPrice));
             allFoodPrice = driverPrice + tax + foodPrice;
             totalPrice.setText(String.valueOf(allFoodPrice));
             totalPriceBar.setText(String.valueOf(allFoodPrice));
             radioButtonGrab.setChecked(true);
             radioButtonGojek.setChecked(false);
+            SaveSharedPreference.setTotalPayment(OrderScreenActivity.this, allFoodPrice);
 
         }
 
@@ -171,15 +172,15 @@ public class OrderScreenActivity extends AppCompatActivity {
 
                 if (radioButtonGrab.isChecked()){
 
-                    SaveSharedPreference.setPayment(OrderScreenActivity.this, ovo);
                     foodPrice = SaveSharedPreference.getFoodPriceTotal(getApplicationContext(), 0);
-                    driverPrice = SaveSharedPreference.getPayment(getApplicationContext(), 0);
+                    driverPrice = ovo;
                     deliveryPrice.setText(String.valueOf(driverPrice));
                     allFoodPrice = driverPrice + tax + foodPrice;
                     totalPrice.setText(String.valueOf(allFoodPrice));
                     totalPriceBar.setText(String.valueOf(allFoodPrice));
                     radioButtonGrab.setChecked(true);
                     radioButtonGojek.setChecked(false);
+                    SaveSharedPreference.setTotalPayment(OrderScreenActivity.this, allFoodPrice);
 
                 }
 
@@ -191,15 +192,16 @@ public class OrderScreenActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (radioButtonGojek.isChecked()){
-                    SaveSharedPreference.setPayment(OrderScreenActivity.this, gopay);
+
                     foodPrice = SaveSharedPreference.getFoodPriceTotal(getApplicationContext(), 0);
-                    driverPrice = SaveSharedPreference.getPayment(getApplicationContext(), 0);
+                    driverPrice = gopay;
                     deliveryPrice.setText(String.valueOf(driverPrice));
                     allFoodPrice = driverPrice + tax + foodPrice;
                     totalPrice.setText(String.valueOf(allFoodPrice));
                     totalPriceBar.setText(String.valueOf(allFoodPrice));
                     radioButtonGojek.setChecked(true);
                     radioButtonGrab.setChecked(false);
+                    SaveSharedPreference.setTotalPayment(OrderScreenActivity.this, allFoodPrice);
 
                 }
 
@@ -260,7 +262,6 @@ public class OrderScreenActivity extends AppCompatActivity {
             }
         });
 
-        SaveSharedPreference.setTotalPayment(OrderScreenActivity.this, allFoodPrice);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
