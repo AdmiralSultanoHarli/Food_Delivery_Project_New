@@ -24,7 +24,8 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        isThereIsUser = SaveSharedPreference.getThereIsUser(SplashScreenActivity.this, false);
+        //isThereIsUser = SaveSharedPreference.getThereIsUser(SplashScreenActivity.this, false);
+        isThereIsUser = true;
 
 
         new Handler().postDelayed(new Runnable() {
