@@ -39,6 +39,8 @@ public class PaymentSuccessScreenActivity extends AppCompatActivity {
 
         //buttonMyOrder.setBackgroundResource(SaveSharedPreference.getButtonColor(this, 0));
 
+        SaveSharedPreference.setNoOrderComplete(this, 1);
+
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,6 +72,15 @@ public class PaymentSuccessScreenActivity extends AppCompatActivity {
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(i);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        Intent i = new Intent(PaymentSuccessScreenActivity.this, HomeScreenActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
+        finish();
 
     }
 

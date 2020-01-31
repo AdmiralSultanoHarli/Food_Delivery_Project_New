@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Khanal Food Delivery</string>
+    <string name="app_name">Food Delivery</string>
     <string name="nameerror">Enter Valid Name</string>
     <string name="emailerror">Enter Valid Email</string>
     <string name="passworderror">Enter Some Password, Password should be character</string>

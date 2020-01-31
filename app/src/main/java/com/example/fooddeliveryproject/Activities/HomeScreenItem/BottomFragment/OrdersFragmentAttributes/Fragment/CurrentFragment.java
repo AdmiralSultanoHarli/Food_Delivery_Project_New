@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,6 +34,8 @@ public class CurrentFragment extends Fragment{
     int[] foodPrice;
     int[] img = {R.drawable.nasi_padang_s};
 
+    TextView noItem;
+
     public CurrentFragment() {
 
 
@@ -46,6 +49,7 @@ public class CurrentFragment extends Fragment{
         View v = inflater.inflate(R.layout.fragment_home_orders_current, container, false);
 
         currentCategories = v.findViewById(R.id.orderCurrentRecyclerView);
+        noItem = v.findViewById(R.id.noItem);
 
         currentCategories.setHasFixedSize(true);
 
@@ -59,10 +63,15 @@ public class CurrentFragment extends Fragment{
         RecyclerView.LayoutManager layoutManagerBestCusine = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         currentCategories.setLayoutManager(layoutManagerBestCusine);
 
-        ArrayList<DataKhanaval> dataFoods = getData();
+        if (SaveSharedPreference.getNoOrderComplete(getContext(), 0) > 0) {
 
-        adapterCurrent = new AdapterCurrent(dataFoods, getActivity());
-        currentCategories.setAdapter(adapterCurrent);
+            ArrayList<DataKhanaval> dataFoods = getData();
+
+            adapterCurrent = new AdapterCurrent(dataFoods, getActivity());
+            currentCategories.setAdapter(adapterCurrent);
+            noItem.setVisibility(View.GONE);
+
+        }
 
         return v;
 

@@ -102,7 +102,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="6dp"
         android:layout_marginRight="21dp"
-        android:text="895636823830"/>
+        android:text="81282323180"/>
 
     <View
         android:id="@+id/line2"
@@ -135,7 +135,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="21dp"
         android:layout_marginRight="21dp"
-        android:text="giordano2010@gmail.com"
+        android:text="giord2010@gmail.com"
         android:textSize="15sp"/>
 
     <View

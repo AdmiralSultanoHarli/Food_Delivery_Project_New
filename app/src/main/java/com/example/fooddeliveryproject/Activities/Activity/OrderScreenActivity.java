@@ -1,6 +1,7 @@
 package com.example.fooddeliveryproject.Activities.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -28,7 +29,7 @@ import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 public class OrderScreenActivity extends AppCompatActivity {
 
     ImageView backButton;
-    RadioButton radioButtonGrab, radioButtonGojek, radioButtonOvo, radioButtonGopay;
+    RadioButton radioButtonGrab, radioButtonGojek, radioButtonOvo, radioButtonGopay, radioButtonMuamalat;
     Button buttonPayment;
     TextView textCount,foodCategoriesPrice, deliveryPrice, totalPrice, totalPriceBar, viewPayment;
 
@@ -51,18 +52,22 @@ public class OrderScreenActivity extends AppCompatActivity {
 
     int ovoImage = R.drawable.ovo2;
     int gopayImage = R.drawable.gopay2;
+    int muamalatImage = R.drawable.muamalatname;
 
     int ovoColor = R.color.ovo;
     int gopayColor = R.color.gopay;
+    int muamalatColor = R.color.muamalat;
 
     int ovoButton = R.drawable.rounded_button_payment_ovo;
     int gopayButton = R.drawable.rounded_button_payment_gopay;
 
     int roundedOvo = R.drawable.rounded_view_ovo;
     int roundedGopay = R.drawable.rounded_view_gopay;
+    int roundedMuamalat = R.drawable.rounded_view_muamalat;
 
     String ovoName = "OVO";
     String gopayName = "Gopay";
+    String muamalatName = "Bank Muamalat";
 
 
     @Override
@@ -85,6 +90,7 @@ public class OrderScreenActivity extends AppCompatActivity {
         totalPrice = findViewById(R.id.totalPrice);
         totalPriceBar = findViewById(R.id.totalPriceBar);
         viewPayment = findViewById(R.id.viewPayment);
+        radioButtonMuamalat = findViewById(R.id.radioButtonMuamalat);
 
 
 
@@ -176,6 +182,19 @@ public class OrderScreenActivity extends AppCompatActivity {
             }
         });
 
+        radioButtonMuamalat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (radioButtonMuamalat.isChecked()){
+
+                    muamalatRadioButton();
+
+                }
+
+            }
+        });
+
         radioButtonOvo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -260,18 +279,21 @@ public class OrderScreenActivity extends AppCompatActivity {
         }
     };
 
-    public void gopayRadioButton(){
+    public void muamalatRadioButton(){
 
-        radioButtonGopay.setChecked(true);
+        radioButtonMuamalat.setChecked(true);
         radioButtonOvo.setChecked(false);
-        SaveSharedPreference.setImagePayment(OrderScreenActivity.this, gopayImage);
-        SaveSharedPreference.setColorPayment(OrderScreenActivity.this, gopayColor);
-        //SaveSharedPreference.setButtonColor(OrderScreenActivity.this, gopayButton);
-        SaveSharedPreference.setPaymentName(OrderScreenActivity.this, gopayName);
-        SaveSharedPreference.setPaymentMethodName(OrderScreenActivity.this, false);
-        viewPayment.setBackgroundResource(roundedGopay);
-        //buttonPayment.setBackgroundResource(gopayButton);
-        viewPayment.setText(gopayName);
+        radioButtonGopay.setChecked(false);
+        SaveSharedPreference.setImagePayment(OrderScreenActivity.this, muamalatImage);
+        SaveSharedPreference.setColorPayment(OrderScreenActivity.this, muamalatColor);
+        //SaveSharedPreference.setButtonColor(OrderScreenActivity.this, ovoButton);
+        SaveSharedPreference.setPaymentName(OrderScreenActivity.this, muamalatName);
+        SaveSharedPreference.setPaymentMethodName(OrderScreenActivity.this, 1);
+        viewPayment.setTextColor(ContextCompat.getColor(getApplicationContext(),muamalatColor));
+        viewPayment.setBackgroundResource(roundedMuamalat);
+        viewPayment.setTextSize(15);
+       //buttonPayment.setBackgroundResource(ovoButton);
+        viewPayment.setText(muamalatName);
 
     }
 
@@ -279,14 +301,35 @@ public class OrderScreenActivity extends AppCompatActivity {
 
         radioButtonOvo.setChecked(true);
         radioButtonGopay.setChecked(false);
+        radioButtonMuamalat.setChecked(false);
         SaveSharedPreference.setImagePayment(OrderScreenActivity.this, ovoImage);
         SaveSharedPreference.setColorPayment(OrderScreenActivity.this, ovoColor);
         //SaveSharedPreference.setButtonColor(OrderScreenActivity.this, ovoButton);
         SaveSharedPreference.setPaymentName(OrderScreenActivity.this, ovoName);
-        SaveSharedPreference.setPaymentMethodName(OrderScreenActivity.this, true);
-        viewPayment.setBackgroundResource(roundedOvo);
+        SaveSharedPreference.setPaymentMethodName(OrderScreenActivity.this, 2);
+        viewPayment.setTextColor(ContextCompat.getColor(getApplicationContext(),ovoColor));
+        viewPayment.setBackgroundResource(roundedMuamalat);
+        viewPayment.setTextSize(15);
         //buttonPayment.setBackgroundResource(ovoButton);
         viewPayment.setText(ovoName);
+
+    }
+
+    public void gopayRadioButton(){
+
+        radioButtonGopay.setChecked(true);
+        radioButtonOvo.setChecked(false);
+        radioButtonMuamalat.setChecked(false);
+        SaveSharedPreference.setImagePayment(OrderScreenActivity.this, gopayImage);
+        SaveSharedPreference.setColorPayment(OrderScreenActivity.this, gopayColor);
+        //SaveSharedPreference.setButtonColor(OrderScreenActivity.this, gopayButton);
+        SaveSharedPreference.setPaymentName(OrderScreenActivity.this, gopayName);
+        SaveSharedPreference.setPaymentMethodName(OrderScreenActivity.this, 3);
+        viewPayment.setTextColor(ContextCompat.getColor(getApplicationContext(),gopayColor));
+        viewPayment.setBackgroundResource(roundedMuamalat);
+        viewPayment.setTextSize(15);
+        //buttonPayment.setBackgroundResource(gopayButton);
+        viewPayment.setText(gopayName);
 
     }
 
@@ -317,6 +360,8 @@ public class OrderScreenActivity extends AppCompatActivity {
         SaveSharedPreference.setTotalPayment(OrderScreenActivity.this, allFoodPrice);
 
     }
+
+
 
     @Override
     public void onBackPressed() {

@@ -237,7 +237,7 @@
                 android:layout_below="@+id/paymentDetailsCategories"
                 android:background="@drawable/rounded_button_payment_ovo"
                 android:foreground="?attr/selectableItemBackground"
-                android:layout_marginTop="180dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginBottom="30dp"
                 android:layout_centerInParent="true"
                 android:layout_width="180dp"

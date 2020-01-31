@@ -91,8 +91,8 @@
                 android:layout_height="172.3dp"
                 android:layout_below="@+id/itemCard"
                 app:cardCornerRadius="7dp"
-                android:elevation="8dp"
-                app:cardElevation="10dp"
+                android:elevation="4dp"
+                app:cardElevation="4dp"
                 >
 
                 <RelativeLayout
@@ -188,14 +188,14 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/addOnInfo"
                 android:layout_width="match_parent"
-                android:layout_height="398.2dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_below="@+id/itemInfo"
                 app:cardCornerRadius="11dp"
-                android:elevation="8dp"
-                app:cardElevation="10dp"
+                android:elevation="4dp"
+                app:cardElevation="4dp"
                 android:layout_centerInParent="true">
 
                 <RelativeLayout

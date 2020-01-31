@@ -34,7 +34,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.fooddeliveryproject.Activities.Activity.HomeScreenActivity;
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
+import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterSearchView;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.HomeFragmentAttributes.SearchViewFragment;
 import com.example.fooddeliveryproject.Activities.MenuScreenItem.Adapter.AdapterMenuScreen;
@@ -115,6 +117,8 @@ public class HomeFragment extends Fragment {
     private LocationCallback locationCallback;
     private Location location;
 
+    boolean locationOpened;
+
     // Boolean to toggle the ui
     private boolean requestingLocationUpdates;
 
@@ -137,6 +141,9 @@ public class HomeFragment extends Fragment {
         searchContainer = mView.findViewById(R.id.searchContainer);
         textFindLocation = mView.findViewById(R.id.textFindLocation);
 
+        //searchFragment.setVisibility(View.GONE);
+
+
        /* slideList = new ArrayList<>();
         slideList.add(new DataKhanaval(R.drawable.panang_curry, "PanangCurry", ));
         slideList.add(new DataFood(R.drawable.butter_chicken, "ButterChicken"));
@@ -146,6 +153,11 @@ public class HomeFragment extends Fragment {
 
         final FragmentManager fragmentManager = getFragmentManager();
         final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        textViewMap.setVisibility(View.VISIBLE);
+        pinPoint.setVisibility(View.VISIBLE);
+        textFindLocation.setVisibility(View.GONE);
+        textViewMap.setText(SaveSharedPreference.getLocationName(getContext(), ""));
 
         /*searchView.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -169,29 +181,70 @@ public class HomeFragment extends Fragment {
                /* SearchViewFragment searchViewFragment = new SearchViewFragment();
                 searchViewFragment.searchView.setIconified(false);*/
 
-                FragmentTransaction searchFragmentTransacation = fragmentManager.beginTransaction();
+                HomeScreenActivity homeScreenActivity = (HomeScreenActivity) getActivity();
+                homeScreenActivity.isSearchFragmentOpened = true;
+                homeScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, new SearchViewFragment()).addToBackStack(null).commit();
+
+                /*FragmentTransaction searchFragmentTransacation = fragmentManager.beginTransaction();
 
                 SearchViewFragment searchViewFragment = new SearchViewFragment();
                 searchFragmentTransacation.replace(R.id.searchFraegment, searchViewFragment);
-                searchFragmentTransacation.commit();
+                searchFragmentTransacation.commit();*/
+
+            }
+        });
+
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Log.e("great","in onsearch method");
+                searchFragment.setVisibility(View.VISIBLE);
+                scrollView.setVisibility(View.GONE);
+                searchView.setVisibility(View.GONE);
+
+               /* SearchViewFragment searchViewFragment = new SearchViewFragment();
+                searchViewFragment.searchView.setIconified(false);*/
+
+                HomeScreenActivity homeScreenActivity = (HomeScreenActivity) getActivity();
+                homeScreenActivity.isSearchFragmentOpened = true;
+                homeScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, new SearchViewFragment()).addToBackStack(null).commit();
+
+
+                /*FragmentTransaction searchFragmentTransacation = fragmentManager.beginTransaction();
+
+                SearchViewFragment searchViewFragment = new SearchViewFragment();
+                searchFragmentTransacation.replace(R.id.searchFraegment, searchViewFragment);
+                searchFragmentTransacation.commit();*/
 
             }
         });
 
 
+        init();
+
+        SaveSharedPreference.getLocationOpened(getContext(), false);
+        Log.e("Location First", String.valueOf(SaveSharedPreference.getLocationOpened(mContext, false)));
+
+        if (SaveSharedPreference.getLocationOpened(getContext(), false) == false){
+
+            startLocationButtonClick();
+            //locationOpened = SaveSharedPreference.getLocationOpened(mContext, false);
+            Log.e("Location Opened updated", String.valueOf(SaveSharedPreference.getLocationOpened(mContext, false)));
+
+        }
+
+        Log.e("Location Opened", String.valueOf(SaveSharedPreference.getLocationOpened(mContext, false)));
+
         searchContainer.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
 
-                startLocationButtonClick();
-
+               startLocationButtonClick();
+               //locationOpened =
            }
         });
 
-        //startLocationButtonClick();
-
-        //init();
-        init();
 
         restoreValuesFromBundle(savedInstanceState);
 
@@ -213,7 +266,8 @@ public class HomeFragment extends Fragment {
        /* FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();*/
 
-
+        /*SearchViewFragment searchViewFragment = new SearchViewFragment();
+        fragmentTransaction.replace(R.id.searchFraegment, searchViewFragment);*/
 
         BestCusineFragment bestCusineFragment = new BestCusineFragment();
         fragmentTransaction.add(R.id.bestCusineFragment, bestCusineFragment, bestCusineFragment.getTag());
@@ -242,32 +296,33 @@ public class HomeFragment extends Fragment {
 
     public void init(){
 
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(mContext);
-        settingsClient = LocationServices.getSettingsClient(mContext);
+            fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(mContext);
+            settingsClient = LocationServices.getSettingsClient(mContext);
 
-        locationCallback = new LocationCallback(){
-            @Override
-            public void onLocationResult(LocationResult locationResult) {
-                super.onLocationResult(locationResult);
-                //Location is received
-                location = locationResult.getLastLocation();
+            locationCallback = new LocationCallback() {
+                @Override
+                public void onLocationResult(LocationResult locationResult) {
+                    super.onLocationResult(locationResult);
+                    //Location is received
+                    location = locationResult.getLastLocation();
 
-                updateLocationUI();
+                    updateLocationUI();
 
-            }
-        };
+                }
+            };
 
-        requestingLocationUpdates = false;
+            requestingLocationUpdates = false;
 
-        locationRequest = new LocationRequest();
-        /*locationRequest.setInterval(UPDATE_INTERVAL_IN_MILLISECONDS);
-        locationRequest.setFastestInterval(FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS);*/
-        locationRequest.setMaxWaitTime(WAIT_TIME);
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+            locationRequest = new LocationRequest();
+            /*locationRequest.setInterval(UPDATE_INTERVAL_IN_MILLISECONDS);
+            locationRequest.setFastestInterval(FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS);*/
+            locationRequest.setMaxWaitTime(WAIT_TIME);
+            locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
-        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
-        builder.addLocationRequest(locationRequest);
-        locationSettingsRequest = builder.build();
+            LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
+            builder.addLocationRequest(locationRequest);
+            locationSettingsRequest = builder.build();
+
 
     }
 
@@ -308,11 +363,19 @@ public class HomeFragment extends Fragment {
      */
     public void updateLocationUI(){
 
-        if (location != null){
+        /*if (SaveSharedPreference.getLocationOpened(mContext, false) == true) {
 
-            getCompleteAddressString(location.getLatitude(), location.getLongitude());
+            Toast.makeText(mContext, "Not updated", Toast.LENGTH_SHORT).show();
 
-        }
+        }else {*/
+
+            if (location != null) {
+
+                getCompleteAddressString(location.getLatitude(), location.getLongitude());
+
+            }
+
+
 
     }
 
@@ -341,6 +404,7 @@ public class HomeFragment extends Fragment {
                         Log.i(TAG, "All location settings are satisfied.");
 
                         Toast.makeText(getContext(), "Started location updates!", Toast.LENGTH_SHORT).show();
+                        SaveSharedPreference.setLocationOpened(getActivity(), true);
 
                         //noinspection MissingPermission
                         fusedLocationProviderClient.requestLocationUpdates(locationRequest,
@@ -387,6 +451,8 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onPermissionGranted(PermissionGrantedResponse response) {
                         requestingLocationUpdates = true;
+                        //SaveSharedPreference.setLocationOpened(mContext, true);
+                        SaveSharedPreference.setLocationOpened(getActivity(), true);
                         startLocationUpdates();
                     }
 
@@ -456,6 +522,9 @@ public class HomeFragment extends Fragment {
 
         // Resuming location updates depending on button state and
         // allowed permissions
+
+
+
         if (requestingLocationUpdates && checkPermissions()) {
             startLocationUpdates();
         }
@@ -500,6 +569,7 @@ public class HomeFragment extends Fragment {
                 pinPoint.setVisibility(View.VISIBLE);
                 textFindLocation.setVisibility(View.GONE);
                 textViewMap.setText(strReturnedAddress.toString());
+                SaveSharedPreference.setLocationName(mContext, strReturnedAddress.toString());
 
             } else {
                 Log.e("My Current location ", "No Address returned!");
@@ -527,6 +597,8 @@ public class HomeFragment extends Fragment {
         return foodMenuArrayList;
 
     }
+
+
 
 
     class SliderTimer extends TimerTask{
@@ -562,5 +634,7 @@ public class HomeFragment extends Fragment {
 
         }
     }
+
+
 
 }

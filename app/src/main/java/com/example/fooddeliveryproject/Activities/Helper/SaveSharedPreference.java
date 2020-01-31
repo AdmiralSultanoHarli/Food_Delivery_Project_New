@@ -28,6 +28,10 @@ import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtili
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_FRAGMENT_ORDER_DETAILS_OPENED;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_FRAGMENT_ORDER_OPENED;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_THERE_IS_USER;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.LOCATION_NAME;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.LOCATION_OPENED;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.MUAMALAT_BALANCE;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.NO_ORDER_COMPLETE;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.NUMBER;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.OVO_BALANCE;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.PASSWORD;
@@ -649,17 +653,79 @@ public class SaveSharedPreference {
 
     }
 
-    public static void setPaymentMethodName(Context context, boolean paymentMethodNamae){
+    public static void setPaymentMethodName(Context context, int paymentMethodNamae){
 
         SharedPreferences.Editor editor = getPreferences(context).edit();
-        editor.putBoolean(PAYMENT_METHOD_NAME, paymentMethodNamae);
+        editor.putInt(PAYMENT_METHOD_NAME, paymentMethodNamae);
         editor.apply();
 
     }
 
-    public static boolean getPaymentMethodName(Context context, boolean paymentMethodNamae){
+    public static int getPaymentMethodName(Context context, int paymentMethodNamae){
 
-        return getPreferences(context).getBoolean(PAYMENT_METHOD_NAME, false);
+        return getPreferences(context).getInt(PAYMENT_METHOD_NAME, 0);
+
+    }
+
+    public static void setLocationOpened(Context context, boolean locationOpened){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putBoolean(LOCATION_OPENED, locationOpened);
+        editor.apply();
+
+    }
+
+    public static boolean getLocationOpened(Context context, boolean locationOpened){
+
+        return getPreferences(context).getBoolean(LOCATION_OPENED, false);
+
+    }
+
+    public static void setLocationName(Context context, String locationName){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putString(LOCATION_NAME, locationName);
+        editor.apply();
+
+    }
+
+    public static String getLocationName(Context context, String locationName){
+
+        return getPreferences(context).getString(LOCATION_NAME, "");
+
+    }
+
+    public static void setNoOrderComplete(Context context, int noOrderComplete){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putInt(NO_ORDER_COMPLETE, noOrderComplete);
+        editor.apply();
+
+    }
+
+    /**
+     * getEmail
+     */
+    public static int getNoOrderComplete(Context context, int noOrderComplete){
+
+        return getPreferences(context).getInt(NO_ORDER_COMPLETE, 0);
+
+    }
+
+    public static void setMuBalance(Context context, int muBalance){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putInt(MUAMALAT_BALANCE, muBalance);
+        editor.apply();
+
+    }
+
+    /**
+     * getEmail
+     */
+    public static int getMubalance(Context context, int muBalance){
+
+        return getPreferences(context).getInt(MUAMALAT_BALANCE, 200000);
 
     }
 

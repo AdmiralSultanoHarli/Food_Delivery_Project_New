@@ -15,23 +15,18 @@ import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 6;
-    private static final String DATABASE_NAME = "khanaval.db";
-
     //User Data
     public static final String TABLE_USER = "user";
     public static final String COLUMN_USER_ID = "id";
     public static final String COLUMN_USERNAME = "username";
     public static final String COLUMN_USER_PHONENUMBER = "phonenumber";
     public static final String COLUMN_USER_PASSWORD = "password";
-
     //Restaurant Data
     public static final String TABLE_RESTAURANT = "restaurant";
     public static final String COLUMN_REST_ID = "restaurantid";
     public static final String COLUMN_REST_NAME = "restaurantname";
     public static final String COLUMN_REST_ADDRESS = "restaurantaddress";
     public static final String COLUMN_REST_IMG = "restaurantimage";
-
     //Food Data
     public static final String TABLE_FOOD = "food";
     public static final String COLUMN_FOOD_ID = "foodid";
@@ -41,7 +36,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_FOOD_PRICE_DISCOUNT = "foodpricediscount";
     public static final String COLUMN_BUTTON = "button";
     public static final String COLUMN_FOOD_IMG = "foodimage";
-
     //Food Transaction Data
     public static final String TABLE_FOOD_TRANSACTION = "foodtransaction";
     public static final String COLUMN_FOOD_TRANSACTION_ID = "foodtransactionid";
@@ -49,44 +43,41 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_FOOD_ALLQUANTITY = "foodallquantity";
     public static final String COLUMN_FOOD_PRICE_TOTAL = "foodpricetotal";
     public static final String COLUMN_FOOD_PRICE_DISCOUNT_TOTAL = "foodpricediscounttotal";
-
     //BestCusine Fragment Data
     public static final String TABLE_BESTCUSINE_FRAGMENT = "bestcusinefragment";
     public static final String COLUMN_BESTCUSINE_ID = "foodid";
     public static final String COLUMN_BESTCUSINE_NAME = "foodname";
     public static final String COLUMN_BESTCUSINE_IMG = "foodimage";
-
     //TodaysSpecial Fragment Data
     public static final String TABLE_TODAYSPECIAL_FRAGMENT = "todaysspecialfragment";
     public static final String COLUMN_TODAYSPECIAL_ID = "foodid";
     public static final String COLUMN_TODAYSPECIAL_NAME = "foodname";
     public static final String COLUMN_TODAYSPECIAL_IMG = "foodimage";
-
     //YourFavourites Fragment Data
     public static final String TABLE_YOURFAVOURITES_FRAGMENT = "yourfavouritesfragment";
     public static final String COLUMN_YOURFAVOURITES_ID = "foodid";
     public static final String COLUMN_YOURFAVOURITES_NAME = "foodname";
     public static final String COLUMN_YOURFAVOURITES_IMG = "foodimage";
-
     //Custom Fragment Data
     public static final String TABLE_CUSTOM_FRAGMENT = "customfragment";
     public static final String COLUMN_CUSTOM_ID = "foodid";
     public static final String COLUMN_CUSTOM_NAME = "foodname";
     public static final String COLUMN_CUSTOM_IMG = "foodimage";
-
+    private static final int DATABASE_VERSION = 7;
+    private static final String DATABASE_NAME = "khanaval.db";
     //Image library
     public static int basmati = R.drawable.basmati_rice;
     public static int murg_musallam = R.drawable.murg_musallam;
-    public static int bhindi_masala = R.drawable.bhindi_masala;
+    //public static int bhindi_masala = R.drawable.bhindi_masala;
     public static int panang_curry = R.drawable.panang_curry;
     public static int beverage = R.drawable.beverage;
     public static int snacks = R.drawable.snacks;
     public static int sweets = R.drawable.sweets;
     public static int mix_veggies = R.drawable.mix_veggies;
     public static int maharashtra_thali = R.drawable.maharashtra_thali;
-    public static int jeera_alo = R.drawable.jeera_alo;
-    public static int goan_special = R.drawable.goan_vegetarian_thali;
-    public static int dal_tadkda = R.drawable.dal_tadkda;
+    //public static int jeera_alo = R.drawable.jeera_alo;
+   // public static int goan_special = R.drawable.goan_vegetarian_thali;
+    //public static int dal_tadkda = R.drawable.dal_tadkda;
     public static int chow_mein = R.drawable.chow_mein;
     public static int chapati = R.drawable.chapati;
     public static int butter_chicken = R.drawable.butter_chicken;
@@ -179,7 +170,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "('Sate Ayam', '10 Tusuk sate ayam + bumbu kacang + nasi', 40000, 50000, 0," + R.drawable.sate_ayam + ")," +
                 "('Sate Padang', '20 Tusuk sate padang + bumbu sate padang + lontong', 100000, 1150000, 0," + R.drawable.sate_padang + ")," +
                 "('Nasi Lemak', 'Nasi lemak + kacang + telor _ sambal', 50000, 30000, 0," + R.drawable.nasi_lemak + ")," +
-                "('Dal Tadkda', '3 Roti butter + kentang india', 30000, 40000, 0," + R.drawable.dal_tadkda + ")," +
+               // "('Dal Tadkda', '3 Roti butter + kentang india', 30000, 40000, 0," + R.drawable.dal_tadkda + ")," +
                 "('Chinese Food', '1 porsi spagheti chinese + sayuran', 40000, 45000, 0," + R.drawable.chow_mein + ")," +
                 "('Indian Curry', '3 roti butter + Mix sayuran + nasi', 20000, 35000, 0," + R.drawable.maharashtra_thali + ")," +
                 "('Panang Curry', '3 Curry ayam + sayuran', 50000, 65000, 0," + R.drawable.panang_curry + ")," +
@@ -187,13 +178,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String DATA_BESTCUSINE = "INSERT INTO " + TABLE_BESTCUSINE_FRAGMENT + "(foodname, foodimage)" +
                 "VALUES ('Thai Special'," + panang_curry + ")," +
-                "('Indian'," + dal_tadkda + ")," +
+                "('Indian'," + butter_chicken + ")," +
                 "('Indonesian'," + R.drawable.nasi_padang_s + ")," +
                 "('Malysian'," + R.drawable.nasi_lemak + ")," +
                 "('Chinese'," + chow_mein + ")";
 
         String DATA_TODAYSPECIAL = "INSERT INTO " + TABLE_TODAYSPECIAL_FRAGMENT + "(foodname, foodimage)" +
-                "VALUES ('Goan Special'," + goan_special + ")," +
+                "VALUES ('Goan Special'," + butter_chicken + ")," +
                 "('Indian Curry'," + maharashtra_thali + ")," +
                 "('Panang Curry'," + panang_curry + ")," +
                 "('Chapati'," + chapati + ")";
@@ -205,7 +196,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "('Sate Ayam'," + R.drawable.sate_ayam + ")," +
                 "('Sate Padang'," + R.drawable.sate_padang + ")," +
                 "('Murg Musallam'," + murg_musallam + ")," +
-                "('Goan Special'," + goan_special + ")";
+                "('Goan Special'," + butter_chicken + ")";
 
         String DATA_CUSTOM = "INSERT INTO " + TABLE_CUSTOM_FRAGMENT + "(foodname, foodimage)" +
                 "VALUES ('Beverage'," + beverage + ")," +

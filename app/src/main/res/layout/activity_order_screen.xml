@@ -109,7 +109,7 @@
                         android:layout_marginRight="5dp"
                         android:layout_marginBottom="5dp"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="4dp">
+                        app:cardElevation="2dp">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -277,7 +277,7 @@
                         android:layout_marginTop="2dp"
                         android:layout_marginBottom="10dp"
                         app:cardCornerRadius="7dp"
-                        app:cardElevation="5dp">
+                        app:cardElevation="2dp">
 
                         <LinearLayout
                             android:orientation="vertical"
@@ -415,46 +415,91 @@
                     <androidx.cardview.widget.CardView
                         android:layout_below="@+id/textViewSelectPayment"
                         android:layout_width="match_parent"
-                        android:layout_height="93dp"
+                        android:layout_height="120dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginTop="2dp"
                         android:layout_marginBottom="10dp"
                         app:cardCornerRadius="7dp"
-                        app:cardElevation="5dp">
+                        app:cardElevation="2dp">
 
                         <LinearLayout
                             android:orientation="vertical"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:weightSum="2">
+                            android:weightSum="3">
 
                             <RelativeLayout
-                                android:layout_weight="1"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+
+                                <ImageView
+                                    android:id="@+id/imageMuamalat"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_centerInParent="true"
+                                    android:layout_marginLeft="5dp"
+                                    android:background="@drawable/muamalatlogo"
+                                    android:scaleType="fitXY" />
+
+                                <TextView
+                                    android:id="@+id/textViewMuamalat"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:layout_marginLeft="29dp"
+                                    android:layout_toRightOf="@+id/imageMuamalat"
+                                    android:text="Bank Muamalat"
+                                    android:textColor="@color/colorBlack"
+                                    android:textSize="14sp" />
+
+                                <RadioButton
+                                    android:id="@+id/radioButtonMuamalat"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerInParent="true"
+                                    android:layout_marginRight="10dp"
+                                    android:buttonTint="@color/colorButton" />
+
+                            </RelativeLayout>
+
+                            <View
+                                android:id="@+id/line1"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/grayLine"
+                                android:layout_marginLeft="3dp"
+                                android:layout_marginRight="3dp"
+                                />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
 
                                 <ImageView
                                     android:id="@+id/imageOvo"
                                     android:layout_width="50dp"
                                     android:layout_height="30dp"
-                                    android:layout_centerInParent="true"
                                     android:layout_alignParentLeft="true"
+                                    android:layout_centerInParent="true"
                                     android:layout_marginLeft="5dp"
                                     android:background="@drawable/ovo2"
-                                    android:scaleType="fitXY"
-                                    />
+                                    android:scaleType="fitXY" />
 
                                 <TextView
                                     android:id="@+id/textViewOvo"
-                                    android:text="OVO"
-                                    android:textSize="14sp"
-                                    android:textColor="@color/colorBlack"
-                                    android:layout_toRightOf="@+id/imageOvo"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_centerInParent="true"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"/>
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_toRightOf="@+id/imageOvo"
+                                    android:text="OVO"
+                                    android:textColor="@color/colorBlack"
+                                    android:textSize="14sp" />
 
                                 <RadioButton
                                     android:id="@+id/radioButtonOvo"
@@ -463,7 +508,7 @@
                                     android:layout_alignParentRight="true"
                                     android:layout_centerInParent="true"
                                     android:layout_marginRight="10dp"
-                                    android:buttonTint="@color/colorButton"/>
+                                    android:buttonTint="@color/colorButton" />
 
                             </RelativeLayout>
 
@@ -545,7 +590,7 @@
                         android:layout_marginTop="2dp"
                         android:layout_marginBottom="12dp"
                         app:cardCornerRadius="6dp"
-                        app:cardElevation="5dp">
+                        app:cardElevation="2dp">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -669,7 +714,7 @@
         <RelativeLayout
             android:id="@+id/paymentBar"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true">
 
             <TextView
@@ -677,25 +722,22 @@
                 android:text="53.000"
                 android:textSize="12sp"
                 android:textColor="@color/colorBlack"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="13dp"
                 android:layout_marginLeft="12dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <TextView
                 android:id="@+id/viewPayment"
-                android:text="OVO"
                 android:textSize="10sp"
-                android:textColor="@color/colorWhite"
                 android:gravity="center"
                 android:layout_toRightOf="@+id/totalPriceBar"
-                android:layout_width="44.5dp"
-                android:layout_height="17.3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
+                android:padding="4dp"
                 android:layout_marginLeft="5dp"
-                android:background="@drawable/rounded_view_ovo"/>
+                />
 
             <Button
                 android:id="@+id/buttonPayment"
@@ -707,6 +749,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
                 android:layout_centerInParent="true"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
@@ -754,7 +797,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="5dp"
-            app:cardElevation="5dp"
+            app:cardElevation="2dp"
             app:cardCornerRadius="6dp">
 
             <RelativeLayout

@@ -41,6 +41,7 @@ public class PaymentScreenActivity extends AppCompatActivity {
 
     int ovoBalance;
     int gopayBalance;
+    int muamalatBalance;
 
     boolean whichPaymentMethod = false;
     boolean ovoBalanceChanged;
@@ -74,8 +75,9 @@ public class PaymentScreenActivity extends AppCompatActivity {
 
         ovoBalance = SaveSharedPreference.getOvoBalance(this, 0);
         gopayBalance = SaveSharedPreference.getGopayBalance(this, 0);
+        muamalatBalance = SaveSharedPreference.getMubalance(this, 0);
 
-        whichPaymentMethod = SaveSharedPreference.getPaymentMethodName(this, false);
+        //whichPaymentMethod = SaveSharedPreference.getPaymentMethodName(this, 0);
 
 
         //Log.e("Image Resource", String.valueOf(SaveSharedPreference.getImagePayment(this, 0)));
@@ -89,7 +91,35 @@ public class PaymentScreenActivity extends AppCompatActivity {
                 String date = simpleDateFormat.format(new Date());
                 SaveSharedPreference.setDate(PaymentScreenActivity.this, date);
 
-                if (SaveSharedPreference.getPaymentMethodName(getApplicationContext(), false) == true){
+
+                if(SaveSharedPreference.getPaymentMethodName(getApplicationContext(), 0) == 1){
+
+                    if (SaveSharedPreference.getMubalance(getApplicationContext(), 0) > 32000 &&
+                            SaveSharedPreference.getMubalance(getApplicationContext(), 0) >= paymentTotalInt) {
+
+                        int muamalatBalanceInt = muamalatBalance - paymentTotalInt;
+
+                        if (muamalatBalanceInt <= 32000){
+
+                            Toast.makeText(PaymentScreenActivity.this, "We're really sorry the current balance must be 32.000", Toast.LENGTH_LONG).show();
+
+                        }else {
+
+                            SaveSharedPreference.setMuBalance(PaymentScreenActivity.this, muamalatBalanceInt);
+                            //availableBalanceInt = SaveSharedPreference.getOvoBalance(getApplicationContext(), 0);
+                            //availableBalance.setText(String.valueOf(availableBalanceInt));
+                            paymentSelected = true;
+                            Intent i = new Intent(PaymentScreenActivity.this, PaymentSuccessScreenActivity.class);
+                            startActivity(i);
+
+                        }
+
+                    }else {
+
+                        Toast.makeText(PaymentScreenActivity.this, "Not Enough Balance", Toast.LENGTH_SHORT).show();
+
+                    }
+                }else if (SaveSharedPreference.getPaymentMethodName(getApplicationContext(), 0) == 2){
 
                     if (SaveSharedPreference.getOvoBalance(getApplicationContext(), 0) > 32000 &&
                             SaveSharedPreference.getOvoBalance(getApplicationContext(), 0) >= paymentTotalInt) {
@@ -117,7 +147,7 @@ public class PaymentScreenActivity extends AppCompatActivity {
 
                     }
 
-                }else if(SaveSharedPreference.getPaymentMethodName(getApplicationContext(), false) == false){
+                }else if(SaveSharedPreference.getPaymentMethodName(getApplicationContext(), 0) == 3){
 
                     if (SaveSharedPreference.getGopayBalance(getApplicationContext(), 0) > 32000 &&
                             SaveSharedPreference.getGopayBalance(getApplicationContext(), 0) >= paymentTotalInt) {
@@ -151,11 +181,15 @@ public class PaymentScreenActivity extends AppCompatActivity {
 
         });
 
-        if (SaveSharedPreference.getPaymentMethodName(getApplicationContext(), false) == true){
+        if (SaveSharedPreference.getPaymentMethodName(getApplicationContext(), 0) == 1){
 
-            availableBalance.setText(String.valueOf(SaveSharedPreference.getOvoBalance(this, 0)));
+            availableBalance.setText(String.valueOf(SaveSharedPreference.getMubalance(this, 0)));
 
-        }else if (SaveSharedPreference.getPaymentMethodName(getApplicationContext(), false) == false){
+        }else if (SaveSharedPreference.getPaymentMethodName(getApplicationContext(), 0) == 2){
+
+            availableBalance.setText(String.valueOf(SaveSharedPreference.getGopayBalance(this, 0)));
+
+        }else{
 
             availableBalance.setText(String.valueOf(SaveSharedPreference.getGopayBalance(this, 0)));
 
@@ -201,7 +235,6 @@ public class PaymentScreenActivity extends AppCompatActivity {
         win.setAttributes(winParams);
 
     }*/
-
 
 
 }

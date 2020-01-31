@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fooddeliveryproject.Activities.Activity.HomeScreenActivity;
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterCustomCategories;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterSearchView;
@@ -69,10 +70,15 @@ public class SearchViewFragment extends Fragment {
                 homeFragment.searchFragment.setVisibility(View.GONE);
                 homeFragment.scrollView.setVisibility(View.VISIBLE);
                 homeFragment.searchView.setIconified(true);
+
+                HomeScreenActivity homeScreenActivity = (HomeScreenActivity) getActivity();
+                homeScreenActivity.isSearchFragmentOpened = false;
+                homeScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, new HomeFragment()).commit();
+
               //  homeFragment.searchView.
 
-
                 return true;
+
             }
         });
 

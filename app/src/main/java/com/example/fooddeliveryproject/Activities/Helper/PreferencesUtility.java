@@ -66,7 +66,15 @@ public class PreferencesUtility {
 
     public static final String OVO_BALANCE = "ovobalance";
 
+    public static final String MUAMALAT_BALANCE = "muamalatbalance";
+
     public static final String PAYMENT_METHOD_NAME = "paymentmethodname";
+
+    public static final String LOCATION_OPENED = "locationopened";
+
+    public static final String LOCATION_NAME = "locationname";
+
+    public static final String NO_ORDER_COMPLETE = "noordercomplete";
 
 
 }
