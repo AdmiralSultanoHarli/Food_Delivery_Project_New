@@ -27,6 +27,7 @@ import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtili
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_ADDTOCART_VISIBLE;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_FRAGMENT_ORDER_DETAILS_OPENED;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_FRAGMENT_ORDER_OPENED;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_SEARCH_OPENED;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_THERE_IS_USER;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.LOCATION_NAME;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.LOCATION_OPENED;
@@ -52,12 +53,6 @@ public class SaveSharedPreference {
     }
 
 
-    /**
-     * setFoodCategory
-     *
-     * @param context
-     * @param foodCategory
-     */
     public static void setFoodCategory (Context context, String foodCategory){
 
         SharedPreferences.Editor editor = getPreferences(context).edit();
@@ -66,9 +61,6 @@ public class SaveSharedPreference {
 
     }
 
-    /**
-     * getFoodCategory
-     */
     public static String getFoodCategory (Context context, String foodCategory){
 
         return getPreferences(context).getString(FOOD_CATEGORY, "");
@@ -76,12 +68,6 @@ public class SaveSharedPreference {
     }
 
 
-    /**
-     * setFoodName
-     *
-     * @param context
-     * @param foodName
-     */
     public static void setFoodName(Context context, String foodName){
 
         SharedPreferences.Editor editor = getPreferences(context).edit();
@@ -90,9 +76,6 @@ public class SaveSharedPreference {
 
     }
 
-    /**
-     * getFoodName
-     */
     public static String getFoodName(Context context, String foodName){
 
         return getPreferences(context).getString(FOOD_NAME, "");
@@ -100,12 +83,6 @@ public class SaveSharedPreference {
     }
 
 
-    /**
-     * setFoodDescription
-     *
-     * @param context
-     * @param foodDescription
-     */
     public static void setFoodDescription(Context context, String foodDescription){
 
         SharedPreferences.Editor editor = getPreferences(context).edit();
@@ -114,9 +91,6 @@ public class SaveSharedPreference {
 
     }
 
-    /**
-     * getFoodDescription
-     */
     public static String getFoodDescription(Context context, String foodDescription){
 
         return getPreferences(context).getString(FOOD_DESCRIPTION, "");
@@ -124,12 +98,6 @@ public class SaveSharedPreference {
     }
 
 
-    /**
-     * setQuantity
-     *
-     * @param context
-     * @param quantity
-     */
     public static void setQuantity(Context context, int quantity){
 
         SharedPreferences.Editor editor = getPreferences(context).edit();
@@ -138,9 +106,6 @@ public class SaveSharedPreference {
 
     }
 
-    /**
-     * getQuantity
-     */
     public static int getQuantity(Context context, int quantity){
 
         return getPreferences(context).getInt(QUANTITY, 0);
@@ -148,12 +113,6 @@ public class SaveSharedPreference {
     }
 
 
-    /**
-     * setAllQuantity
-     *
-     * @param context
-     * @param allQuantity
-     */
     public static void setAllQuantity(Context context, int allQuantity){
 
         SharedPreferences.Editor editor = getPreferences(context).edit();
@@ -162,9 +121,6 @@ public class SaveSharedPreference {
 
     }
 
-    /**
-     * getAllQuantity
-     */
     public static int getAllQuantity(Context context, int allQuantity){
 
         return getPreferences(context).getInt(ALL_QUANTITY, 0);
@@ -172,12 +128,6 @@ public class SaveSharedPreference {
     }
 
 
-    /**
-     * setFoodPrice
-     *
-     * @param context
-     * @param foodPrice
-     */
     public static void setFoodPrice(Context context, int foodPrice){
 
         SharedPreferences.Editor editor = getPreferences(context).edit();
@@ -186,9 +136,6 @@ public class SaveSharedPreference {
 
     }
 
-    /**
-     * getFoodPrice
-     */
     public static int getFoodPrice(Context context, int foodPrice){
 
         return getPreferences(context).getInt(FOOD_PRICE, 0);
@@ -196,12 +143,6 @@ public class SaveSharedPreference {
     }
 
 
-    /**
-     * setFoodPriceDiscount
-     *
-     * @param context
-     * @param foodPriceDiscount
-     */
     public static void setFoodPriceDiscount(Context context, int foodPriceDiscount){
 
         SharedPreferences.Editor editor = getPreferences(context).edit();
@@ -210,9 +151,6 @@ public class SaveSharedPreference {
 
     }
 
-    /**
-     * getFoodPriceDiscount
-     */
     public static int getFoodPriceDiscount(Context context, int foodPriceDiscount){
 
         return getPreferences(context).getInt(FOOD_PRICE_DISCOUNT, 0);
@@ -220,12 +158,6 @@ public class SaveSharedPreference {
     }
 
 
-    /**
-     * setFoodPriceTotal
-     *
-     * @param context
-     * @param foodPriceTotal
-     */
     public static void setFoodPriceTotal(Context context, int foodPriceTotal){
 
         SharedPreferences.Editor editor = getPreferences(context).edit();
@@ -234,9 +166,6 @@ public class SaveSharedPreference {
 
     }
 
-    /**
-     * getFoodPriceTotal
-     */
     public static int getFoodPriceTotal(Context context, int foodPriceTotal){
 
         return getPreferences(context).getInt(FOOD_PRICE_TOTAL, 0);
@@ -244,12 +173,6 @@ public class SaveSharedPreference {
     }
 
 
-    /**
-     * setFoodPriceDiscountTotal
-     *
-     * @param context
-     * @param foodPriceDiscountTotal
-     */
     public static void setFoodPriceDiscountTotal (Context context, int foodPriceDiscountTotal){
 
         SharedPreferences.Editor editor = getPreferences(context).edit();
@@ -258,9 +181,6 @@ public class SaveSharedPreference {
 
     }
 
-    /**
-     * getFoodPriceDiscountTotal
-     */
     public static int getFoodPriceDiscountTotal (Context context, int foodPriceDiscountTotal){
 
         return getPreferences(context).getInt(FOOD_PRICE_DISCOUNT_TOTAL, 0);
@@ -268,12 +188,6 @@ public class SaveSharedPreference {
     }
 
 
-    /**
-     * setUsername
-     *
-     * @param context
-     * @param username
-     */
     public static void setUsername(Context context, String username){
 
         SharedPreferences.Editor editor = getPreferences(context).edit();
@@ -282,9 +196,6 @@ public class SaveSharedPreference {
 
     }
 
-    /**
-     * getUsername
-     */
     public static String getUsername(Context context, String username){
 
         return getPreferences(context).getString(USERNAME, "");
@@ -292,12 +203,6 @@ public class SaveSharedPreference {
     }
 
 
-    /**
-     * setPassword
-     *
-     * @param context
-     * @param password
-     */
     public static void setPassword(Context context, String password){
 
         SharedPreferences.Editor editor = getPreferences(context).edit();
@@ -306,21 +211,13 @@ public class SaveSharedPreference {
 
     }
 
-    /**
-     * getPassword
-     */
     public static String getPassword(Context context, String password){
 
         return getPreferences(context).getString(PASSWORD, "");
 
     }
 
-    /**
-     * setEmail
-     *
-     * @param context
-     * @param email
-     */
+
     public static void setEmail(Context context, String email){
 
         SharedPreferences.Editor editor = getPreferences(context).edit();
@@ -329,21 +226,13 @@ public class SaveSharedPreference {
 
     }
 
-    /**
-     * getEmail
-     */
     public static String getEmail(Context context, String email){
 
         return getPreferences(context).getString(EMAIL, "");
 
     }
 
-    /**
-     * setNumber
-     *
-     * @param context
-     * @param number
-     */
+
     public static void setNumber(Context context, String number){
 
         SharedPreferences.Editor editor = getPreferences(context).edit();
@@ -352,9 +241,6 @@ public class SaveSharedPreference {
 
     }
 
-    /**
-     * getNumber
-     */
     public static String getNumber(Context context, String number){
 
         return getPreferences(context).getString(NUMBER, "");
@@ -362,12 +248,6 @@ public class SaveSharedPreference {
     }
 
 
-    /**
-     * setIsAddToCartVisible
-     *
-     * @param context
-     * @param isAddToCartVisble
-     */
     public static void setIsAddToCartVisible(Context context, boolean isAddToCartVisble){
 
         SharedPreferences.Editor editor = getPreferences(context).edit();
@@ -376,20 +256,11 @@ public class SaveSharedPreference {
 
     }
 
-    /**
-     * getIsAddToCartVisible
-     */
     public static boolean getIsAddToCartVisible(Context context, boolean isAddToCart){
         return getPreferences(context).getBoolean(IS_ADDTOCART_VISIBLE, true);
     }
 
 
-    /**
-     * setFragmentOpened
-     *
-     * @param context
-     * @param isFragmentOrderOpened
-     */
     public static void setFragmentOrderOpened(Context context, boolean isFragmentOrderOpened){
 
         SharedPreferences.Editor editor = getPreferences(context).edit();
@@ -398,21 +269,13 @@ public class SaveSharedPreference {
 
     }
 
-    /**
-     * getFragmentOpened
-     */
     public static boolean getFragmentOrderOpened(Context context, boolean isFragmentOrderOpened){
 
         return getPreferences(context).getBoolean(IS_FRAGMENT_ORDER_OPENED, false);
 
     }
 
-    /**
-     * setFragmentOrderDetailsOpened
-     *
-     * @param context
-     * @param isFragmentOrderDetailsOpened
-     */
+
     public static void setFragmentOrderDetailsOpened(Context context, boolean isFragmentOrderDetailsOpened){
 
         SharedPreferences.Editor editor = getPreferences(context).edit();
@@ -421,21 +284,13 @@ public class SaveSharedPreference {
 
     }
 
-    /**
-     * getFragmentOrderDetailsOpened
-     */
     public static boolean getFragmentOrderDetailsOpened(Context context, boolean isFragmentOrderDetailsOpened){
 
         return getPreferences(context).getBoolean(IS_FRAGMENT_ORDER_DETAILS_OPENED, false);
 
     }
 
-    /**
-     * setFragmentOrderDetailsOpened
-     *
-     * @param context
-     * @param sub_items
-     */
+
     public static void setFragmentOrderSubDetailsOpened(Context context, int sub_items){
 
         SharedPreferences.Editor editor = getPreferences(context).edit();
@@ -444,21 +299,13 @@ public class SaveSharedPreference {
 
     }
 
-    /**
-     * getFragmentOrderDetailsOpened
-     */
     public static int getFragmentOrderSubDetailsOpened(Context context, int sub_items){
 
         return getPreferences(context).getInt(sub_item, 0);
 
     }
 
-    /**
-     * setFragmentOrderDetailsOpened
-     *
-     * @param context
-     * @param items
-     */
+
     public static void setFragmentOrderMenuDetailsOpened(Context context, int items){
 
         SharedPreferences.Editor editor = getPreferences(context).edit();
@@ -467,9 +314,6 @@ public class SaveSharedPreference {
 
     }
 
-    /**
-     * getFragmentOrderDetailsOpened
-     */
     public static int getFragmentOrderMenuDetailsOpened(Context context, int items){
 
         return getPreferences(context).getInt(main_item, 0);
@@ -491,6 +335,7 @@ public class SaveSharedPreference {
 
     }
 
+
     public static void setPayment(Context context, int payment){
 
         SharedPreferences.Editor editor = getPreferences(context).edit();
@@ -499,14 +344,12 @@ public class SaveSharedPreference {
 
     }
 
-    /**
-     * getEmail
-     */
     public static int getPayment(Context context, int payment){
 
         return getPreferences(context).getInt(payment_method, 0);
 
     }
+
 
     public static void setSearchOpened(Context context, boolean isSearchOpened){
 
@@ -522,6 +365,7 @@ public class SaveSharedPreference {
 
     }
 
+
     public static void setTotalPayment(Context context, int totalPayment){
 
         SharedPreferences.Editor editor = getPreferences(context).edit();
@@ -530,9 +374,6 @@ public class SaveSharedPreference {
 
     }
 
-    /**
-     * getEmail
-     */
     public static int getTotalPayment(Context context, int totalPayment){
 
         return getPreferences(context).getInt(TOTAL_PAYMENT, 0);
@@ -554,6 +395,7 @@ public class SaveSharedPreference {
 
     }
 
+
     public static void setImagePayment(Context context, int imagePayment){
 
         SharedPreferences.Editor editor = getPreferences(context).edit();
@@ -562,14 +404,12 @@ public class SaveSharedPreference {
 
     }
 
-    /**
-     * getEmail
-     */
     public static int getImagePayment(Context context, int imagePayment){
 
         return getPreferences(context).getInt(IMAGE_PAYMENT, 0);
 
     }
+
 
     public static void setColorPayment(Context context, int colorPayment){
 
@@ -579,14 +419,12 @@ public class SaveSharedPreference {
 
     }
 
-    /**
-     * getEmail
-     */
     public static int getColorPayment(Context context, int colorPayment){
 
         return getPreferences(context).getInt(COLOR_PAYMENT, 0);
 
     }
+
 
     public static void setButtonColor(Context context, int buttonColor){
 
@@ -596,14 +434,12 @@ public class SaveSharedPreference {
 
     }
 
-    /**
-     * getEmail
-     */
     public static int getButtonColor(Context context, int buttonColor){
 
         return getPreferences(context).getInt(BUTTON_COLOR_PAYMENT, 0);
 
     }
+
 
     public static void setPaymentName(Context context, String paymentName){
 
@@ -619,6 +455,7 @@ public class SaveSharedPreference {
 
     }
 
+
     public static void setOvoBalance(Context context, int ovoBalance){
 
         SharedPreferences.Editor editor = getPreferences(context).edit();
@@ -627,14 +464,12 @@ public class SaveSharedPreference {
 
     }
 
-    /**
-     * getEmail
-     */
     public static int getOvoBalance(Context context, int ovoBalance){
 
         return getPreferences(context).getInt(OVO_BALANCE, 200000);
 
     }
+
 
     public static void setGopayBalance(Context context, int gopayBalance){
 
@@ -644,14 +479,12 @@ public class SaveSharedPreference {
 
     }
 
-    /**
-     * getEmail
-     */
     public static int getGopayBalance(Context context, int gopayBalance){
 
         return getPreferences(context).getInt(GOPAY_BALANCE, 200000);
 
     }
+
 
     public static void setPaymentMethodName(Context context, int paymentMethodNamae){
 
@@ -667,6 +500,7 @@ public class SaveSharedPreference {
 
     }
 
+
     public static void setLocationOpened(Context context, boolean locationOpened){
 
         SharedPreferences.Editor editor = getPreferences(context).edit();
@@ -680,6 +514,7 @@ public class SaveSharedPreference {
         return getPreferences(context).getBoolean(LOCATION_OPENED, false);
 
     }
+
 
     public static void setLocationName(Context context, String locationName){
 
@@ -695,6 +530,7 @@ public class SaveSharedPreference {
 
     }
 
+
     public static void setNoOrderComplete(Context context, int noOrderComplete){
 
         SharedPreferences.Editor editor = getPreferences(context).edit();
@@ -703,14 +539,12 @@ public class SaveSharedPreference {
 
     }
 
-    /**
-     * getEmail
-     */
     public static int getNoOrderComplete(Context context, int noOrderComplete){
 
         return getPreferences(context).getInt(NO_ORDER_COMPLETE, 0);
 
     }
+
 
     public static void setMuBalance(Context context, int muBalance){
 
@@ -720,12 +554,23 @@ public class SaveSharedPreference {
 
     }
 
-    /**
-     * getEmail
-     */
     public static int getMubalance(Context context, int muBalance){
 
         return getPreferences(context).getInt(MUAMALAT_BALANCE, 200000);
+
+    }
+
+    public static void setIsSearchOpened(Context context, boolean isSearchOpened){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putBoolean(IS_SEARCH_OPENED, isSearchOpened);
+        editor.apply();
+
+    }
+
+    public static boolean getIsSearchOpened(Context context, boolean isSearchOpened){
+
+        return getPreferences(context).getBoolean(IS_SEARCH_OPENED, false);
 
     }
 

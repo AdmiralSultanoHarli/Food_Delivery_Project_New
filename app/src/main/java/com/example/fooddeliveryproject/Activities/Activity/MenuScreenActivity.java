@@ -26,7 +26,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class MenuScreenActivity extends AppCompatActivity {
+public class MenuScreenActivity extends BaseActivity {
 
     ImageView backButton, cartButton;
     public static ImageView searchButton;

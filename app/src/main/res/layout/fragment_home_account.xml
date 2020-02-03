@@ -8,7 +8,7 @@
         android:id="@+id/editButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="15sp"
+        android:textSize="15dp"
         android:text="Edit"
         android:textColor="@color/colorBlack"
         android:layout_alignParentRight="true"
@@ -30,7 +30,7 @@
         android:id="@+id/profileName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="15sp"
+        android:textSize="15dp"
         android:textColor="@color/colorBlack"
         android:layout_below="@+id/profileImage"
         android:layout_centerInParent="true"
@@ -40,7 +40,7 @@
     <TextView
         android:id="@+id/name"
         android:layout_marginTop="20dp"
-        android:textSize="15sp"
+        android:textSize="15dp"
         android:textColor="@color/colorBlack"
         android:layout_below="@+id/profileName"
         android:layout_width="wrap_content"
@@ -73,7 +73,7 @@
     <TextView
         android:id="@+id/number"
         android:layout_marginTop="20dp"
-        android:textSize="15sp"
+        android:textSize="15dp"
         android:textColor="@color/colorBlack"
         android:layout_below="@+id/line"
         android:layout_width="wrap_content"
@@ -86,7 +86,7 @@
         android:id="@+id/numberId"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="21dp"
-        android:textSize="15sp"
+        android:textSize="15dp"
         android:text="+62"
         android:layout_below="@+id/number"
         android:layout_width="wrap_content"
@@ -97,7 +97,7 @@
         android:layout_below="@+id/number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15sp"
+        android:textSize="15dp"
         android:layout_toRightOf="@+id/numberId"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="6dp"
@@ -117,7 +117,7 @@
     <TextView
         android:id="@+id/email"
         android:layout_marginTop="20dp"
-        android:textSize="15sp"
+        android:textSize="15dp"
         android:textColor="@color/colorBlack"
         android:layout_below="@+id/line2"
         android:layout_width="wrap_content"
@@ -136,7 +136,7 @@
         android:layout_marginLeft="21dp"
         android:layout_marginRight="21dp"
         android:text="giord2010@gmail.com"
-        android:textSize="15sp"/>
+        android:textSize="15dp"/>
 
     <View
         android:id="@+id/line3"
@@ -159,7 +159,7 @@
         android:layout_marginLeft="21dp"
         android:layout_marginRight="21dp"
         android:text="Communication and transaction history from Khanaval will be sent to this email address."
-        android:textSize="15sp"/>
+        android:textSize="15dp"/>
 
     <TextView
         android:id="@+id/logOutButton"
@@ -168,7 +168,7 @@
         android:layout_centerInParent="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="20dp"
-        android:textSize="15sp"
+        android:textSize="15dp"
         android:text="LOG OUT"
         android:textColor="@color/colorButton"/>
 

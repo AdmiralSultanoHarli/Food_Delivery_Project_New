@@ -20,7 +20,7 @@ import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.R;
 
 
-public class LoginScreenActivity extends AppCompatActivity {
+public class LoginScreenActivity extends BaseActivity {
 
     Button buttonSignIn, buttonSignUp;
     ImageButton buttonClose;

@@ -21,7 +21,7 @@ public class MenuDetailScreenAddOnFragment extends Fragment {
 
     RecyclerView menuDetailAddOn;
     AdapterMenuDetailScreenAddOn menuDetailAddOnAdapter;
-    String foodName[] = {"Nasi", "Kentang", "Roti", "Jus Mangga", "Gorengan India"};
+    String foodName[] = {"Nasi", "Kentang", "Roti", "Jus Mangga", "Gorengan"};
     int foodPrice[] = {10000, 10000, 10000, 20000, 25000};
     int img[] = {R.drawable.basmati_rice, R.drawable.kentang, R.drawable.chapati, R.drawable.beverage, R.drawable.snacks};
 
@@ -40,7 +40,7 @@ public class MenuDetailScreenAddOnFragment extends Fragment {
 
         menuDetailAddOn.setHasFixedSize(true);
 
-        RecyclerView.LayoutManager layoutManagerAddOn =  new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        RecyclerView.LayoutManager layoutManagerAddOn =  new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
 
         menuDetailAddOn.setLayoutManager(layoutManagerAddOn);
 

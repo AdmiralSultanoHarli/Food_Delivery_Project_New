@@ -15,18 +15,23 @@ import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
+    private static final int DATABASE_VERSION = 7;
+    private static final String DATABASE_NAME = "khanaval.db";
+
     //User Data
     public static final String TABLE_USER = "user";
     public static final String COLUMN_USER_ID = "id";
     public static final String COLUMN_USERNAME = "username";
     public static final String COLUMN_USER_PHONENUMBER = "phonenumber";
     public static final String COLUMN_USER_PASSWORD = "password";
+
     //Restaurant Data
     public static final String TABLE_RESTAURANT = "restaurant";
     public static final String COLUMN_REST_ID = "restaurantid";
     public static final String COLUMN_REST_NAME = "restaurantname";
     public static final String COLUMN_REST_ADDRESS = "restaurantaddress";
     public static final String COLUMN_REST_IMG = "restaurantimage";
+
     //Food Data
     public static final String TABLE_FOOD = "food";
     public static final String COLUMN_FOOD_ID = "foodid";
@@ -36,6 +41,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_FOOD_PRICE_DISCOUNT = "foodpricediscount";
     public static final String COLUMN_BUTTON = "button";
     public static final String COLUMN_FOOD_IMG = "foodimage";
+
     //Food Transaction Data
     public static final String TABLE_FOOD_TRANSACTION = "foodtransaction";
     public static final String COLUMN_FOOD_TRANSACTION_ID = "foodtransactionid";
@@ -43,28 +49,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_FOOD_ALLQUANTITY = "foodallquantity";
     public static final String COLUMN_FOOD_PRICE_TOTAL = "foodpricetotal";
     public static final String COLUMN_FOOD_PRICE_DISCOUNT_TOTAL = "foodpricediscounttotal";
+
     //BestCusine Fragment Data
     public static final String TABLE_BESTCUSINE_FRAGMENT = "bestcusinefragment";
     public static final String COLUMN_BESTCUSINE_ID = "foodid";
     public static final String COLUMN_BESTCUSINE_NAME = "foodname";
     public static final String COLUMN_BESTCUSINE_IMG = "foodimage";
+
     //TodaysSpecial Fragment Data
     public static final String TABLE_TODAYSPECIAL_FRAGMENT = "todaysspecialfragment";
     public static final String COLUMN_TODAYSPECIAL_ID = "foodid";
     public static final String COLUMN_TODAYSPECIAL_NAME = "foodname";
     public static final String COLUMN_TODAYSPECIAL_IMG = "foodimage";
+
     //YourFavourites Fragment Data
     public static final String TABLE_YOURFAVOURITES_FRAGMENT = "yourfavouritesfragment";
     public static final String COLUMN_YOURFAVOURITES_ID = "foodid";
     public static final String COLUMN_YOURFAVOURITES_NAME = "foodname";
     public static final String COLUMN_YOURFAVOURITES_IMG = "foodimage";
+
     //Custom Fragment Data
     public static final String TABLE_CUSTOM_FRAGMENT = "customfragment";
     public static final String COLUMN_CUSTOM_ID = "foodid";
     public static final String COLUMN_CUSTOM_NAME = "foodname";
     public static final String COLUMN_CUSTOM_IMG = "foodimage";
-    private static final int DATABASE_VERSION = 7;
-    private static final String DATABASE_NAME = "khanaval.db";
+
     //Image library
     public static int basmati = R.drawable.basmati_rice;
     public static int murg_musallam = R.drawable.murg_musallam;

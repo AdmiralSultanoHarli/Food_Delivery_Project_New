@@ -15,7 +15,7 @@
 
     <TextView
         android:id="@+id/yourFavourites"
-        android:textSize="15sp"
+        android:textSize="15dp"
         android:layout_marginTop="10dp"
         android:text="Your Favourites"
         android:layout_below="@+id/line"

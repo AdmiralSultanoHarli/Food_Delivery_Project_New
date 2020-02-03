@@ -43,7 +43,7 @@
                 android:layout_marginTop="8dp"
                 android:text="Menu"
                 android:textColor="@color/colorBlack"
-                android:textSize="20sp"
+                android:textSize="20dp"
                 />
 
             <ImageView
@@ -80,7 +80,7 @@
                     <TextView
                         android:id="@+id/textViewDeliver"
                         android:text="Deliver to"
-                        android:textSize="14sp"
+                        android:textSize="14dp"
                         android:textColor="@color/colorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
                     <TextView
                         android:id="@+id/textViewChangeAddress"
                         android:text="Change address"
-                        android:textSize="12sp"
+                        android:textSize="12dp"
                         android:textColor="@color/colorButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -127,7 +127,7 @@
                             <TextView
                                 android:id="@+id/placeName"
                                 android:text="Muamalat Tower"
-                                android:textSize="14sp"
+                                android:textSize="14dp"
                                 android:textColor="@color/colorBlack"
                                 android:layout_toRightOf="@+id/imageViewMap"
                                 android:layout_width="wrap_content"
@@ -138,7 +138,7 @@
                             <TextView
                                 android:id="@+id/placeDescription"
                                 android:text="Jl. Prof. Dr. Satrio Kav.18, karet Kuningan, Setia Budhi, Jakarta Selatan, 12940"
-                                android:textSize="12sp"
+                                android:textSize="12dp"
                                 android:lines="3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -148,7 +148,7 @@
                                 android:layout_marginRight="20dp"/>
 
                             <EditText
-                                android:textSize="12sp"
+                                android:textSize="12dp"
                                 android:hint="Add notes to delivery location..."
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
@@ -177,7 +177,7 @@
                     <TextView
                         android:id="@+id/textViewOrder"
                         android:text="Order Summary"
-                        android:textSize="14sp"
+                        android:textSize="14dp"
                         android:textColor="@color/colorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -188,7 +188,7 @@
                     <TextView
                         android:id="@+id/textViewAddMore"
                         android:text="Add more+"
-                        android:textSize="12sp"
+                        android:textSize="12dp"
                         android:textColor="@color/colorButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -224,7 +224,7 @@
 
                         <TextView
                             android:text="No promo apply"
-                            android:textSize="14sp"
+                            android:textSize="14dp"
                             android:textColor="@color/colorWhite"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -236,7 +236,7 @@
                         <Button
                             android:text="Change"
                             android:textAllCaps="false"
-                            android:textSize="10sp"
+                            android:textSize="10dp"
                             android:textColor="@color/colorWhite"
                             android:layout_alignParentRight="true"
                             android:layout_centerInParent="true"
@@ -260,7 +260,7 @@
                     <TextView
                         android:id="@+id/textViewSelectDelivery"
                         android:text="Select Delivery Partner"
-                        android:textSize="14sp"
+                        android:textSize="14dp"
                         android:textColor="@color/colorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -303,7 +303,7 @@
                                 <TextView
                                     android:id="@+id/textViewGrab"
                                     android:text="Grab"
-                                    android:textSize="12sp"
+                                    android:textSize="12dp"
                                     android:textColor="@color/colorBlack"
                                     android:layout_toRightOf="@+id/imageGrab"
                                     android:layout_marginTop="4dp"
@@ -314,7 +314,7 @@
                                 <TextView
                                     android:id="@+id/grabPrice"
                                     android:text="9.000"
-                                    android:textSize="12sp"
+                                    android:textSize="12dp"
                                     android:textColor="@color/colorBlack"
                                     android:layout_toRightOf="@+id/imageGrab"
                                     android:layout_marginLeft="15dp"
@@ -359,7 +359,7 @@
                                 <TextView
                                     android:id="@+id/textViewGojek"
                                     android:text="Gojek"
-                                    android:textSize="12sp"
+                                    android:textSize="12dp"
                                     android:textColor="@color/colorBlack"
                                     android:layout_toRightOf="@+id/imageGojek"
                                     android:layout_marginLeft="15dp"
@@ -370,7 +370,7 @@
                                 <TextView
                                     android:id="@+id/priceGojek"
                                     android:text="10.000"
-                                    android:textSize="12sp"
+                                    android:textSize="12dp"
                                     android:textColor="@color/colorBlack"
                                     android:layout_toRightOf="@+id/imageGojek"
                                     android:layout_marginLeft="15dp"
@@ -404,7 +404,7 @@
                     <TextView
                         android:id="@+id/textViewSelectPayment"
                         android:text="Select Payment Mode"
-                        android:textSize="14sp"
+                        android:textSize="14dp"
                         android:textColor="@color/colorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -453,7 +453,7 @@
                                     android:layout_toRightOf="@+id/imageMuamalat"
                                     android:text="Bank Muamalat"
                                     android:textColor="@color/colorBlack"
-                                    android:textSize="14sp" />
+                                    android:textSize="14dp" />
 
                                 <RadioButton
                                     android:id="@+id/radioButtonMuamalat"
@@ -499,7 +499,7 @@
                                     android:layout_toRightOf="@+id/imageOvo"
                                     android:text="OVO"
                                     android:textColor="@color/colorBlack"
-                                    android:textSize="14sp" />
+                                    android:textSize="14dp" />
 
                                 <RadioButton
                                     android:id="@+id/radioButtonOvo"
@@ -538,7 +538,7 @@
                                 <TextView
                                     android:id="@+id/textViewGopay"
                                     android:text="Gopay"
-                                    android:textSize="14sp"
+                                    android:textSize="14dp"
                                     android:textColor="@color/colorBlack"
                                     android:layout_toRightOf="@+id/imageGopay"
                                     android:layout_marginLeft="10dp"
@@ -573,7 +573,7 @@
                     <TextView
                         android:id="@+id/textViewPaymentDetails"
                         android:text="Payment Details"
-                        android:textSize="14sp"
+                        android:textSize="14dp"
                         android:textColor="@color/colorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -598,8 +598,8 @@
 
                             <TextView
                                 android:id="@+id/foodCategoriesName"
-                                android:text="Veg Thali"
-                                android:textSize="14sp"
+                                android:text="Nasi Padang"
+                                android:textSize="14dp"
                                 android:textColor="@color/colorBlack"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -610,7 +610,7 @@
                             <TextView
                                 android:id="@+id/foodCategoriesPrice"
                                 android:text="40.000"
-                                android:textSize="14sp"
+                                android:textSize="14dp"
                                 android:textColor="@color/colorBlack"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -621,7 +621,7 @@
                             <TextView
                                 android:id="@+id/textViewTax"
                                 android:text="incl. Tax"
-                                android:textSize="14sp"
+                                android:textSize="14dp"
                                 android:layout_below="@+id/foodCategoriesName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -631,7 +631,7 @@
                             <TextView
                                 android:id="@+id/taxPrice"
                                 android:text="4.000"
-                                android:textSize="14sp"
+                                android:textSize="14dp"
                                 android:layout_below="@+id/foodCategoriesPrice"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -641,7 +641,7 @@
                             <TextView
                                 android:id="@+id/textViewDeliveryPrice"
                                 android:text="Delivery"
-                                android:textSize="14sp"
+                                android:textSize="14dp"
                                 android:textColor="@color/colorBlack"
                                 android:layout_below="@+id/textViewTax"
                                 android:layout_width="wrap_content"
@@ -652,7 +652,7 @@
                             <TextView
                                 android:id="@+id/deliveryPrice"
 
-                                android:textSize="14sp"
+                                android:textSize="14dp"
                                 android:textColor="@color/colorBlack"
                                 android:layout_below="@+id/taxPrice"
                                 android:layout_width="wrap_content"
@@ -673,7 +673,7 @@
                             <TextView
                                 android:id="@+id/textViewTotal"
                                 android:text="Total(incl. Tax)"
-                                android:textSize="14sp"
+                                android:textSize="14dp"
                                 android:textColor="@color/colorBlack"
                                 android:layout_below="@+id/line3"
                                 android:layout_width="wrap_content"
@@ -685,7 +685,7 @@
                             <TextView
                                 android:id="@+id/totalPrice"
                                 android:text=""
-                                android:textSize="14sp"
+                                android:textSize="14dp"
                                 android:textColor="@color/colorBlack"
                                 android:layout_below="@+id/line3"
                                 android:layout_width="wrap_content"
@@ -715,12 +715,13 @@
             android:id="@+id/paymentBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
             android:layout_alignParentBottom="true">
 
             <TextView
                 android:id="@+id/totalPriceBar"
                 android:text="53.000"
-                android:textSize="12sp"
+                android:textSize="12dp"
                 android:textColor="@color/colorBlack"
                 android:layout_marginTop="13dp"
                 android:layout_marginLeft="12dp"
@@ -729,7 +730,7 @@
 
             <TextView
                 android:id="@+id/viewPayment"
-                android:textSize="10sp"
+                android:textSize="10dp"
                 android:gravity="center"
                 android:layout_toRightOf="@+id/totalPriceBar"
                 android:layout_width="wrap_content"
@@ -743,7 +744,7 @@
                 android:id="@+id/buttonPayment"
                 android:text="Order"
                 android:textColor="@color/colorWhite"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 android:textAllCaps="false"
                 android:layout_below="@+id/viewPayment"
                 android:layout_width="match_parent"
@@ -780,7 +781,7 @@
         <TextView
             android:id="@+id/tvNotes"
             android:text="Add notes to chef"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:textColor="@android:color/black"
             android:layout_below="@+id/threeLines"
             android:layout_alignParentLeft="true"
@@ -807,7 +808,7 @@
                 <EditText
                     android:id="@+id/editNotes"
                     android:hint="Example: Make my food spicy!"
-                    android:textSize="12sp"
+                    android:textSize="12dp"
                     android:gravity="start"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -837,7 +838,7 @@
             android:id="@+id/accNotes"
             android:text="Done"
             android:textColor="@color/colorWhite"
-            android:textSize="14sp"
+            android:textSize="14dp"
             android:textAllCaps="false"
             android:background="@drawable/rounded_button_addtochart"
             android:foreground="?attr/selectableItemBackground"

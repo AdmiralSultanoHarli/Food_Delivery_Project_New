@@ -20,7 +20,7 @@ import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 import com.example.fooddeliveryproject.R;
 
-public class SignUpScreenActivity extends AppCompatActivity {
+public class SignUpScreenActivity extends BaseActivity {
 
     Button buttonSignUp;
     ImageButton buttonClose;

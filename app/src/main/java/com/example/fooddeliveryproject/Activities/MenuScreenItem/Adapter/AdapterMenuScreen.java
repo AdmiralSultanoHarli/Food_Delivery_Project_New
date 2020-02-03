@@ -40,8 +40,11 @@ import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtili
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.MY_PREFERENCE;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.QUANTITY;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.ViewHolder> implements Filterable {
 
@@ -85,11 +88,19 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
         final DataKhanaval data = menuList.get(i);
 
+//        DecimalFormat formatter = new DecimalFormat("#.###.###");
+
+        Locale locale = Locale.getDefault();
+        DecimalFormatSymbols formatSymbols = new DecimalFormatSymbols(locale);
+        formatSymbols.setDecimalSeparator(',');
+        formatSymbols.setGroupingSeparator('.');
+        DecimalFormat decimalFormat = new DecimalFormat("", formatSymbols);
+
         viewHolder.img.setImageResource(data.getImg());
         viewHolder.foodName.setText(data.getFoodName());
         viewHolder.foodDescription.setText(data.getFoodDescription());
-        viewHolder.foodPrice.setText(String.valueOf(data.getFoodPrice()));
-        viewHolder.foodPriceDiscount.setText(String.valueOf(data.getFoodPriceDiscount()));
+        viewHolder.foodPrice.setText(decimalFormat.format(data.getFoodPrice()));
+        viewHolder.foodPriceDiscount.setText(decimalFormat.format(data.getFoodPriceDiscount()));
         //viewHolder.buttonAddToChart.setEnabled(data.getButtonPosition() == 0 ? true : false);
         viewHolder.buttonAddToChart.setVisibility(data.getButtonPosition() == 0 ? View.VISIBLE : View.GONE);
         viewHolder.buttonAddPlusMinusChart.setVisibility(data.getButtonPosition() == 1 ? View.VISIBLE : View.GONE);
@@ -237,7 +248,7 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                 SaveSharedPreference.setFoodPriceDiscount(context, priceDiscountTotal[0]);
                 SaveSharedPreference.setIsAddToCartVisible(context, false);
 
-                editor.putString(FOOD_NAME, menuList.get(i).getFoodName());
+                /*editor.putString(FOOD_NAME, menuList.get(i).getFoodName());
                 editor.putInt(ALL_QUANTITY, quantityTotal);
                 editor.putInt(FOOD_PRICE_TOTAL, foodPriceTotal);
                 editor.putInt(FOOD_PRICE_DISCOUNT_TOTAL, foodPriceDiscountTotal);
@@ -247,7 +258,7 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                 editor.putBoolean(IS_ADDTOCART_VISIBLE, false);
 
                 editor.putBoolean("isAddToCartVisible", false).apply();
-                editor.putBoolean("isPlusMinusAddToCartVisible", true).apply();
+                editor.putBoolean("isPlusMinusAddToCartVisible", true).apply();*/
 
                 Log.e("FoodCount", menuList.get(i).getFoodName() + " = " + String.valueOf(quantity[0]));
                 Log.e("FoodPrice", menuList.get(i).getFoodName() + " = " + String.valueOf(priceTotal[0]));
@@ -314,13 +325,13 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                 SaveSharedPreference.setFoodPrice(context, priceTotal[0]);
                 SaveSharedPreference.setFoodPriceDiscount(context, priceDiscountTotal[0]);
 
-                editor.putString(FOOD_NAME, menuList.get(i).getFoodName());
+                /*editor.putString(FOOD_NAME, menuList.get(i).getFoodName());
                 editor.putInt(ALL_QUANTITY, quantityTotal);
                 editor.putInt(FOOD_PRICE_TOTAL, foodPriceTotal);
                 editor.putInt(FOOD_PRICE_DISCOUNT_TOTAL, foodPriceDiscountTotal);
                 editor.putInt(QUANTITY, quantity[0]);
                 editor.putInt(FOOD_PRICE, priceTotal[0]);
-                editor.putInt(FOOD_PRICE_DISCOUNT, priceDiscountTotal[0]);
+                editor.putInt(FOOD_PRICE_DISCOUNT, priceDiscountTotal[0]);*/
 
                 Log.e("FoodCount", menuList.get(i).getFoodName() + " = " + String.valueOf(quantity[0]));
                 Log.e("FoodPrice", menuList.get(i).getFoodName() + " = " + String.valueOf(priceTotal[0]));
@@ -443,13 +454,13 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                 SaveSharedPreference.setFoodPrice(context, priceTotal[0]);
                 SaveSharedPreference.setFoodPriceDiscount(context, priceDiscountTotal[0]);
 
-                editor.putString(FOOD_NAME, menuList.get(i).getFoodName());
+                /*editor.putString(FOOD_NAME, menuList.get(i).getFoodName());
                 editor.putInt(ALL_QUANTITY, quantityTotal);
                 editor.putInt(FOOD_PRICE_TOTAL, foodPriceTotal);
                 editor.putInt(FOOD_PRICE_DISCOUNT_TOTAL, foodPriceDiscountTotal);
                 editor.putInt(QUANTITY, quantity[0]);
                 editor.putInt(FOOD_PRICE, priceTotal[0]);
-                editor.putInt(FOOD_PRICE_DISCOUNT, priceDiscountTotal[0]);
+                editor.putInt(FOOD_PRICE_DISCOUNT, priceDiscountTotal[0]);*/
 
                 Log.e("FoodCount", menuList.get(i).getFoodName() + " = " + String.valueOf(quantity[0]));
                 Log.e("FoodPrice", menuList.get(i).getFoodName() + " = " + String.valueOf(priceTotal[0]));

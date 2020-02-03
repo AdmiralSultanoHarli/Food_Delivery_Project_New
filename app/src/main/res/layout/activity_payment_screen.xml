@@ -44,7 +44,7 @@
 
             <TextView
                 android:text="Total payment to be made to Khanaval"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 android:layout_width="225dp"
                 android:layout_height="wrap_content"
                 android:lines="2"
@@ -55,7 +55,7 @@
             <TextView
                 android:id="@+id/paymentTotal"
                 android:text="50.000"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -96,7 +96,7 @@
             <TextView
                 android:id="@+id/textViewBalance"
                 android:text="Available OVO Balance"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -117,7 +117,7 @@
             <TextView
                 android:id="@+id/minusPayment"
                 android:text="-49.000"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/availableBalance"

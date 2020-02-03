@@ -14,7 +14,7 @@ import android.view.WindowManager;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.R;
 
-public class SplashScreenActivity extends AppCompatActivity {
+public class SplashScreenActivity extends BaseActivity {
 
     private static int SPLASH_TIME_OUT = 3000;
     boolean isThereIsUser;

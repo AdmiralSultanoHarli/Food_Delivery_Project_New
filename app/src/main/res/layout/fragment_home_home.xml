@@ -32,7 +32,7 @@
             <TextView
                 android:id="@+id/textFindLocation"
                 android:text="Click To Find The Location"
-                android:textSize="10sp"
+                android:textSize="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:visibility="gone"
                 android:layout_height="30dp"
-                android:textSize="8sp"
+                android:textSize="8dp"
                 android:lines="1"
                 android:layout_toRightOf="@+id/pinPoint"
                 android:layout_marginLeft="5dp"
@@ -80,7 +80,7 @@
             android:layout_marginLeft="15dp"
             android:textColor="@color/colorBlack"
             android:text="Explore"
-            android:textSize="15sp"/>
+            android:textSize="15dp"/>
 
         <!--<androidx.appcompat.widget.SearchView
             android:id="@+id/searchView"

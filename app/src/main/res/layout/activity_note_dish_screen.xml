@@ -14,7 +14,7 @@
         <TextView
             android:id="@+id/tvAddNotes"
             android:text="Add notes to chef"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:textColor="@color/colorBlack"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
@@ -46,7 +46,7 @@
 
                     <EditText
                         android:id="@+id/notes"
-                        android:textSize="12sp"
+                        android:textSize="12dp"
                         android:gravity="top"
                         android:hint="Example : Make my food spicy!"
                         android:lines="10"

@@ -18,16 +18,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.example.fooddeliveryproject.Activities.Helper.DecimalHelper;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.R;
 
 import org.w3c.dom.Text;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class PaymentScreenActivity extends AppCompatActivity {
+public class PaymentScreenActivity extends BaseActivity {
 
     Button payNowButton;
     TextView cancelButton;
@@ -55,6 +58,10 @@ public class PaymentScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_screen);
+
+        DecimalHelper decimalHelper = new DecimalHelper();
+
+
 
         payNowButton = findViewById(R.id.payNowButton);
         cancelButton = findViewById(R.id.cancelButton);
@@ -108,7 +115,6 @@ public class PaymentScreenActivity extends AppCompatActivity {
                             SaveSharedPreference.setMuBalance(PaymentScreenActivity.this, muamalatBalanceInt);
                             //availableBalanceInt = SaveSharedPreference.getOvoBalance(getApplicationContext(), 0);
                             //availableBalance.setText(String.valueOf(availableBalanceInt));
-                            paymentSelected = true;
                             Intent i = new Intent(PaymentScreenActivity.this, PaymentSuccessScreenActivity.class);
                             startActivity(i);
 
@@ -135,7 +141,6 @@ public class PaymentScreenActivity extends AppCompatActivity {
                             SaveSharedPreference.setOvoBalance(PaymentScreenActivity.this, ovoBalanceint);
                             //availableBalanceInt = SaveSharedPreference.getOvoBalance(getApplicationContext(), 0);
                             //availableBalance.setText(String.valueOf(availableBalanceInt));
-                            paymentSelected = true;
                             Intent i = new Intent(PaymentScreenActivity.this, PaymentSuccessScreenActivity.class);
                             startActivity(i);
 
@@ -163,7 +168,6 @@ public class PaymentScreenActivity extends AppCompatActivity {
                             SaveSharedPreference.setGopayBalance(PaymentScreenActivity.this, gopayBalanceInt);
                             //availableBalanceInt = SaveSharedPreference.getGopayBalance(getApplicationContext(), 0);
                             //availableBalance.setText(String.valueOf(availableBalanceInt));
-                            paymentSelected = false;
                             Intent i = new Intent(PaymentScreenActivity.this, PaymentSuccessScreenActivity.class);
                             startActivity(i);
 
@@ -183,15 +187,15 @@ public class PaymentScreenActivity extends AppCompatActivity {
 
         if (SaveSharedPreference.getPaymentMethodName(getApplicationContext(), 0) == 1){
 
-            availableBalance.setText(String.valueOf(SaveSharedPreference.getMubalance(this, 0)));
+            availableBalance.setText(decimalHelper.formatter(SaveSharedPreference.getMubalance(this, 0)));
 
         }else if (SaveSharedPreference.getPaymentMethodName(getApplicationContext(), 0) == 2){
 
-            availableBalance.setText(String.valueOf(SaveSharedPreference.getGopayBalance(this, 0)));
+            availableBalance.setText(decimalHelper.formatter(SaveSharedPreference.getOvoBalance(this, 0)));
 
         }else{
 
-            availableBalance.setText(String.valueOf(SaveSharedPreference.getGopayBalance(this, 0)));
+            availableBalance.setText(decimalHelper.formatter(SaveSharedPreference.getGopayBalance(this, 0)));
 
         }
 
@@ -212,8 +216,8 @@ public class PaymentScreenActivity extends AppCompatActivity {
         });
 
 
-        paymentTotal.setText(String.valueOf(paymentTotalInt));
-        minusPayment.setText("-" + SaveSharedPreference.getTotalPayment(this, 0));
+        paymentTotal.setText(decimalHelper.formatter(paymentTotalInt));
+        minusPayment.setText("-" + decimalHelper.formatter(SaveSharedPreference.getTotalPayment(this, 0)));
 
 
 

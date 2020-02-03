@@ -20,7 +20,10 @@ import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.R;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.List;
+import java.util.Locale;
 
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.ALL_QUANTITY;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_NAME;
@@ -58,11 +61,17 @@ public class AdapterOrderScreenOrder  extends RecyclerView.Adapter<AdapterOrderS
     @Override
     public void onBindViewHolder(@NonNull final AdapterOrderScreenOrder.ViewHolder viewHolder, final int i) {
 
+        Locale locale = Locale.getDefault();
+        DecimalFormatSymbols formatSymbols = new DecimalFormatSymbols(locale);
+        formatSymbols.setDecimalSeparator(',');
+        formatSymbols.setGroupingSeparator('.');
+        DecimalFormat decimalFormat = new DecimalFormat("", formatSymbols);
+
         viewHolder.foodName.setText(menuDetailList.get(i).getFoodName());
         //viewHolder.foodPrice.setText(String.valueOf(menuDetailList.get(i).getFoodPrice()));
         viewHolder.img.setImageResource(menuDetailList.get(i).getImg());
-        viewHolder.foodPrice.setText(String.valueOf(SaveSharedPreference.getFoodPriceTotal(context, 0)));
-        viewHolder.foodPriceDiscount.setText(String.valueOf(SaveSharedPreference.getFoodPriceDiscountTotal(context, 0)));
+        viewHolder.foodPrice.setText(decimalFormat.format(SaveSharedPreference.getFoodPriceTotal(context, 0)));
+        viewHolder.foodPriceDiscount.setText(decimalFormat.format(SaveSharedPreference.getFoodPriceDiscountTotal(context, 0)));
         viewHolder.chartQuantity.setText(String.valueOf(SaveSharedPreference.getAllQuantity(context, 0)));
 
         final int quantity[] = {menuDetailList.get(i).getChartQuantity()};

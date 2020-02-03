@@ -10,13 +10,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.fooddeliveryproject.Activities.Helper.DecimalHelper;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.R;
 
 
 public class OrdersDetailsFragment extends Fragment {
 
-    TextView date, orderPrice;
+    TextView date, orderPrice, orderTracker;
 
     @Nullable
     @Override
@@ -27,9 +28,13 @@ public class OrdersDetailsFragment extends Fragment {
 
         date = v.findViewById(R.id.date);
         orderPrice = v.findViewById(R.id.orderPrice);
+        orderTracker = v.findViewById(R.id.orderTracker);
+
+        DecimalHelper decimalHelper = new DecimalHelper();
 
         date.setText(SaveSharedPreference.getDate(getContext(), ""));
-        orderPrice.setText(String.valueOf(SaveSharedPreference.getTotalPayment(getContext(), 0)));
+        orderPrice.setText(decimalHelper.formatter(SaveSharedPreference.getTotalPayment(getContext(), 0)));
+        orderTracker.setText("Payment done by " + SaveSharedPreference.getPaymentName(getContext(), ""));
 
         return v;
 

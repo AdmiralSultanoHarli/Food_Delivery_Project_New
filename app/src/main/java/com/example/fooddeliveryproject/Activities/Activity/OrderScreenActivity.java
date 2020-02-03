@@ -21,17 +21,24 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fooddeliveryproject.Activities.Helper.DecimalHelper;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.OrderScreenItem.Fragment.OrderScreenOrderFragment;
 import com.example.fooddeliveryproject.R;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
-public class OrderScreenActivity extends AppCompatActivity {
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+
+public class OrderScreenActivity extends BaseActivity {
 
     ImageView backButton;
     RadioButton radioButtonGrab, radioButtonGojek, radioButtonOvo, radioButtonGopay, radioButtonMuamalat;
     Button buttonPayment;
     TextView textCount,foodCategoriesPrice, deliveryPrice, totalPrice, totalPriceBar, viewPayment;
+
+    DecimalFormat decimalFormat;
 
     public Button accNotes;
     public EditText editNotes;
@@ -92,6 +99,11 @@ public class OrderScreenActivity extends AppCompatActivity {
         viewPayment = findViewById(R.id.viewPayment);
         radioButtonMuamalat = findViewById(R.id.radioButtonMuamalat);
 
+        Locale locale = Locale.getDefault();
+        DecimalFormatSymbols formatSymbols = new DecimalFormatSymbols(locale);
+        formatSymbols.setDecimalSeparator(',');
+        formatSymbols.setGroupingSeparator('.');
+        decimalFormat = new DecimalFormat("", formatSymbols);
 
 
         //slidingPanel.setPanelState(SlidingUpPanelLayout.PanelState.HIDDEN);
@@ -103,7 +115,7 @@ public class OrderScreenActivity extends AppCompatActivity {
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);*/
 
         radioButtonGrab.setChecked(true);
-        radioButtonOvo.setChecked(true);
+        radioButtonMuamalat.setChecked(true);
 
         if (radioButtonGrab.isChecked()){
 
@@ -111,13 +123,13 @@ public class OrderScreenActivity extends AppCompatActivity {
 
         }
 
-        if (radioButtonOvo.isChecked()){
+        if (radioButtonMuamalat.isChecked()){
 
-            ovoRadioButton();
+            muamalatRadioButton();
 
         }
 
-        foodCategoriesPrice.setText(String.valueOf(SaveSharedPreference.getFoodPriceTotal(this, 0)));
+        foodCategoriesPrice.setText(decimalFormat.format(SaveSharedPreference.getFoodPriceTotal(this, 0)));
 
         slidingPanel.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -337,10 +349,10 @@ public class OrderScreenActivity extends AppCompatActivity {
 
         foodPrice = SaveSharedPreference.getFoodPriceTotal(getApplicationContext(), 0);
         driverPrice = gopay;
-        deliveryPrice.setText(String.valueOf(driverPrice));
+        deliveryPrice.setText(decimalFormat.format(driverPrice));
         allFoodPrice = driverPrice + tax + foodPrice;
-        totalPrice.setText(String.valueOf(allFoodPrice));
-        totalPriceBar.setText(String.valueOf(allFoodPrice));
+        totalPrice.setText(decimalFormat.format(allFoodPrice));
+        totalPriceBar.setText(decimalFormat.format(allFoodPrice));
         radioButtonGojek.setChecked(true);
         radioButtonGrab.setChecked(false);
         SaveSharedPreference.setTotalPayment(OrderScreenActivity.this, allFoodPrice);
@@ -351,10 +363,10 @@ public class OrderScreenActivity extends AppCompatActivity {
 
         foodPrice = SaveSharedPreference.getFoodPriceTotal(getApplicationContext(), 0);
         driverPrice = ovo;
-        deliveryPrice.setText(String.valueOf(driverPrice));
+        deliveryPrice.setText(decimalFormat.format(driverPrice));
         allFoodPrice = driverPrice + tax + foodPrice;
-        totalPrice.setText(String.valueOf(allFoodPrice));
-        totalPriceBar.setText(String.valueOf(allFoodPrice));
+        totalPrice.setText(decimalFormat.format(allFoodPrice));
+        totalPriceBar.setText(decimalFormat.format(allFoodPrice));
         radioButtonGrab.setChecked(true);
         radioButtonGojek.setChecked(false);
         SaveSharedPreference.setTotalPayment(OrderScreenActivity.this, allFoodPrice);

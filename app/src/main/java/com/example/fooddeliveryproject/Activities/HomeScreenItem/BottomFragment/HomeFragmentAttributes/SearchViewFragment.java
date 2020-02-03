@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddeliveryproject.Activities.Activity.HomeScreenActivity;
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
+import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterCustomCategories;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterSearchView;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.HomeFragment;
@@ -65,17 +66,16 @@ public class SearchViewFragment extends Fragment {
             @Override
             public boolean onClose() {
 
-                HomeFragment homeFragment = new HomeFragment();
+                /*HomeFragment homeFragment = new HomeFragment();
                 homeFragment.searchView.setVisibility(View.VISIBLE);
                 homeFragment.searchFragment.setVisibility(View.GONE);
                 homeFragment.scrollView.setVisibility(View.VISIBLE);
-                homeFragment.searchView.setIconified(true);
+                homeFragment.searchView.setIconified(true);*/
 
                 HomeScreenActivity homeScreenActivity = (HomeScreenActivity) getActivity();
                 homeScreenActivity.isSearchFragmentOpened = false;
                 homeScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, new HomeFragment()).commit();
 
-              //  homeFragment.searchView.
 
                 return true;
 

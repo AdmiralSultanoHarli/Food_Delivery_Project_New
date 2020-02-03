@@ -15,7 +15,7 @@
 
     <TextView
         android:id="@+id/test"
-        android:textSize="15sp"
+        android:textSize="15dp"
         android:layout_marginTop="10dp"
         android:text="Best Cusine"
         android:layout_below="@+id/line"

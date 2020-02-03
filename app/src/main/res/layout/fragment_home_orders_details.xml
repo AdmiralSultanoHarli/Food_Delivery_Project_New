@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:textSize="20sp"
+            android:textSize="20dp"
             android:layout_centerInParent="true"
             android:layout_alignParentTop="true"
             android:textColor="@color/colorBlack"
@@ -36,7 +36,7 @@
             <TextView
                 android:id="@+id/tvOrderDetails"
                 android:text="Order details"
-                android:textSize="12sp"
+                android:textSize="12dp"
                 android:textColor="@color/colorBlack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
                     <TextView
                         android:id="@+id/date"
                         android:text="23 Sept 2019"
-                        android:textSize="12sp"
+                        android:textSize="12dp"
                         android:layout_toRightOf="@+id/imgCard"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
                     <TextView
                         android:id="@+id/foodName"
                         android:text="Nasi Padang"
-                        android:textSize="14sp"
+                        android:textSize="14dp"
                         android:textColor="@color/colorBlack"
                         android:layout_toRightOf="@+id/imgCard"
                         android:layout_below="@+id/date"
@@ -102,7 +102,7 @@
                     <TextView
                         android:id="@+id/orderTracker"
                         android:text="Payment done by OVO"
-                        android:textSize="12sp"
+                        android:textSize="12dp"
                         android:layout_toRightOf="@+id/imgCard"
                         android:layout_below="@+id/foodName"
                         android:layout_width="wrap_content"
@@ -113,7 +113,7 @@
                     <TextView
                         android:id="@+id/orderPrice"
                         android:text="49.000"
-                        android:textSize="14sp"
+                        android:textSize="14dp"
                         android:layout_alignParentRight="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -128,7 +128,7 @@
                 android:id="@+id/tvOrderStatus"
                 android:text="Order Status"
                 android:textColor="@color/colorBlack"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/orderDetails"
@@ -164,7 +164,7 @@
                     <TextView
                         android:id="@+id/tvOrderPlaced"
                         android:text="Order Placed"
-                        android:textSize="12sp"
+                        android:textSize="12dp"
                         android:layout_toRightOf="@+id/orderPlacedCircle"
                         android:layout_marginTop="26dp"
                         android:layout_alignParentTop="true"
@@ -175,7 +175,7 @@
                     <TextView
                         android:id="@+id/tvTimeOrderPlaced"
                         android:text="(12.40pm)"
-                        android:textSize="8sp"
+                        android:textSize="8dp"
                         android:layout_toRightOf="@+id/tvOrderPlaced"
                         android:layout_marginTop="26dp"
                         android:layout_alignParentTop="true"
@@ -213,12 +213,12 @@
                         android:layout_marginTop="51dp"
                         android:layout_toRightOf="@+id/paymentDoneCircle"
                         android:text="Payment Done"
-                        android:textSize="12sp" />
+                        android:textSize="12dp" />
 
                     <TextView
                         android:id="@+id/tvTimePaymentDone"
                         android:text="(12.45pm)"
-                        android:textSize="8sp"
+                        android:textSize="8dp"
                         android:layout_below="@+id/tvOrderPlaced"
                         android:layout_toRightOf="@+id/tvPaymentDone"
                         android:layout_marginTop="51dp"
@@ -250,7 +250,7 @@
                     <TextView
                         android:id="@+id/tvFoodPreparing"
                         android:text="Food is preparing"
-                        android:textSize="12sp"
+                        android:textSize="12dp"
                         android:layout_below="@+id/tvPaymentDone"
                         android:layout_toRightOf="@+id/paymentDoneCircle"
                         android:layout_marginTop="52dp"
@@ -261,7 +261,7 @@
                     <TextView
                         android:id="@+id/tvTimeFoodPreparing"
                         android:text="(12.47pm)"
-                        android:textSize="8sp"
+                        android:textSize="8dp"
                         android:layout_below="@+id/tvPaymentDone"
                         android:layout_toRightOf="@+id/tvFoodPreparing"
                         android:layout_marginTop="52dp"
@@ -293,7 +293,7 @@
                     <TextView
                         android:id="@+id/tvFoodHanded"
                         android:text="Food handed to delivery partner"
-                        android:textSize="12sp"
+                        android:textSize="12dp"
                         android:layout_below="@+id/tvFoodPreparing"
                         android:layout_toRightOf="@+id/paymentDoneCircle"
                         android:layout_marginTop="51dp"
@@ -305,7 +305,7 @@
                         android:id="@+id/tvTimeFoodHanded"
                         android:visibility="gone"
                         android:text="(12.45pm)"
-                        android:textSize="8sp"
+                        android:textSize="8dp"
                         android:layout_below="@+id/tvFoodPreparing"
                         android:layout_toRightOf="@+id/tvFoodHanded"
                         android:layout_marginTop="51dp"
@@ -343,13 +343,13 @@
                         android:layout_marginTop="52dp"
                         android:layout_toRightOf="@+id/paymentDoneCircle"
                         android:text="Food Delivered"
-                        android:textSize="12sp" />
+                        android:textSize="12dp" />
 
                     <TextView
                         android:id="@+id/tvTimeFoodDelivered"
                         android:visibility="gone"
                         android:text="(12.45pm)"
-                        android:textSize="8sp"
+                        android:textSize="8dp"
                         android:layout_below="@+id/tvFoodHanded"
                         android:layout_toRightOf="@+id/tvFoodDelivered"
                         android:layout_marginTop="52dp"

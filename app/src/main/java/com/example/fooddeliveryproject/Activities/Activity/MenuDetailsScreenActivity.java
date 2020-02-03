@@ -18,7 +18,11 @@ import com.example.fooddeliveryproject.Activities.MenuDetailScreenItem.Fragment.
 import com.example.fooddeliveryproject.Activities.MenuDetailScreenItem.Fragment.MenuDetailScreenItemsFragment;
 import com.example.fooddeliveryproject.R;
 
-public class MenuDetailsScreenActivity extends AppCompatActivity {
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+
+public class MenuDetailsScreenActivity extends BaseActivity {
 
     TextView itemTotalPriceDiscount, itemTotalPrice;
     ImageView backButton;
@@ -39,8 +43,14 @@ public class MenuDetailsScreenActivity extends AppCompatActivity {
 
         itemTotalPriceDiscount.setPaintFlags(itemTotalPriceDiscount.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
-        itemTotalPrice.setText(String.valueOf(SaveSharedPreference.getFoodPriceTotal(this, 0)));
-        itemTotalPriceDiscount.setText(String.valueOf(SaveSharedPreference.getFoodPriceDiscountTotal(this, 0)));
+        Locale locale = Locale.getDefault();
+        DecimalFormatSymbols formatSymbols = new DecimalFormatSymbols(locale);
+        formatSymbols.setDecimalSeparator(',');
+        formatSymbols.setGroupingSeparator('.');
+        DecimalFormat decimalFormat = new DecimalFormat("", formatSymbols);
+
+        itemTotalPrice.setText(decimalFormat.format(SaveSharedPreference.getFoodPriceTotal(this, 0)));
+        itemTotalPriceDiscount.setText(decimalFormat.format(SaveSharedPreference.getFoodPriceDiscountTotal(this, 0)));
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -143,7 +143,6 @@ public class HomeFragment extends Fragment {
 
         //searchFragment.setVisibility(View.GONE);
 
-
        /* slideList = new ArrayList<>();
         slideList.add(new DataKhanaval(R.drawable.panang_curry, "PanangCurry", ));
         slideList.add(new DataFood(R.drawable.butter_chicken, "ButterChicken"));
@@ -174,9 +173,9 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.e("great","in onsearch method");
-                searchFragment.setVisibility(View.VISIBLE);
-                scrollView.setVisibility(View.GONE);
-                searchView.setVisibility(View.GONE);
+                /*searchFragment.setVisibility(View.VISIBLE);
+                scrollView.setVisibility(View.GONE);*/
+                //searchView.setVisibility(View.GONE);
 
                /* SearchViewFragment searchViewFragment = new SearchViewFragment();
                 searchViewFragment.searchView.setIconified(false);*/
@@ -199,9 +198,9 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
 
                 Log.e("great","in onsearch method");
-                searchFragment.setVisibility(View.VISIBLE);
-                scrollView.setVisibility(View.GONE);
-                searchView.setVisibility(View.GONE);
+                /*searchFragment.setVisibility(View.VISIBLE);
+                scrollView.setVisibility(View.GONE);*/
+                //searchView.setVisibility(View.GONE);
 
                /* SearchViewFragment searchViewFragment = new SearchViewFragment();
                 searchViewFragment.searchView.setIconified(false);*/
@@ -403,7 +402,7 @@ public class HomeFragment extends Fragment {
                     public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
                         Log.i(TAG, "All location settings are satisfied.");
 
-                        Toast.makeText(getContext(), "Started location updates!", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(), "Started location updates!", Toast.LENGTH_SHORT).show();
                         SaveSharedPreference.setLocationOpened(getActivity(), true);
 
                         //noinspection MissingPermission

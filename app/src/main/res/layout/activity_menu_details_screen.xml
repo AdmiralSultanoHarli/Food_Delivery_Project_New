@@ -33,7 +33,7 @@
             android:layout_marginTop="8dp"
             android:text="Menu"
             android:textColor="@color/colorBlack"
-            android:textSize="20sp"
+            android:textSize="20dp"
             />
 
         <ImageView
@@ -51,9 +51,11 @@
     </RelativeLayout>
 
     <ScrollView
+        android:id="@+id/midMenu"
         android:layout_below="@+id/menu1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/bottomMenu"
         android:scrollbars="none">
 
         <RelativeLayout
@@ -67,7 +69,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="183.3dp"
+                android:layout_height="250dp"
                 app:cardCornerRadius="10dp"
                 app:cardMaxElevation="2dp"
                 app:cardElevation="1dp">
@@ -88,7 +90,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_centerInParent="true"
                 android:layout_width="match_parent"
-                android:layout_height="172.3dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/itemCard"
                 app:cardCornerRadius="7dp"
                 android:elevation="4dp"
@@ -109,13 +111,13 @@
                         android:layout_alignParentLeft="true"
                         android:textColor="@color/colorBlack"
                         android:textStyle="bold"
-                        android:textSize="15sp"/>
+                        android:textSize="15dp"/>
 
                     <TextView
                         android:id="@+id/itemTotalPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
+                        android:textSize="14dp"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="5dp"
@@ -128,7 +130,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="55.000"
-                        android:textSize="12sp"
+                        android:textSize="12dp"
                         android:layout_marginTop="-5dp"
                         android:layout_below="@+id/itemTotalPrice"
                         android:layout_alignParentRight="true"
@@ -137,7 +139,7 @@
                     <TextView
                         android:id="@+id/textViewItems"
                         android:text="Items"
-                        android:textSize="15sp"
+                        android:textSize="15dp"
                         android:textColor="@color/colorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -149,7 +151,7 @@
                     <TextView
                         android:id="@+id/textViewQuantity"
                         android:text="Quantity"
-                        android:textSize="15sp"
+                        android:textSize="15dp"
                         android:textColor="@color/colorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -159,7 +161,7 @@
                         android:layout_below="@+id/itemName"
                         />
 
-                    <androidx.core.widget.NestedScrollView
+                    <!--<androidx.core.widget.NestedScrollView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_below="@id/textViewItems"
@@ -175,7 +177,20 @@
                             android:orientation="horizontal"
                             />
 
-                    </androidx.core.widget.NestedScrollView>
+                    </androidx.core.widget.NestedScrollView>-->
+
+                    <LinearLayout
+                        android:id="@+id/menuDetailScreenItemFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_below="@id/textViewItems"
+                        />
 
 
                 </RelativeLayout>
@@ -184,14 +199,59 @@
 
             </androidx.cardview.widget.CardView>
 
+            <!--<RelativeLayout
+                android:id="@+id/addOnInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/itemInfo"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:id="@+id/textViewAddOn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add On"
+                    android:textSize="17dp"
+                    android:textColor="@color/colorBlack"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignParentTop="true"/>
+
+                <LinearLayout
+                    android:id="@+id/menuDetailScreenAddOnFragment"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textViewAddOn"
+                    />
+
+                &lt;!&ndash;<androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/textViewAddOn">
+
+                    <LinearLayout
+                        android:id="@+id/menuDetailScreenAddOnFragment"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        />
+
+                </androidx.core.widget.NestedScrollView>&ndash;&gt;
+
+            </RelativeLayout>-->
+
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/addOnInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="20dp"
                 android:layout_below="@+id/itemInfo"
                 app:cardCornerRadius="11dp"
                 android:elevation="4dp"
@@ -206,14 +266,25 @@
                         android:id="@+id/textViewAddOn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Add On"
-                        android:textSize="17sp"
+                        android:text="People also order this"
+                        android:textSize="17dp"
                         android:textColor="@color/colorBlack"
-                        android:layout_centerInParent="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_alignParentTop="true"/>
 
-                    <androidx.core.widget.NestedScrollView
+                    <LinearLayout
+                        android:id="@+id/menuDetailScreenAddOnFragment"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_below="@+id/textViewAddOn"
+                        />
+
+                    <!--<androidx.core.widget.NestedScrollView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_below="@+id/textViewAddOn">
@@ -227,49 +298,56 @@
                             android:layout_marginRight="10dp"
                             />
 
-                    </androidx.core.widget.NestedScrollView>
+                    </androidx.core.widget.NestedScrollView>-->
 
                 </RelativeLayout>
 
 
             </androidx.cardview.widget.CardView>
 
-            <Button
-                android:id="@+id/buttonOrder"
-                android:text="Order"
-                android:textSize="15sp"
-                android:textColor="@color/colorWhite"
-                android:textAllCaps="false"
-                android:background="@drawable/rounded_button_order_and_cancel"
-                android:foreground="?attr/selectableItemBackground"
-                android:layout_below="@+id/addOnInfo"
-                android:layout_alignParentLeft="true"
-                android:layout_width="120dp"
-                android:layout_height="30.5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="60dp"
-                android:layout_marginBottom="20dp"/>
-
-            <Button
-                android:id="@+id/buttonCancel"
-                android:text="Cancel"
-                android:textSize="15sp"
-                android:textColor="@color/colorWhite"
-                android:textAllCaps="false"
-                android:background="@drawable/rounded_button_order_and_cancel"
-                android:foreground="?attr/selectableItemBackground"
-                android:layout_below="@+id/addOnInfo"
-                android:layout_alignParentRight="true"
-                android:layout_width="120dp"
-                android:layout_height="30.5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="60dp"
-                android:layout_marginBottom="20dp"/>
-
-
         </RelativeLayout>
 
     </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottomMenu"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <Button
+            android:id="@+id/buttonOrder"
+            android:text="Order"
+            android:textSize="15dp"
+            android:textColor="@color/colorWhite"
+            android:textAllCaps="false"
+            android:background="@drawable/rounded_button_order_and_cancel"
+            android:foreground="?attr/selectableItemBackground"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginBottom="15dp"
+            android:layout_height="wrap_content"
+            />
+
+        <Button
+            android:id="@+id/buttonCancel"
+            android:text="Cancel"
+            android:textSize="15dp"
+            android:textColor="@color/colorWhite"
+            android:textAllCaps="false"
+            android:background="@drawable/rounded_button_order_and_cancel"
+            android:foreground="?attr/selectableItemBackground"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginRight="50dp"
+            android:layout_marginBottom="15dp"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
 
 
 </RelativeLayout>

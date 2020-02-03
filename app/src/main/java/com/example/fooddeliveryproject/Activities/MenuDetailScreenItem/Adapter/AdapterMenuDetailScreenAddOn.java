@@ -13,7 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.R;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.List;
+import java.util.Locale;
 
 public class AdapterMenuDetailScreenAddOn extends RecyclerView.Adapter<AdapterMenuDetailScreenAddOn.ViewHolder> {
 
@@ -29,7 +32,7 @@ public class AdapterMenuDetailScreenAddOn extends RecyclerView.Adapter<AdapterMe
     @Override
     public AdapterMenuDetailScreenAddOn.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.view_add_on, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.view_add_on_new, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(v);
         return viewHolder;
 
@@ -39,8 +42,14 @@ public class AdapterMenuDetailScreenAddOn extends RecyclerView.Adapter<AdapterMe
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
 
+        Locale locale = Locale.getDefault();
+        DecimalFormatSymbols formatSymbols = new DecimalFormatSymbols(locale);
+        formatSymbols.setDecimalSeparator(',');
+        formatSymbols.setGroupingSeparator('.');
+        DecimalFormat decimalFormat = new DecimalFormat("", formatSymbols);
+
         viewHolder.foodName.setText(menuDetailList.get(i).getFoodName());
-        viewHolder.foodPrice.setText(String.valueOf(menuDetailList.get(i).getFoodPrice()));
+        viewHolder.foodPrice.setText("Rp. " + decimalFormat.format(menuDetailList.get(i).getFoodPrice()));
         viewHolder.img.setImageResource(menuDetailList.get(i).getImg());
 
         final int quantity[] = {menuDetailList.get(i).getChartQuantity()};

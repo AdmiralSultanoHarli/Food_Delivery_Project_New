@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fooddeliveryproject.Activities.Helper.DecimalHelper;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.OrdersFragmentAttributes.Adapter.AdapterCurrent;
@@ -52,6 +53,9 @@ public class CurrentFragment extends Fragment{
         noItem = v.findViewById(R.id.noItem);
 
         currentCategories.setHasFixedSize(true);
+
+
+
 
         date = new String[]{SaveSharedPreference.getDate(getContext(), "")};
         foodPrice = new int[]{SaveSharedPreference.getTotalPayment(getContext(), 0)};

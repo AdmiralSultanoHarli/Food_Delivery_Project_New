@@ -13,13 +13,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.fooddeliveryproject.Activities.Helper.DecimalHelper;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.OrdersFragment;
 import com.example.fooddeliveryproject.R;
 
 import org.w3c.dom.Text;
 
-public class PaymentSuccessScreenActivity extends AppCompatActivity {
+public class PaymentSuccessScreenActivity extends BaseActivity {
 
     ImageView homeButton;
     Button buttonMyOrder;
@@ -61,8 +62,8 @@ public class PaymentSuccessScreenActivity extends AppCompatActivity {
             }
         });
 
-
-        paymentAmount.setText(String.valueOf(SaveSharedPreference.getTotalPayment(this, 0)));
+        DecimalHelper decimalHelper = new DecimalHelper();
+        paymentAmount.setText(decimalHelper.formatter(SaveSharedPreference.getTotalPayment(this, 0)));
 
     }
 

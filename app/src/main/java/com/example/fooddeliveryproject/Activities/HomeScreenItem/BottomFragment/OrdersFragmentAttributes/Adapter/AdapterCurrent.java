@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddeliveryproject.Activities.Activity.HomeScreenActivity;
+import com.example.fooddeliveryproject.Activities.Helper.DecimalHelper;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.OrdersDetailsFragment;
 import com.example.fooddeliveryproject.R;
@@ -41,11 +42,13 @@ public class AdapterCurrent extends RecyclerView.Adapter<AdapterCurrent.ViewHold
     @Override
     public void onBindViewHolder(@NonNull final AdapterCurrent.ViewHolder viewHolder, final int i) {
 
+        DecimalHelper decimalHelper = new DecimalHelper();
+
         viewHolder.img.setImageResource(historyList.get(i).getImg());
         viewHolder.foodName.setText(historyList.get(i).getFoodName());
         viewHolder.date.setText(historyList.get(i).getDate());
         viewHolder.orderTracker.setText(historyList.get(i).getOrderTracker());
-        viewHolder.orderPrice.setText(String.valueOf(historyList.get(i).getFoodPrice()));
+        viewHolder.orderPrice.setText(decimalHelper.formatter(historyList.get(i).getFoodPrice()));
 
         viewHolder.buttonDetail.setOnClickListener(new View.OnClickListener() {
             @Override

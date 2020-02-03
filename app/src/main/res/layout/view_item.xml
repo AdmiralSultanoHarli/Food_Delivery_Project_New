@@ -43,14 +43,14 @@
                     android:text="-"
                     android:gravity="center"
                     android:textColor="@color/colorButton"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:layout_alignParentLeft="true"/>
 
                 <TextView
                     android:id="@+id/chartQuantity"
                     android:layout_width="25dp"
                     android:layout_height="match_parent"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:gravity="center"
                     android:layout_centerInParent="true"/>
 
@@ -63,7 +63,7 @@
                     android:gravity="center"
                     android:text="+"
                     android:textColor="@color/colorButton"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:layout_alignParentRight="true"/>
 
 

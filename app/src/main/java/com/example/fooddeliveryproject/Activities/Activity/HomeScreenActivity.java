@@ -20,12 +20,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 
-public class HomeScreenActivity extends AppCompatActivity {
+public class HomeScreenActivity extends BaseActivity {
 
     BottomNavigationView bottomNav;
     boolean isOrderFragmentOpened = false;
     public static boolean isSearchFragmentOpened = false;
     public boolean isOrderDetailsFragmentOpened = false;
+
+    boolean isSearchBarOpened = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +76,7 @@ public class HomeScreenActivity extends AppCompatActivity {
                         break;
 
                 }
+                isSearchFragmentOpened = false;
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, selectedFragment).commit();
 
@@ -109,7 +112,12 @@ public class HomeScreenActivity extends AppCompatActivity {
 
                 if (getSupportFragmentManager().getBackStackEntryCount() >= 1) {
 
-                    getSupportFragmentManager().popBackStack();
+                    //getSupportFragmentManager().popBackStack();
+
+                    bottomNav.setSelectedItemId(R.id.navigation_home);
+                    //getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, new HomeFragment()).commit();
+                    HomeFragment homeFragment = new HomeFragment();
+                    getSupportFragmentManager().beginTransaction().attach(homeFragment).detach(homeFragment).commit();
 
                     isSearchFragmentOpened = false;
 

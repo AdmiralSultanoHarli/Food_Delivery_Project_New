@@ -50,7 +50,7 @@
 
                 <TextView
                     android:id="@+id/bestCusine"
-                    android:textSize="15sp"
+                    android:textSize="15dp"
                     android:text="Best Cusine"
                     android:textColor="@color/colorBlack"
                     android:layout_width="wrap_content"
@@ -90,7 +90,7 @@
 
                 <TextView
                     android:id="@+id/todaysSpecial"
-                    android:textSize="15sp"
+                    android:textSize="15dp"
                     android:text="Today's Special"
                     android:textColor="@color/colorBlack"
                     android:layout_width="wrap_content"
@@ -131,7 +131,7 @@
 
                 <TextView
                     android:id="@+id/yourFavourites"
-                    android:textSize="15sp"
+                    android:textSize="15dp"
                     android:text="Your Favourites"
                     android:textColor="@color/colorBlack"
                     android:layout_width="wrap_content"

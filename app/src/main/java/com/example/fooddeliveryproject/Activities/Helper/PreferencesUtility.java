@@ -76,5 +76,7 @@ public class PreferencesUtility {
 
     public static final String NO_ORDER_COMPLETE = "noordercomplete";
 
+    public static final String IS_SEARCH_OPENED = "issearchopened";
+
 
 }

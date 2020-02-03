@@ -22,6 +22,10 @@ import com.example.fooddeliveryproject.Activities.Activity.MenuDetailsScreenActi
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.R;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.ALL_QUANTITY;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_CATEGORY;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_PRICE_DISCOUNT_TOTAL;
@@ -62,7 +66,8 @@ public class FoodChartFragment extends Fragment {
         price = v.findViewById(R.id.price);
         discountPrice = v.findViewById(R.id.discountPrice);
         itemName = v.findViewById(R.id.itemName);
-        sharedPreferences = getContext().getSharedPreferences(MY_PREFERENCE, Context.MODE_PRIVATE);
+
+        //sharedPreferences = getContext().getSharedPreferences(MY_PREFERENCE, Context.MODE_PRIVATE);
 
         /*Bundle testBundle = this.getArguments()*//*, home = getActivity().getIntent().getExtras()*//*;
         //Log.e("bundlesss", String.valueOf(testBundle));
@@ -71,11 +76,16 @@ public class FoodChartFragment extends Fragment {
         foodPrice = testBundle.getString("FoodPrice");
         foodDiscount = testBundle.getString("FoodDiscount");*/
 
+        Locale locale = Locale.getDefault();
+        DecimalFormatSymbols formatSymbols = new DecimalFormatSymbols(locale);
+        formatSymbols.setDecimalSeparator(',');
+        formatSymbols.setGroupingSeparator('.');
+        DecimalFormat decimalFormat = new DecimalFormat("", formatSymbols);
 
         foodCategoryName = SaveSharedPreference.getFoodCategory(getContext(), "");
         foodCountTotal = String.valueOf(SaveSharedPreference.getAllQuantity(getContext(), 0));
-        foodPriceTotal = String.valueOf(SaveSharedPreference.getFoodPriceTotal(getContext(), 0));
-        foodDiscountTotal = String.valueOf(SaveSharedPreference.getFoodPriceDiscountTotal(getContext(), 0));
+        foodPriceTotal = decimalFormat.format(SaveSharedPreference.getFoodPriceTotal(getContext(), 0));
+        foodDiscountTotal = decimalFormat.format(SaveSharedPreference.getFoodPriceDiscountTotal(getContext(), 0));
 
         //Log.e("FoodQuantity", String.valueOf(SaveSharedPreference.getQuantity(getContext(), 0)));
 

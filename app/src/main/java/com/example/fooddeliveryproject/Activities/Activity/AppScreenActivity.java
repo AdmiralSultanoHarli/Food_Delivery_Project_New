@@ -9,7 +9,7 @@ import android.widget.Button;
 
 import com.example.fooddeliveryproject.R;
 
-public class AppScreenActivity extends AppCompatActivity {
+public class AppScreenActivity extends BaseActivity {
 
     Button facebookButton, googleButton, emailPhoneButton;
 
