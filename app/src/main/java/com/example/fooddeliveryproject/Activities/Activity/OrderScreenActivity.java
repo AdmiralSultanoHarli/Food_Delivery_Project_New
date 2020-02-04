@@ -247,7 +247,7 @@ public class OrderScreenActivity extends BaseActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         OrderScreenOrderFragment orderScreenOrderFragment = new OrderScreenOrderFragment();
-        fragmentTransaction.add(R.id.orderSummaryFragment, orderScreenOrderFragment, orderScreenOrderFragment.getTag());
+        fragmentTransaction.replace(R.id.orderSummaryFragment, orderScreenOrderFragment, orderScreenOrderFragment.getTag());
 
         fragmentTransaction.commit();
 

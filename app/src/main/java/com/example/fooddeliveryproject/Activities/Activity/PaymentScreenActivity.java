@@ -46,14 +46,6 @@ public class PaymentScreenActivity extends BaseActivity {
     int gopayBalance;
     int muamalatBalance;
 
-    boolean whichPaymentMethod = false;
-    boolean ovoBalanceChanged;
-    boolean gopayBalanceChanged;
-
-    int availableBalanceInt;
-    boolean paymentSelected;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -203,7 +195,7 @@ public class PaymentScreenActivity extends BaseActivity {
 
         Log.e("Gopay", String.valueOf(SaveSharedPreference.getGopayBalance(this, 0)));
 
-        Log.e("Which Payment", String.valueOf(whichPaymentMethod));
+        Log.e("Bank Muamalat", String.valueOf(SaveSharedPreference.getMubalance(this, 0)));
 
 
         cancelButton.setOnClickListener(new View.OnClickListener() {

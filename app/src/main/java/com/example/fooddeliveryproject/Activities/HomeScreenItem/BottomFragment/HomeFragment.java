@@ -269,16 +269,16 @@ public class HomeFragment extends Fragment {
         fragmentTransaction.replace(R.id.searchFraegment, searchViewFragment);*/
 
         BestCusineFragment bestCusineFragment = new BestCusineFragment();
-        fragmentTransaction.add(R.id.bestCusineFragment, bestCusineFragment, bestCusineFragment.getTag());
+        fragmentTransaction.replace(R.id.bestCusineFragment, bestCusineFragment, bestCusineFragment.getTag());
 
         TodaySpecialsFragment todaySpecialsFragment = new TodaySpecialsFragment();
-        fragmentTransaction.add(R.id.todaySpecialsFragment, todaySpecialsFragment, todaySpecialsFragment.getTag());
+        fragmentTransaction.replace(R.id.todaySpecialsFragment, todaySpecialsFragment, todaySpecialsFragment.getTag());
 
         YourFavouritesFragment yourFavouritesFragment = new YourFavouritesFragment();
-        fragmentTransaction.add(R.id.yourFavouritesFragment, yourFavouritesFragment, yourFavouritesFragment.getTag());
+        fragmentTransaction.replace(R.id.yourFavouritesFragment, yourFavouritesFragment, yourFavouritesFragment.getTag());
 
         CustomFragment customFragment = new CustomFragment();
-        fragmentTransaction.add(R.id.customFragment, customFragment, customFragment.getTag());
+        fragmentTransaction.replace(R.id.customFragment, customFragment, customFragment.getTag());
 
         fragmentTransaction.commit();
 

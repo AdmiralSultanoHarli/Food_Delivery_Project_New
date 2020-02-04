@@ -42,9 +42,9 @@ public class PastFragment extends Fragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_home_orders_current, container, false);
+        View v = inflater.inflate(R.layout.fragment_home_orders_past, container, false);
 
-        pastCategories = v.findViewById(R.id.orderCurrentRecyclerView);
+        pastCategories = v.findViewById(R.id.orderPastRecyclerView);
         noItem = v.findViewById(R.id.noItem);
 
         pastCategories.setHasFixedSize(true);

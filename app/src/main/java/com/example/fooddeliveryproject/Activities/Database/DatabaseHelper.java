@@ -39,7 +39,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_FOOD_DESC = "fooddesc";
     public static final String COLUMN_FOOD_PRICE = "foodprice";
     public static final String COLUMN_FOOD_PRICE_DISCOUNT = "foodpricediscount";
-    public static final String COLUMN_BUTTON = "button";
+    public static final String COLUMN_BUTTON = "buttoncartquantityopened";
+    public static final String COLUMN_FOOD_ITEM_COUNT = "fooditemcount";
     public static final String COLUMN_FOOD_IMG = "foodimage";
 
     //Food Transaction Data
@@ -75,29 +76,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_CUSTOM_IMG = "foodimage";
 
     //Image library
-    public static int basmati = R.drawable.basmati_rice;
     public static int murg_musallam = R.drawable.murg_musallam;
-    //public static int bhindi_masala = R.drawable.bhindi_masala;
-    public static int panang_curry = R.drawable.panang_curry;
     public static int beverage = R.drawable.beverage;
     public static int snacks = R.drawable.snacks;
     public static int sweets = R.drawable.sweets;
-    public static int mix_veggies = R.drawable.mix_veggies;
     public static int maharashtra_thali = R.drawable.maharashtra_thali;
-    //public static int jeera_alo = R.drawable.jeera_alo;
-   // public static int goan_special = R.drawable.goan_vegetarian_thali;
-    //public static int dal_tadkda = R.drawable.dal_tadkda;
-    public static int chow_mein = R.drawable.chow_mein;
     public static int chapati = R.drawable.chapati;
     public static int butter_chicken = R.drawable.butter_chicken;
+    public static int chow_mein = R.drawable.chow_mein;
+    public static int panang_curry = R.drawable.panang_curry;
+
+
+    // Unused
+    /*public static int basmati = R.drawable.basmati_rice;
+    public static int mix_veggies = R.drawable.mix_veggies;
     public static int basmati_chicken_biryani = R.drawable.basmati_rice_chicken_biryani;
+    public static int jeera_alo = R.drawable.jeera_alo;
+    public static int goan_special = R.drawable.goan_vegetarian_thali;
+    public static int dal_tadkda = R.drawable.dal_tadkda;
+    public static int bhindi_masala = R.drawable.bhindi_masala;*/
 
     public DatabaseHelper(Context context){
 
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
     }
-//bryan
+    //bryan
     @Override
     public void onCreate(SQLiteDatabase db) {
 
@@ -114,6 +118,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_FOOD_PRICE + " TEXT, " +
                 COLUMN_FOOD_PRICE_DISCOUNT + " TEXT, " +
                 COLUMN_BUTTON + " INTEGER, " +
+                COLUMN_FOOD_ITEM_COUNT + " INTEGER, " +
                 COLUMN_FOOD_IMG + " BLOB " + " )";
 
         String CREATE_FOOD_TABLE_TRANSACTION = "CREATE TABLE " + TABLE_FOOD_TRANSACTION + " (" +
@@ -172,18 +177,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "('Wingstop', 'Generali Tower (next to MMC Hospital), Gran Rubina Business Park'," + R.drawable.wingstop + ")";
 
 
-        String DATA_FOOD = "INSERT INTO " + TABLE_FOOD + "(foodname, fooddesc, foodprice, foodpricediscount, button, foodimage) " +
-                "VALUES ('Nasi Padang', '3 nasi + 2 ayam + sayuran + sambel', 30000, 40000, 0," + R.drawable.nasi_padang_s + ")," +
-                "('Bakso', '2 Bakso besar + 5 Bakso kecil + bihun + bawang', 50000, 65000, 0," + R.drawable.bakso + ")," +
-                "('Soto', 'Suwiran Ayam + Telor + Nasi', 40000, 55000, 0," + R.drawable.soto + ")," +
-                "('Sate Ayam', '10 Tusuk sate ayam + bumbu kacang + nasi', 40000, 50000, 0," + R.drawable.sate_ayam + ")," +
-                "('Sate Padang', '20 Tusuk sate padang + bumbu sate padang + lontong', 100000, 1150000, 0," + R.drawable.sate_padang + ")," +
-                "('Nasi Lemak', 'Nasi lemak + kacang + telor _ sambal', 50000, 30000, 0," + R.drawable.nasi_lemak + ")," +
+        String DATA_FOOD = "INSERT INTO " + TABLE_FOOD + "(foodname, fooddesc, foodprice, foodpricediscount, buttoncartquantityopened, fooditemcount, foodimage) " +
+                "VALUES ('Nasi Padang', '3 nasi + 2 ayam + sayuran + sambel', 30000, 40000, 0, 0," + R.drawable.nasi_padang_s + ")," +
+                "('Bakso', '2 Bakso besar + 5 Bakso kecil + bihun + bawang', 50000, 65000, 0, 0," + R.drawable.bakso + ")," +
+                "('Soto', 'Suwiran Ayam + Telor + Nasi', 40000, 55000, 0, 0," + R.drawable.soto + ")," +
+                "('Sate Ayam', '10 Tusuk sate ayam + bumbu kacang + nasi', 40000, 50000, 0, 0," + R.drawable.sate_ayam + ")," +
+                "('Sate Padang', '20 Tusuk sate padang + bumbu sate padang + lontong', 100000, 115000, 0, 0," + R.drawable.sate_padang + ")," +
+                "('Nasi Lemak', 'Nasi lemak + kacang + telor _ sambal', 50000, 30000, 0, 0," + R.drawable.nasi_lemak + ")," +
                // "('Dal Tadkda', '3 Roti butter + kentang india', 30000, 40000, 0," + R.drawable.dal_tadkda + ")," +
-                "('Chinese Food', '1 porsi spagheti chinese + sayuran', 40000, 45000, 0," + R.drawable.chow_mein + ")," +
-                "('Indian Curry', '3 roti butter + Mix sayuran + nasi', 20000, 35000, 0," + R.drawable.maharashtra_thali + ")," +
-                "('Panang Curry', '3 Curry ayam + sayuran', 50000, 65000, 0," + R.drawable.panang_curry + ")," +
-                "('Samosa', '10 Aneka gorengan india', 30000, 45000, 0," + R.drawable.snacks + ")";
+                "('Chinese Food', '1 porsi spagheti chinese + sayuran', 40000, 45000, 0, 0," + R.drawable.chow_mein + ")," +
+                "('Indian Curry', '3 roti butter + Mix sayuran + nasi', 20000, 35000, 0, 0," + R.drawable.maharashtra_thali + ")," +
+                "('Panang Curry', '3 Curry ayam + sayuran', 50000, 65000, 0, 0," + R.drawable.panang_curry + ")," +
+                "('Samosa', '10 Aneka gorengan india', 30000, 45000, 0, 0," + R.drawable.snacks + ")";
 
         String DATA_BESTCUSINE = "INSERT INTO " + TABLE_BESTCUSINE_FRAGMENT + "(foodname, foodimage)" +
                 "VALUES ('Thai Special'," + panang_curry + ")," +
@@ -246,6 +251,45 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public void updateData(DataKhanaval data){
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_BUTTON, data.getButtonPosition());
+        values.put(COLUMN_FOOD_ITEM_COUNT, data.getFoodItemCount());
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.update(TABLE_FOOD, values, COLUMN_FOOD_ID	+ "	= ?", new String[] { String.valueOf(data.getId())});
+
+    }
+
+
+    public ArrayList<DataKhanaval> listDataMenuScreen(){
+
+        String sql = "select * from " + TABLE_FOOD;
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<DataKhanaval> storeData = new ArrayList<>();
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor.moveToFirst()){
+
+            do {
+
+                int foodId = Integer.parseInt(cursor.getString(0));
+                String foodName = cursor.getString(1);
+                String foodDesc = cursor.getString(2);
+                int foodPrice = Integer.parseInt(cursor.getString(3));
+                int foodPriceDiscount = Integer.parseInt(cursor.getString(4));
+                int button = cursor.getInt(5);
+                int foodItemCount = cursor.getInt(6);
+                int foodImg = Integer.parseInt(cursor.getString(7));
+                storeData.add(new DataKhanaval(foodId, foodName, foodDesc, foodPrice, foodPriceDiscount, button, foodItemCount, foodImg));
+            }while (cursor.moveToNext());
+
+        }
+
+        cursor.close();
+        return storeData;
+
+    }
+
     public ArrayList<DataKhanaval> listDataRestaurant() {
 
         String sql = "select * from " + TABLE_RESTAURANT + " limit 10";
@@ -285,33 +329,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String restAddress = cursor.getString(2);
                 int img = Integer.parseInt(cursor.getString(3));
                 storeData.add(new DataKhanaval(restId, restName, restAddress, img));
-            }while (cursor.moveToNext());
-
-        }
-
-        cursor.close();
-        return storeData;
-
-    }
-
-    public ArrayList<DataKhanaval> listDataMenuScreen(){
-
-        String sql = "select * from " + TABLE_FOOD;
-        SQLiteDatabase db = this.getReadableDatabase();
-        ArrayList<DataKhanaval> storeData = new ArrayList<>();
-        Cursor cursor = db.rawQuery(sql, null);
-        if (cursor.moveToFirst()){
-
-            do {
-
-                int foodId = Integer.parseInt(cursor.getString(0));
-                String foodName = cursor.getString(1);
-                String foodDesc = cursor.getString(2);
-                int foodPrice = Integer.parseInt(cursor.getString(3));
-                int foodPriceDiscount = Integer.parseInt(cursor.getString(4));
-                int button = cursor.getInt(5);
-                int foodImg = Integer.parseInt(cursor.getString(6));
-                storeData.add(new DataKhanaval(foodId, foodName, foodDesc, foodPrice, foodPriceDiscount, button, foodImg));
             }while (cursor.moveToNext());
 
         }

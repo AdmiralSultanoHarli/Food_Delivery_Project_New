@@ -98,7 +98,7 @@ public class MenuScreenActivity extends BaseActivity {
         final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         final MenuScreenFragment menuScreenFragment = new MenuScreenFragment();
-        fragmentTransaction.add(R.id.menuScreenFragment, menuScreenFragment, menuScreenFragment.getTag());
+        fragmentTransaction.replace(R.id.menuScreenFragment, menuScreenFragment, menuScreenFragment.getTag());
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -84,10 +84,10 @@ public class MenuDetailsScreenActivity extends BaseActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         MenuDetailScreenAddOnFragment menuDetailScreenAddOnFragment = new MenuDetailScreenAddOnFragment();
-        fragmentTransaction.add(R.id.menuDetailScreenAddOnFragment, menuDetailScreenAddOnFragment, menuDetailScreenAddOnFragment.getTag());
+        fragmentTransaction.replace(R.id.menuDetailScreenAddOnFragment, menuDetailScreenAddOnFragment, menuDetailScreenAddOnFragment.getTag());
 
         MenuDetailScreenItemsFragment menuDetailScreenItemsFragment = new MenuDetailScreenItemsFragment();
-        fragmentTransaction.add(R.id.menuDetailScreenItemFragment, menuDetailScreenItemsFragment, menuDetailScreenItemsFragment.getTag());
+        fragmentTransaction.replace(R.id.menuDetailScreenItemFragment, menuDetailScreenItemsFragment, menuDetailScreenItemsFragment.getTag());
 
         fragmentTransaction.commit();
 
