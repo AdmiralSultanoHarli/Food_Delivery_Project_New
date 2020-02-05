@@ -91,18 +91,22 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
         final Bundle bundle = new Bundle();
 
         final int[] quantity = {1};
-        final int[] priceTotal = {menuList.get(i).getFoodPrice()};
-        final int[] priceDiscountTotal = {menuList.get(i).getFoodPriceDiscount()};
+        final int[] priceTotal = {1};
+        final int[] priceDiscountTotal = {1};
 
         final int foodPriceItem = menuList.get(i).getFoodPrice();
         final int foodPriceDiscountItem = menuList.get(i).getFoodPriceDiscount();
-
         final int position = viewHolder.getAdapterPosition();
+
         quantity[0] = data.getFoodItemCount();
+        priceTotal[0] = data.getFoodPriceTotal();
+        priceDiscountTotal[0] = data.getFoodPriceDiscountTotal();
 
         final int[] isChartQuantity = {1};
 
         quantityTotal = SaveSharedPreference.getAllQuantity(context, 0);
+        foodPriceTotal = SaveSharedPreference.getFoodPriceTotal(context, 0);
+        foodPriceDiscountTotal = SaveSharedPreference.getFoodPriceDiscountTotal(context, 0);
 
         sharedPreferences = context.getSharedPreferences(MY_PREFERENCE, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
@@ -163,8 +167,8 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
                         isChartQuantity[0] = 1;
 
-                        logListItem();
                         updateDataToOne(data);
+                        logListItem();
 
                         viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
 
@@ -193,8 +197,8 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
                     isChartQuantity[0] = 1;
 
-                    logListItem();
                     updateDataToOne(data);
+                    logListItem();
 
                     viewHolder.buttonAddToChart.getTag();
 
@@ -208,7 +212,7 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
             public void updateDataToOne(final DataKhanaval data){
 
                 DataKhanaval dataKhanaval = new DataKhanaval(data.getId(), data.getFoodName(),
-                        data.getFoodDescription(), data.getFoodPrice(), data.getFoodPriceDiscount(), isChartQuantity[0], quantity[0], data.getImg());
+                        data.getFoodDescription(), data.getFoodPrice(), data.getFoodPriceDiscount(), priceTotal[0], priceDiscountTotal[0], isChartQuantity[0], quantity[0], data.getImg());
 
                 helper.updateData(dataKhanaval);
 
@@ -293,8 +297,8 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
                 isChartQuantity[0] = 1;
 
-                logListItem();
                 updateDataToOne(data);
+                logListItem();
 
                 viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
 
@@ -305,7 +309,7 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
             public void updateDataToOne(final DataKhanaval data){
 
                 DataKhanaval dataKhanaval = new DataKhanaval(data.getId(), data.getFoodName(),
-                        data.getFoodDescription(), data.getFoodPrice(), data.getFoodPriceDiscount(), isChartQuantity[0], quantity[0], data.getImg());
+                        data.getFoodDescription(), data.getFoodPrice(), data.getFoodPriceDiscount(), priceTotal[0], priceDiscountTotal[0], isChartQuantity[0], quantity[0], data.getImg());
 
                 helper.updateData(dataKhanaval);
 
@@ -381,8 +385,8 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
                         isChartQuantity[0] = 0;
 
-                        logListItem();
                         updateDataToZero(data);
+                        logListItem();
 
                         viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
                         //viewHolder.chartQuantity.setText(String.valueOf(SaveSharedPreference.getQuantity(context, 0)));
@@ -441,8 +445,8 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                         // Showing the text that Counting number in the middle button Decrement and Increment
                         viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
 
-                        logListItem();
                         updateDataToZero(data);
+                        logListItem();
 
                         viewHolder.activity.getSupportFragmentManager().beginTransaction().detach(foodChartFragment).attach(foodChartFragment).commit();
 
@@ -454,7 +458,7 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
             public void updateDataToZero(final DataKhanaval data){
 
                 DataKhanaval dataKhanaval = new DataKhanaval(data.getId(), data.getFoodName(),
-                        data.getFoodDescription(), data.getFoodPrice(), data.getFoodPriceDiscount(), isChartQuantity[0], quantity[0], data.getImg());
+                        data.getFoodDescription(), data.getFoodPrice(), data.getFoodPriceDiscount(), priceTotal[0], priceDiscountTotal[0], isChartQuantity[0], quantity[0], data.getImg());
 
                 helper.updateData(dataKhanaval);
 
@@ -564,7 +568,8 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
     public class ViewHolder extends RecyclerView.ViewHolder{
 
       public ImageView img;
-      public TextView foodName, foodDescription, foodPrice, foodPriceDiscount, decreaseChartQuantity, increaseChartQuantity, chartQuantity;
+      public TextView foodName, foodDescription, foodPrice, foodPriceDiscount, decreaseChartQuantity, increaseChartQuantity,
+              chartQuantity/*, foodPriceTotal, foodPriceDiscountTotal*/;
       public Button buttonAddToChart;
       public CardView buttonAddPlusMinusChart;
       public AppCompatActivity activity;
@@ -586,6 +591,9 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
             increaseChartQuantity = itemView.findViewById(R.id.increaseChartQuantity);
             chartQuantity = itemView.findViewById(R.id.chartQuantity);
             activity = (AppCompatActivity) itemView.getContext();
+
+            /*foodPriceTotal = itemView.findViewById(R.id.foodPriceTotal);
+            foodPriceDiscountTotal = itemView.findViewById(R.id.foodPriceDiscountTotal);*/
 
             /*mCommunication = mCommunicator;*/
 

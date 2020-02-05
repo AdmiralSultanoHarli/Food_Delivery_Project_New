@@ -96,7 +96,7 @@ public class FoodChartFragment extends Fragment {
 
         discountPrice.setPaintFlags(discountPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
-        buttonAddToChartThenOrder.setOnClickListener(new View.OnClickListener() {
+        buttonAddToChartThenOrder.setOnClickListener(  new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 

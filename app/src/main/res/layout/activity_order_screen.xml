@@ -234,6 +234,7 @@
                             />
 
                         <Button
+                            android:id="@+id/couponShower"
                             android:text="Change"
                             android:textAllCaps="false"
                             android:textSize="10dp"

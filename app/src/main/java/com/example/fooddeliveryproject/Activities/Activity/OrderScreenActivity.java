@@ -40,7 +40,7 @@ public class OrderScreenActivity extends BaseActivity {
 
     DecimalFormat decimalFormat;
 
-    public Button accNotes;
+    public Button accNotes, couponShower;
     public EditText editNotes;
 
     public SlidingUpPanelLayout slidingPanel;
@@ -98,6 +98,7 @@ public class OrderScreenActivity extends BaseActivity {
         totalPriceBar = findViewById(R.id.totalPriceBar);
         viewPayment = findViewById(R.id.viewPayment);
         radioButtonMuamalat = findViewById(R.id.radioButtonMuamalat);
+        couponShower = findViewById(R.id.couponShower);
 
         Locale locale = Locale.getDefault();
         DecimalFormatSymbols formatSymbols = new DecimalFormatSymbols(locale);
@@ -113,6 +114,16 @@ public class OrderScreenActivity extends BaseActivity {
         /*editNotes.requestFocus();
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);*/
+
+        couponShower.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(OrderScreenActivity.this, CouponScreenActivity.class);
+                startActivity(i);
+
+            }
+        });
 
         radioButtonGrab.setChecked(true);
         radioButtonMuamalat.setChecked(true);
