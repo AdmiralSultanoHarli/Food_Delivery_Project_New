@@ -58,7 +58,7 @@ public class CurrentFragment extends Fragment{
 
 
         date = new String[]{SaveSharedPreference.getDate(getContext(), "")};
-        foodPrice = new int[]{SaveSharedPreference.getTotalPayment(getContext(), 0)};
+        foodPrice = new int[]{SaveSharedPreference.getTotalPaymentSuccess(getContext(), 0)};
 
         dates = SaveSharedPreference.getDate(getContext(), "");
 

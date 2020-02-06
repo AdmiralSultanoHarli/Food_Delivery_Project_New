@@ -6,12 +6,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.R;
 
 import java.security.PublicKey;
 import java.util.ArrayList;
+import java.util.Locale;
 
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -291,6 +293,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_FOOD_PRICE_DISCOUNT_TOTAL, data.getFoodPriceDiscountTotal());
         SQLiteDatabase db = this.getWritableDatabase();
         db.update(TABLE_FOOD, values, COLUMN_FOOD_ID	+ "	= ?", new String[] { String.valueOf(data.getId())});
+
+    }
+
+    public void resetData(DataKhanaval data){
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_BUTTON, data.getButtonPosition());
+        values.put(COLUMN_FOOD_ITEM_COUNT, data.getFoodItemCount());
+        values.put(COLUMN_FOOD_PRICE_TOTAL, data.getFoodPriceTotal());
+        values.put(COLUMN_FOOD_PRICE_DISCOUNT_TOTAL, data.getFoodPriceDiscountTotal());
+        SQLiteDatabase db = this.getWritableDatabase();
+        Log.e("id", String.valueOf(data.getId()));
+        db.update(TABLE_FOOD, values, COLUMN_FOOD_NAME	+ "	= ?", new String[] {"1"});
 
     }
 

@@ -1,9 +1,13 @@
 package com.example.fooddeliveryproject.Activities.Activity;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
@@ -85,6 +89,7 @@ public class HomeScreenActivity extends BaseActivity {
         });
 
     }
+
 
     @Override
     public void onBackPressed() {

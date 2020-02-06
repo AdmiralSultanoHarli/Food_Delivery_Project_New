@@ -6,6 +6,7 @@
     android:layout_gravity="center">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/orderSummaryCard"
         android:layout_width="match_parent"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"

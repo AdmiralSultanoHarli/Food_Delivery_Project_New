@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.fooddeliveryproject.Activities.CouponScreenItem.AdapterCouponScreen;
@@ -25,6 +27,7 @@ public class CouponScreenActivity extends AppCompatActivity {
     private AdapterCouponScreen mAdapter;
 
     SearchView searchView;
+    ImageView backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,7 @@ public class CouponScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_coupon_screen);
 
         searchView = findViewById(R.id.searchView);
+        backButton = findViewById(R.id.backButton);
 
         RecyclerView dataView = findViewById(R.id.couponListRecyclerview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -73,7 +77,19 @@ public class CouponScreenActivity extends AppCompatActivity {
             }
         });
 
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                onBackPressed();
 
+            }
+        });
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

@@ -25,9 +25,9 @@ import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtili
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.GOPAY_BALANCE;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IMAGE_PAYMENT;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_ADDTOCART_VISIBLE;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_COUPON_EXIST;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_FRAGMENT_ORDER_DETAILS_OPENED;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_FRAGMENT_ORDER_OPENED;
-import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_SEARCH_OPENED;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_THERE_IS_USER;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.LOCATION_NAME;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.LOCATION_OPENED;
@@ -41,6 +41,7 @@ import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtili
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.QUANTITY;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.SEARCH_OPENED;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.TOTAL_PAYMENT;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.TOTAL_PAYMENT_SUCCESS;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.USERNAME;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.main_item;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.payment_method;
@@ -560,17 +561,31 @@ public class SaveSharedPreference {
 
     }
 
-    public static void setIsSearchOpened(Context context, boolean isSearchOpened){
+    public static void setIsCouponExist(Context context, boolean isCouponExist){
 
         SharedPreferences.Editor editor = getPreferences(context).edit();
-        editor.putBoolean(IS_SEARCH_OPENED, isSearchOpened);
+        editor.putBoolean(IS_COUPON_EXIST, isCouponExist);
         editor.apply();
 
     }
 
-    public static boolean getIsSearchOpened(Context context, boolean isSearchOpened){
+    public static boolean getIsCouponExist(Context context, boolean isCouponExist){
 
-        return getPreferences(context).getBoolean(IS_SEARCH_OPENED, false);
+        return getPreferences(context).getBoolean(IS_COUPON_EXIST, false);
+
+    }
+
+    public static void setTotalPaymentSuccess(Context context, int totalPaymentSuccess){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putInt(TOTAL_PAYMENT_SUCCESS, totalPaymentSuccess);
+        editor.apply();
+
+    }
+
+    public static int getTotalPaymentSuccess(Context context, int totalPaymentSuccess){
+
+        return getPreferences(context).getInt(TOTAL_PAYMENT_SUCCESS, 0);
 
     }
 

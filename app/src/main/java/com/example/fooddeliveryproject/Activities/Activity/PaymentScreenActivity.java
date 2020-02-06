@@ -2,8 +2,11 @@ package com.example.fooddeliveryproject.Activities.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
@@ -18,8 +21,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 import com.example.fooddeliveryproject.Activities.Helper.DecimalHelper;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
+import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.R;
 
 import org.w3c.dom.Text;
@@ -27,7 +32,9 @@ import org.w3c.dom.Text;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class PaymentScreenActivity extends BaseActivity {
@@ -46,14 +53,26 @@ public class PaymentScreenActivity extends BaseActivity {
     int gopayBalance;
     int muamalatBalance;
 
+//    DatabaseHelper helper;
+    DataKhanaval dataKhanaval;
+
+    SQLiteOpenHelper openHelper;
+    SQLiteDatabase db;
+    DatabaseHelper databaseHelper;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_screen);
 
         DecimalHelper decimalHelper = new DecimalHelper();
+        openHelper = new DatabaseHelper(this);
+        databaseHelper = new DatabaseHelper(this);
 
-
+        db = openHelper.getWritableDatabase();
+        dataKhanaval = new DataKhanaval();
 
         payNowButton = findViewById(R.id.payNowButton);
         cancelButton = findViewById(R.id.cancelButton);
@@ -90,6 +109,11 @@ public class PaymentScreenActivity extends BaseActivity {
                 String date = simpleDateFormat.format(new Date());
                 SaveSharedPreference.setDate(PaymentScreenActivity.this, date);
 
+                int foodPrice = 0;
+                int foodPriceTotal = 0;
+                int isCartOpened = 0;
+                int itemCount = 0;
+
 
                 if(SaveSharedPreference.getPaymentMethodName(getApplicationContext(), 0) == 1){
 
@@ -105,10 +129,9 @@ public class PaymentScreenActivity extends BaseActivity {
                         }else {
 
                             SaveSharedPreference.setMuBalance(PaymentScreenActivity.this, muamalatBalanceInt);
-                            //availableBalanceInt = SaveSharedPreference.getOvoBalance(getApplicationContext(), 0);
-                            //availableBalance.setText(String.valueOf(availableBalanceInt));
-                            Intent i = new Intent(PaymentScreenActivity.this, PaymentSuccessScreenActivity.class);
-                            startActivity(i);
+                            SaveSharedPreference.setTotalPaymentSuccess(PaymentScreenActivity.this, paymentTotalInt);
+                            paymentSuccessReset();
+                            resetData(foodPrice, foodPriceTotal, isCartOpened, itemCount);
 
                         }
 
@@ -131,10 +154,9 @@ public class PaymentScreenActivity extends BaseActivity {
                         }else {
 
                             SaveSharedPreference.setOvoBalance(PaymentScreenActivity.this, ovoBalanceint);
-                            //availableBalanceInt = SaveSharedPreference.getOvoBalance(getApplicationContext(), 0);
-                            //availableBalance.setText(String.valueOf(availableBalanceInt));
-                            Intent i = new Intent(PaymentScreenActivity.this, PaymentSuccessScreenActivity.class);
-                            startActivity(i);
+                            SaveSharedPreference.setTotalPaymentSuccess(PaymentScreenActivity.this, paymentTotalInt);
+                            paymentSuccessReset();
+                            resetData(foodPrice, foodPriceTotal, isCartOpened, itemCount);
 
                         }
 
@@ -158,10 +180,9 @@ public class PaymentScreenActivity extends BaseActivity {
                         }else {
 
                             SaveSharedPreference.setGopayBalance(PaymentScreenActivity.this, gopayBalanceInt);
-                            //availableBalanceInt = SaveSharedPreference.getGopayBalance(getApplicationContext(), 0);
-                            //availableBalance.setText(String.valueOf(availableBalanceInt));
-                            Intent i = new Intent(PaymentScreenActivity.this, PaymentSuccessScreenActivity.class);
-                            startActivity(i);
+                            SaveSharedPreference.setTotalPaymentSuccess(PaymentScreenActivity.this, paymentTotalInt);
+                            paymentSuccessReset();
+                            resetData(foodPrice, foodPriceTotal, isCartOpened, itemCount);
 
                         }
                     }else {
@@ -219,18 +240,32 @@ public class PaymentScreenActivity extends BaseActivity {
 
     }
 
-    /*private void setWindowFlag(PaymentScreenActivity paymentScreenActivity, int bits, boolean on) {
+    public void paymentSuccessReset(){
 
-        Window win = paymentScreenActivity.getWindow();
-        WindowManager.LayoutParams winParams = win.getAttributes();
-        if (on) {
-            winParams.flags |= bits;
-        } else {
-            winParams.flags &= ~bits;
-        }
-        win.setAttributes(winParams);
+        SaveSharedPreference.setIsCouponExist(PaymentScreenActivity.this, false);
+        SaveSharedPreference.setAllQuantity(PaymentScreenActivity.this, 0);
+        SaveSharedPreference.setFoodPriceTotal(PaymentScreenActivity.this, 0);
+        SaveSharedPreference.setFoodPriceDiscountTotal(PaymentScreenActivity.this, 0);
+        Intent i = new Intent(PaymentScreenActivity.this, PaymentSuccessScreenActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
 
-    }*/
+    }
 
+
+    public void resetData(int foodPriceTotal, int foodPriceDiscountTotal, int foodCartQuantityOpened, int foodItemCount){
+
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DatabaseHelper.COLUMN_FOOD_PRICE_TOTAL, foodPriceTotal);
+        contentValues.put(DatabaseHelper.COLUMN_FOOD_PRICE_DISCOUNT_TOTAL, foodPriceDiscountTotal);
+        contentValues.put(DatabaseHelper.COLUMN_BUTTON, foodCartQuantityOpened);
+        contentValues.put(DatabaseHelper.COLUMN_FOOD_ITEM_COUNT, foodItemCount);
+
+        // Updating direct to the database
+        db.update(DatabaseHelper.TABLE_FOOD, contentValues, DatabaseHelper.COLUMN_FOOD_ID +"= ?", new String[]{"1"});
+
+    }
 
 }

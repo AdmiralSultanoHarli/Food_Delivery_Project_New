@@ -1,6 +1,7 @@
 package com.example.fooddeliveryproject.Activities.OrderScreenItem.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,9 +12,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fooddeliveryproject.Activities.Activity.MenuDetailsScreenActivity;
 import com.example.fooddeliveryproject.Activities.Activity.OrderScreenActivity;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
@@ -79,6 +82,17 @@ public class AdapterOrderScreenOrder  extends RecyclerView.Adapter<AdapterOrderS
         quantity[0] = SaveSharedPreference.getAllQuantity(context, 0);
 
         viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
+
+        viewHolder.orderSummaryCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(context, MenuDetailsScreenActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                context.startActivity(i);
+            }
+        });
 
         viewHolder.increaseChartQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -172,6 +186,7 @@ public class AdapterOrderScreenOrder  extends RecyclerView.Adapter<AdapterOrderS
         public ImageView img, favouriteFood;
         public TextView foodName, foodPrice, foodPriceDiscount, decreaseChartQuantity, increaseChartQuantity, chartQuantity;
         public ImageButton openNotes;
+        public CardView orderSummaryCard;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -186,6 +201,7 @@ public class AdapterOrderScreenOrder  extends RecyclerView.Adapter<AdapterOrderS
             chartQuantity = itemView.findViewById(R.id.chartQuantity);
             openNotes = itemView.findViewById(R.id.openNotes);
             favouriteFood = itemView.findViewById(R.id.favouriteFood);
+            orderSummaryCard = itemView.findViewById(R.id.orderSummaryCard);
 
             foodPriceDiscount.setPaintFlags(foodPriceDiscount.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 

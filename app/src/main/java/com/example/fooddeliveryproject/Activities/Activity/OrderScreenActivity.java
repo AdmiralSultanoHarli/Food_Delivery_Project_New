@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -36,7 +37,7 @@ public class OrderScreenActivity extends BaseActivity {
     ImageView backButton;
     RadioButton radioButtonGrab, radioButtonGojek, radioButtonOvo, radioButtonGopay, radioButtonMuamalat;
     Button buttonPayment;
-    TextView textCount,foodCategoriesPrice, deliveryPrice, totalPrice, totalPriceBar, viewPayment;
+    TextView textCount, foodCategoriesPrice, deliveryPrice, totalPrice, totalPriceBar, viewPayment, textViewAddMore, promoAppliedText;
 
     DecimalFormat decimalFormat;
 
@@ -55,7 +56,7 @@ public class OrderScreenActivity extends BaseActivity {
     public int foodPrice;
     public int tax = 4000;
 
-    int allFoodPrice;
+    public static int allFoodPrice;
 
     int ovoImage = R.drawable.ovo2;
     int gopayImage = R.drawable.gopay2;
@@ -99,6 +100,8 @@ public class OrderScreenActivity extends BaseActivity {
         viewPayment = findViewById(R.id.viewPayment);
         radioButtonMuamalat = findViewById(R.id.radioButtonMuamalat);
         couponShower = findViewById(R.id.couponShower);
+        textViewAddMore = findViewById(R.id.textViewAddMore);
+        promoAppliedText = findViewById(R.id.promoAppliedText);
 
         Locale locale = Locale.getDefault();
         DecimalFormatSymbols formatSymbols = new DecimalFormatSymbols(locale);
@@ -115,11 +118,39 @@ public class OrderScreenActivity extends BaseActivity {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);*/
 
+        Log.e("Exist", String.valueOf(SaveSharedPreference.getIsCouponExist(this, true)));
+
+        if (SaveSharedPreference.getIsCouponExist(this, true) == false){
+
+            couponShower.setText("View All");
+            promoAppliedText.setText("No promo apply");
+
+        }else if(SaveSharedPreference.getIsCouponExist(this, true) == true) {
+
+            couponShower.setText("Change");
+            promoAppliedText.setText("Promo applied");
+
+        }
+
         couponShower.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent i = new Intent(OrderScreenActivity.this, CouponScreenActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+
+            }
+        });
+
+        textViewAddMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(OrderScreenActivity.this, MenuScreenActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
 
             }
@@ -157,7 +188,6 @@ public class OrderScreenActivity extends BaseActivity {
                 return true;
             }
         });
-
 
         accNotes.setOnClickListener(new View.OnClickListener() {
             @Override

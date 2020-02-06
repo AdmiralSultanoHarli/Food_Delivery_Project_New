@@ -268,7 +268,6 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
             }
 
-
         });
 
         viewHolder.increaseChartQuantity.setOnClickListener(new View.OnClickListener() {

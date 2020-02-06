@@ -235,4 +235,30 @@ public class DataKhanaval {
     public void setButton(boolean button) {
         this.button = button;
     }
+
+    @Override
+    public String toString() {
+        return "DataKhanaval{" +
+                "id=" + id +
+                ", foodName='" + foodName + '\'' +
+                ", foodDescription='" + foodDescription + '\'' +
+                ", date='" + date + '\'' +
+                ", orderTracker='" + orderTracker + '\'' +
+                ", address='" + address + '\'' +
+                ", foodPrice=" + foodPrice +
+                ", foodPriceDiscount=" + foodPriceDiscount +
+                ", foodPriceTotal=" + foodPriceTotal +
+                ", foodPriceDiscountTotal=" + foodPriceDiscountTotal +
+                ", chartQuantity=" + chartQuantity +
+                ", img=" + img +
+                ", buttonPosition=" + buttonPosition +
+                ", foodItemCount=" + foodItemCount +
+                ", couponName='" + couponName + '\'' +
+                ", couponValue=" + couponValue +
+                ", couponValid='" + couponValid + '\'' +
+                ", button=" + button +
+                ", foodQuantity=" + foodQuantity +
+                ", btnPosition=" + btnPosition +
+                '}';
+    }
 }

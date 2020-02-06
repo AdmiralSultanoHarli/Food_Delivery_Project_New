@@ -26,7 +26,7 @@ public class MenuDetailsScreenActivity extends BaseActivity {
 
     TextView itemTotalPriceDiscount, itemTotalPrice;
     ImageView backButton;
-    Button buttonOrder, buttonCancel;
+    Button buttonContinue;
 
 
     //aaa
@@ -38,8 +38,7 @@ public class MenuDetailsScreenActivity extends BaseActivity {
         itemTotalPriceDiscount = findViewById(R.id.itemTotalPriceDiscount);
         itemTotalPrice = findViewById(R.id.itemTotalPrice);
         backButton = findViewById(R.id.backButton);
-        buttonOrder = findViewById(R.id.buttonOrder);
-        buttonCancel = findViewById(R.id.buttonCancel);
+        buttonContinue = findViewById(R.id.buttonContinue);
 
         itemTotalPriceDiscount.setPaintFlags(itemTotalPriceDiscount.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
@@ -61,17 +60,7 @@ public class MenuDetailsScreenActivity extends BaseActivity {
             }
         });
 
-        buttonOrder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent i = new Intent(MenuDetailsScreenActivity.this, OrderScreenActivity.class);
-                startActivity(i);
-
-            }
-        });
-
-        buttonCancel.setOnClickListener(new View.OnClickListener() {
+        buttonContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

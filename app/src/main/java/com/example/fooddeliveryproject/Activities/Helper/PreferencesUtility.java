@@ -52,6 +52,8 @@ public class PreferencesUtility {
 
     public static final String TOTAL_PAYMENT = "totalPayment";
 
+    public static final String TOTAL_PAYMENT_SUCCESS = "totalpaymentsucess";
+
     public static final String DATE = "date";
 
     public static final String IMAGE_PAYMENT = "imagepayment";
@@ -76,7 +78,5 @@ public class PreferencesUtility {
 
     public static final String NO_ORDER_COMPLETE = "noordercomplete";
 
-    public static final String IS_SEARCH_OPENED = "issearchopened";
-
-
+    public static final String IS_COUPON_EXIST = "iscouponexist";
 }

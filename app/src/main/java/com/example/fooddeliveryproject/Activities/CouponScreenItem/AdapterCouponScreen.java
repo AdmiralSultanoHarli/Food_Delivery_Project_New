@@ -70,7 +70,9 @@ public class AdapterCouponScreen extends RecyclerView.Adapter<AdapterCouponScree
             public void onClick(View view) {
 
                 Intent b = new Intent(context, OrderScreenActivity.class);
-
+                b.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                b.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                SaveSharedPreference.setIsCouponExist(context, true);
                 context.startActivity(b);
 
             }

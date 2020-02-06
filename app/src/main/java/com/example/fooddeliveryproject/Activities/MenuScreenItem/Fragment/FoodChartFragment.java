@@ -19,6 +19,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.example.fooddeliveryproject.Activities.Activity.MenuDetailsScreenActivity;
+import com.example.fooddeliveryproject.Activities.Activity.OrderScreenActivity;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.R;
 
@@ -101,7 +102,9 @@ public class FoodChartFragment extends Fragment {
             public void onClick(View view) {
 
                 //Toast.makeText(container.getContext(), "Test", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(container.getContext(), MenuDetailsScreenActivity.class);
+                Intent i = new Intent(container.getContext(), OrderScreenActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
 
             }
