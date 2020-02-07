@@ -1,9 +1,11 @@
 package com.example.fooddeliveryproject.Activities.OrderScreenItem.Fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,20 +13,23 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
+import com.example.fooddeliveryproject.Activities.Model.DataTransaction;
+import com.example.fooddeliveryproject.Activities.Model.DataTransaction;
 import com.example.fooddeliveryproject.Activities.OrderScreenItem.Adapter.AdapterOrderScreenOrder;
 import com.example.fooddeliveryproject.R;
 
 import java.util.ArrayList;
+import java.util.EventListener;
 
 public class OrderScreenOrderFragment extends Fragment {
 
     RecyclerView orderScreenOrder;
     AdapterOrderScreenOrder orderScreenOrderAdapter;
-    String foodName[] = {"Nasi Padang"};
-    /*int foodPrice[] = {40000, 50000, 60000};
-    int foodPriceDiscount[] = {55000, 65000, 75000};*/
-    int img[] = {R.drawable.nasi_padang_s};
+    ArrayList<DataTransaction> allData;
+    private DatabaseHelper helper;
+
 
     public OrderScreenOrderFragment() {
 
@@ -37,38 +42,28 @@ public class OrderScreenOrderFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_order_screen_order_summary, container, false);
 
+        helper = new DatabaseHelper(getActivity());
         orderScreenOrder = v.findViewById(R.id.orderScreenOrderRecyclerView);
-
+        allData = helper.listDataTransaction();
         orderScreenOrder.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManagerBestCusine = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        orderScreenOrder.setLayoutManager(layoutManagerBestCusine);
 
-        RecyclerView.LayoutManager layoutManagerAddOn =  new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        if (allData.size() > 0){
 
-        orderScreenOrder.setLayoutManager(layoutManagerAddOn);
+            orderScreenOrderAdapter = new AdapterOrderScreenOrder(allData, getActivity());
+            orderScreenOrder.setAdapter(orderScreenOrderAdapter);
+            Toast.makeText(getContext(), "THERE IS DATA", Toast.LENGTH_SHORT).show();
+            Log.e("data", String.valueOf(allData.get(1)));
 
-        ArrayList<DataKhanaval> dataAddOn = getData();
+        }else {
 
-        orderScreenOrderAdapter = new AdapterOrderScreenOrder(dataAddOn, getActivity());
-        orderScreenOrder.setAdapter(orderScreenOrderAdapter);
-
-        return v;
-
-    }
-
-    private ArrayList<DataKhanaval> getData(){
-
-        ArrayList<DataKhanaval> foodAddOnArrayList = new ArrayList<>();
-        for (int i = 0; i < foodName.length; i++){
-
-            DataKhanaval dataKhanaval = new DataKhanaval();
-            dataKhanaval.setImg(img[i]);
-            dataKhanaval.setFoodName(foodName[i]);
-            /*dataKhanaval.setFoodPrice(Integer.parseInt(String.valueOf(foodPrice[i])));
-            dataKhanaval.setFoodPriceDiscount(Integer.parseInt(String.valueOf(foodPriceDiscount[i])));*/
-            foodAddOnArrayList.add(dataKhanaval);
+            Toast.makeText(getContext(), "THERE IS NO DATA", Toast.LENGTH_SHORT).show();
 
         }
 
-        return foodAddOnArrayList;
+        return v;
+
     }
 
 

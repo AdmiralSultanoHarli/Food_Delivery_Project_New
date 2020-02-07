@@ -1,40 +1,25 @@
 package com.example.fooddeliveryproject.Activities.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.ContentValues;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Color;
-import android.media.Image;
 import android.os.Bundle;
-import android.os.strictmode.IntentReceiverLeakedViolation;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 import com.example.fooddeliveryproject.Activities.Helper.DecimalHelper;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.R;
 
-import org.w3c.dom.Text;
-
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 public class PaymentScreenActivity extends BaseActivity {
@@ -53,7 +38,6 @@ public class PaymentScreenActivity extends BaseActivity {
     int gopayBalance;
     int muamalatBalance;
 
-//    DatabaseHelper helper;
     DataKhanaval dataKhanaval;
 
     SQLiteOpenHelper openHelper;
@@ -94,11 +78,6 @@ public class PaymentScreenActivity extends BaseActivity {
         ovoBalance = SaveSharedPreference.getOvoBalance(this, 0);
         gopayBalance = SaveSharedPreference.getGopayBalance(this, 0);
         muamalatBalance = SaveSharedPreference.getMubalance(this, 0);
-
-        //whichPaymentMethod = SaveSharedPreference.getPaymentMethodName(this, 0);
-
-
-        //Log.e("Image Resource", String.valueOf(SaveSharedPreference.getImagePayment(this, 0)));
 
         payNowButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -264,7 +243,8 @@ public class PaymentScreenActivity extends BaseActivity {
         contentValues.put(DatabaseHelper.COLUMN_FOOD_ITEM_COUNT, foodItemCount);
 
         // Updating direct to the database
-        db.update(DatabaseHelper.TABLE_FOOD, contentValues, DatabaseHelper.COLUMN_FOOD_ID +"= ?", new String[]{"1"});
+        db.update(DatabaseHelper.TABLE_FOOD, contentValues, null, null);
+//        db.update(DatabaseHelper.TABLE_FOOD, contentValues, DatabaseHelper.COLUMN_FOOD_ID +"= ?", new String[]{"2"});
 
     }
 

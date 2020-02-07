@@ -107,12 +107,12 @@ public class AdapterMenuDetailScreenAddOn extends RecyclerView.Adapter<AdapterMe
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            img = itemView.findViewById(R.id.img);
-            foodName = itemView.findViewById(R.id.foodName);
-            foodPrice = itemView.findViewById(R.id.foodPrice);
-            decreaseChartQuantity = itemView.findViewById(R.id.decreaseChartQuantity);
-            increaseChartQuantity = itemView.findViewById(R.id.increaseChartQuantity);
-            chartQuantity = itemView.findViewById(R.id.chartQuantity);
+            img = itemView.findViewById(R.id.orderFoodImage);
+            foodName = itemView.findViewById(R.id.orderFoodName);
+            foodPrice = itemView.findViewById(R.id.orderFoodPrice);
+            decreaseChartQuantity = itemView.findViewById(R.id.orderDecreaseCartQuantity);
+            increaseChartQuantity = itemView.findViewById(R.id.orderIncreaseCartQuantity);
+            chartQuantity = itemView.findViewById(R.id.orderCartQuantity);
 
 
         }

@@ -39,10 +39,10 @@ public class OrderScreenActivity extends BaseActivity {
     Button buttonPayment;
     TextView textCount, foodCategoriesPrice, deliveryPrice, totalPrice, totalPriceBar, viewPayment, textViewAddMore, promoAppliedText;
 
-    DecimalFormat decimalFormat;
-
     public Button accNotes, couponShower;
     public EditText editNotes;
+
+    DecimalHelper decimalHelper;
 
     public SlidingUpPanelLayout slidingPanel;
     public boolean slideOpened = false;
@@ -103,12 +103,7 @@ public class OrderScreenActivity extends BaseActivity {
         textViewAddMore = findViewById(R.id.textViewAddMore);
         promoAppliedText = findViewById(R.id.promoAppliedText);
 
-        Locale locale = Locale.getDefault();
-        DecimalFormatSymbols formatSymbols = new DecimalFormatSymbols(locale);
-        formatSymbols.setDecimalSeparator(',');
-        formatSymbols.setGroupingSeparator('.');
-        decimalFormat = new DecimalFormat("", formatSymbols);
-
+        decimalHelper = new DecimalHelper();
 
         //slidingPanel.setPanelState(SlidingUpPanelLayout.PanelState.HIDDEN);
         editNotes.addTextChangedListener(textCounter);
@@ -171,7 +166,7 @@ public class OrderScreenActivity extends BaseActivity {
 
         }
 
-        foodCategoriesPrice.setText(decimalFormat.format(SaveSharedPreference.getFoodPriceTotal(this, 0)));
+        foodCategoriesPrice.setText(decimalHelper.formatter(SaveSharedPreference.getFoodPriceTotal(this, 0)));
 
         slidingPanel.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -390,10 +385,10 @@ public class OrderScreenActivity extends BaseActivity {
 
         foodPrice = SaveSharedPreference.getFoodPriceTotal(getApplicationContext(), 0);
         driverPrice = gopay;
-        deliveryPrice.setText(decimalFormat.format(driverPrice));
+        deliveryPrice.setText(decimalHelper.formatter(driverPrice));
         allFoodPrice = driverPrice + tax + foodPrice;
-        totalPrice.setText(decimalFormat.format(allFoodPrice));
-        totalPriceBar.setText(decimalFormat.format(allFoodPrice));
+        totalPrice.setText(decimalHelper.formatter(allFoodPrice));
+        totalPriceBar.setText(decimalHelper.formatter(allFoodPrice));
         radioButtonGojek.setChecked(true);
         radioButtonGrab.setChecked(false);
         SaveSharedPreference.setTotalPayment(OrderScreenActivity.this, allFoodPrice);
@@ -404,10 +399,10 @@ public class OrderScreenActivity extends BaseActivity {
 
         foodPrice = SaveSharedPreference.getFoodPriceTotal(getApplicationContext(), 0);
         driverPrice = ovo;
-        deliveryPrice.setText(decimalFormat.format(driverPrice));
+        deliveryPrice.setText(decimalHelper.formatter(driverPrice));
         allFoodPrice = driverPrice + tax + foodPrice;
-        totalPrice.setText(decimalFormat.format(allFoodPrice));
-        totalPriceBar.setText(decimalFormat.format(allFoodPrice));
+        totalPrice.setText(decimalHelper.formatter(allFoodPrice));
+        totalPriceBar.setText(decimalHelper.formatter(allFoodPrice));
         radioButtonGrab.setChecked(true);
         radioButtonGojek.setChecked(false);
         SaveSharedPreference.setTotalPayment(OrderScreenActivity.this, allFoodPrice);

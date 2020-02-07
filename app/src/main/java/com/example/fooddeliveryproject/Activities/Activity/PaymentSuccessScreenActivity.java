@@ -36,6 +36,8 @@ public class PaymentSuccessScreenActivity extends BaseActivity {
         paymentAmount = findViewById(R.id.paymentAmount);
         paymentMode = findViewById(R.id.paymentMode);
 
+        DecimalHelper decimalHelper = new DecimalHelper();
+
         paymentMode.setText(SaveSharedPreference.getPaymentName(this, ""));
 
         //buttonMyOrder.setBackgroundResource(SaveSharedPreference.getButtonColor(this, 0));
@@ -62,7 +64,6 @@ public class PaymentSuccessScreenActivity extends BaseActivity {
             }
         });
 
-        DecimalHelper decimalHelper = new DecimalHelper();
         paymentAmount.setText(decimalHelper.formatter(SaveSharedPreference.getTotalPayment(this, 0)));
 
     }

@@ -9,16 +9,18 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
+import com.example.fooddeliveryproject.Activities.Model.DataTransaction;
 import com.example.fooddeliveryproject.R;
 
 import java.security.PublicKey;
+import java.sql.DataTruncation;
 import java.util.ArrayList;
 import java.util.Locale;
 
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 8;
     private static final String DATABASE_NAME = "khanaval.db";
 
     //User Data
@@ -48,6 +50,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_FOOD_ITEM_COUNT = "fooditemcount";
     public static final String COLUMN_FOOD_IMG = "foodimage";
 
+    //Food Transaction Data
+    public static final String TABLE_FOOD_TRANSACTION = "foodtransaction";
+    public static final String COLUMN_FOOD_TRANSACTION_ID = "foodtransactionid";
+    public static final String COLUMN_FOOD_TRANSACTION_NAME = "foodtransactionname";
+    public static final String COLUMN_FOOD_TRANSACTION_DESC = "foodtransactiondesc";
+    public static final String COLUMN_FOOD_TRANSACTION_PRICE = "foodtransactionprice";
+    public static final String COLUMN_FOOD_TRANSACTION_PRICE_DISCOUNT = "foodtransactionpricediscount";
+    public static final String COLUMN_FOOD_TRANSACTION_PRICE_TOTAL = "foodtransactionpricetotal";
+    public static final String COLUMN_FOOD_TRANSACTION_PRICE_DISCOUNT_TOTAL  = "foodtransactionpricediscounttotal";
+    public static final String COLUMN_TRANSACTION_BUTTON = "buttoncartquantityopened";
+    public static final String COLUMN_FOOD_TRANSACTION_ITEM_COUNT = "foodtransactionitemcount";
+    public static final String COLUMN_FOOD_TRANSACTION_IMG = "foodtransactionimg";
+
     //Coupon Data
     public static final String TABLE_COUPON = "coupon";
     public static final String COLUMN_COUPON_ID = "couponid";
@@ -55,14 +70,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_COUPON_VALUE = "couponvalue";
     public static final String COLUMN_COUPON_VALID = "couponvalid";
     public static final String COLUMN_COUPON_IMG = "couponimage";
-
-    //Food Transaction Data
-    public static final String TABLE_FOOD_TRANSACTION = "foodtransaction";
-    public static final String COLUMN_FOOD_TRANSACTION_ID = "foodtransactionid";
-    public static final String COLUMN_FOOD_QUANTITY = "foodquantity";
-    public static final String COLUMN_FOOD_ALLQUANTITY = "foodallquantity";
-    public static final String COLUMN_FOOD_PRICE_TOTALS = "foodpricetotal";
-    public static final String COLUMN_FOOD_PRICE_DISCOUNT_TOTALS = "foodpricediscounttotal";
 
     //BestCusine Fragment Data
     public static final String TABLE_BESTCUSINE_FRAGMENT = "bestcusinefragment";
@@ -136,6 +143,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_FOOD_ITEM_COUNT + " INTEGER, " +
                 COLUMN_FOOD_IMG + " BLOB " + " )";
 
+        String CREATE_FOOD_TABLE_TRANSACTION = "CREATE TABLE " + TABLE_FOOD_TRANSACTION + " (" +
+                COLUMN_FOOD_TRANSACTION_ID + " INTEGER PRIMARY KEY, " +
+                COLUMN_FOOD_TRANSACTION_NAME + " TEXT, " +
+                COLUMN_FOOD_TRANSACTION_DESC + " TEXT, " +
+                COLUMN_FOOD_TRANSACTION_PRICE + " INTEGER, " +
+                COLUMN_FOOD_TRANSACTION_PRICE_DISCOUNT + " INTEGER, " +
+                COLUMN_FOOD_TRANSACTION_PRICE_TOTAL + " INTEGER, " +
+                COLUMN_FOOD_TRANSACTION_PRICE_DISCOUNT_TOTAL + " INTEGER, " +
+                COLUMN_TRANSACTION_BUTTON + " INTEGER, " +
+                COLUMN_FOOD_TRANSACTION_ITEM_COUNT + " INTEGER, " +
+                COLUMN_FOOD_TRANSACTION_IMG + " BLOB " + " )";
+
         String CREATE_COUPON_TABLE = "CREATE TABLE " + TABLE_COUPON + " (" +
                 COLUMN_COUPON_ID + " INTEGER PRIMARY KEY, " +
                 COLUMN_COUPON_NAME + " TEXT, " +
@@ -143,12 +162,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_COUPON_VALID + " TEXT, " +
                 COLUMN_COUPON_IMG + " BLOB " + " )";
 
-        String CREATE_FOOD_TABLE_TRANSACTION = "CREATE TABLE " + TABLE_FOOD_TRANSACTION + " (" +
-                COLUMN_FOOD_TRANSACTION_ID + " INTEGER PRIMARY KEY, " +
-                COLUMN_FOOD_QUANTITY + " TEXT, " +
-                COLUMN_FOOD_ALLQUANTITY + " TEXT, " +
-                COLUMN_FOOD_PRICE_TOTALS + " TEXT, " +
-                COLUMN_FOOD_PRICE_DISCOUNT_TOTALS + " TEXT " + " )";
 
         String CREATE_BESTCUSINE_TABLE = "CREATE TABLE " + TABLE_BESTCUSINE_FRAGMENT + " (" +
                 COLUMN_BESTCUSINE_ID + " INTEGER PRIMARY KEY, " +
@@ -212,6 +225,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "('Panang Curry', '3 Curry ayam + sayuran', 50000, 65000, 0, 0, 0, 0," + R.drawable.panang_curry + ")," +
                 "('Samosa', '10 Aneka gorengan india', 30000, 45000, 0, 0, 0, 0," + R.drawable.snacks + ")";
 
+        /*String DATA_FOOD_TRANSACTION = "INSERT INTO " + TABLE_FOOD_TRANSACTION + "(foodtransactionname, foodtransactiondesc, foodtransactionprice, foodtransactionpricediscount, foodtransactionpricetotal, foodtransactionpricediscounttotal, buttoncartquantityopened, foodtransactionitemcount, foodtransactionimg) " +
+                "VALUES ('Nasi Padang', '3 nasi + 2 ayam + sayuran + sambel', 30000, 40000, 0, 0, 0, 0," + R.drawable.nasi_padang_s + ")," +
+                "('Samosa', '10 Aneka gorengan india', 30000, 45000, 0, 0, 0, 0," + R.drawable.snacks + ")";*/
+
         String DATA_COUPON = "INSERT INTO " + TABLE_COUPON + "(couponname, couponvalue, couponvalid, couponimage) " +
                 "VALUES ('Chat Time', 5, '23 December 2022'," + R.drawable.chat_time_coupon + ")," +
                 "('KFC', 15, '15 January 2021'," + R.drawable.kfc_coupon + ")," +
@@ -260,6 +277,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_RESTAURANT_TABLE);
 
         db.execSQL(DATA_FOOD);
+        //db.execSQL(DATA_FOOD_TRANSACTION);
         db.execSQL(DATA_COUPON);
         db.execSQL(DATA_RESTAURANT);
 
@@ -331,6 +349,36 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 int foodItemCount = cursor.getInt(8);
                 int foodImg = Integer.parseInt(cursor.getString(9));
                 storeData.add(new DataKhanaval(foodId, foodName, foodDesc, foodPrice, foodPriceDiscount, foodPriceTotal, foodPriceDiscountTotal, button, foodItemCount, foodImg));
+            }while (cursor.moveToNext());
+
+        }
+
+        cursor.close();
+        return storeData;
+
+    }
+
+    public ArrayList<DataTransaction> listDataTransaction(){
+
+        String sql = "select * from " + TABLE_FOOD_TRANSACTION;
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<DataTransaction> storeData = new ArrayList<>();
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor.moveToFirst()){
+
+            do {
+
+                int foodTransId = Integer.parseInt(cursor.getString(0));
+                String foodTransName = cursor.getString(1);
+                String foodTransDesc = cursor.getString(2);
+                int foodTransPrice = cursor.getInt(3);
+                int foodTransPriceDiscount = cursor.getInt(4);
+                int foodTransPriceTotal = cursor.getInt(5);
+                int foodTransPriceDiscountTotal = cursor.getInt(6);
+                int transButton = cursor.getInt(7);
+                int foodTransItemCount = cursor.getInt(8);
+                int foodTransImg = Integer.parseInt(cursor.getString(9));
+                storeData.add(new DataTransaction(foodTransId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount, foodTransPriceTotal, foodTransPriceDiscountTotal, transButton, foodTransItemCount, foodTransImg));
             }while (cursor.moveToNext());
 
         }

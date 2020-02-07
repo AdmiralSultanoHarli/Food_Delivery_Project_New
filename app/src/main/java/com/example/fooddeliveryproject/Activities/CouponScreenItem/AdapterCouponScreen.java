@@ -2,7 +2,6 @@ package com.example.fooddeliveryproject.Activities.CouponScreenItem;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,14 +12,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.fooddeliveryproject.Activities.Activity.MenuScreenActivity;
 import com.example.fooddeliveryproject.Activities.Activity.OrderScreenActivity;
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterBestCusineCategories;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.R;
 
@@ -146,7 +142,7 @@ public class AdapterCouponScreen extends RecyclerView.Adapter<AdapterCouponScree
             coupValue = itemView.findViewById(R.id.coupValue);
             coupValid = itemView.findViewById(R.id.coupValid);
             couponCard = itemView.findViewById(R.id.couponCard);
-            img = itemView.findViewById(R.id.img);
+            img = itemView.findViewById(R.id.orderFoodImage);
 
         }
     }

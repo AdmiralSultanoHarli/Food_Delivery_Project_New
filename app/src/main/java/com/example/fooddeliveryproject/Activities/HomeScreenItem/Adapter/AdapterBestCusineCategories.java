@@ -3,8 +3,6 @@ package com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,16 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddeliveryproject.Activities.Activity.MenuScreenActivity;
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.HomeFragment;
-import com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment.FoodChartFragment;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.R;
 
 import java.util.List;
-
-import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_CATEGORY;
-import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.MY_PREFERENCE;
 
 public class AdapterBestCusineCategories extends RecyclerView.Adapter<AdapterBestCusineCategories.ViewHolder> {
 
@@ -51,17 +44,6 @@ public class AdapterBestCusineCategories extends RecyclerView.Adapter<AdapterBes
 
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.view_item_categories, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(v);
-
-        /*v.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                //Toast.makeText(context, "Test Click! " + String.valueOf(viewHolder.getAdapterPosition()), Toast.LENGTH_SHORT).show();
-
-
-            }
-        });*/
-
         return viewHolder;
 
     }
@@ -109,7 +91,7 @@ public class AdapterBestCusineCategories extends RecyclerView.Adapter<AdapterBes
         public ViewHolder(@NonNull final View itemView) {
             super(itemView);
 
-            img = itemView.findViewById(R.id.img);
+            img = itemView.findViewById(R.id.orderFoodImage);
             foodName = itemView.findViewById(R.id.tvNameFood);
             itemCard = itemView.findViewById(R.id.itemCard);
 

@@ -54,9 +54,6 @@ public class CurrentFragment extends Fragment{
 
         currentCategories.setHasFixedSize(true);
 
-
-
-
         date = new String[]{SaveSharedPreference.getDate(getContext(), "")};
         foodPrice = new int[]{SaveSharedPreference.getTotalPaymentSuccess(getContext(), 0)};
 

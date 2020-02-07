@@ -76,8 +76,8 @@ public class AdapterPast extends RecyclerView.Adapter<AdapterPast.ViewHolder> {
         public ViewHolder(@NonNull final View itemView) {
             super(itemView);
 
-            img = itemView.findViewById(R.id.img);
-            foodName = itemView.findViewById(R.id.foodName);
+            img = itemView.findViewById(R.id.orderFoodImage);
+            foodName = itemView.findViewById(R.id.orderFoodName);
             date = itemView.findViewById(R.id.date);
             orderTracker = itemView.findViewById(R.id.orderTracker);
             orderPrice = itemView.findViewById(R.id.orderPrice);

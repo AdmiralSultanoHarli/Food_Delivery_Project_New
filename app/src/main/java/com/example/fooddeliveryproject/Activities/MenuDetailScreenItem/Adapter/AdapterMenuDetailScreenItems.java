@@ -90,10 +90,10 @@ public class AdapterMenuDetailScreenItems extends RecyclerView.Adapter<AdapterMe
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            foodName = itemView.findViewById(R.id.foodName);
-            decreaseChartQuantity = itemView.findViewById(R.id.decreaseChartQuantity);
-            increaseChartQuantity = itemView.findViewById(R.id.increaseChartQuantity);
-            chartQuantity = itemView.findViewById(R.id.chartQuantity);
+            foodName = itemView.findViewById(R.id.orderFoodName);
+            decreaseChartQuantity = itemView.findViewById(R.id.orderDecreaseCartQuantity);
+            increaseChartQuantity = itemView.findViewById(R.id.orderIncreaseCartQuantity);
+            chartQuantity = itemView.findViewById(R.id.orderCartQuantity);
 
         }
     }

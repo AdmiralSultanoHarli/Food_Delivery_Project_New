@@ -19,7 +19,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/img"
+                android:id="@+id/orderFoodImage"
                 android:src="@drawable/nasi_padang_s"
                 android:layout_width="150dp"
                 android:layout_height="80dp"
@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/img"/>
+                android:layout_toRightOf="@+id/orderFoodImage"/>
 
             <TextView
                 android:id="@+id/restAddress"
@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:text="aaaaa"
                 android:layout_below="@+id/restName"
-                android:layout_toRightOf="@+id/img"
+                android:layout_toRightOf="@+id/orderFoodImage"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"/>
 

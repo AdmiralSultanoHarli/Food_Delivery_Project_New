@@ -100,6 +100,7 @@ public class MenuScreenFragment extends Fragment {
             menuScreenCategories.setVisibility(View.VISIBLE);
             menuScreenAdapter = new AdapterMenuScreen(allData, getActivity());
             menuScreenCategories.setAdapter(menuScreenAdapter);
+            Log.e("DATA", String.valueOf(allData));
 
         }
 

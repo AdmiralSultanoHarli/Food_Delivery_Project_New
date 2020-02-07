@@ -17,7 +17,7 @@
             app:cardCornerRadius="4dp">
             
             <ImageView
-                android:id="@+id/img"
+                android:id="@+id/orderFoodImage"
                 android:layout_width="50.1dp"
                 android:layout_height="50.9dp"
                 android:background="@drawable/rounded_image_corner"
@@ -30,7 +30,7 @@
 
 
         <TextView
-            android:id="@+id/foodName"
+            android:id="@+id/orderFoodName"
             android:text="Rice"
             android:textSize="15dp"
             android:textColor="@color/colorBlack"
@@ -40,18 +40,18 @@
             android:layout_marginLeft="10dp"/>
 
         <TextView
-            android:id="@+id/foodPrice"
+            android:id="@+id/orderFoodPrice"
             android:text="Rp 10.000,-"
             android:textSize="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/imgCard"
-            android:layout_below="@+id/foodName"
+            android:layout_below="@+id/orderFoodName"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="3dp"/>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/buttonAddPlusMinusChart"
+            android:id="@+id/orderButtonAddPlusMinusChart"
             android:layout_width="75dp"
             android:layout_height="25dp"
             android:background="@color/colorWhite"
@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/decreaseChartQuantity"
+                    android:id="@+id/orderDecreaseCartQuantity"
                     android:layout_width="25dp"
                     android:layout_height="match_parent"
                     android:clickable="true"
@@ -80,7 +80,7 @@
                     android:layout_alignParentLeft="true"/>
 
                 <TextView
-                    android:id="@+id/chartQuantity"
+                    android:id="@+id/orderCartQuantity"
                     android:layout_width="25dp"
                     android:layout_height="match_parent"
                     android:textSize="14dp"
@@ -88,7 +88,7 @@
                     android:layout_centerInParent="true"/>
 
                 <TextView
-                    android:id="@+id/increaseChartQuantity"
+                    android:id="@+id/orderIncreaseCartQuantity"
                     android:layout_width="25dp"
                     android:layout_height="match_parent"
                     android:clickable="true"

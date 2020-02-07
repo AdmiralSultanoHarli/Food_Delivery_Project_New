@@ -18,37 +18,34 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddeliveryproject.Activities.Activity.MenuDetailsScreenActivity;
 import com.example.fooddeliveryproject.Activities.Activity.OrderScreenActivity;
+import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
+import com.example.fooddeliveryproject.Activities.Helper.DecimalHelper;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
+import com.example.fooddeliveryproject.Activities.Model.DataTransaction;
 import com.example.fooddeliveryproject.R;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.util.List;
 import java.util.Locale;
 
-import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.ALL_QUANTITY;
-import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_NAME;
-import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_PRICE;
-import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_PRICE_DISCOUNT;
-import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_PRICE_DISCOUNT_TOTAL;
-import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_PRICE_TOTAL;
-import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_ADDTOCART_VISIBLE;
-import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.QUANTITY;
+public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderScreenOrder.ViewHolder> {
 
-public class AdapterOrderScreenOrder  extends RecyclerView.Adapter<AdapterOrderScreenOrder.ViewHolder> {
-
-    List<DataKhanaval> menuDetailList;
+    List<DataTransaction> topList;
+    List<DataTransaction> mTopList;
     Context context;
+    DatabaseHelper helper;
     int quantityTotal;
     int foodPriceTotal;
     int foodPriceDiscountTotal;
     //boolean wishlistAdded = false;
 
-    public AdapterOrderScreenOrder(List<DataKhanaval> menuDetailList, Context context) {
-        this.menuDetailList = menuDetailList;
+    public AdapterOrderScreenOrder(List<DataTransaction> topList, Context context) {
+        this.topList = topList;
         this.context = context;
+        this.mTopList = topList;
+        helper = new DatabaseHelper(context);
+
     }
 
     @NonNull
@@ -64,24 +61,32 @@ public class AdapterOrderScreenOrder  extends RecyclerView.Adapter<AdapterOrderS
     @Override
     public void onBindViewHolder(@NonNull final AdapterOrderScreenOrder.ViewHolder viewHolder, final int i) {
 
-        Locale locale = Locale.getDefault();
-        DecimalFormatSymbols formatSymbols = new DecimalFormatSymbols(locale);
-        formatSymbols.setDecimalSeparator(',');
-        formatSymbols.setGroupingSeparator('.');
-        DecimalFormat decimalFormat = new DecimalFormat("", formatSymbols);
+        //final DataTransaction data = topList.get(i);
+        DecimalHelper decimalHelper = new DecimalHelper();
 
-        viewHolder.foodName.setText(menuDetailList.get(i).getFoodName());
+        /*viewHolder.foodName.setText(menuDetailList.get(i).getFoodName());
         //viewHolder.foodPrice.setText(String.valueOf(menuDetailList.get(i).getFoodPrice()));
         viewHolder.img.setImageResource(menuDetailList.get(i).getImg());
         viewHolder.foodPrice.setText(decimalFormat.format(SaveSharedPreference.getFoodPriceTotal(context, 0)));
         viewHolder.foodPriceDiscount.setText(decimalFormat.format(SaveSharedPreference.getFoodPriceDiscountTotal(context, 0)));
         viewHolder.chartQuantity.setText(String.valueOf(SaveSharedPreference.getAllQuantity(context, 0)));
+        viewHolder.img.setImageResource(topList.get(i).getImg());*/
 
-        final int quantity[] = {menuDetailList.get(i).getChartQuantity()};
+
+        final int quantity[] = {topList.get(i).getFoodTransItemCount()};
 
         quantity[0] = SaveSharedPreference.getAllQuantity(context, 0);
 
+        //viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
+
+        Log.e("transaction data",viewHolder.toString());
+        viewHolder.foodName.setText(topList.get(i).getFoodTransName());
+        viewHolder.foodPrice.setText(decimalHelper.formatter(topList.get(i).getFoodTransPrice()));
+        viewHolder.foodPriceDiscount.setText(decimalHelper.formatter(topList.get(i).getFoodTransPriceDiscount()));
         viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
+        viewHolder.img.setImageResource(topList.get(i).getFoodImg());
+
+        Log.e("Food name",viewHolder.foodName.getText().toString());
 
         viewHolder.orderSummaryCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,9 +156,9 @@ public class AdapterOrderScreenOrder  extends RecyclerView.Adapter<AdapterOrderS
             }
         });
 
-        viewHolder.favouriteFood.setColorFilter(ContextCompat.getColor(context, R.color.colorButtonGray));
+        //viewHolder.favouriteFood.setColorFilter(ContextCompat.getColor(context, R.color.colorButtonGray));
 
-        viewHolder.favouriteFood.setOnClickListener(new View.OnClickListener() {
+       /* viewHolder.favouriteFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -170,14 +175,14 @@ public class AdapterOrderScreenOrder  extends RecyclerView.Adapter<AdapterOrderS
 
                 }
             }
-        });
+        });*/
 
     }
 
 
     @Override
     public int getItemCount() {
-        return menuDetailList.size();
+        return topList.size();
     }
 
 
@@ -192,13 +197,13 @@ public class AdapterOrderScreenOrder  extends RecyclerView.Adapter<AdapterOrderS
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            img = itemView.findViewById(R.id.img);
-            foodName = itemView.findViewById(R.id.foodName);
-            foodPrice = itemView.findViewById(R.id.foodPrice);
-            foodPriceDiscount = itemView.findViewById(R.id.foodPriceDiscount);
-            decreaseChartQuantity = itemView.findViewById(R.id.decreaseChartQuantity);
-            increaseChartQuantity = itemView.findViewById(R.id.increaseChartQuantity);
-            chartQuantity = itemView.findViewById(R.id.chartQuantity);
+            img = itemView.findViewById(R.id.orderFoodImage);
+            foodName = itemView.findViewById(R.id.orderFoodName);
+            foodPrice = itemView.findViewById(R.id.orderFoodPrice);
+            foodPriceDiscount = itemView.findViewById(R.id.orderFoodPriceDiscount);
+            decreaseChartQuantity = itemView.findViewById(R.id.orderDecreaseCartQuantity);
+            increaseChartQuantity = itemView.findViewById(R.id.orderIncreaseCartQuantity);
+            chartQuantity = itemView.findViewById(R.id.orderCartQuantity);
             openNotes = itemView.findViewById(R.id.openNotes);
             favouriteFood = itemView.findViewById(R.id.favouriteFood);
             orderSummaryCard = itemView.findViewById(R.id.orderSummaryCard);

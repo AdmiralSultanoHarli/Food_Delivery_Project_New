@@ -23,7 +23,7 @@
             android:foreground="?attr/selectableItemBackground">
 
             <ImageView
-                android:id="@+id/img"
+                android:id="@+id/orderFoodImage"
                 android:layout_width="130dp"
                 android:layout_height="103dp"
                 android:src="@drawable/maharashtra_thali"
@@ -35,7 +35,7 @@
                 android:text="Maha Thali"
                 android:layout_marginLeft="5dp"
                 android:layout_alignParentLeft="true"
-                android:layout_below="@+id/img"
+                android:layout_below="@+id/orderFoodImage"
                 android:layout_width="match_parent"
                 android:gravity="center|left"
                 android:layout_height="match_parent"

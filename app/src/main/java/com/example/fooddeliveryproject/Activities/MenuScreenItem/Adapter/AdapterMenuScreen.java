@@ -2,8 +2,10 @@ package com.example.fooddeliveryproject.Activities.MenuScreenItem.Adapter;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddeliveryproject.Activities.Activity.MenuScreenActivity;
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
+import com.example.fooddeliveryproject.Activities.Helper.DecimalHelper;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment.FoodChartFragment;
@@ -32,18 +35,16 @@ import com.example.fooddeliveryproject.R;
 
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.MY_PREFERENCE;
 
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.ViewHolder> implements Filterable {
 
     List<DataKhanaval> menuList;
     List<DataKhanaval> mTopList;
     Context context;
-    private DatabaseHelper helper;
+    DatabaseHelper helper;
+    SQLiteDatabase db;
 
     Dialog mDialog;
     FoodChartFragment foodChartFragment = new FoodChartFragment();
@@ -61,6 +62,7 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
         this.context = context;
         this.mTopList = menuList;
         helper = new DatabaseHelper(context);
+        db = helper.getWritableDatabase();
     }
 
 
@@ -80,13 +82,7 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
         final DataKhanaval data = menuList.get(i);
 
-//        DecimalFormat formatter = new DecimalFormat("#.###.###");
-
-        Locale locale = Locale.getDefault();
-        DecimalFormatSymbols formatSymbols = new DecimalFormatSymbols(locale);
-        formatSymbols.setDecimalSeparator(',');
-        formatSymbols.setGroupingSeparator('.');
-        DecimalFormat decimalFormat = new DecimalFormat("", formatSymbols);
+        DecimalHelper decimalHelper = new DecimalHelper();
 
         final Bundle bundle = new Bundle();
 
@@ -114,8 +110,8 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
         viewHolder.img.setImageResource(data.getImg());
         viewHolder.foodName.setText(data.getFoodName());
         viewHolder.foodDescription.setText(data.getFoodDescription());
-        viewHolder.foodPrice.setText(decimalFormat.format(data.getFoodPrice()));
-        viewHolder.foodPriceDiscount.setText(decimalFormat.format(data.getFoodPriceDiscount()));
+        viewHolder.foodPrice.setText(decimalHelper.formatter(data.getFoodPrice()));
+        viewHolder.foodPriceDiscount.setText(decimalHelper.formatter(data.getFoodPriceDiscount()));
         viewHolder.chartQuantity.setText(String.valueOf(data.getFoodItemCount()));
 
         viewHolder.buttonAddToChart.setVisibility(data.getButtonPosition() == 0 ? View.VISIBLE : View.GONE);
@@ -145,6 +141,7 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                 //5
                 MenuScreenActivity menuScreenActivity = (MenuScreenActivity) view.getContext();
 
+
                 if (!foodChartFragment.isAdded()) {
                     if (quantity[0] == 0) {
 
@@ -167,8 +164,21 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
                         isChartQuantity[0] = 1;
 
+                        String foodTransName = data.getFoodName();
+                        String foodTransDesc = data.getFoodDescription();
+                        int foodTransPrice = data.getFoodPrice();
+                        int foodTransPriceDiscount = data.getFoodPriceDiscount();
+                        int foodTransPriceTotal = priceTotal[0];
+                        int foodTransPriceDiscountTotal = priceDiscountTotal[0];
+                        int buttonTransPosition = isChartQuantity[0];
+                        int foodTransItemCount = quantity[0];
+                        int img = data.getImg();
+                        insertData(foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
+                                foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
                         updateDataToOne(data);
                         logListItem();
+
+
 
                         viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
 
@@ -197,6 +207,17 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
                     isChartQuantity[0] = 1;
 
+                    String foodTransName = data.getFoodName();
+                    String foodTransDesc = data.getFoodDescription();
+                    int foodTransPrice = data.getFoodPrice();
+                    int foodTransPriceDiscount = data.getFoodPriceDiscount();
+                    int foodTransPriceTotal = priceTotal[0];
+                    int foodTransPriceDiscountTotal = priceDiscountTotal[0];
+                    int buttonTransPosition = isChartQuantity[0];
+                    int foodTransItemCount = quantity[0];
+                    int img = data.getImg();
+                    insertData(foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
+                            foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
                     updateDataToOne(data);
                     logListItem();
 
@@ -207,6 +228,24 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                     viewHolder.activity.getSupportFragmentManager().beginTransaction().detach(foodChartFragment).attach(foodChartFragment).commit();
 
                 }
+            }
+
+            public void insertData(String foodTransName, String foodTransDesc, int foodTransPrice, int foodTransPriceDiscount,
+                                   int foodTransPriceTotal, int foodTransPriceDiscountTotal, int buttonTransPosition, int foodTransItemCount, int img){
+
+                ContentValues contentValues = new ContentValues();
+                contentValues.put(DatabaseHelper.COLUMN_FOOD_TRANSACTION_NAME, foodTransName);
+                contentValues.put(DatabaseHelper.COLUMN_FOOD_TRANSACTION_DESC, foodTransDesc);
+                contentValues.put(DatabaseHelper.COLUMN_FOOD_TRANSACTION_PRICE, foodTransPrice);
+                contentValues.put(DatabaseHelper.COLUMN_FOOD_TRANSACTION_PRICE_DISCOUNT, foodTransPriceDiscount);
+                contentValues.put(DatabaseHelper.COLUMN_FOOD_TRANSACTION_PRICE_TOTAL, foodTransPriceTotal);
+                contentValues.put(DatabaseHelper.COLUMN_FOOD_TRANSACTION_PRICE_DISCOUNT_TOTAL, foodTransPriceDiscountTotal);
+                contentValues.put(DatabaseHelper.COLUMN_TRANSACTION_BUTTON, buttonTransPosition);
+                contentValues.put(DatabaseHelper.COLUMN_FOOD_TRANSACTION_ITEM_COUNT, foodTransItemCount);
+                contentValues.put(DatabaseHelper.COLUMN_FOOD_TRANSACTION_IMG, img);
+
+                db.insert(DatabaseHelper.TABLE_FOOD_TRANSACTION, null, contentValues);
+
             }
 
             public void updateDataToOne(final DataKhanaval data){
@@ -579,16 +618,16 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
             //item_food = itemView.findViewById(R.id.food_item_id);
             //foodChartFragment = itemView.findViewById(R.id.foodChartFragment);
-            img = itemView.findViewById(R.id.img);
-            foodName = itemView.findViewById(R.id.foodName);
+            img = itemView.findViewById(R.id.orderFoodImage);
+            foodName = itemView.findViewById(R.id.orderFoodName);
             foodDescription = itemView.findViewById(R.id.foodDescription);
-            foodPrice = itemView.findViewById(R.id.foodPrice);
-            foodPriceDiscount = itemView.findViewById(R.id.foodPriceDiscount);
+            foodPrice = itemView.findViewById(R.id.orderFoodPrice);
+            foodPriceDiscount = itemView.findViewById(R.id.orderFoodPriceDiscount);
             buttonAddToChart = itemView.findViewById(R.id.buttonAddToChart);
-            buttonAddPlusMinusChart = itemView.findViewById(R.id.buttonAddPlusMinusChart);
-            decreaseChartQuantity = itemView.findViewById(R.id.decreaseChartQuantity);
-            increaseChartQuantity = itemView.findViewById(R.id.increaseChartQuantity);
-            chartQuantity = itemView.findViewById(R.id.chartQuantity);
+            buttonAddPlusMinusChart = itemView.findViewById(R.id.orderButtonAddPlusMinusChart);
+            decreaseChartQuantity = itemView.findViewById(R.id.orderDecreaseCartQuantity);
+            increaseChartQuantity = itemView.findViewById(R.id.orderIncreaseCartQuantity);
+            chartQuantity = itemView.findViewById(R.id.orderCartQuantity);
             activity = (AppCompatActivity) itemView.getContext();
 
             /*foodPriceTotal = itemView.findViewById(R.id.foodPriceTotal);

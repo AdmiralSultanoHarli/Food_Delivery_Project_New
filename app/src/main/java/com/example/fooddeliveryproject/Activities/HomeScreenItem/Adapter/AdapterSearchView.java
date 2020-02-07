@@ -150,7 +150,7 @@ public class AdapterSearchView extends RecyclerView.Adapter<AdapterSearchView.Vi
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            img = itemView.findViewById(R.id.img);
+            img = itemView.findViewById(R.id.orderFoodImage);
             restName = itemView.findViewById(R.id.restName);
             restAddress = itemView.findViewById(R.id.restAddress);
             searchCard = itemView.findViewById(R.id.searchCard);

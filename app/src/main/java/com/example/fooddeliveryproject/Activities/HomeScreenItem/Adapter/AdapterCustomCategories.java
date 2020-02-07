@@ -98,7 +98,7 @@ public class AdapterCustomCategories extends RecyclerView.Adapter<AdapterCustomC
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            img = itemView.findViewById(R.id.img);
+            img = itemView.findViewById(R.id.orderFoodImage);
             foodName = itemView.findViewById(R.id.tvNameFood);
             itemCard = itemView.findViewById(R.id.itemCard);
 
