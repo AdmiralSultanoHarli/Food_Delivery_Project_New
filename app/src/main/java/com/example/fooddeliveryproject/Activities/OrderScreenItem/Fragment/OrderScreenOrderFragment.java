@@ -46,7 +46,7 @@ public class OrderScreenOrderFragment extends Fragment {
         orderScreenOrder = v.findViewById(R.id.orderScreenOrderRecyclerView);
         allData = helper.listDataTransaction();
         orderScreenOrder.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManagerBestCusine = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView.LayoutManager layoutManagerBestCusine = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         orderScreenOrder.setLayoutManager(layoutManagerBestCusine);
 
         if (allData.size() > 0){
@@ -54,7 +54,7 @@ public class OrderScreenOrderFragment extends Fragment {
             orderScreenOrderAdapter = new AdapterOrderScreenOrder(allData, getActivity());
             orderScreenOrder.setAdapter(orderScreenOrderAdapter);
             Toast.makeText(getContext(), "THERE IS DATA", Toast.LENGTH_SHORT).show();
-            Log.e("data", String.valueOf(allData.get(1)));
+//            Log.e("data", String.valueOf(allData.get(1)));
 
         }else {
 

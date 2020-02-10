@@ -310,7 +310,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_FOOD_PRICE_TOTAL, data.getFoodPriceTotal());
         values.put(COLUMN_FOOD_PRICE_DISCOUNT_TOTAL, data.getFoodPriceDiscountTotal());
         SQLiteDatabase db = this.getWritableDatabase();
-        db.update(TABLE_FOOD, values, COLUMN_FOOD_ID	+ "	= ?", new String[] { String.valueOf(data.getId())});
+        db.update(TABLE_FOOD, values, COLUMN_FOOD_NAME	+ "	= ?", new String[] { String.valueOf(data.getFoodName())});
+
+    }
+
+    public void updateDataTrans(DataTransaction data){
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_TRANSACTION_BUTTON, data.getButtonTransPosition());
+        values.put(COLUMN_FOOD_TRANSACTION_ITEM_COUNT, data.getFoodTransItemCount());
+        values.put(COLUMN_FOOD_TRANSACTION_PRICE_TOTAL, data.getFoodTransPriceTotal());
+        values.put(COLUMN_FOOD_TRANSACTION_PRICE_DISCOUNT_TOTAL, data.getFoodTransPriceDiscountTotal());
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.update(TABLE_FOOD_TRANSACTION, values, COLUMN_FOOD_TRANSACTION_NAME	+ "	= ?", new String[] { String.valueOf(data.getFoodTransName())});
+
+    }
+
+    public void deleteDataTrans(String name){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_FOOD_TRANSACTION, COLUMN_FOOD_TRANSACTION_NAME + " = ?", new String[]{String.valueOf(name)});
 
     }
 
@@ -368,7 +387,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             do {
 
-                int foodTransId = Integer.parseInt(cursor.getString(0));
+                int foodTransId = cursor.getInt(0);
                 String foodTransName = cursor.getString(1);
                 String foodTransDesc = cursor.getString(2);
                 int foodTransPrice = cursor.getInt(3);

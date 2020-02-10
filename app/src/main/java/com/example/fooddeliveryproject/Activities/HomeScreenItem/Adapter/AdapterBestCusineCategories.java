@@ -65,6 +65,8 @@ public class AdapterBestCusineCategories extends RecyclerView.Adapter<AdapterBes
                 /*FoodChartFragment foodChartFragment = new FoodChartFragment();
                 bundle.putString("FoodShop", topList.get(i).getFoodName());
                 foodChartFragment.setArguments(bundle);*/
+                b.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                b.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                 SaveSharedPreference.setFoodCategory(context, data.getFoodName());
 

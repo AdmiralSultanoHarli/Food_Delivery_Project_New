@@ -421,7 +421,10 @@ public class OrderScreenActivity extends BaseActivity {
 
         }else {
 
-            super.onBackPressed();
+            Intent i = new Intent(OrderScreenActivity.this, MenuScreenActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
 
         }
     }
