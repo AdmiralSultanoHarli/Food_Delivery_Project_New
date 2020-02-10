@@ -65,6 +65,15 @@ public class MenuScreenFragment extends Fragment {
         menuScreenCategories.setLayoutManager(layoutManagerMenuScreen);
 
 
+        if (allData.size() > 0){
+
+            menuScreenCategories.setVisibility(View.VISIBLE);
+            menuScreenAdapter = new AdapterMenuScreen(allData, getActivity());
+            menuScreenCategories.setAdapter(menuScreenAdapter);
+            Log.e("DATA", String.valueOf(allData));
+
+        }
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -95,14 +104,6 @@ public class MenuScreenFragment extends Fragment {
         });
 
 
-        if (allData.size() > 0){
-
-            menuScreenCategories.setVisibility(View.VISIBLE);
-            menuScreenAdapter = new AdapterMenuScreen(allData, getActivity());
-            menuScreenCategories.setAdapter(menuScreenAdapter);
-            Log.e("DATA", String.valueOf(allData));
-
-        }
 
         //before after using database
         /*menuScreenCategories = v.findViewById(R.id.menuScreenRecyclerView);
