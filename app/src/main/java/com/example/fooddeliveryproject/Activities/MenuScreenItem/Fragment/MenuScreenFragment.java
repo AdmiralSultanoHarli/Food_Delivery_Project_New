@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fooddeliveryproject.Activities.Activity.MenuScreenActivity;
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterBestCusineCategories;
@@ -50,7 +51,7 @@ public class MenuScreenFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_menu_screen, container, false);
@@ -64,15 +65,17 @@ public class MenuScreenFragment extends Fragment {
         RecyclerView.LayoutManager layoutManagerMenuScreen = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         menuScreenCategories.setLayoutManager(layoutManagerMenuScreen);
 
-
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
+
+
                 Log.e("Adapter", String.valueOf(menuScreenAdapter));
 
                 if (menuScreenAdapter != null){
@@ -85,11 +88,17 @@ public class MenuScreenFragment extends Fragment {
             }
         });
 
+
+
         searchView.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
 
                 searchView.setVisibility(View.GONE);
+
+                MenuScreenActivity menuScreenActivity = (MenuScreenActivity) getContext();
+                menuScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.menuScreenFragment, new MenuScreenFragment()).commit();
+
                 return true;
             }
         });

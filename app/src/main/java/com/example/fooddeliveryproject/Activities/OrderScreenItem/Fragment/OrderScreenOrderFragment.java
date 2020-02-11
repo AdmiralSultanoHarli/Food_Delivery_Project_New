@@ -53,12 +53,6 @@ public class OrderScreenOrderFragment extends Fragment {
 
             orderScreenOrderAdapter = new AdapterOrderScreenOrder(allData, getActivity());
             orderScreenOrder.setAdapter(orderScreenOrderAdapter);
-            Toast.makeText(getContext(), "THERE IS DATA", Toast.LENGTH_SHORT).show();
-//            Log.e("data", String.valueOf(allData.get(1)));
-
-        }else {
-
-            Toast.makeText(getContext(), "THERE IS NO DATA", Toast.LENGTH_SHORT).show();
 
         }
 

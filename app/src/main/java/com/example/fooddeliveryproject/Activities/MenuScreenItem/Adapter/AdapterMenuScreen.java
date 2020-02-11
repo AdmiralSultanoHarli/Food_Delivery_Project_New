@@ -11,6 +11,7 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -26,9 +27,12 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fooddeliveryproject.Activities.Activity.HomeScreenActivity;
 import com.example.fooddeliveryproject.Activities.Activity.MenuScreenActivity;
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 import com.example.fooddeliveryproject.Activities.Helper.DecimalHelper;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.OrdersDetailsFragment;
+import com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment.MenuScreenFragment;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment.FoodChartFragment;
@@ -50,12 +54,11 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
     Dialog mDialog;
     FoodChartFragment foodChartFragment = new FoodChartFragment();
+    MenuScreenFragment menuScreenFragment = new MenuScreenFragment();
 
-    int currentPos = -1;
     int quantityTotal;
     int foodPriceTotal;
     int foodPriceDiscountTotal;
-    boolean buttonOpened = false;
 
     public AdapterMenuScreen(List<DataKhanaval> menuList, Context context) {
         this.menuList = menuList;
@@ -115,9 +118,12 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
         Log.e("Button Adapter", String.valueOf(viewHolder.buttonAddToChart.getTag(0)));
 
+        Log.e("Data filterable", String.valueOf(menuList));
+
         if (SaveSharedPreference.getAllQuantity(context, quantityTotal) >= 1 ) {
 
             viewHolder.activity.getSupportFragmentManager().beginTransaction().replace(R.id.foodChartFragment, foodChartFragment).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
+            //viewHolder.activity.getSupportFragmentManager().beginTransaction().detach(foodChartFragment).attach(foodChartFragment).commit();
 
         }
 
@@ -126,16 +132,13 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
             @Override
             public void onClick(View view) {
 
-                //5
                 MenuScreenActivity menuScreenActivity = (MenuScreenActivity) view.getContext();
-
 
                 if (!foodChartFragment.isAdded()) {
                     if (quantity[0] == 0) {
 
                         viewHolder.buttonAddToChart.getTag();
 
-                        notifyItemChanged(foodPriceItem);
                         menuScreenActivity.numberCount.setVisibility(View.VISIBLE);
 
                         quantity[0] = 1;
@@ -163,10 +166,10 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                         int img = data.getImg();
                         insertData(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                                 foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
-                        updateDataToOne(data);
+                        updateDataToOne(data, view);
                         logListItem();
 
-
+                        
 
                         viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
 
@@ -207,8 +210,10 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                     int img = data.getImg();
                     insertData(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                             foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
-                    updateDataToOne(data);
+                    updateDataToOne(data, view);
                     logListItem();
+
+                    
 
                     viewHolder.buttonAddToChart.getTag();
 
@@ -243,13 +248,17 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
             }
 
-            public void updateDataToOne(final DataKhanaval data){
+            public void updateDataToOne(final DataKhanaval data, View view){
 
                 DataKhanaval dataKhanaval = new DataKhanaval(data.getId(), data.getFoodName(),
                         data.getFoodDescription(), data.getFoodPrice(), data.getFoodPriceDiscount(), priceTotal[0], priceDiscountTotal[0], isChartQuantity[0], quantity[0], data.getImg());
 
                 helper.updateData(dataKhanaval);
-
+                //MenuScreenActivity menuScreenActivity = (MenuScreenActivity) view.getContext();
+                //menuScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.menuScreenFragment, new MenuScreenFragment()).commit();
+                //menuScreenActivity.getSupportFragmentManager().beginTransaction().detach(menuScreenFragment).commitNowAllowingStateLoss();
+                //menuScreenActivity.getSupportFragmentManager().beginTransaction().attach(menuScreenFragment).commitAllowingStateLoss();
+                //menuScreenActivity.getSupportFragmentManager().beginTransaction().setReorderingAllowed(false).detach(menuScreenFragment).attach(menuScreenFragment).commitAllowingStateLoss();
             }
 
             public void logListItem() {
@@ -263,7 +272,6 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                 bundle.putString("FoodPrice", String.valueOf(foodPriceTotal));
                 bundle.putString("FoodDiscount", String.valueOf(foodPriceDiscountTotal));
 
-                // Save to SharedPreference
                 SaveSharedPreference.setFoodName(context, menuList.get(i).getFoodName());
                 SaveSharedPreference.setAllQuantity(context, quantityTotal);
                 SaveSharedPreference.setFoodPriceTotal(context, foodPriceTotal);
@@ -324,22 +332,28 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
                 updateDataTrans(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                         foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
-                updateDataToOne(data);
+                updateDataToOne(data, view);
                 logListItem();
 
-                viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
+                
 
+                viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
 
                 viewHolder.activity.getSupportFragmentManager().beginTransaction().detach(foodChartFragment).attach(foodChartFragment).commit();
             }
 
-            public void updateDataToOne(final DataKhanaval data){
+            public void updateDataToOne(final DataKhanaval data, View view){
 
                 DataKhanaval dataKhanaval = new DataKhanaval(data.getId(), data.getFoodName(),
                         data.getFoodDescription(), data.getFoodPrice(), data.getFoodPriceDiscount(), priceTotal[0], priceDiscountTotal[0], isChartQuantity[0], quantity[0], data.getImg());
 
                 helper.updateData(dataKhanaval);
 
+                //MenuScreenActivity menuScreenActivity = (MenuScreenActivity) view.getContext();
+                //menuScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.menuScreenFragment, new MenuScreenFragment()).commit();
+                //menuScreenActivity.getSupportFragmentManager().beginTransaction().setReorderingAllowed(false).detach(menuScreenFragment).attach(menuScreenFragment).commitAllowingStateLoss();
+                //menuScreenActivity.getSupportFragmentManager().beginTransaction().detach(menuScreenFragment).commitNowAllowingStateLoss();
+                //menuScreenActivity.getSupportFragmentManager().beginTransaction().attach(menuScreenFragment).commitAllowingStateLoss();
 
             }
 
@@ -367,7 +381,6 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                 bundle.putString("FoodPrice", String.valueOf(foodPriceTotal));
                 bundle.putString("FoodDiscount", String.valueOf(foodPriceDiscountTotal));
 
-                // Save to SharedPreference
                 SaveSharedPreference.setFoodName(context, menuList.get(i).getFoodName());
                 SaveSharedPreference.setAllQuantity(context, quantityTotal);
                 SaveSharedPreference.setFoodPriceTotal(context, foodPriceTotal);
@@ -375,14 +388,6 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                 SaveSharedPreference.setQuantity(context, quantity[0]);
                 SaveSharedPreference.setFoodPrice(context, priceTotal[0]);
                 SaveSharedPreference.setFoodPriceDiscount(context, priceDiscountTotal[0]);
-
-                /*editor.putString(FOOD_NAME, menuList.get(i).getFoodName());
-                editor.putInt(ALL_QUANTITY, quantityTotal);
-                editor.putInt(FOOD_PRICE_TOTAL, foodPriceTotal);
-                editor.putInt(FOOD_PRICE_DISCOUNT_TOTAL, foodPriceDiscountTotal);
-                editor.putInt(QUANTITY, quantity[0]);
-                editor.putInt(FOOD_PRICE, priceTotal[0]);
-                editor.putInt(FOOD_PRICE_DISCOUNT, priceDiscountTotal[0]);*/
 
                 Log.e("FoodCount", menuList.get(i).getFoodName() + " = " + String.valueOf(quantity[0]));
                 Log.e("FoodPrice", menuList.get(i).getFoodName() + " = " + String.valueOf(priceTotal[0]));
@@ -392,13 +397,6 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                 Log.e("FoodPriceTotal", " = " + foodPriceTotal);
                 Log.e("FoodDiscountTotal", " = " + foodPriceDiscountTotal);
 
-                // If i want just to show the 1 item total quantity i can use like the comment bellow
-                /*bundle.putString("FoodCount", String.valueOf(quantity[0]));
-                bundle.putString("FoodPrice", String.valueOf(priceTotal[0]));
-                bundle.putString("FoodDiscount", String.valueOf(priceDiscountTotal[0]));*/
-
-                //foodChartFragment.setArguments(bundle);
-
             }
         });
 
@@ -407,7 +405,6 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
             @Override
             public void onClick(View view) {
 
-                //7
                 MenuScreenActivity menuScreenActivity = (MenuScreenActivity) view.getContext();
 
                 if (quantity[0] == 1) {
@@ -426,7 +423,6 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                         priceTotal[0] = 0;
                         priceDiscountTotal[0] = 0;
 
-
                         menuScreenActivity.numberCount.setVisibility(View.GONE);
 
                         isChartQuantity[0] = 0;
@@ -443,14 +439,12 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                         int img = data.getImg();
                         deleteData(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                                 foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
-                        updateDataToZero(data);
+                        updateDataToZero(data, view);
                         logListItem();
 
                         viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
-                        //viewHolder.chartQuantity.setText(String.valueOf(SaveSharedPreference.getQuantity(context, 0)));
                         viewHolder.buttonAddToChart.setVisibility(View.VISIBLE);
                         viewHolder.buttonAddPlusMinusChart.setVisibility(View.GONE);
-
 
                         viewHolder.activity.getSupportFragmentManager().beginTransaction().remove(foodChartFragment).commit();
 
@@ -482,14 +476,14 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                         int img = data.getImg();
                         deleteData(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                                 foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
-                        updateDataToZero(data);
+                        updateDataToZero(data, view);
                         logListItem();
+
+                        
 
                         viewHolder.buttonAddToChart.setVisibility(View.VISIBLE);
                         viewHolder.buttonAddPlusMinusChart.setVisibility(View.GONE);
                         viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
-
-                        //viewHolder.chartQuantity.setText(String.valueOf(SaveSharedPreference.getQuantity(context, 0)));
 
                         viewHolder.activity.getSupportFragmentManager().beginTransaction().detach(foodChartFragment).attach(foodChartFragment).commit();
                     }
@@ -512,8 +506,6 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
                         isChartQuantity[0] = 1;
 
-                        // Showing the text that Counting number in the middle button Decrement and Increment
-                        viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
 
                         int foodId = data.getId();
                         String foodTransName = data.getFoodName();
@@ -529,9 +521,12 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                         updateDataTrans(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                                 foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
 
-                        updateDataToZero(data);
+                        updateDataToZero(data, view);
                         logListItem();
 
+                        
+
+                        viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
                         viewHolder.activity.getSupportFragmentManager().beginTransaction().detach(foodChartFragment).attach(foodChartFragment).commit();
 
                     }
@@ -573,12 +568,18 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
             }
 
-            public void updateDataToZero(final DataKhanaval data){
+            public void updateDataToZero(final DataKhanaval data, View view){
 
                 DataKhanaval dataKhanaval = new DataKhanaval(data.getId(), data.getFoodName(),
                         data.getFoodDescription(), data.getFoodPrice(), data.getFoodPriceDiscount(), priceTotal[0], priceDiscountTotal[0], isChartQuantity[0], quantity[0], data.getImg());
 
                 helper.updateData(dataKhanaval);
+
+                //MenuScreenActivity menuScreenActivity = (MenuScreenActivity) view.getContext();
+                //menuScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.menuScreenFragment, new MenuScreenFragment()).commit();
+                //menuScreenActivity.getSupportFragmentManager().beginTransaction().setReorderingAllowed(false).detach(menuScreenFragment).attach(menuScreenFragment).commitAllowingStateLoss();
+                //menuScreenActivity.getSupportFragmentManager().beginTransaction().detach(menuScreenFragment).commitNowAllowingStateLoss();
+                //menuScreenActivity.getSupportFragmentManager().beginTransaction().attach(menuScreenFragment).commitAllowingStateLoss();
 
             }
 
@@ -588,7 +589,6 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                 bundle.putString("FoodPrice", String.valueOf(foodPriceTotal));
                 bundle.putString("FoodDiscount", String.valueOf(foodPriceDiscountTotal));
 
-                // Save to SharedPreference
                 SaveSharedPreference.setFoodName(context, menuList.get(i).getFoodName());
                 SaveSharedPreference.setAllQuantity(context, quantityTotal);
                 SaveSharedPreference.setFoodPriceTotal(context, foodPriceTotal);
@@ -616,7 +616,6 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
     }
 
 
-    //fix this
     @Override
     public Filter getFilter() {
 
@@ -633,12 +632,14 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                 }else {
 
                     ArrayList<DataKhanaval> filteredList = new ArrayList<>();
-                    for (DataKhanaval data : mTopList){
+                    for (DataKhanaval data : menuList){
 
                         if (data.getFoodName().toLowerCase().contains(charString) || data.getFoodName().contains(charString)
                                 || data.getFoodName().toUpperCase().contains(charString)){
 
                             filteredList.add(data);
+
+                            Log.e("Data filterable", String.valueOf(mTopList));
 
                         }
 
@@ -656,6 +657,9 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+
+                /*MenuScreenActivity menuScreenActivity = (MenuScreenActivity) context;
+                menuScreenActivity.getSupportFragmentManager().beginTransaction().detach(new MenuScreenFragment()).attach(new MenuScreenFragment()).commit();*/
 
                 menuList = (ArrayList<DataKhanaval>) filterResults.values;
                 notifyDataSetChanged();

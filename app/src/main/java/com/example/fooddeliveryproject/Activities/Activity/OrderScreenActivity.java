@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.example.fooddeliveryproject.Activities.Helper.DecimalHelper;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
+import com.example.fooddeliveryproject.Activities.MenuDetailScreenItem.Fragment.MenuDetailScreenAddOnFragment;
 import com.example.fooddeliveryproject.Activities.OrderScreenItem.Fragment.OrderScreenOrderFragment;
 import com.example.fooddeliveryproject.R;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
@@ -284,6 +285,9 @@ public class OrderScreenActivity extends BaseActivity {
 
         OrderScreenOrderFragment orderScreenOrderFragment = new OrderScreenOrderFragment();
         fragmentTransaction.replace(R.id.orderSummaryFragment, orderScreenOrderFragment, orderScreenOrderFragment.getTag());
+
+        MenuDetailScreenAddOnFragment menuDetailScreenAddOnFragment = new MenuDetailScreenAddOnFragment();
+        fragmentTransaction.replace(R.id.menuOrderAlsoOrderFragment, menuDetailScreenAddOnFragment, menuDetailScreenAddOnFragment.getTag());
 
         fragmentTransaction.commit();
 

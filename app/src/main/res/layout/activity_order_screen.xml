@@ -254,9 +254,38 @@
                 </androidx.cardview.widget.CardView>
 
                 <RelativeLayout
-                    android:id="@+id/selectDeliveryCategories"
+                    android:id="@+id/alsoOrderCategories"
+                    android:layout_width="match_parent"
                     android:layout_marginTop="10dp"
                     android:layout_below="@+id/promoCategories"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textViewAddOn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="People also order this"
+                        android:textSize="14dp"
+                        android:textColor="@color/colorBlack"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="7dp"/>
+
+                    <LinearLayout
+                        android:id="@+id/menuOrderAlsoOrderFragment"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_below="@+id/textViewAddOn"
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/selectDeliveryCategories"
+                    android:layout_below="@+id/alsoOrderCategories"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 

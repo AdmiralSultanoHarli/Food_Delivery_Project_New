@@ -76,7 +76,6 @@ public class SearchViewFragment extends Fragment {
                 homeScreenActivity.isSearchFragmentOpened = false;
                 homeScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, new HomeFragment()).commit();
 
-
                 return true;
 
             }
@@ -91,11 +90,14 @@ public class SearchViewFragment extends Fragment {
             }
         });
 
+        customCategories.setVisibility(View.GONE);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+
                 return false;
+
             }
 
             @Override
@@ -105,7 +107,16 @@ public class SearchViewFragment extends Fragment {
 
                 if (adapterCustomCategories != null){
 
-                    adapterCustomCategories.getFilter().filter(newText);
+                    if (!newText.isEmpty()){
+
+                        adapterCustomCategories.getFilter().filter(newText);
+                        customCategories.setVisibility(View.VISIBLE);
+
+                    }else if (newText.isEmpty()){
+
+                        customCategories.setVisibility(View.GONE);
+
+                    }
 
                 }
 
@@ -116,7 +127,6 @@ public class SearchViewFragment extends Fragment {
 
         if (allData.size() > 0){
 
-            customCategories.setVisibility(View.VISIBLE);
             adapterCustomCategories = new AdapterSearchView(allData, getActivity());
             customCategories.setAdapter(adapterCustomCategories);
 

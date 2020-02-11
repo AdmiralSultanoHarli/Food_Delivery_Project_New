@@ -42,7 +42,7 @@ public class PaymentScreenActivity extends BaseActivity {
 
     SQLiteOpenHelper openHelper;
     SQLiteDatabase db;
-    DatabaseHelper databaseHelper;
+    DatabaseHelper helper;
 
 
 
@@ -53,7 +53,7 @@ public class PaymentScreenActivity extends BaseActivity {
 
         DecimalHelper decimalHelper = new DecimalHelper();
         openHelper = new DatabaseHelper(this);
-        databaseHelper = new DatabaseHelper(this);
+        helper = new DatabaseHelper(this);
 
         db = openHelper.getWritableDatabase();
         dataKhanaval = new DataKhanaval();
@@ -111,6 +111,7 @@ public class PaymentScreenActivity extends BaseActivity {
                             SaveSharedPreference.setTotalPaymentSuccess(PaymentScreenActivity.this, paymentTotalInt);
                             paymentSuccessReset();
                             resetData(foodPrice, foodPriceTotal, isCartOpened, itemCount);
+                            deleteDataTrans();
 
                         }
 
@@ -136,6 +137,7 @@ public class PaymentScreenActivity extends BaseActivity {
                             SaveSharedPreference.setTotalPaymentSuccess(PaymentScreenActivity.this, paymentTotalInt);
                             paymentSuccessReset();
                             resetData(foodPrice, foodPriceTotal, isCartOpened, itemCount);
+                            deleteDataTrans();
 
                         }
 
@@ -162,6 +164,7 @@ public class PaymentScreenActivity extends BaseActivity {
                             SaveSharedPreference.setTotalPaymentSuccess(PaymentScreenActivity.this, paymentTotalInt);
                             paymentSuccessReset();
                             resetData(foodPrice, foodPriceTotal, isCartOpened, itemCount);
+                            deleteDataTrans();
 
                         }
                     }else {
@@ -244,7 +247,14 @@ public class PaymentScreenActivity extends BaseActivity {
 
         // Updating direct to the database
         db.update(DatabaseHelper.TABLE_FOOD, contentValues, null, null);
-//        db.update(DatabaseHelper.TABLE_FOOD, contentValues, DatabaseHelper.COLUMN_FOOD_ID +"= ?", new String[]{"2"});
+        //db.update(DatabaseHelper.TABLE_FOOD, contentValues, DatabaseHelper.COLUMN_FOOD_ID +"= ?", new String[]{"2"});
+
+    }
+
+    public void deleteDataTrans(){
+
+        // Delete data in TABLE FOOD TRANSACTION
+        db.delete(DatabaseHelper.TABLE_FOOD_TRANSACTION, null, null);
 
     }
 

@@ -304,7 +304,7 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
                         updateDataToZero(data);
                         logListItem();
 
-                        viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
+                        //viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
 
 
                         OrderScreenActivity orderScreenActivity = (OrderScreenActivity) view.getContext();

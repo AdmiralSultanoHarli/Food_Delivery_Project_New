@@ -38,6 +38,8 @@ public class MenuScreenActivity extends BaseActivity {
     private ArrayList<DataKhanaval> allData = new ArrayList<>();
     private AdapterMenuScreen mAdapter;
 
+    MenuScreenFragment menuScreenFragment = new MenuScreenFragment();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,8 +99,7 @@ public class MenuScreenActivity extends BaseActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        final MenuScreenFragment menuScreenFragment = new MenuScreenFragment();
-        fragmentTransaction.replace(R.id.menuScreenFragment, menuScreenFragment, menuScreenFragment.getTag());
+        fragmentTransaction.replace(R.id.menuScreenFragment, menuScreenFragment).commit();
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,6 +108,10 @@ public class MenuScreenActivity extends BaseActivity {
                 MenuScreenFragment menuScreenFragment_s = new MenuScreenFragment();
                 menuScreenFragment_s.searchView.setVisibility(View.VISIBLE);
                 menuScreenFragment_s.searchView.setIconified(false);
+                //getSupportFragmentManager().beginTransaction().detach(menuScreenFragment).attach(menuScreenFragment).commit();
+
+                //getSupportFragmentManager().beginTransaction().replace(R.id.menuScreenFragment, menuScreenFragment).commit();
+
 
             }
         });
@@ -120,22 +125,13 @@ public class MenuScreenActivity extends BaseActivity {
                 /*Intent backHomeScreenActivity = new Intent(MenuScreenActivity.this, HomeScreenActivity.class);
                 startActivity(backHomeScreenActivity);*/
 
-
             }
         });
-
-
 
 
        /* FoodChartFragment foodChartFragment = new FoodChartFragment();
         fragmentTransaction.add(R.id.foodChartFragment, foodChartFragment, foodChartFragment.getTag());*/
 
-        fragmentTransaction.commit();
-
     }
 
-    /*@Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }*/
 }
