@@ -24,8 +24,8 @@ import java.util.Locale;
 
 public class MenuDetailsScreenActivity extends BaseActivity {
 
-    TextView itemTotalPriceDiscount, itemTotalPrice;
-    ImageView backButton;
+    TextView itemTotalPriceDiscount, itemTotalPrice, itemName;
+    ImageView backButton, img;
     Button buttonContinue;
 
 
@@ -37,8 +37,10 @@ public class MenuDetailsScreenActivity extends BaseActivity {
 
         itemTotalPriceDiscount = findViewById(R.id.itemTotalPriceDiscount);
         itemTotalPrice = findViewById(R.id.itemTotalPrice);
+        itemName = findViewById(R.id.itemName);
         backButton = findViewById(R.id.backButton);
         buttonContinue = findViewById(R.id.buttonContinue);
+        img = findViewById(R.id.img);
 
         itemTotalPriceDiscount.setPaintFlags(itemTotalPriceDiscount.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
@@ -48,8 +50,12 @@ public class MenuDetailsScreenActivity extends BaseActivity {
         formatSymbols.setGroupingSeparator('.');
         DecimalFormat decimalFormat = new DecimalFormat("", formatSymbols);
 
-        itemTotalPrice.setText(decimalFormat.format(SaveSharedPreference.getFoodPriceTotal(this, 0)));
-        itemTotalPriceDiscount.setText(decimalFormat.format(SaveSharedPreference.getFoodPriceDiscountTotal(this, 0)));
+
+        img.setImageResource(SaveSharedPreference.getFoodDetailImg(this, 0));
+        itemName.setText(SaveSharedPreference.getFoodDetailName(this, ""));
+        itemTotalPrice.setText(decimalFormat.format(SaveSharedPreference.getFoodDetailPrice(this, 0)));
+        itemTotalPriceDiscount.setText(decimalFormat.format(SaveSharedPreference.getFoodDetailDiscountPrice(this, 0)));
+
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override

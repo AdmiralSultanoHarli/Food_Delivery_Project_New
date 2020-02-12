@@ -64,8 +64,8 @@
                 app:cardElevation="1dp">
 
                     <ImageView
-                        android:background="@drawable/nasi_padang_s"
-                        android:id="@+id/rectangleTop"
+                        android:scaleType="fitXY"
+                        android:id="@+id/img"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         />

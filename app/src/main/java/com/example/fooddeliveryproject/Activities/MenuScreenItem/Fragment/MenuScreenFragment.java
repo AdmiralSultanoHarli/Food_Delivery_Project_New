@@ -65,18 +65,18 @@ public class MenuScreenFragment extends Fragment {
         RecyclerView.LayoutManager layoutManagerMenuScreen = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         menuScreenCategories.setLayoutManager(layoutManagerMenuScreen);
 
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
 
+                menuScreenAdapter.getFilter().filter(query);
                 return false;
+
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-
-
-                Log.e("Adapter", String.valueOf(menuScreenAdapter));
 
                 if (menuScreenAdapter != null){
 
@@ -84,7 +84,7 @@ public class MenuScreenFragment extends Fragment {
 
                 }
 
-                return true;
+                return false;
             }
         });
 
@@ -96,8 +96,8 @@ public class MenuScreenFragment extends Fragment {
 
                 searchView.setVisibility(View.GONE);
 
-                MenuScreenActivity menuScreenActivity = (MenuScreenActivity) getContext();
-                menuScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.menuScreenFragment, new MenuScreenFragment()).commit();
+                /*MenuScreenActivity menuScreenActivity = (MenuScreenActivity) getContext();
+                menuScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.menuScreenFragment, new MenuScreenFragment()).commit();*/
 
                 return true;
             }

@@ -108,7 +108,14 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
                 Intent i = new Intent(context, MenuDetailsScreenActivity.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                SaveSharedPreference.setFoodDetailName(context, data.getFoodTransName());
+                SaveSharedPreference.setFoodDetailPrice(context, data.getFoodTransPriceTotal());
+                SaveSharedPreference.setFoodDetailDiscountPrice(context, data.getFoodTransPriceDiscountTotal());
+                SaveSharedPreference.setFoodDetailImg(context, data.getFoodImg());
+
                 context.startActivity(i);
+
             }
         });
 
@@ -163,7 +170,6 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
                         data.getFoodTransDesc(), data.getFoodTransPrice(), data.getFoodTransPriceDiscount(), priceTotal[0], priceDiscountTotal[0], isChartQuantity[0], quantity[0], data.getFoodImg());
 
                 helper.updateDataTrans(dataTransaction);
-
 
             }
 

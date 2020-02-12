@@ -40,7 +40,7 @@ public class AdapterMenuDetailScreenAddOn extends RecyclerView.Adapter<AdapterMe
 
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int i) {
 
         Locale locale = Locale.getDefault();
         DecimalFormatSymbols formatSymbols = new DecimalFormatSymbols(locale);

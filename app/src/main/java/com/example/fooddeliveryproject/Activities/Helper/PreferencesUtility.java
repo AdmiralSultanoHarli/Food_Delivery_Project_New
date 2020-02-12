@@ -79,4 +79,16 @@ public class PreferencesUtility {
     public static final String NO_ORDER_COMPLETE = "noordercomplete";
 
     public static final String IS_COUPON_EXIST = "iscouponexist";
+
+
+    //Menu Details Screen
+    public static final String FOOD_DETAIL_SCREEN_NAME = "fooddetailscreenname";
+
+    public static final String FOOD_DETAIL_SCREEN_TOTAL_PRICE = "fooddetailtotalprice";
+
+    public static final String FOOD_DETAIL_SCREEN_TOTAL_DISCOUNT_PRICE = "fooddetailtotaldiscountprice";
+
+    public static final String FOOD_DETAIL_IMG = "fooddetailimg";
+
+
 }

@@ -17,6 +17,10 @@ import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtili
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.EMAIL;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_CATEGORY;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_DESCRIPTION;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_DETAIL_IMG;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_DETAIL_SCREEN_NAME;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_DETAIL_SCREEN_TOTAL_DISCOUNT_PRICE;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_DETAIL_SCREEN_TOTAL_PRICE;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_NAME;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_PRICE;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_PRICE_DISCOUNT;
@@ -586,6 +590,62 @@ public class SaveSharedPreference {
     public static int getTotalPaymentSuccess(Context context, int totalPaymentSuccess){
 
         return getPreferences(context).getInt(TOTAL_PAYMENT_SUCCESS, 0);
+
+    }
+
+    public static void setFoodDetailName(Context context, String foodDetailName){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putString(FOOD_DETAIL_SCREEN_NAME, foodDetailName);
+        editor.apply();
+
+    }
+
+    public static String getFoodDetailName(Context context, String foodDetailName){
+
+        return getPreferences(context).getString(FOOD_DETAIL_SCREEN_NAME, "");
+
+    }
+
+    public static void setFoodDetailPrice(Context context, int foodDetailPrice){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putInt(FOOD_DETAIL_SCREEN_TOTAL_PRICE, foodDetailPrice);
+        editor.apply();
+
+    }
+
+    public static int getFoodDetailPrice(Context context, int foodDetailPrice){
+
+        return getPreferences(context).getInt(FOOD_DETAIL_SCREEN_TOTAL_PRICE, 0);
+
+    }
+
+    public static void setFoodDetailDiscountPrice(Context context, int foodDetailDiscountPrice){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putInt(FOOD_DETAIL_SCREEN_TOTAL_DISCOUNT_PRICE, foodDetailDiscountPrice);
+        editor.apply();
+
+    }
+
+    public static int getFoodDetailDiscountPrice(Context context, int foodDetailDiscountPrice){
+
+        return getPreferences(context).getInt(FOOD_DETAIL_SCREEN_TOTAL_DISCOUNT_PRICE, 0);
+
+    }
+
+    public static void setFoodDetailImg(Context context, int foodDetailImg){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putInt(FOOD_DETAIL_IMG, foodDetailImg);
+        editor.apply();
+
+    }
+
+    public static int getFoodDetailImg(Context context, int foodDetailImg){
+
+        return getPreferences(context).getInt(FOOD_DETAIL_IMG, 0);
 
     }
 
