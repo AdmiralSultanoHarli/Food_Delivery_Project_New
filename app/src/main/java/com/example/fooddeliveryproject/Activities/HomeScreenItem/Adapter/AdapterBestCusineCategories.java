@@ -69,6 +69,7 @@ public class AdapterBestCusineCategories extends RecyclerView.Adapter<AdapterBes
                 b.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                 SaveSharedPreference.setFoodCategory(context, data.getFoodName());
+                SaveSharedPreference.setFoodShopImg(context, data.getImg());
 
                 //b.putExtra("FoodShop", topList.get(i).getFoodName());
                 //Log.e("item food name bundle", topList.get(i).getFoodName());

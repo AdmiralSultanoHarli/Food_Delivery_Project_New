@@ -60,7 +60,7 @@
                 android:layout_marginLeft="20dp"/>
 
             <TextView
-                android:id="@+id/orderTracker"
+                android:id="@+id/orderPaymentMethod"
                 android:text="Order Placed"
                 android:textSize="12dp"
                 android:layout_toRightOf="@+id/imgCard"

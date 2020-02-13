@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.Model.DataTransaction;
+import com.example.fooddeliveryproject.Activities.Model.DataTransactionDone;
 import com.example.fooddeliveryproject.R;
 
 import java.security.PublicKey;
@@ -62,6 +63,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_TRANSACTION_BUTTON = "buttoncartquantityopened";
     public static final String COLUMN_FOOD_TRANSACTION_ITEM_COUNT = "foodtransactionitemcount";
     public static final String COLUMN_FOOD_TRANSACTION_IMG = "foodtransactionimg";
+
+    // Food Transaction Done
+    public static final String TABLE_TRANSACTION_DONE = "transactiondone";
+    public static final String COLUMN_TRANSACTION_ID = "transactionid";
+    public static final String COLUMN_TRANSACTION_SHOP_NAME = "transactionshopname";
+    public static final String COLUMN_TRANSACTION_TOTAL_PAYMENT = "transactiontotalpayment";
+    public static final String COLUMN_TRANSACTION_DATE = "transaciondate";
+    public static final String COLUMN_TRANSACTION_PAYMENT_METHOD = "transactionpaymentmethod";
+    public static final String COLUMN_TRANSACTION_ORDER_TRACKER = "transactionordertracker";
+    public static final String COLUMN_TRANSACTION_SHOP_IMG = "transactionshopimg";
 
     //Coupon Data
     public static final String TABLE_COUPON = "coupon";
@@ -154,6 +165,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_TRANSACTION_BUTTON + " INTEGER, " +
                 COLUMN_FOOD_TRANSACTION_ITEM_COUNT + " INTEGER, " +
                 COLUMN_FOOD_TRANSACTION_IMG + " BLOB " + " )";
+
+        String CREATE_TABLE_TRANSACTION_DONE = "CREATE TABLE " + TABLE_TRANSACTION_DONE + " (" +
+                COLUMN_TRANSACTION_ID + " INTEGER PRIMARY KEY, " +
+                COLUMN_TRANSACTION_SHOP_NAME + " TEXT, " +
+                COLUMN_TRANSACTION_TOTAL_PAYMENT + " INTEGER, " +
+                COLUMN_TRANSACTION_DATE + " TEXT, " +
+                COLUMN_TRANSACTION_PAYMENT_METHOD + " TEXT, " +
+                COLUMN_TRANSACTION_ORDER_TRACKER + " TEXT, " +
+                COLUMN_TRANSACTION_SHOP_IMG + " BLOB " + " )";
 
         String CREATE_COUPON_TABLE = "CREATE TABLE " + TABLE_COUPON + " (" +
                 COLUMN_COUPON_ID + " INTEGER PRIMARY KEY, " +
@@ -275,6 +295,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_YOURFAVOURITES_TABLE);
         db.execSQL(CREATE_CUSTOM_TABLE);
         db.execSQL(CREATE_RESTAURANT_TABLE);
+        db.execSQL(CREATE_TABLE_TRANSACTION_DONE);
 
         db.execSQL(DATA_FOOD);
         //db.execSQL(DATA_FOOD_TRANSACTION);
@@ -294,6 +315,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_FOOD);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_FOOD_TRANSACTION);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TRANSACTION_DONE);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_BESTCUSINE_FRAGMENT);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TODAYSPECIAL_FRAGMENT);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_YOURFAVOURITES_FRAGMENT);
@@ -398,6 +420,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 int foodTransItemCount = cursor.getInt(8);
                 int foodTransImg = Integer.parseInt(cursor.getString(9));
                 storeData.add(new DataTransaction(foodTransId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount, foodTransPriceTotal, foodTransPriceDiscountTotal, transButton, foodTransItemCount, foodTransImg));
+            }while (cursor.moveToNext());
+
+        }
+
+        cursor.close();
+        return storeData;
+
+    }
+
+    public ArrayList<DataTransactionDone> listDataTransactionDone(){
+
+        String sql = "select * from " + TABLE_TRANSACTION_DONE;
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<DataTransactionDone> storeData = new ArrayList<>();
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor.moveToFirst()){
+
+            do {
+
+                int transactionId = Integer.parseInt(cursor.getString(0));
+                String shopName = cursor.getString(1);
+                int totalPayment = cursor.getInt(2);
+                String date = cursor.getString(3);
+                String paymentMethod = cursor.getString(4);
+                String orderTracker = cursor.getString(5);
+                int shopImg = cursor.getInt(6);
+                storeData.add(new DataTransactionDone(transactionId, shopName, totalPayment, date, paymentMethod, orderTracker, shopImg));
             }while (cursor.moveToNext());
 
         }

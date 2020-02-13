@@ -32,6 +32,7 @@ import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.OrdersDetailsFragment;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.Model.DataTransaction;
+import com.example.fooddeliveryproject.Activities.OrderScreenItem.Fragment.OrderPaymentDetailsFragment;
 import com.example.fooddeliveryproject.Activities.OrderScreenItem.Fragment.OrderScreenOrderFragment;
 import com.example.fooddeliveryproject.R;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
@@ -49,6 +50,8 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
     int quantityTotal;
     int foodPriceTotal;
     int foodPriceDiscountTotal;
+
+    OrderScreenActivity orderScreenActivity = new OrderScreenActivity();
 
     public AdapterOrderScreenOrder(List<DataTransaction> topList, Context context) {
         this.topList = topList;
@@ -72,7 +75,7 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
     public void onBindViewHolder(@NonNull final AdapterOrderScreenOrder.ViewHolder viewHolder, final int i) {
 
         final DataTransaction data = topList.get(i);
-        DecimalHelper decimalHelper = new DecimalHelper();
+        final DecimalHelper decimalHelper = new DecimalHelper();
 
         final Bundle bundle = new Bundle();
 
@@ -162,6 +165,9 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
 
                 viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
 
+                OrderScreenActivity orderScreenActivity = (OrderScreenActivity) view.getContext();
+                orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.paymentDetailsFragment, new OrderPaymentDetailsFragment()).commit();
+
             }
 
             public void updateDataToOne(final DataTransaction data){
@@ -206,6 +212,11 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
                 SaveSharedPreference.setFoodPrice(context, priceTotal[0]);
                 SaveSharedPreference.setFoodPriceDiscount(context, priceDiscountTotal[0]);
 
+                topList.get(i).setFoodTransPriceTotal(priceTotal[0]);
+                topList.get(i).setFoodTransPriceDiscountTotal(priceDiscountTotal[0]);
+                topList.get(i).setButtonTransPosition(isChartQuantity[0]);
+                topList.get(i).setFoodTransItemCount(quantity[0]);
+
                 Log.e("FoodCount", topList.get(i).getFoodTransName() + " = " + String.valueOf(quantity[0]));
                 Log.e("FoodPrice", topList.get(i).getFoodTransName() + " = " + String.valueOf(priceTotal[0]));
                 Log.e("FoodDiscount", topList.get(i).getFoodTransName() + " = " + String.valueOf(priceDiscountTotal[0]));
@@ -213,6 +224,12 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
                 Log.e("FoodCountTotal", " = " + quantityTotal);
                 Log.e("FoodPriceTotal", " = " + foodPriceTotal);
                 Log.e("FoodDiscountTotal", " = " + foodPriceDiscountTotal);
+
+                int totalPayment = SaveSharedPreference.getTotalPayment(context, 0) + topList.get(i).getFoodTransPrice();
+
+                SaveSharedPreference.setTotalPayment(context, totalPayment);
+                orderScreenActivity.totalPriceBar.setText(decimalHelper.formatter(SaveSharedPreference.getTotalPayment(context, 0)));
+                orderScreenActivity.totalPrice.setText(decimalHelper.formatter(SaveSharedPreference.getTotalPayment(context, 0)));
 
                 // If i want just to show the 1 item total quantity i can use like the comment bellow
                 /*bundle.putString("FoodCount", String.valueOf(quantity[0]));
@@ -310,14 +327,9 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
                         updateDataToZero(data);
                         logListItem();
 
-                        //viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
-
-
                         OrderScreenActivity orderScreenActivity = (OrderScreenActivity) view.getContext();
                         orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.orderSummaryFragment, new OrderScreenOrderFragment()).commit();
-                        //viewHolder.activity.getSupportFragmentManager().beginTransaction().detach(foodChartFragment).attach(foodChartFragment).commit();
-
-                        //viewHolder.chartQuantity.setText(String.valueOf(SaveSharedPreference.getQuantity(context, 0)));
+                        orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.paymentDetailsFragment, new OrderPaymentDetailsFragment()).commit();
 
                     }
 
@@ -358,6 +370,9 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
 
                         updateDataToZero(data);
                         logListItem();
+
+                        OrderScreenActivity orderScreenActivity = (OrderScreenActivity) view.getContext();
+                        orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.paymentDetailsFragment, new OrderPaymentDetailsFragment()).commit();
 
                     }
 
@@ -422,6 +437,11 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
                 SaveSharedPreference.setFoodPrice(context, priceTotal[0]);
                 SaveSharedPreference.setFoodPriceDiscount(context, priceDiscountTotal[0]);
 
+                topList.get(i).setFoodTransPriceTotal(priceTotal[0]);
+                topList.get(i).setFoodTransPriceDiscountTotal(priceDiscountTotal[0]);
+                topList.get(i).setButtonTransPosition(isChartQuantity[0]);
+                topList.get(i).setFoodTransItemCount(quantity[0]);
+
                 Log.e("FoodCount", topList.get(i).getFoodTransName() + " = " + String.valueOf(quantity[0]));
                 Log.e("FoodPrice", topList.get(i).getFoodTransName() + " = " + String.valueOf(priceTotal[0]));
                 Log.e("FoodDiscount", topList.get(i).getFoodTransName() + " = " + String.valueOf(priceDiscountTotal[0]));
@@ -429,6 +449,12 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
                 Log.e("FoodCountTotal", " = " + quantityTotal);
                 Log.e("FoodPriceTotal", " = " + foodPriceTotal);
                 Log.e("FoodDiscountTotal", " = " + foodPriceDiscountTotal);
+
+                int totalPayment = SaveSharedPreference.getTotalPayment(context, 0) - topList.get(i).getFoodTransPrice();
+
+                SaveSharedPreference.setTotalPayment(context, totalPayment);
+                orderScreenActivity.totalPriceBar.setText(decimalHelper.formatter(SaveSharedPreference.getTotalPayment(context, 0)));
+                orderScreenActivity.totalPrice.setText(decimalHelper.formatter(SaveSharedPreference.getTotalPayment(context, 0)));
 
             }
         });

@@ -30,7 +30,7 @@ public class OrdersFragment extends Fragment {
         /*final FragmentManager fragmentManager = getFragmentManager();
         final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();*/
         getFragmentManager().beginTransaction().replace(R.id.selectedFragment, new CurrentFragment()).commit();
-       /* tabLayout.addTab(tabLayout.newTab().setText("Current"));
+        /*tabLayout.addTab(tabLayout.newTab().setText("Current"));
         tabLayout.addTab(tabLayout.newTab().setText("Past"));*/
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

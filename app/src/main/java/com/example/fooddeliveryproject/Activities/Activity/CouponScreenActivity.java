@@ -20,7 +20,7 @@ import com.example.fooddeliveryproject.R;
 
 import java.util.ArrayList;
 
-public class CouponScreenActivity extends AppCompatActivity {
+public class CouponScreenActivity extends BaseActivity {
 
     private DatabaseHelper mDatabase;
     private ArrayList<DataKhanaval> allData = new ArrayList<>();

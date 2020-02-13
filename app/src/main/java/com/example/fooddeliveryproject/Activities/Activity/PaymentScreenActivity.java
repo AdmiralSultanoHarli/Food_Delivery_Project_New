@@ -2,6 +2,7 @@ package com.example.fooddeliveryproject.Activities.Activity;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
@@ -93,6 +94,13 @@ public class PaymentScreenActivity extends BaseActivity {
                 int isCartOpened = 0;
                 int itemCount = 0;
 
+                String shopName = SaveSharedPreference.getFoodCategory(PaymentScreenActivity.this, "");
+                int totalPayment = SaveSharedPreference.getTotalPayment(PaymentScreenActivity.this, 0);
+                String dates = SaveSharedPreference.getDate(PaymentScreenActivity.this, "");
+                String paymentMethod = SaveSharedPreference.getPaymentName(PaymentScreenActivity.this, "");
+                String orderTracker = "Food Is Preparing";
+                int shopImg = SaveSharedPreference.getFoodShopImg(PaymentScreenActivity.this, 0);
+
 
                 if(SaveSharedPreference.getPaymentMethodName(getApplicationContext(), 0) == 1){
 
@@ -108,10 +116,10 @@ public class PaymentScreenActivity extends BaseActivity {
                         }else {
 
                             SaveSharedPreference.setMuBalance(PaymentScreenActivity.this, muamalatBalanceInt);
-                            SaveSharedPreference.setTotalPaymentSuccess(PaymentScreenActivity.this, paymentTotalInt);
                             paymentSuccessReset();
                             resetData(foodPrice, foodPriceTotal, isCartOpened, itemCount);
                             deleteDataTrans();
+                            insertTransactionDoneData(shopName, totalPayment, dates, paymentMethod, orderTracker, shopImg);
 
                         }
 
@@ -134,10 +142,10 @@ public class PaymentScreenActivity extends BaseActivity {
                         }else {
 
                             SaveSharedPreference.setOvoBalance(PaymentScreenActivity.this, ovoBalanceint);
-                            SaveSharedPreference.setTotalPaymentSuccess(PaymentScreenActivity.this, paymentTotalInt);
                             paymentSuccessReset();
                             resetData(foodPrice, foodPriceTotal, isCartOpened, itemCount);
                             deleteDataTrans();
+                            insertTransactionDoneData(shopName, totalPayment, dates, paymentMethod, orderTracker, shopImg);
 
                         }
 
@@ -161,10 +169,10 @@ public class PaymentScreenActivity extends BaseActivity {
                         }else {
 
                             SaveSharedPreference.setGopayBalance(PaymentScreenActivity.this, gopayBalanceInt);
-                            SaveSharedPreference.setTotalPaymentSuccess(PaymentScreenActivity.this, paymentTotalInt);
                             paymentSuccessReset();
                             resetData(foodPrice, foodPriceTotal, isCartOpened, itemCount);
                             deleteDataTrans();
+                            insertTransactionDoneData(shopName, totalPayment, dates, paymentMethod, orderTracker, shopImg);
 
                         }
                     }else {
@@ -255,6 +263,22 @@ public class PaymentScreenActivity extends BaseActivity {
 
         // Delete data in TABLE FOOD TRANSACTION
         db.delete(DatabaseHelper.TABLE_FOOD_TRANSACTION, null, null);
+
+    }
+
+    public void insertTransactionDoneData(String shopName, int totalPayment, String date,
+                           String paymentMethod, String orderTracker, int shopImg){
+
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(DatabaseHelper.COLUMN_TRANSACTION_SHOP_NAME, shopName);
+        contentValues.put(DatabaseHelper.COLUMN_TRANSACTION_TOTAL_PAYMENT, totalPayment);
+        contentValues.put(DatabaseHelper.COLUMN_TRANSACTION_DATE, date);
+        contentValues.put(DatabaseHelper.COLUMN_TRANSACTION_PAYMENT_METHOD, paymentMethod);
+        contentValues.put(DatabaseHelper.COLUMN_TRANSACTION_ORDER_TRACKER, orderTracker);
+        contentValues.put(DatabaseHelper.COLUMN_TRANSACTION_SHOP_IMG, shopImg);
+
+        db.insert(DatabaseHelper.TABLE_TRANSACTION_DONE, null, contentValues);
 
     }
 

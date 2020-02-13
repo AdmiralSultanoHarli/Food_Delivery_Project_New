@@ -90,17 +90,17 @@
 
                     <TextView
                         android:id="@+id/orderFoodName"
-                        android:text="Nasi Padang"
-                        android:textSize="14dp"
-                        android:textColor="@color/colorBlack"
-                        android:layout_toRightOf="@+id/imgCard"
-                        android:layout_below="@+id/date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"/>
+                        android:layout_below="@+id/date"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@+id/imgCard"
+                        android:text="Nasi Padang"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="14dp" />
 
                     <TextView
-                        android:id="@+id/orderTracker"
+                        android:id="@+id/orderPaymentMethod"
                         android:text="Payment done by OVO"
                         android:textSize="12dp"
                         android:layout_toRightOf="@+id/imgCard"

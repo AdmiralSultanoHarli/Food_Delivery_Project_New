@@ -4,16 +4,7 @@
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/orderPastRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"/>
-
-    <TextView
-        android:id="@+id/noItem"
-        android:text="No Order Available"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
+        android:id="@+id/paymentDetailsRecyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

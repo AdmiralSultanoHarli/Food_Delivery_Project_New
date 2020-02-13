@@ -246,8 +246,6 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                 contentValues.put(DatabaseHelper.COLUMN_FOOD_TRANSACTION_IMG, img);
                 db.insert(DatabaseHelper.TABLE_FOOD_TRANSACTION, null, contentValues);
 
-
-
             }
 
             public void updateDataToOne(final DataKhanaval data, View view){
@@ -293,9 +291,6 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                 Log.e("FoodCountTotal", " = " + quantityTotal);
                 Log.e("FoodPriceTotal", " = " + foodPriceTotal);
                 Log.e("FoodDiscountTotal", " = " + foodPriceDiscountTotal);
-
-                Log.e("Data filterable", String.valueOf(menuList));
-
 
             }
 
@@ -403,8 +398,6 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                 Log.e("FoodCountTotal", " = " + quantityTotal);
                 Log.e("FoodPriceTotal", " = " + foodPriceTotal);
                 Log.e("FoodDiscountTotal", " = " + foodPriceDiscountTotal);
-
-                Log.e("Data filterable", String.valueOf(menuList));
 
             }
         });

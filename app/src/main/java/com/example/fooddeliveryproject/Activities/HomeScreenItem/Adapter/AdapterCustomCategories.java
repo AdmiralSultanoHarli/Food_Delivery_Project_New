@@ -70,8 +70,11 @@ public class AdapterCustomCategories extends RecyclerView.Adapter<AdapterCustomC
                 Intent b = new Intent(context, MenuScreenActivity.class);
                 /*bundle.putString("FoodShop", topList.get(i).getFoodName());
                 foodChartFragment.setArguments(bundle);*/
+                b.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                b.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                 SaveSharedPreference.setFoodCategory(context, data.getFoodName());
+                SaveSharedPreference.setFoodShopImg(context, data.getImg());
 
                 //that i comment below
                 /*b.putExtra("FoodShop", topList.get(i).getFoodName());

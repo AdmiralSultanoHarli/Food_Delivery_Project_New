@@ -11,12 +11,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.SocketHandler;
 
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.ALL_QUANTITY;
-import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.BUTTON_COLOR_PAYMENT;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.COLOR_PAYMENT;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.DATE;
-import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.EMAIL;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_CATEGORY;
-import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_DESCRIPTION;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_DETAIL_IMG;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_DETAIL_SCREEN_NAME;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_DETAIL_SCREEN_TOTAL_DISCOUNT_PRICE;
@@ -26,30 +23,27 @@ import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtili
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_PRICE_DISCOUNT;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_PRICE_DISCOUNT_TOTAL;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_PRICE_TOTAL;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.FOOD_SHOP_IMAGE;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.GOPAY_BALANCE;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IMAGE_PAYMENT;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_ADDTOCART_VISIBLE;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_COUPON_EXIST;
-import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_FRAGMENT_ORDER_DETAILS_OPENED;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_FRAGMENT_ORDER_OPENED;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_THERE_IS_USER;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.LOCATION_NAME;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.LOCATION_OPENED;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.MUAMALAT_BALANCE;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.NO_ORDER_COMPLETE;
-import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.NUMBER;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.OVO_BALANCE;
-import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.PASSWORD;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.PAYMENT_METHOD_NAME;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.PAYMENT_NAME;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.QUANTITY;
-import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.SEARCH_OPENED;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.SHOP_IMG;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.SHOP_NAME;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.TOTAL_PAYMENT;
-import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.TOTAL_PAYMENT_SUCCESS;
-import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.USERNAME;
-import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.main_item;
-import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.payment_method;
-import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.sub_item;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.TRANSACTION_DATE;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.TRANSACTION_PAYMENT_METHOD;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.TRANSACTION_TOTAL_PAYMENT;
 
 public class SaveSharedPreference {
 
@@ -86,22 +80,6 @@ public class SaveSharedPreference {
         return getPreferences(context).getString(FOOD_NAME, "");
 
     }
-
-
-    public static void setFoodDescription(Context context, String foodDescription){
-
-        SharedPreferences.Editor editor = getPreferences(context).edit();
-        editor.putString(FOOD_DESCRIPTION, foodDescription);
-        editor.apply();
-
-    }
-
-    public static String getFoodDescription(Context context, String foodDescription){
-
-        return getPreferences(context).getString(FOOD_DESCRIPTION, "");
-
-    }
-
 
     public static void setQuantity(Context context, int quantity){
 
@@ -192,67 +170,6 @@ public class SaveSharedPreference {
 
     }
 
-
-    public static void setUsername(Context context, String username){
-
-        SharedPreferences.Editor editor = getPreferences(context).edit();
-        editor.putString(USERNAME, username);
-        editor.apply();
-
-    }
-
-    public static String getUsername(Context context, String username){
-
-        return getPreferences(context).getString(USERNAME, "");
-
-    }
-
-
-    public static void setPassword(Context context, String password){
-
-        SharedPreferences.Editor editor = getPreferences(context).edit();
-        editor.putString(PASSWORD, password);
-        editor.apply();
-
-    }
-
-    public static String getPassword(Context context, String password){
-
-        return getPreferences(context).getString(PASSWORD, "");
-
-    }
-
-
-    public static void setEmail(Context context, String email){
-
-        SharedPreferences.Editor editor = getPreferences(context).edit();
-        editor.putString(EMAIL, email);
-        editor.apply();
-
-    }
-
-    public static String getEmail(Context context, String email){
-
-        return getPreferences(context).getString(EMAIL, "");
-
-    }
-
-
-    public static void setNumber(Context context, String number){
-
-        SharedPreferences.Editor editor = getPreferences(context).edit();
-        editor.putString(NUMBER, number);
-        editor.apply();
-
-    }
-
-    public static String getNumber(Context context, String number){
-
-        return getPreferences(context).getString(NUMBER, "");
-
-    }
-
-
     public static void setIsAddToCartVisible(Context context, boolean isAddToCartVisble){
 
         SharedPreferences.Editor editor = getPreferences(context).edit();
@@ -280,52 +197,6 @@ public class SaveSharedPreference {
 
     }
 
-
-    public static void setFragmentOrderDetailsOpened(Context context, boolean isFragmentOrderDetailsOpened){
-
-        SharedPreferences.Editor editor = getPreferences(context).edit();
-        editor.putBoolean(IS_FRAGMENT_ORDER_DETAILS_OPENED, isFragmentOrderDetailsOpened);
-        editor.apply();
-
-    }
-
-    public static boolean getFragmentOrderDetailsOpened(Context context, boolean isFragmentOrderDetailsOpened){
-
-        return getPreferences(context).getBoolean(IS_FRAGMENT_ORDER_DETAILS_OPENED, false);
-
-    }
-
-
-    public static void setFragmentOrderSubDetailsOpened(Context context, int sub_items){
-
-        SharedPreferences.Editor editor = getPreferences(context).edit();
-        editor.putInt(sub_item, sub_items);
-        editor.apply();
-
-    }
-
-    public static int getFragmentOrderSubDetailsOpened(Context context, int sub_items){
-
-        return getPreferences(context).getInt(sub_item, 0);
-
-    }
-
-
-    public static void setFragmentOrderMenuDetailsOpened(Context context, int items){
-
-        SharedPreferences.Editor editor = getPreferences(context).edit();
-        editor.putInt(main_item, items);
-        editor.apply();
-
-    }
-
-    public static int getFragmentOrderMenuDetailsOpened(Context context, int items){
-
-        return getPreferences(context).getInt(main_item, 0);
-
-    }
-
-
     public static void setThereIsUser(Context context, boolean isThereIsUser){
 
         SharedPreferences.Editor editor = getPreferences(context).edit();
@@ -339,37 +210,6 @@ public class SaveSharedPreference {
         return getPreferences(context).getBoolean(IS_THERE_IS_USER, false);
 
     }
-
-
-    public static void setPayment(Context context, int payment){
-
-        SharedPreferences.Editor editor = getPreferences(context).edit();
-        editor.putInt(payment_method, payment);
-        editor.apply();
-
-    }
-
-    public static int getPayment(Context context, int payment){
-
-        return getPreferences(context).getInt(payment_method, 0);
-
-    }
-
-
-    public static void setSearchOpened(Context context, boolean isSearchOpened){
-
-        SharedPreferences.Editor editor = getPreferences(context).edit();
-        editor.putBoolean(SEARCH_OPENED, isSearchOpened);
-        editor.apply();
-
-    }
-
-    public static boolean getSearchOpened(Context context, boolean isSearchOpened){
-
-        return getPreferences(context).getBoolean(SEARCH_OPENED, false);
-
-    }
-
 
     public static void setTotalPayment(Context context, int totalPayment){
 
@@ -430,22 +270,6 @@ public class SaveSharedPreference {
 
     }
 
-
-    public static void setButtonColor(Context context, int buttonColor){
-
-        SharedPreferences.Editor editor = getPreferences(context).edit();
-        editor.putInt(BUTTON_COLOR_PAYMENT, buttonColor);
-        editor.apply();
-
-    }
-
-    public static int getButtonColor(Context context, int buttonColor){
-
-        return getPreferences(context).getInt(BUTTON_COLOR_PAYMENT, 0);
-
-    }
-
-
     public static void setPaymentName(Context context, String paymentName){
 
         SharedPreferences.Editor editor = getPreferences(context).edit();
@@ -471,7 +295,7 @@ public class SaveSharedPreference {
 
     public static int getOvoBalance(Context context, int ovoBalance){
 
-        return getPreferences(context).getInt(OVO_BALANCE, 200000);
+        return getPreferences(context).getInt(OVO_BALANCE, 1000000);
 
     }
 
@@ -486,7 +310,7 @@ public class SaveSharedPreference {
 
     public static int getGopayBalance(Context context, int gopayBalance){
 
-        return getPreferences(context).getInt(GOPAY_BALANCE, 200000);
+        return getPreferences(context).getInt(GOPAY_BALANCE, 1000000);
 
     }
 
@@ -561,7 +385,7 @@ public class SaveSharedPreference {
 
     public static int getMubalance(Context context, int muBalance){
 
-        return getPreferences(context).getInt(MUAMALAT_BALANCE, 200000);
+        return getPreferences(context).getInt(MUAMALAT_BALANCE, 1000000);
 
     }
 
@@ -576,20 +400,6 @@ public class SaveSharedPreference {
     public static boolean getIsCouponExist(Context context, boolean isCouponExist){
 
         return getPreferences(context).getBoolean(IS_COUPON_EXIST, false);
-
-    }
-
-    public static void setTotalPaymentSuccess(Context context, int totalPaymentSuccess){
-
-        SharedPreferences.Editor editor = getPreferences(context).edit();
-        editor.putInt(TOTAL_PAYMENT_SUCCESS, totalPaymentSuccess);
-        editor.apply();
-
-    }
-
-    public static int getTotalPaymentSuccess(Context context, int totalPaymentSuccess){
-
-        return getPreferences(context).getInt(TOTAL_PAYMENT_SUCCESS, 0);
 
     }
 
@@ -646,6 +456,90 @@ public class SaveSharedPreference {
     public static int getFoodDetailImg(Context context, int foodDetailImg){
 
         return getPreferences(context).getInt(FOOD_DETAIL_IMG, 0);
+
+    }
+
+    public static void setFoodShopImg(Context context, int foodShopImg){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putInt(FOOD_SHOP_IMAGE, foodShopImg);
+        editor.apply();
+
+    }
+
+    public static int getFoodShopImg(Context context, int foodShopImg){
+
+        return getPreferences(context).getInt(FOOD_SHOP_IMAGE, 0);
+
+    }
+
+    public static void setShopName(Context context, String shopName){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putString(SHOP_NAME, shopName);
+        editor.apply();
+
+    }
+
+    public static String getShopName(Context context, String shopName){
+
+        return getPreferences(context).getString(SHOP_NAME, "");
+
+    }
+
+    public static void setTransactionDate(Context context, String transactionDate){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putString(TRANSACTION_DATE, transactionDate);
+        editor.apply();
+
+    }
+
+    public static String getTransactionDate(Context context, String transactionDate){
+
+        return getPreferences(context).getString(TRANSACTION_DATE, "");
+
+    }
+
+    public static void setTransactionPaymentMethod(Context context, String transactionPaymentMethod){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putString(TRANSACTION_PAYMENT_METHOD, transactionPaymentMethod);
+        editor.apply();
+
+    }
+
+    public static String getTransactionPaymentMethod(Context context, String transactionPaymentMethod){
+
+        return getPreferences(context).getString(TRANSACTION_PAYMENT_METHOD, "");
+
+    }
+
+    public static void setTransactionTotalPayment(Context context, int transactionTotalPayment){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putInt(TRANSACTION_TOTAL_PAYMENT, transactionTotalPayment);
+        editor.apply();
+
+    }
+
+    public static int getTransactionTotalPayment(Context context, int transactionTotalPayment){
+
+        return getPreferences(context).getInt(TRANSACTION_TOTAL_PAYMENT, 0);
+
+    }
+
+    public static void setShopImg(Context context, int shopImg){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putInt(SHOP_IMG, shopImg);
+        editor.apply();
+
+    }
+
+    public static int getShopImg(Context context, int shopImg){
+
+        return getPreferences(context).getInt(SHOP_IMG, 0);
 
     }
 

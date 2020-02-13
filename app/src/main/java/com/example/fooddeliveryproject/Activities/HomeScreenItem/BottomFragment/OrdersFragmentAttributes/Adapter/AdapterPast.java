@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddeliveryproject.Activities.Activity.HomeScreenActivity;
 import com.example.fooddeliveryproject.Activities.Helper.DecimalHelper;
+import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.OrdersDetailsFragment;
 import com.example.fooddeliveryproject.R;
@@ -56,6 +57,11 @@ public class AdapterPast extends RecyclerView.Adapter<AdapterPast.ViewHolder> {
 
                 HomeScreenActivity homeScreenActivity = (HomeScreenActivity) view.getContext();
                 homeScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, new OrdersDetailsFragment()).addToBackStack(null).commit();
+                SaveSharedPreference.setShopName(context, historyList.get(i).getFoodName());
+                SaveSharedPreference.setTransactionDate(context, historyList.get(i).getDate());
+                SaveSharedPreference.setTransactionPaymentMethod(context, historyList.get(i).getOrderTracker());
+                SaveSharedPreference.setTransactionTotalPayment(context, historyList.get(i).getFoodPrice());
+                SaveSharedPreference.setShopImg(context,historyList.get(i).getImg());
                 homeScreenActivity.isOrderDetailsFragmentOpened = true;
 
             }
@@ -79,7 +85,7 @@ public class AdapterPast extends RecyclerView.Adapter<AdapterPast.ViewHolder> {
             img = itemView.findViewById(R.id.orderFoodImage);
             foodName = itemView.findViewById(R.id.orderFoodName);
             date = itemView.findViewById(R.id.date);
-            orderTracker = itemView.findViewById(R.id.orderTracker);
+            orderTracker = itemView.findViewById(R.id.orderPaymentMethod);
             orderPrice = itemView.findViewById(R.id.orderPrice);
             buttonDetail = itemView.findViewById(R.id.buttonDetail);
 

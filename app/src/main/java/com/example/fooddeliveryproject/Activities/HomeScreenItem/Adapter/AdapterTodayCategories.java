@@ -71,8 +71,11 @@ public class AdapterTodayCategories extends RecyclerView.Adapter<AdapterTodayCat
                 Intent b = new Intent(context, MenuScreenActivity.class);
                 /*bundle.putString("FoodShop", topList.get(i).getFoodName());
                 foodChartFragment.setArguments(bundle);*/
+                b.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                b.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                 SaveSharedPreference.setFoodCategory(context, data.getFoodName());
+                SaveSharedPreference.setFoodShopImg(context, data.getImg());
 
                /* b.putExtra("FoodShop", topList.get(i).getFoodName());
                 Log.e("item food name bundle", topList.get(i).getFoodName());*/

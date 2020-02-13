@@ -24,35 +24,13 @@ public class PreferencesUtility {
 
     public static final String FOOD_PRICE_DISCOUNT_TOTAL = "FoodPriceDiscountTotal";
 
-    public static final String USERNAME = "Username";
-
-    public static final String PASSWORD = "Password";
-
-    public static final String EMAIL = "Email";
-
-    public static final String NUMBER = "Number";
-
     public static final String IS_ADDTOCART_VISIBLE = "AddToCart";
 
     public static final String IS_FRAGMENT_ORDER_OPENED = "IsFragmentOrderOpened";
 
-    public static final String IS_FRAGMENT_ORDER_DETAILS_OPENED = "isFragmentOrderDetailsOpened";
-
     public static final String IS_THERE_IS_USER = "IsThereIsUser";
 
-    public static final String food_items  = "FoodItems";
-
-    public static final String main_item = "MainItem";
-
-    public static final String sub_item = "SubItem";
-
-    public static final String payment_method = "payment";
-
-    public static final String SEARCH_OPENED = "search";
-
     public static final String TOTAL_PAYMENT = "totalPayment";
-
-    public static final String TOTAL_PAYMENT_SUCCESS = "totalpaymentsucess";
 
     public static final String DATE = "date";
 
@@ -61,8 +39,6 @@ public class PreferencesUtility {
     public static final String COLOR_PAYMENT = "colorpayment";
 
     public static final String PAYMENT_NAME = "paymentname";
-
-    public static final String BUTTON_COLOR_PAYMENT = "buttoncolor";
 
     public static final String GOPAY_BALANCE = "gopaybalance";
 
@@ -80,6 +56,8 @@ public class PreferencesUtility {
 
     public static final String IS_COUPON_EXIST = "iscouponexist";
 
+    public static final String FOOD_SHOP_IMAGE = "foodshopimage";
+
 
     //Menu Details Screen
     public static final String FOOD_DETAIL_SCREEN_NAME = "fooddetailscreenname";
@@ -89,6 +67,17 @@ public class PreferencesUtility {
     public static final String FOOD_DETAIL_SCREEN_TOTAL_DISCOUNT_PRICE = "fooddetailtotaldiscountprice";
 
     public static final String FOOD_DETAIL_IMG = "fooddetailimg";
+
+    //OrderScreen
+    public static final String SHOP_NAME = "shopname";
+
+    public static final String TRANSACTION_DATE = "transactiondate";
+
+    public static final String TRANSACTION_PAYMENT_METHOD = "transactionpaymentmethod";
+
+    public static final String TRANSACTION_TOTAL_PAYMENT = "transactiontotalpayment";
+
+    public static final String SHOP_IMG = "shopimg";
 
 
 }

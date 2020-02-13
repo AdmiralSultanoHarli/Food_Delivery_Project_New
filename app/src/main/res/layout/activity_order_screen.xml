@@ -616,7 +616,7 @@
                     <androidx.cardview.widget.CardView
                         android:layout_below="@+id/textViewPaymentDetails"
                         android:layout_width="match_parent"
-                        android:layout_height="110dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginTop="2dp"
@@ -628,33 +628,18 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
-                            <TextView
-                                android:id="@+id/foodCategoriesName"
-                                android:text="Nasi Padang"
-                                android:textSize="14dp"
-                                android:textColor="@color/colorBlack"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginLeft="20dp"
-                                android:layout_alignParentLeft="true"/>
-
-                            <TextView
-                                android:id="@+id/foodCategoriesPrice"
-                                android:text="40.000"
-                                android:textSize="14dp"
-                                android:textColor="@color/colorBlack"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginRight="30dp"
-                                android:layout_alignParentRight="true"/>
+                            <LinearLayout
+                                android:id="@+id/paymentDetailsFragment"
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_marginTop="10dp"
+                                android:layout_height="wrap_content" />
 
                             <TextView
                                 android:id="@+id/textViewTax"
                                 android:text="incl. Tax"
                                 android:textSize="14dp"
-                                android:layout_below="@+id/foodCategoriesName"
+                                android:layout_below="@+id/paymentDetailsFragment"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
@@ -664,7 +649,7 @@
                                 android:id="@+id/taxPrice"
                                 android:text="4.000"
                                 android:textSize="14dp"
-                                android:layout_below="@+id/foodCategoriesPrice"
+                                android:layout_below="@+id/paymentDetailsFragment"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="30dp"
@@ -683,7 +668,6 @@
 
                             <TextView
                                 android:id="@+id/deliveryPrice"
-
                                 android:textSize="14dp"
                                 android:textColor="@color/colorBlack"
                                 android:layout_below="@+id/taxPrice"
@@ -712,6 +696,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginLeft="20dp"
+                                android:layout_marginBottom="5dp"
                                 android:layout_alignParentLeft="true"/>
 
                             <TextView
@@ -724,6 +709,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginRight="30dp"
+                                android:layout_marginBottom="5dp"
                                 android:layout_alignParentRight="true"/>
 
                         </RelativeLayout>

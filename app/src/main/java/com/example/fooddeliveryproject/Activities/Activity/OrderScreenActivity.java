@@ -1,5 +1,6 @@
 package com.example.fooddeliveryproject.Activities.Activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
@@ -25,6 +26,7 @@ import android.widget.Toast;
 import com.example.fooddeliveryproject.Activities.Helper.DecimalHelper;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.MenuDetailScreenItem.Fragment.MenuDetailScreenAddOnFragment;
+import com.example.fooddeliveryproject.Activities.OrderScreenItem.Fragment.OrderPaymentDetailsFragment;
 import com.example.fooddeliveryproject.Activities.OrderScreenItem.Fragment.OrderScreenOrderFragment;
 import com.example.fooddeliveryproject.R;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
@@ -38,7 +40,9 @@ public class OrderScreenActivity extends BaseActivity {
     ImageView backButton;
     RadioButton radioButtonGrab, radioButtonGojek, radioButtonOvo, radioButtonGopay, radioButtonMuamalat;
     Button buttonPayment;
-    TextView textCount, foodCategoriesPrice, deliveryPrice, totalPrice, totalPriceBar, viewPayment, textViewAddMore, promoAppliedText;
+    TextView textCount, deliveryPrice, viewPayment, textViewAddMore, promoAppliedText;
+
+    public static TextView totalPriceBar, totalPrice;
 
     public Button accNotes, couponShower;
     public EditText editNotes;
@@ -94,7 +98,6 @@ public class OrderScreenActivity extends BaseActivity {
         accNotes = findViewById(R.id.accNotes);
         textCount = findViewById(R.id.textCount);
         editNotes = findViewById(R.id.editNotes);
-        foodCategoriesPrice = findViewById(R.id.foodCategoriesPrice);
         deliveryPrice = findViewById(R.id.deliveryPrice);
         totalPrice = findViewById(R.id.totalPrice);
         totalPriceBar = findViewById(R.id.totalPriceBar);
@@ -166,8 +169,6 @@ public class OrderScreenActivity extends BaseActivity {
             muamalatRadioButton();
 
         }
-
-        foodCategoriesPrice.setText(decimalHelper.formatter(SaveSharedPreference.getFoodPriceTotal(this, 0)));
 
         slidingPanel.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -274,6 +275,8 @@ public class OrderScreenActivity extends BaseActivity {
             public void onClick(View view) {
 
                 Intent i = new Intent(OrderScreenActivity.this, PaymentScreenActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
 
             }
@@ -288,6 +291,9 @@ public class OrderScreenActivity extends BaseActivity {
 
         MenuDetailScreenAddOnFragment menuDetailScreenAddOnFragment = new MenuDetailScreenAddOnFragment();
         fragmentTransaction.replace(R.id.menuOrderAlsoOrderFragment, menuDetailScreenAddOnFragment, menuDetailScreenAddOnFragment.getTag());
+
+        OrderPaymentDetailsFragment orderPaymentDetailsFragment = new OrderPaymentDetailsFragment();
+        fragmentTransaction.replace(R.id.paymentDetailsFragment, orderPaymentDetailsFragment, orderPaymentDetailsFragment.getTag());
 
         fragmentTransaction.commit();
 
@@ -330,6 +336,7 @@ public class OrderScreenActivity extends BaseActivity {
 
         }
     };
+
 
     public void muamalatRadioButton(){
 
