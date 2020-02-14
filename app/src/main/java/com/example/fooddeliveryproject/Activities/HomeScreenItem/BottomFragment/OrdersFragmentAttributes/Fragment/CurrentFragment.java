@@ -23,6 +23,7 @@ import com.example.fooddeliveryproject.Activities.OrderScreenItem.Adapter.Adapte
 import com.example.fooddeliveryproject.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class CurrentFragment extends Fragment{
 
@@ -57,6 +58,7 @@ public class CurrentFragment extends Fragment{
         currentCategories = v.findViewById(R.id.orderCurrentRecyclerView);
         noItem = v.findViewById(R.id.noItem);
         allData = helper.listDataTransactionDone();
+        Collections.reverse(allData);
         currentCategories.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManagerBestCusine = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         currentCategories.setLayoutManager(layoutManagerBestCusine);
@@ -68,6 +70,8 @@ public class CurrentFragment extends Fragment{
             adapterCurrent = new AdapterCurrent(allData, getActivity());
             currentCategories.setAdapter(adapterCurrent);
 
+            Log.e("CURRENT DATA", String.valueOf(allData));
+
         }else {
 
             noItem.setVisibility(View.VISIBLE);
@@ -75,49 +79,7 @@ public class CurrentFragment extends Fragment{
         }
 
         return v;
-        /*currentCategories = v.findViewById(R.id.orderCurrentRecyclerView);
-        noItem = v.findViewById(R.id.noItem);
-
-        currentCategories.setHasFixedSize(true);
-
-        date = new String[]{SaveSharedPreference.getDate(getContext(), "")};
-        foodPrice = new int[]{SaveSharedPreference.getTotalPaymentSuccess(getContext(), 0)};
-
-        dates = SaveSharedPreference.getDate(getContext(), "");
-
-        Log.e("date", dates);
-        Log.e("price", String.valueOf(SaveSharedPreference.getTotalPayment(getContext(), 0)));
-        RecyclerView.LayoutManager layoutManagerBestCusine = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        currentCategories.setLayoutManager(layoutManagerBestCusine);
-
-        if (SaveSharedPreference.getNoOrderComplete(getContext(), 0) > 0) {
-
-            ArrayList<DataKhanaval> dataFoods = getData();
-
-            adapterCurrent = new AdapterCurrent(dataFoods, getActivity());
-            currentCategories.setAdapter(adapterCurrent);
-            noItem.setVisibility(View.GONE);
-
-        }
-
-        return v;*/
 
     }
 
-    /*private ArrayList<DataKhanaval> getData() {
-
-        ArrayList<DataKhanaval> foodArrayList = new ArrayList<>();
-        for (int i = 0; i < foodName.length; i++){
-            DataKhanaval dataFood = new DataKhanaval();
-            dataFood.setDate(date[i]);
-            dataFood.setFoodName(foodName[i]);
-            dataFood.setImg(img[i]);
-            dataFood.setOrderTracker(orderTracker[i]);
-            dataFood.setFoodPrice(foodPrice[i]);
-            foodArrayList.add(dataFood);
-        }
-
-        return foodArrayList;
-
-    }*/
 }

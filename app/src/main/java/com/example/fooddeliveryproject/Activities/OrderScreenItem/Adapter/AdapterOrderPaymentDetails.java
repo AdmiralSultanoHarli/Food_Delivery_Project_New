@@ -10,15 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.fooddeliveryproject.Activities.Activity.MenuScreenActivity;
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 import com.example.fooddeliveryproject.Activities.Helper.DecimalHelper;
-import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterBestCusineCategories;
-import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.Model.DataTransaction;
 import com.example.fooddeliveryproject.R;
 
@@ -31,7 +26,6 @@ public class AdapterOrderPaymentDetails extends RecyclerView.Adapter<AdapterOrde
     private DatabaseHelper helper;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
-    //BestCusineFragment bestCusineFragment = new BestCusineFragment();
 
     public AdapterOrderPaymentDetails(List<DataTransaction> topList, Context context) {
         this.topList = topList;

@@ -1,12 +1,9 @@
 package com.example.fooddeliveryproject.Activities.Activity;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -14,26 +11,19 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.fooddeliveryproject.Activities.Helper.DecimalHelper;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
-import com.example.fooddeliveryproject.Activities.MenuDetailScreenItem.Fragment.MenuDetailScreenAddOnFragment;
+import com.example.fooddeliveryproject.Activities.OrderScreenItem.Fragment.OrderAddOnFragment;
 import com.example.fooddeliveryproject.Activities.OrderScreenItem.Fragment.OrderPaymentDetailsFragment;
 import com.example.fooddeliveryproject.Activities.OrderScreenItem.Fragment.OrderScreenOrderFragment;
 import com.example.fooddeliveryproject.R;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
-
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.util.Locale;
 
 public class OrderScreenActivity extends BaseActivity {
 
@@ -289,8 +279,8 @@ public class OrderScreenActivity extends BaseActivity {
         OrderScreenOrderFragment orderScreenOrderFragment = new OrderScreenOrderFragment();
         fragmentTransaction.replace(R.id.orderSummaryFragment, orderScreenOrderFragment, orderScreenOrderFragment.getTag());
 
-        MenuDetailScreenAddOnFragment menuDetailScreenAddOnFragment = new MenuDetailScreenAddOnFragment();
-        fragmentTransaction.replace(R.id.menuOrderAlsoOrderFragment, menuDetailScreenAddOnFragment, menuDetailScreenAddOnFragment.getTag());
+        OrderAddOnFragment orderAddOnFragment = new OrderAddOnFragment();
+        fragmentTransaction.replace(R.id.menuOrderAlsoOrderFragment, orderAddOnFragment, orderAddOnFragment.getTag());
 
         OrderPaymentDetailsFragment orderPaymentDetailsFragment = new OrderPaymentDetailsFragment();
         fragmentTransaction.replace(R.id.paymentDetailsFragment, orderPaymentDetailsFragment, orderPaymentDetailsFragment.getTag());

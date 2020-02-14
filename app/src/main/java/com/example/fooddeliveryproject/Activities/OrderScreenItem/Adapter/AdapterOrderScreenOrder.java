@@ -2,6 +2,7 @@ package com.example.fooddeliveryproject.Activities.OrderScreenItem.Adapter;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -32,6 +33,7 @@ import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.OrdersDetailsFragment;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.Model.DataTransaction;
+import com.example.fooddeliveryproject.Activities.OrderScreenItem.Fragment.OrderAddOnFragment;
 import com.example.fooddeliveryproject.Activities.OrderScreenItem.Fragment.OrderPaymentDetailsFragment;
 import com.example.fooddeliveryproject.Activities.OrderScreenItem.Fragment.OrderScreenOrderFragment;
 import com.example.fooddeliveryproject.R;
@@ -281,6 +283,9 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
                         updateDataFood(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                                 foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
 
+                        insertDataToNew(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
+                                foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
+
                         updateDataToZero(data);
                         logListItem();
 
@@ -324,12 +329,16 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
                         updateDataFood(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                                 foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
 
+                        insertDataToNew(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
+                                foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
+
                         updateDataToZero(data);
                         logListItem();
 
                         OrderScreenActivity orderScreenActivity = (OrderScreenActivity) view.getContext();
                         orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.orderSummaryFragment, new OrderScreenOrderFragment()).commit();
                         orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.paymentDetailsFragment, new OrderPaymentDetailsFragment()).commit();
+                        orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.menuOrderAlsoOrderFragment, new OrderAddOnFragment()).commit();
 
                     }
 
@@ -395,6 +404,24 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
                     helper.updateData(dataKhanaval);
 
                 }
+
+            }
+
+            public void insertDataToNew(int foodId, String foodTransName, String foodTransDesc, int foodTransPrice, int foodTransPriceDiscount,
+                                        int foodTransPriceTotal, int foodTransPriceDiscountTotal, int buttonTransPosition, int foodTransItemCount, int img){
+
+                ContentValues contentValues = new ContentValues();
+
+                contentValues.put(DatabaseHelper.COLUMN_FOOD_NAME_NEW, foodTransName);
+                contentValues.put(DatabaseHelper.COLUMN_FOOD_DESC_NEW, foodTransDesc);
+                contentValues.put(DatabaseHelper.COLUMN_FOOD_PRICE_NEW, foodTransPrice);
+                contentValues.put(DatabaseHelper.COLUMN_FOOD_PRICE_DISCOUNT_NEW, foodTransPriceDiscount);
+                contentValues.put(DatabaseHelper.COLUMN_FOOD_PRICE_TOTAL_NEW, foodTransPriceTotal);
+                contentValues.put(DatabaseHelper.COLUMN_FOOD_PRICE_DISCOUNT_TOTAL_NEW, foodTransPriceDiscountTotal);
+                contentValues.put(DatabaseHelper.COLUMN_BUTTON_NEW, buttonTransPosition);
+                contentValues.put(DatabaseHelper.COLUMN_FOOD_ITEM_COUNT_NEW, foodTransItemCount);
+                contentValues.put(DatabaseHelper.COLUMN_FOOD_IMG_NEW, img);
+                db.insert(DatabaseHelper.TABLE_FOOD_NEW, null, contentValues);
 
             }
 
@@ -538,7 +565,6 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
             orderSummaryCard = itemView.findViewById(R.id.orderSummaryCard);
 
             foodPriceDiscount.setPaintFlags(foodPriceDiscount.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-
 
         }
     }
