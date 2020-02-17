@@ -74,6 +74,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_TRANSACTION_DATE = "transaciondate";
     public static final String COLUMN_TRANSACTION_PAYMENT_METHOD = "transactionpaymentmethod";
     public static final String COLUMN_TRANSACTION_ORDER_TRACKER = "transactionordertracker";
+    public static final String COLUMN_TRANSACTION_LOCATION = "transactionlocation";
     public static final String COLUMN_TRANSACTION_SHOP_IMG = "transactionshopimg";
 
     //Food Data New
@@ -200,6 +201,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_TRANSACTION_DATE + " TEXT, " +
                 COLUMN_TRANSACTION_PAYMENT_METHOD + " TEXT, " +
                 COLUMN_TRANSACTION_ORDER_TRACKER + " TEXT, " +
+                COLUMN_TRANSACTION_LOCATION + " TEXT, " +
                 COLUMN_TRANSACTION_SHOP_IMG + " BLOB " + " )";
 
         String CREATE_COUPON_TABLE = "CREATE TABLE " + TABLE_COUPON + " (" +
@@ -495,8 +497,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String date = cursor.getString(3);
                 String paymentMethod = cursor.getString(4);
                 String orderTracker = cursor.getString(5);
-                int shopImg = cursor.getInt(6);
-                storeData.add(new DataTransactionDone(transactionId, shopName, totalPayment, date, paymentMethod, orderTracker, shopImg));
+                String location = cursor.getString(6);
+                int shopImg = cursor.getInt(7);
+                storeData.add(new DataTransactionDone(transactionId, shopName, totalPayment, date, paymentMethod, orderTracker, location, shopImg));
             }while (cursor.moveToNext());
 
         }

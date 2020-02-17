@@ -23,6 +23,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import static com.example.fooddeliveryproject.Activities.Database.DatabaseHelper.TABLE_FOOD_NEW;
+
 public class PaymentScreenActivity extends BaseActivity {
 
     Button payNowButton;
@@ -99,6 +101,7 @@ public class PaymentScreenActivity extends BaseActivity {
                 String dates = SaveSharedPreference.getDate(PaymentScreenActivity.this, "");
                 String paymentMethod = SaveSharedPreference.getPaymentName(PaymentScreenActivity.this, "");
                 String orderTracker = "Food Is Preparing";
+                String location = SaveSharedPreference.getLocationName(PaymentScreenActivity.this, "");
                 int shopImg = SaveSharedPreference.getFoodShopImg(PaymentScreenActivity.this, 0);
 
 
@@ -119,7 +122,9 @@ public class PaymentScreenActivity extends BaseActivity {
                             paymentSuccessReset();
                             resetData(foodPrice, foodPriceTotal, isCartOpened, itemCount);
                             deleteDataTrans();
-                            insertTransactionDoneData(shopName, totalPayment, dates, paymentMethod, orderTracker, shopImg);
+                            insertTransactionDoneData(shopName, totalPayment, dates, paymentMethod, orderTracker, location, shopImg);
+                            deleteDataNew();
+                            insertDataNew();
 
                         }
 
@@ -145,7 +150,9 @@ public class PaymentScreenActivity extends BaseActivity {
                             paymentSuccessReset();
                             resetData(foodPrice, foodPriceTotal, isCartOpened, itemCount);
                             deleteDataTrans();
-                            insertTransactionDoneData(shopName, totalPayment, dates, paymentMethod, orderTracker, shopImg);
+                            insertTransactionDoneData(shopName, totalPayment, dates, paymentMethod, orderTracker, location, shopImg);
+                            deleteDataNew();
+                            insertDataNew();
 
                         }
 
@@ -172,7 +179,9 @@ public class PaymentScreenActivity extends BaseActivity {
                             paymentSuccessReset();
                             resetData(foodPrice, foodPriceTotal, isCartOpened, itemCount);
                             deleteDataTrans();
-                            insertTransactionDoneData(shopName, totalPayment, dates, paymentMethod, orderTracker, shopImg);
+                            insertTransactionDoneData(shopName, totalPayment, dates, paymentMethod, orderTracker, location, shopImg);
+                            deleteDataNew();
+                            insertDataNew();
 
                         }
                     }else {
@@ -266,8 +275,14 @@ public class PaymentScreenActivity extends BaseActivity {
 
     }
 
+    public void deleteDataNew(){
+
+        db.delete(TABLE_FOOD_NEW, null, null);
+
+    }
+
     public void insertTransactionDoneData(String shopName, int totalPayment, String date,
-                           String paymentMethod, String orderTracker, int shopImg){
+                           String paymentMethod, String orderTracker, String location ,int shopImg){
 
         ContentValues contentValues = new ContentValues();
 
@@ -276,9 +291,29 @@ public class PaymentScreenActivity extends BaseActivity {
         contentValues.put(DatabaseHelper.COLUMN_TRANSACTION_DATE, date);
         contentValues.put(DatabaseHelper.COLUMN_TRANSACTION_PAYMENT_METHOD, paymentMethod);
         contentValues.put(DatabaseHelper.COLUMN_TRANSACTION_ORDER_TRACKER, orderTracker);
+        contentValues.put(DatabaseHelper.COLUMN_TRANSACTION_LOCATION, location);
         contentValues.put(DatabaseHelper.COLUMN_TRANSACTION_SHOP_IMG, shopImg);
 
         db.insert(DatabaseHelper.TABLE_TRANSACTION_DONE, null, contentValues);
+
+    }
+
+    public void insertDataNew(){
+
+        String DATA_FOOD_NEW = "INSERT INTO " + TABLE_FOOD_NEW + "(foodnamenew, fooddescnew, foodpricenew, foodpricediscountnew, foodpricetotalnew, foodpricediscounttotalnew, buttoncartquantityopenednew, fooditemcountnew, foodimagenew) " +
+                "VALUES ('Nasi Padang', '3 nasi + 2 ayam + sayuran + sambel', 30000, 40000, 0, 0, 0, 0," + R.drawable.nasi_padang_s + ")," +
+                "('Bakso', '2 Bakso besar + 5 Bakso kecil + bihun + bawang', 50000, 65000, 0, 0, 0, 0," + R.drawable.bakso + ")," +
+                "('Soto', 'Suwiran Ayam + Telor + Nasi', 40000, 55000, 0, 0, 0, 0," + R.drawable.soto + ")," +
+                "('Sate Ayam', '10 Tusuk sate ayam + bumbu kacang + nasi', 40000, 50000, 0, 0, 0, 0," + R.drawable.sate_ayam + ")," +
+                "('Sate Padang', '20 Tusuk sate padang + bumbu sate padang + lontong', 100000, 115000, 0, 0, 0, 0," + R.drawable.sate_padang + ")," +
+                "('Nasi Lemak', 'Nasi lemak + kacang + telor _ sambal', 50000, 30000, 0, 0, 0, 0," + R.drawable.nasi_lemak + ")," +
+                // "('Dal Tadkda', '3 Roti butter + kentang india', 30000, 40000, 0," + R.drawable.dal_tadkda + ")," +
+                "('Chinese Food', '1 porsi spagheti chinese + sayuran', 40000, 45000, 0, 0, 0, 0," + R.drawable.chow_mein + ")," +
+                "('Indian Curry', '3 roti butter + Mix sayuran + nasi', 20000, 35000, 0, 0, 0, 0," + R.drawable.maharashtra_thali + ")," +
+                "('Panang Curry', '3 Curry ayam + sayuran', 50000, 65000, 0, 0, 0, 0," + R.drawable.panang_curry + ")," +
+                "('Samosa', '10 Aneka gorengan india', 30000, 45000, 0, 0, 0, 0," + R.drawable.snacks + ")";
+
+        db.execSQL(DATA_FOOD_NEW);
 
     }
 

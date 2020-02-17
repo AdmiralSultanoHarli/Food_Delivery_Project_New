@@ -12,23 +12,11 @@
 
         <RelativeLayout
             android:id="@+id/searchContainer"
-            android:layout_width="168dp"
+            android:layout_width="300dp"
             android:layout_height="30dp"
-            android:elevation="8dp"
             android:layout_centerInParent="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/rounded_shape">
-
-            <ImageView
-                android:id="@+id/pinPoint"
-                android:visibility="gone"
-                android:src="@drawable/ic_pinpoint"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="5dp"
-                android:layout_alignParentLeft="true"/>
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:id="@+id/textFindLocation"
@@ -40,20 +28,42 @@
                 android:textColor="@color/colorButton"
                 android:layout_centerInParent="true"/>
 
-            <TextView
-                android:id="@+id/textViewMap"
-                android:layout_width="match_parent"
-                android:visibility="gone"
-                android:layout_height="30dp"
-                android:textSize="8dp"
-                android:lines="1"
-                android:layout_toRightOf="@+id/pinPoint"
-                android:layout_marginLeft="5dp"
-                android:textColor="@color/colorButton"
-                android:text="Map Configuration"
-                android:gravity="left|center"
-                android:textStyle="bold"
-                />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                >
+
+                <ImageView
+                    android:id="@+id/pinPoint"
+                    android:visibility="visible"
+                    android:src="@drawable/ic_pinpoint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginTop="5dp"/>
+
+                <TextView
+                    android:id="@+id/textViewMap"
+                    android:layout_width="wrap_content"
+                    android:visibility="visible"
+                    android:layout_height="match_parent"
+                    android:textSize="13dp"
+                    android:lines="1"
+                    android:layout_toRightOf="@+id/pinPoint"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/colorButton"
+                    android:text="Map Configuration"
+                    android:gravity="left|center"
+                    android:textStyle="bold"
+                    android:layout_centerInParent="true"
+                    />
+
+            </RelativeLayout>
+
+
 
         </RelativeLayout>
 
@@ -112,6 +122,13 @@
         android:background="@drawable/rounded_shape_search"
         android:elevation="5dp"
         />
+
+    <View
+        android:id="@+id/shadow"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/shadow_down"
+        android:layout_below="@+id/searchView"/>
 
     <LinearLayout
         android:id="@+id/searchFraegment"

@@ -30,7 +30,7 @@ public class OrderScreenActivity extends BaseActivity {
     ImageView backButton;
     RadioButton radioButtonGrab, radioButtonGojek, radioButtonOvo, radioButtonGopay, radioButtonMuamalat;
     Button buttonPayment;
-    TextView textCount, deliveryPrice, viewPayment, textViewAddMore, promoAppliedText;
+    TextView textCount, deliveryPrice, viewPayment, textViewAddMore, promoAppliedText, placeName, placeDescription;
 
     public static TextView totalPriceBar, totalPrice;
 
@@ -96,12 +96,17 @@ public class OrderScreenActivity extends BaseActivity {
         couponShower = findViewById(R.id.couponShower);
         textViewAddMore = findViewById(R.id.textViewAddMore);
         promoAppliedText = findViewById(R.id.promoAppliedText);
+        placeName = findViewById(R.id.placeName);
+        placeDescription = findViewById(R.id.placeDescription);
 
         decimalHelper = new DecimalHelper();
 
         //slidingPanel.setPanelState(SlidingUpPanelLayout.PanelState.HIDDEN);
         editNotes.addTextChangedListener(textCounter);
         accNotes.setEnabled(false);
+
+        placeName.setText(SaveSharedPreference.getLocationSimpleName(this, ""));
+        placeDescription.setText(SaveSharedPreference.getLocationName(this, ""));
 
         /*editNotes.requestFocus();
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);

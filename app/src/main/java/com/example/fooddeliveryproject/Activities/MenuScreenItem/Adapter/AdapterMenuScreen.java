@@ -439,6 +439,7 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                         priceDiscountTotal[0] = 0;
 
                         menuScreenActivity.numberCount.setVisibility(View.GONE);
+                        isChartQuantity[0] = 0;
 
                         int foodId = data.getId();
                         String foodTransName = data.getFoodName();
@@ -450,8 +451,6 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                         int buttonTransPosition = isChartQuantity[0];
                         int foodTransItemCount = quantity[0];
                         int img = data.getImg();
-
-                        isChartQuantity[0] = 0;
 
                         deleteData(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                                 foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
@@ -481,6 +480,7 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                         quantity[0]--;
                         priceTotal[0] -= foodPriceItem;
                         priceDiscountTotal[0] -= foodPriceDiscountItem;
+                        isChartQuantity[0] = 0;
 
                         int foodId = data.getId();
                         String foodTransName = data.getFoodName();
@@ -493,7 +493,6 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                         int foodTransItemCount = quantity[0];
                         int img = data.getImg();
 
-                        isChartQuantity[0] = 0;
 
                         deleteData(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                                 foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);

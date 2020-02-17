@@ -32,6 +32,7 @@ import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtili
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_THERE_IS_USER;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.LOCATION_NAME;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.LOCATION_OPENED;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.LOCATION_SIMPLE_NAME;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.MUAMALAT_BALANCE;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.NO_ORDER_COMPLETE;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.OVO_BALANCE;
@@ -359,6 +360,19 @@ public class SaveSharedPreference {
 
     }
 
+    public static void setLocationSimpleName(Context context, String locationSimpleName){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putString(LOCATION_SIMPLE_NAME, locationSimpleName);
+        editor.apply();
+
+    }
+
+    public static String getLocationSimpleName(Context context, String locationSimpleName){
+
+        return getPreferences(context).getString(LOCATION_SIMPLE_NAME, "");
+
+    }
 
     public static void setNoOrderComplete(Context context, int noOrderComplete){
 

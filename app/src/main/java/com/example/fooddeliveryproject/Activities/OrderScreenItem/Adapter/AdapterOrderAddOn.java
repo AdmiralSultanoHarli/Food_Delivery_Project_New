@@ -103,56 +103,60 @@ public class AdapterOrderAddOn extends RecyclerView.Adapter<AdapterOrderAddOn.Vi
             @Override
             public void onClick(View view) {
 
-                if (quantityTotal == 1){
+                if (quantity[0] == 1){
 
-                    Toast.makeText(context, "Iam sorry only 100 item can be added", Toast.LENGTH_SHORT).show();
-                    return;
+                    Toast.makeText(context, "Damn", Toast.LENGTH_SHORT).show();
+
+                }else if (quantityTotal == 100){
+
+                    Toast.makeText(context, "Iam sorry the maximum item is 100", Toast.LENGTH_SHORT).show();
+
+                }else {
+
+                    Log.e("Adapter Position", String.valueOf(position));
+
+                    // Total All Item
+                    quantityTotal++;
+                    foodPriceTotal += foodPriceItem;
+                    foodPriceDiscountTotal += foodPriceDiscountItem;
+
+                    // Total One Item
+                    quantity[0]++;
+                    priceTotal[0] += foodPriceItem;
+                    priceDiscountTotal[0] += foodPriceDiscountItem;
+
+                    isChartQuantity[0] = 1;
+
+                    int foodId = data.getFoodId();
+                    String foodTransName = data.getFoodName();
+                    String foodTransDesc = data.getFoodDesc();
+                    int foodTransPrice = data.getFoodPrice();
+                    int foodTransPriceDiscount = data.getFoodPriceDiscount();
+                    int foodTransPriceTotal = priceTotal[0];
+                    int foodTransPriceDiscountTotal = priceDiscountTotal[0];
+                    int buttonTransPosition = isChartQuantity[0];
+                    int foodTransItemCount = quantity[0];
+                    int img = data.getFoodImg();
+
+                    insertData(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
+                            foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
+
+                    updateDataFood(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
+                            foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
+
+                    deleteDataNew(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
+                            foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
+
+                    logListItem();
+
+                    viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
+
+                    OrderScreenActivity orderScreenActivity = (OrderScreenActivity) view.getContext();
+                    orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.orderSummaryFragment, new OrderScreenOrderFragment()).commit();
+                    orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.paymentDetailsFragment, new OrderPaymentDetailsFragment()).commit();
+                    orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.menuOrderAlsoOrderFragment, new OrderAddOnFragment()).commit();
 
                 }
-
-                Log.e("Adapter Position", String.valueOf(position));
-
-                // Total All Item
-                quantityTotal++;
-                foodPriceTotal += foodPriceItem;
-                foodPriceDiscountTotal += foodPriceDiscountItem;
-
-                // Total One Item
-                quantity[0]++;
-                priceTotal[0] += foodPriceItem;
-                priceDiscountTotal[0] += foodPriceDiscountItem;
-
-                isChartQuantity[0] = 1;
-
-                int foodId = data.getFoodId();
-                String foodTransName = data.getFoodName();
-                String foodTransDesc = data.getFoodDesc();
-                int foodTransPrice = data.getFoodPrice();
-                int foodTransPriceDiscount = data.getFoodPriceDiscount();
-                int foodTransPriceTotal = priceTotal[0];
-                int foodTransPriceDiscountTotal = priceDiscountTotal[0];
-                int buttonTransPosition = isChartQuantity[0];
-                int foodTransItemCount = quantity[0];
-                int img = data.getFoodImg();
-
-                insertData(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
-                        foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
-
-                updateDataFood(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
-                        foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
-
-                deleteDataNew(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
-                        foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
-
-                logListItem();
-
-                viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
-
-                OrderScreenActivity orderScreenActivity = (OrderScreenActivity) view.getContext();
-                orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.orderSummaryFragment, new OrderScreenOrderFragment()).commit();
-                orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.paymentDetailsFragment, new OrderPaymentDetailsFragment()).commit();
-                orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.menuOrderAlsoOrderFragment, new OrderAddOnFragment()).commit();
-
             }
 
             public void insertData(int foodId, String foodTransName, String foodTransDesc, int foodTransPrice, int foodTransPriceDiscount,

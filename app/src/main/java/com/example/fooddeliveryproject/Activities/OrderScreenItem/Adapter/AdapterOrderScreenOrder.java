@@ -382,6 +382,7 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
 
                         OrderScreenActivity orderScreenActivity = (OrderScreenActivity) view.getContext();
                         orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.paymentDetailsFragment, new OrderPaymentDetailsFragment()).commit();
+                        orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.menuOrderAlsoOrderFragment, new OrderAddOnFragment()).commit();
 
                     }
 

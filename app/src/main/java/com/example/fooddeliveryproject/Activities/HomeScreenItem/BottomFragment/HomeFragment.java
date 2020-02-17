@@ -156,7 +156,7 @@ public class HomeFragment extends Fragment {
         textViewMap.setVisibility(View.VISIBLE);
         pinPoint.setVisibility(View.VISIBLE);
         textFindLocation.setVisibility(View.GONE);
-        textViewMap.setText(SaveSharedPreference.getLocationName(getContext(), ""));
+        textViewMap.setText(SaveSharedPreference.getLocationSimpleName(getContext(), ""));
 
         /*searchView.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -371,6 +371,8 @@ public class HomeFragment extends Fragment {
             if (location != null) {
 
                 getCompleteAddressString(location.getLatitude(), location.getLongitude());
+                Log.e("Latitude", String.valueOf(location.getLatitude()));
+                Log.e("Longitude", String.valueOf(location.getLongitude()));
 
             }
 
@@ -553,28 +555,47 @@ public class HomeFragment extends Fragment {
         String strAdd = "";
         Geocoder geocoder = new Geocoder(mContext, Locale.getDefault());
         try {
-            List<Address> addresses = geocoder.getFromLocation(LATITUDE, LONGITUDE, 1);
+            List<Address> addresses = geocoder.getFromLocation(LATITUDE, LONGITUDE, 3);
             if (addresses != null) {
                 Address returnedAddress = addresses.get(0);
                 StringBuilder strReturnedAddress = new StringBuilder("");
 
                 for (int i = 0; i <= returnedAddress.getMaxAddressLineIndex(); i++) {
                     strReturnedAddress.append(returnedAddress.getAddressLine(i)).append("\n");
+
                 }
                 strAdd = strReturnedAddress.toString();
+                String[] locationParts = strAdd.split(", ");
+                String locationName = "";
+
+                if (locationParts.length == 8 || locationParts.length == 4){
+
+                    locationName = locationParts[0];
+
+                }else if (locationParts.length == 9){
+
+                    locationName = locationParts[1];
+
+                }
+
+                Log.e("Location", locationName);
+
+                Log.e("location parts size", String.valueOf(locationParts.length));
+
                 Log.e("My Current location ", strReturnedAddress.toString());
 
                 textViewMap.setVisibility(View.VISIBLE);
                 pinPoint.setVisibility(View.VISIBLE);
                 textFindLocation.setVisibility(View.GONE);
-                textViewMap.setText(strReturnedAddress.toString());
-                SaveSharedPreference.setLocationName(mContext, strReturnedAddress.toString());
+                textViewMap.setText(locationName);
+                SaveSharedPreference.setLocationName(mContext, strAdd);
+                SaveSharedPreference.setLocationSimpleName(mContext, locationName);
 
             } else {
                 Log.e("My Current location ", "No Address returned!");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             Log.e("My Current location ", "Cannot get Address!");
         }
         return strAdd;

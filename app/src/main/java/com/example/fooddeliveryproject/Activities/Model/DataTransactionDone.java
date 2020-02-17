@@ -7,21 +7,23 @@ public class DataTransactionDone {
     int totalPayment;
     String date;
     String paymentMethod;
-    int shopImg;
     String orderTracker;
+    String location;
+    int shopImg;
 
     public DataTransactionDone() {
 
 
     }
 
-    public DataTransactionDone(int id, String shopName, int totalPayment, String date, String paymentMethod, String orderTracker, int shopImg) {
+    public DataTransactionDone(int id, String shopName, int totalPayment, String date, String paymentMethod, String orderTracker, String location, int shopImg) {
         this.id = id;
         this.shopName = shopName;
         this.totalPayment = totalPayment;
         this.date = date;
         this.paymentMethod = paymentMethod;
         this.orderTracker = orderTracker;
+        this.location = location;
         this.shopImg = shopImg;
     }
 
@@ -47,6 +49,10 @@ public class DataTransactionDone {
 
     public void setOrderTracker(String orderTracker) {
         this.orderTracker = orderTracker;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public void setShopImg(int shopImg) {
@@ -77,6 +83,10 @@ public class DataTransactionDone {
 
     public String getOrderTracker() {
         return orderTracker;
+    }
+
+    public String getLocation() {
+        return location;
     }
 
     public int getShopImg() {
