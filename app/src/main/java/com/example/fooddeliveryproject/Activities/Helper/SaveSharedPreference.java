@@ -30,9 +30,11 @@ import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtili
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_COUPON_EXIST;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_FRAGMENT_ORDER_OPENED;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.IS_THERE_IS_USER;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.LATITUDE;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.LOCATION_NAME;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.LOCATION_OPENED;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.LOCATION_SIMPLE_NAME;
+import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.LONGITUDE;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.MUAMALAT_BALANCE;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.NO_ORDER_COMPLETE;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.OVO_BALANCE;
@@ -554,6 +556,34 @@ public class SaveSharedPreference {
     public static int getShopImg(Context context, int shopImg){
 
         return getPreferences(context).getInt(SHOP_IMG, 0);
+
+    }
+
+    public static void setLatitude(Context context, float latitude){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putFloat(LATITUDE, latitude);
+        editor.apply();
+
+    }
+
+    public static float getLatitude(Context context, float latitude){
+
+        return getPreferences(context).getFloat(LATITUDE, 0);
+
+    }
+
+    public static void setLongitude(Context context, float longitude){
+
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putFloat(LONGITUDE, longitude);
+        editor.apply();
+
+    }
+
+    public static float getLongitude(Context context, float longitude){
+
+        return getPreferences(context).getFloat(LONGITUDE, 0);
 
     }
 

@@ -1,6 +1,5 @@
 package com.example.fooddeliveryproject.Activities.Database;
 
-import android.animation.ValueAnimator;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -14,11 +13,7 @@ import com.example.fooddeliveryproject.Activities.Model.DataTransaction;
 import com.example.fooddeliveryproject.Activities.Model.DataTransactionDone;
 import com.example.fooddeliveryproject.R;
 
-import java.security.PublicKey;
-import java.sql.DataTruncation;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Locale;
 
 
 public class DatabaseHelper extends SQLiteOpenHelper {

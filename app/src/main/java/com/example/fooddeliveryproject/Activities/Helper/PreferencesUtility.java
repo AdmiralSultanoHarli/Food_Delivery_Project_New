@@ -81,5 +81,9 @@ public class PreferencesUtility {
 
     public static final String SHOP_IMG = "shopimg";
 
+    public static final String LATITUDE = "latitude";
+
+    public static final String LONGITUDE = "longitude";
+
 
 }

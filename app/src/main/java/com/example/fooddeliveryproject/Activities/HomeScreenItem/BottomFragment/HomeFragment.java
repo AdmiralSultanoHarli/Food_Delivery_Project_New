@@ -374,6 +374,9 @@ public class HomeFragment extends Fragment {
                 Log.e("Latitude", String.valueOf(location.getLatitude()));
                 Log.e("Longitude", String.valueOf(location.getLongitude()));
 
+                SaveSharedPreference.setLatitude(mContext, (float) location.getLatitude());
+                SaveSharedPreference.setLongitude(mContext, (float) location.getLongitude());
+
             }
 
 
@@ -568,11 +571,12 @@ public class HomeFragment extends Fragment {
                 String[] locationParts = strAdd.split(", ");
                 String locationName = "";
 
-                if (locationParts.length == 8 || locationParts.length == 4){
+                if (locationParts.length == 8 || locationParts.length == 4 || locationParts.length == 6 ||
+                        locationParts.length == 7){
 
                     locationName = locationParts[0];
 
-                }else if (locationParts.length == 9){
+                }else if (locationParts.length == 9 || locationParts.length == 10 || locationParts.length == 12){
 
                     locationName = locationParts[1];
 

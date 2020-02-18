@@ -27,7 +27,7 @@ import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 public class OrderScreenActivity extends BaseActivity {
 
-    ImageView backButton;
+    ImageView backButton, imageViewMap;
     RadioButton radioButtonGrab, radioButtonGojek, radioButtonOvo, radioButtonGopay, radioButtonMuamalat;
     Button buttonPayment;
     TextView textCount, deliveryPrice, viewPayment, textViewAddMore, promoAppliedText, placeName, placeDescription;
@@ -98,6 +98,7 @@ public class OrderScreenActivity extends BaseActivity {
         promoAppliedText = findViewById(R.id.promoAppliedText);
         placeName = findViewById(R.id.placeName);
         placeDescription = findViewById(R.id.placeDescription);
+        imageViewMap = findViewById(R.id.imageViewMap);
 
         decimalHelper = new DecimalHelper();
 
@@ -125,6 +126,18 @@ public class OrderScreenActivity extends BaseActivity {
             promoAppliedText.setText("Promo applied");
 
         }
+
+        imageViewMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(OrderScreenActivity.this, MapsActivityScreen.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+
+            }
+        });
 
         couponShower.setOnClickListener(new View.OnClickListener() {
             @Override
