@@ -85,5 +85,54 @@ public class PopUp extends Activity {
         return foodArrayList;
 
     }*/
+
+        /*@Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                final FilterResults oReturn = new FilterResults();
+                final List<DataKhanaval> results = new ArrayList<>();
+
+                if (mTopList == null)
+                    mTopList = menuList;
+                //Log.e("menu list",mTopList.toString());
+                if (constraint != null) {
+                    if (mTopList != null && mTopList.size() > 0) {
+                        for (final DataKhanaval f : mTopList) {
+                            if (f.getFoodName().toLowerCase()
+                                    .contains(constraint.toString()))
+                                //Log.e("Data Result", f.getFoodName());
+                                results.add(f);
+                        }
+                    }
+                    oReturn.values = results;
+                    oReturn.count = results.size();
+                }
+                return oReturn;
+            }
+
+            @SuppressWarnings("unchecked")
+            @Override
+            protected void publishResults(CharSequence constraint,
+                                          FilterResults results) {
+                //menuList.addAll((ArrayList<DataKhanaval>) results.values);
+               *//* menuList = (ArrayList<DataKhanaval>) results.values;
+                notifyDataSetChanged();*//*
+               updateMenuList(menuList);
+
+
+            }
+        };
+    }*/
+
+    /*public void updateMenuList(List<DataKhanaval> newList){
+
+        menuList.clear(); //here items is an ArrayList populating the RecyclerView
+        this.notifyDataSetChanged();
+        menuList.addAll(newList);// add new data
+        this.notifyItemRangeInserted(0, menuList.size());// notify adapter of new data
+
+    }*/
     }
 }

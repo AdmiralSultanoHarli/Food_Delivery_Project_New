@@ -29,7 +29,6 @@ public class AdapterCouponScreen extends RecyclerView.Adapter<AdapterCouponScree
     List<DataKhanaval> mTopList;
     Context context;
     private DatabaseHelper helper;
-    //BestCusineFragment bestCusineFragment = new BestCusineFragment();
 
     public AdapterCouponScreen(List<DataKhanaval> menuList, Context context) {
         this.menuList = menuList;

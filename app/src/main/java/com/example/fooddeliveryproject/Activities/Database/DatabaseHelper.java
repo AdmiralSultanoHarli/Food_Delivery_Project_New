@@ -128,22 +128,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static int chow_mein = R.drawable.chow_mein;
     public static int panang_curry = R.drawable.panang_curry;
 
-
-    // Unused
-    /*public static int basmati = R.drawable.basmati_rice;
-    public static int mix_veggies = R.drawable.mix_veggies;
-    public static int basmati_chicken_biryani = R.drawable.basmati_rice_chicken_biryani;
-    public static int jeera_alo = R.drawable.jeera_alo;
-    public static int goan_special = R.drawable.goan_vegetarian_thali;
-    public static int dal_tadkda = R.drawable.dal_tadkda;
-    public static int bhindi_masala = R.drawable.bhindi_masala;*/
-
     public DatabaseHelper(Context context){
 
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
     }
-    //bryan
+
     @Override
     public void onCreate(SQLiteDatabase db) {
 
@@ -282,10 +272,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "('Panang Curry', '3 Curry ayam + sayuran', 50000, 65000, 0, 0, 0, 0," + R.drawable.panang_curry + ")," +
                 "('Samosa', '10 Aneka gorengan india', 30000, 45000, 0, 0, 0, 0," + R.drawable.snacks + ")";
 
-        /*String DATA_FOOD_TRANSACTION = "INSERT INTO " + TABLE_FOOD_TRANSACTION + "(foodtransactionname, foodtransactiondesc, foodtransactionprice, foodtransactionpricediscount, foodtransactionpricetotal, foodtransactionpricediscounttotal, buttoncartquantityopened, foodtransactionitemcount, foodtransactionimg) " +
-                "VALUES ('Nasi Padang', '3 nasi + 2 ayam + sayuran + sambel', 30000, 40000, 0, 0, 0, 0," + R.drawable.nasi_padang_s + ")," +
-                "('Samosa', '10 Aneka gorengan india', 30000, 45000, 0, 0, 0, 0," + R.drawable.snacks + ")";*/
-
         String DATA_COUPON = "INSERT INTO " + TABLE_COUPON + "(couponname, couponvalue, couponvalid, couponimage) " +
                 "VALUES ('Chat Time', 5, '23 December 2022'," + R.drawable.chat_time_coupon + ")," +
                 "('KFC', 15, '15 January 2021'," + R.drawable.kfc_coupon + ")," +
@@ -328,24 +314,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_COUPON_TABLE);
         db.execSQL(CREATE_FOOD_TABLE_TRANSACTION);
         db.execSQL(CREATE_TABLE_TRANSACTION_DONE);
-
         db.execSQL(CREATE_BESTCUSINE_TABLE);
         db.execSQL(CREATE_TODAYSPECIAL_TABLE);
         db.execSQL(CREATE_YOURFAVOURITES_TABLE);
         db.execSQL(CREATE_CUSTOM_TABLE);
         db.execSQL(CREATE_RESTAURANT_TABLE);
-
         db.execSQL(DATA_FOOD);
         db.execSQL(DATA_FOOD_NEW);
         db.execSQL(DATA_COUPON);
         db.execSQL(DATA_RESTAURANT);
-
         db.execSQL(DATA_BESTCUSINE);
         db.execSQL(DATA_TODAYSPECIAL);
         db.execSQL(DATA_YOURFAVOURITES);
         db.execSQL(DATA_CUSTOM);
 
-        //db.execSQL(DATA_FOOD_TRANSACTION);
     }
 
     @Override

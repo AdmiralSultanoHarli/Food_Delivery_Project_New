@@ -15,23 +15,17 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.fooddeliveryproject.Activities.Activity.OrderScreenActivity;
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 import com.example.fooddeliveryproject.Activities.Helper.DecimalHelper;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.Model.DataAlsoOrderThis;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
-import com.example.fooddeliveryproject.Activities.Model.DataTransaction;
 import com.example.fooddeliveryproject.Activities.OrderScreenItem.Fragment.OrderAddOnFragment;
 import com.example.fooddeliveryproject.Activities.OrderScreenItem.Fragment.OrderPaymentDetailsFragment;
 import com.example.fooddeliveryproject.Activities.OrderScreenItem.Fragment.OrderScreenOrderFragment;
 import com.example.fooddeliveryproject.R;
-
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.util.List;
-import java.util.Locale;
 
 public class AdapterOrderAddOn extends RecyclerView.Adapter<AdapterOrderAddOn.ViewHolder> {
 
@@ -43,6 +37,16 @@ public class AdapterOrderAddOn extends RecyclerView.Adapter<AdapterOrderAddOn.Vi
     int quantityTotal;
     int foodPriceTotal;
     int foodPriceDiscountTotal;
+    int foodId;
+    String foodTransName;
+    String foodTransDesc;
+    int foodTransPrice;
+    int foodTransPriceDiscount;
+    int foodTransPriceTotal;
+    int foodTransPriceDiscountTotal;
+    int buttonTransPosition;
+    int foodTransItemCount;
+    int img;
 
     DecimalHelper decimalHelper;
 
@@ -127,16 +131,16 @@ public class AdapterOrderAddOn extends RecyclerView.Adapter<AdapterOrderAddOn.Vi
 
                     isChartQuantity[0] = 1;
 
-                    int foodId = data.getFoodId();
-                    String foodTransName = data.getFoodName();
-                    String foodTransDesc = data.getFoodDesc();
-                    int foodTransPrice = data.getFoodPrice();
-                    int foodTransPriceDiscount = data.getFoodPriceDiscount();
-                    int foodTransPriceTotal = priceTotal[0];
-                    int foodTransPriceDiscountTotal = priceDiscountTotal[0];
-                    int buttonTransPosition = isChartQuantity[0];
-                    int foodTransItemCount = quantity[0];
-                    int img = data.getFoodImg();
+                    foodId = data.getFoodId();
+                    foodTransName = data.getFoodName();
+                    foodTransDesc = data.getFoodDesc();
+                    foodTransPrice = data.getFoodPrice();
+                    foodTransPriceDiscount = data.getFoodPriceDiscount();
+                    foodTransPriceTotal = priceTotal[0];
+                    foodTransPriceDiscountTotal = priceDiscountTotal[0];
+                    buttonTransPosition = isChartQuantity[0];
+                    foodTransItemCount = quantity[0];
+                    img = data.getFoodImg();
 
                     insertData(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                             foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
@@ -248,31 +252,9 @@ public class AdapterOrderAddOn extends RecyclerView.Adapter<AdapterOrderAddOn.Vi
                 orderScreenActivity.totalPriceBar.setText(decimalHelper.formatter(SaveSharedPreference.getTotalPayment(context, 0)));
                 orderScreenActivity.totalPrice.setText(decimalHelper.formatter(SaveSharedPreference.getTotalPayment(context, 0)));
 
-                // If i want just to show the 1 item total quantity i can use like the comment bellow
-                /*bundle.putString("FoodCount", String.valueOf(quantity[0]));
-                bundle.putString("FoodPrice", String.valueOf(priceTotal[0]));
-                bundle.putString("FoodDiscount", String.valueOf(priceDiscountTotal[0]));*/
-
-                //foodChartFragment.setArguments(bundle);
-
             }
 
         });
-
-        /*viewHolder.decreaseChartQuantity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (quantity[0] == 0){
-
-                    return;
-
-                }
-                quantity[0]--;
-                viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
-
-            }
-        });*/
 
     }
 
@@ -298,7 +280,6 @@ public class AdapterOrderAddOn extends RecyclerView.Adapter<AdapterOrderAddOn.Vi
             decreaseChartQuantity = itemView.findViewById(R.id.orderDecreaseCartQuantity);
             increaseChartQuantity = itemView.findViewById(R.id.orderIncreaseCartQuantity);
             chartQuantity = itemView.findViewById(R.id.orderCartQuantity);
-
 
         }
     }

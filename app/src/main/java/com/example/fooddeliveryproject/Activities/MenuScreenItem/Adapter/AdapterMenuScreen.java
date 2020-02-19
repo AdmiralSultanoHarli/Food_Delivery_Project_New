@@ -25,11 +25,9 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.fooddeliveryproject.Activities.Activity.HomeScreenActivity;
 import com.example.fooddeliveryproject.Activities.Activity.MenuScreenActivity;
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 import com.example.fooddeliveryproject.Activities.Helper.DecimalHelper;
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.OrdersDetailsFragment;
 import com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment.MenuScreenFragment;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
@@ -48,13 +46,21 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
     DatabaseHelper helper;
     SQLiteDatabase db;
 
-    Dialog mDialog;
     FoodChartFragment foodChartFragment = new FoodChartFragment();
-    MenuScreenFragment menuScreenFragment = new MenuScreenFragment();
 
     int quantityTotal;
     int foodPriceTotal;
     int foodPriceDiscountTotal;
+    int foodId;
+    String foodTransName;
+    String foodTransDesc;
+    int foodTransPrice;
+    int foodTransPriceDiscount;
+    int foodTransPriceTotal;
+    int foodTransPriceDiscountTotal;
+    int buttonTransPosition;
+    int foodTransItemCount;
+    int img;
 
     public AdapterMenuScreen(List<DataKhanaval> menuList, Context context) {
         this.menuList = menuList;
@@ -115,7 +121,6 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
         if (SaveSharedPreference.getAllQuantity(context, quantityTotal) >= 1 ) {
 
             viewHolder.activity.getSupportFragmentManager().beginTransaction().replace(R.id.foodChartFragment, foodChartFragment).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
-            //viewHolder.activity.getSupportFragmentManager().beginTransaction().detach(foodChartFragment).attach(foodChartFragment).commit();
 
         }
 
@@ -147,16 +152,16 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
                         isChartQuantity[0] = 1;
 
-                        int foodId = data.getId();
-                        String foodTransName = data.getFoodName();
-                        String foodTransDesc = data.getFoodDescription();
-                        int foodTransPrice = data.getFoodPrice();
-                        int foodTransPriceDiscount = data.getFoodPriceDiscount();
-                        int foodTransPriceTotal = priceTotal[0];
-                        int foodTransPriceDiscountTotal = priceDiscountTotal[0];
-                        int buttonTransPosition = isChartQuantity[0];
-                        int foodTransItemCount = quantity[0];
-                        int img = data.getImg();
+                        foodId = data.getId();
+                        foodTransName = data.getFoodName();
+                        foodTransDesc = data.getFoodDescription();
+                        foodTransPrice = data.getFoodPrice();
+                        foodTransPriceDiscount = data.getFoodPriceDiscount();
+                        foodTransPriceTotal = priceTotal[0];
+                        foodTransPriceDiscountTotal = priceDiscountTotal[0];
+                        buttonTransPosition = isChartQuantity[0];
+                        foodTransItemCount = quantity[0];
+                        img = data.getImg();
 
                         insertData(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                                 foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
@@ -195,16 +200,16 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
                     isChartQuantity[0] = 1;
 
-                    int foodId = data.getId();
-                    String foodTransName = data.getFoodName();
-                    String foodTransDesc = data.getFoodDescription();
-                    int foodTransPrice = data.getFoodPrice();
-                    int foodTransPriceDiscount = data.getFoodPriceDiscount();
-                    int foodTransPriceTotal = priceTotal[0];
-                    int foodTransPriceDiscountTotal = priceDiscountTotal[0];
-                    int buttonTransPosition = isChartQuantity[0];
-                    int foodTransItemCount = quantity[0];
-                    int img = data.getImg();
+                    foodId = data.getId();
+                    foodTransName = data.getFoodName();
+                    foodTransDesc = data.getFoodDescription();
+                    foodTransPrice = data.getFoodPrice();
+                    foodTransPriceDiscount = data.getFoodPriceDiscount();
+                    foodTransPriceTotal = priceTotal[0];
+                    foodTransPriceDiscountTotal = priceDiscountTotal[0];
+                    buttonTransPosition = isChartQuantity[0];
+                    foodTransItemCount = quantity[0];
+                    img = data.getImg();
 
                     insertData(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                             foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
@@ -334,16 +339,16 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
                 isChartQuantity[0] = 1;
 
-                int foodId = data.getId();
-                String foodTransName = data.getFoodName();
-                String foodTransDesc = data.getFoodDescription();
-                int foodTransPrice = data.getFoodPrice();
-                int foodTransPriceDiscount = data.getFoodPriceDiscount();
-                int foodTransPriceTotal = priceTotal[0];
-                int foodTransPriceDiscountTotal = priceDiscountTotal[0];
-                int buttonTransPosition = isChartQuantity[0];
-                int foodTransItemCount = quantity[0];
-                int img = data.getImg();
+                foodId = data.getId();
+                foodTransName = data.getFoodName();
+                foodTransDesc = data.getFoodDescription();
+                foodTransPrice = data.getFoodPrice();
+                foodTransPriceDiscount = data.getFoodPriceDiscount();
+                foodTransPriceTotal = priceTotal[0];
+                foodTransPriceDiscountTotal = priceDiscountTotal[0];
+                buttonTransPosition = isChartQuantity[0];
+                foodTransItemCount = quantity[0];
+                img = data.getImg();
 
                 updateDataTrans(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                         foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
@@ -441,16 +446,16 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                         menuScreenActivity.numberCount.setVisibility(View.GONE);
                         isChartQuantity[0] = 0;
 
-                        int foodId = data.getId();
-                        String foodTransName = data.getFoodName();
-                        String foodTransDesc = data.getFoodDescription();
-                        int foodTransPrice = data.getFoodPrice();
-                        int foodTransPriceDiscount = data.getFoodPriceDiscount();
-                        int foodTransPriceTotal = priceTotal[0];
-                        int foodTransPriceDiscountTotal = priceDiscountTotal[0];
-                        int buttonTransPosition = isChartQuantity[0];
-                        int foodTransItemCount = quantity[0];
-                        int img = data.getImg();
+                        foodId = data.getId();
+                        foodTransName = data.getFoodName();
+                        foodTransDesc = data.getFoodDescription();
+                        foodTransPrice = data.getFoodPrice();
+                        foodTransPriceDiscount = data.getFoodPriceDiscount();
+                        foodTransPriceTotal = priceTotal[0];
+                        foodTransPriceDiscountTotal = priceDiscountTotal[0];
+                        buttonTransPosition = isChartQuantity[0];
+                        foodTransItemCount = quantity[0];
+                        img = data.getImg();
 
                         deleteData(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                                 foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
@@ -482,17 +487,16 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                         priceDiscountTotal[0] -= foodPriceDiscountItem;
                         isChartQuantity[0] = 0;
 
-                        int foodId = data.getId();
-                        String foodTransName = data.getFoodName();
-                        String foodTransDesc = data.getFoodDescription();
-                        int foodTransPrice = data.getFoodPrice();
-                        int foodTransPriceDiscount = data.getFoodPriceDiscount();
-                        int foodTransPriceTotal = priceTotal[0];
-                        int foodTransPriceDiscountTotal = priceDiscountTotal[0];
-                        int buttonTransPosition = isChartQuantity[0];
-                        int foodTransItemCount = quantity[0];
-                        int img = data.getImg();
-
+                        foodId = data.getId();
+                        foodTransName = data.getFoodName();
+                        foodTransDesc = data.getFoodDescription();
+                        foodTransPrice = data.getFoodPrice();
+                        foodTransPriceDiscount = data.getFoodPriceDiscount();
+                        foodTransPriceTotal = priceTotal[0];
+                        foodTransPriceDiscountTotal = priceDiscountTotal[0];
+                        buttonTransPosition = isChartQuantity[0];
+                        foodTransItemCount = quantity[0];
+                        img = data.getImg();
 
                         deleteData(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                                 foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
@@ -526,16 +530,16 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                         priceTotal[0] -= foodPriceItem;
                         priceDiscountTotal[0] -= foodPriceDiscountItem;
 
-                        int foodId = data.getId();
-                        String foodTransName = data.getFoodName();
-                        String foodTransDesc = data.getFoodDescription();
-                        int foodTransPrice = data.getFoodPrice();
-                        int foodTransPriceDiscount = data.getFoodPriceDiscount();
-                        int foodTransPriceTotal = priceTotal[0];
-                        int foodTransPriceDiscountTotal = priceDiscountTotal[0];
-                        int buttonTransPosition = isChartQuantity[0];
-                        int foodTransItemCount = quantity[0];
-                        int img = data.getImg();
+                        foodId = data.getId();
+                        foodTransName = data.getFoodName();
+                        foodTransDesc = data.getFoodDescription();
+                        foodTransPrice = data.getFoodPrice();
+                        foodTransPriceDiscount = data.getFoodPriceDiscount();
+                        foodTransPriceTotal = priceTotal[0];
+                        foodTransPriceDiscountTotal = priceDiscountTotal[0];
+                        buttonTransPosition = isChartQuantity[0];
+                        foodTransItemCount = quantity[0];
+                        img = data.getImg();
 
                         isChartQuantity[0] = 1;
 
@@ -703,55 +707,6 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
     }
 
-    /*@Override
-    public Filter getFilter() {
-        return new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence constraint) {
-                final FilterResults oReturn = new FilterResults();
-                final List<DataKhanaval> results = new ArrayList<>();
-
-                if (mTopList == null)
-                    mTopList = menuList;
-                //Log.e("menu list",mTopList.toString());
-                if (constraint != null) {
-                    if (mTopList != null && mTopList.size() > 0) {
-                        for (final DataKhanaval f : mTopList) {
-                            if (f.getFoodName().toLowerCase()
-                                    .contains(constraint.toString()))
-                                //Log.e("Data Result", f.getFoodName());
-                                results.add(f);
-                        }
-                    }
-                    oReturn.values = results;
-                    oReturn.count = results.size();
-                }
-                return oReturn;
-            }
-
-            @SuppressWarnings("unchecked")
-            @Override
-            protected void publishResults(CharSequence constraint,
-                                          FilterResults results) {
-                //menuList.addAll((ArrayList<DataKhanaval>) results.values);
-               *//* menuList = (ArrayList<DataKhanaval>) results.values;
-                notifyDataSetChanged();*//*
-               updateMenuList(menuList);
-
-
-            }
-        };
-    }*/
-
-    /*public void updateMenuList(List<DataKhanaval> newList){
-
-        menuList.clear(); //here items is an ArrayList populating the RecyclerView
-        this.notifyDataSetChanged();
-        menuList.addAll(newList);// add new data
-        this.notifyItemRangeInserted(0, menuList.size());// notify adapter of new data
-
-    }*/
-
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         public ImageView img;
@@ -764,8 +719,6 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
         public ViewHolder(@NonNull final View itemView) {
             super(itemView);
 
-            //item_food = itemView.findViewById(R.id.food_item_id);
-            //foodChartFragment = itemView.findViewById(R.id.foodChartFragment);
             img = itemView.findViewById(R.id.orderFoodImage);
             foodName = itemView.findViewById(R.id.orderFoodName);
             foodDescription = itemView.findViewById(R.id.foodDescription);
@@ -777,11 +730,6 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
             increaseChartQuantity = itemView.findViewById(R.id.orderIncreaseCartQuantity);
             chartQuantity = itemView.findViewById(R.id.orderCartQuantity);
             activity = (AppCompatActivity) itemView.getContext();
-
-            /*foodPriceTotal = itemView.findViewById(R.id.foodPriceTotal);
-            foodPriceDiscountTotal = itemView.findViewById(R.id.foodPriceDiscountTotal);*/
-
-            /*mCommunication = mCommunicator;*/
 
             foodPriceDiscount.setPaintFlags(foodPriceDiscount.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         }

@@ -22,7 +22,6 @@ public class MenuDetailsScreenActivity extends BaseActivity {
 
     DecimalHelper decimalHelper;
 
-    //aaa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,9 +66,6 @@ public class MenuDetailsScreenActivity extends BaseActivity {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-        /*OrderAddOnFragment menuDetailScreenAddOnFragment = new OrderAddOnFragment();
-        fragmentTransaction.replace(R.id.menuDetailScreenAddOnFragment, menuDetailScreenAddOnFragment, menuDetailScreenAddOnFragment.getTag());*/
 
         MenuDetailScreenItemsFragment menuDetailScreenItemsFragment = new MenuDetailScreenItemsFragment();
         fragmentTransaction.replace(R.id.menuDetailScreenItemFragment, menuDetailScreenItemsFragment, menuDetailScreenItemsFragment.getTag());

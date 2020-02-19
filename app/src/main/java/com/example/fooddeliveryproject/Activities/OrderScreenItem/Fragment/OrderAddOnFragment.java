@@ -28,10 +28,6 @@ public class OrderAddOnFragment extends Fragment {
     ArrayList<DataAlsoOrderThis> allData;
     private DatabaseHelper helper;
 
-    /*String foodName[] = {"Nasi", "Kentang", "Roti", "Jus Mangga", "Gorengan"};
-    int foodPrice[] = {10000, 10000, 10000, 20000, 25000};
-    int img[] = {R.drawable.basmati_rice, R.drawable.kentang, R.drawable.chapati, R.drawable.beverage, R.drawable.snacks};*/
-
     public OrderAddOnFragment() {
 
 
@@ -59,38 +55,7 @@ public class OrderAddOnFragment extends Fragment {
 
         return v;
 
-        /*orderAddOn = v.findViewById(R.id.menuDetailAddOnRecyclerView);
-
-        orderAddOn.setHasFixedSize(true);
-
-        RecyclerView.LayoutManager layoutManagerAddOn =  new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-
-        orderAddOn.setLayoutManager(layoutManagerAddOn);
-
-        ArrayList<DataKhanaval> dataAddOn = getData();
-
-        orderAddOnAdapter = new AdapterOrderAddOn(dataAddOn, getActivity());
-        orderAddOn.setAdapter(orderAddOnAdapter);
-
-        return v;*/
-
     }
-
-    /*private ArrayList<DataKhanaval> getData(){
-
-        ArrayList<DataKhanaval> foodAddOnArrayList = new ArrayList<>();
-        for (int i = 0; i < foodName.length; i++){
-
-            DataKhanaval dataKhanaval = new DataKhanaval();
-            dataKhanaval.setImg(img[i]);
-            dataKhanaval.setFoodName(foodName[i]);
-            dataKhanaval.setFoodPrice(Integer.parseInt(String.valueOf(foodPrice[i])));
-            foodAddOnArrayList.add(dataKhanaval);
-
-        }
-
-        return foodAddOnArrayList;
-    }*/
 
 
 }

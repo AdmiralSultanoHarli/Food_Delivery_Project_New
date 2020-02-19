@@ -1,7 +1,6 @@
 package com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;

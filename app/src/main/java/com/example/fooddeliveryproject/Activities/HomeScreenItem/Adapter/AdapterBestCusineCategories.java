@@ -2,7 +2,6 @@ package com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +13,10 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddeliveryproject.Activities.Activity.MenuScreenActivity;
+
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
-import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
+import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.R;
 
 import java.util.List;
@@ -27,9 +27,6 @@ public class AdapterBestCusineCategories extends RecyclerView.Adapter<AdapterBes
     List<DataKhanaval> mTopList;
     Context context;
     private DatabaseHelper helper;
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
-    //BestCusineFragment bestCusineFragment = new BestCusineFragment();
 
     public AdapterBestCusineCategories(List<DataKhanaval> topList, Context context) {
         this.topList = topList;
@@ -44,6 +41,17 @@ public class AdapterBestCusineCategories extends RecyclerView.Adapter<AdapterBes
 
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.view_item_categories, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(v);
+
+        /*v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent i = new Intent(context, MenuScreenActivity.class);
+                context.startActivity(i);
+
+            }
+        });*/
+
         return viewHolder;
 
     }
@@ -55,15 +63,13 @@ public class AdapterBestCusineCategories extends RecyclerView.Adapter<AdapterBes
 
         viewHolder.foodName.setText(data.getFoodName());
         viewHolder.img.setImageResource(data.getImg());
-        //final Bundle bundle = new Bundle();
 
-        viewHolder.itemCard.setOnClickListener( new View.OnClickListener() {
+        viewHolder.itemCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Intent b = new Intent(context, MenuScreenActivity.class);
-                /*FoodChartFragment foodChartFragment = new FoodChartFragment();
-                bundle.putString("FoodShop", topList.get(i).getFoodName());
+                /*bundle.putString("FoodShop", topList.get(i).getFoodName());
                 foodChartFragment.setArguments(bundle);*/
                 b.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 b.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -71,14 +77,15 @@ public class AdapterBestCusineCategories extends RecyclerView.Adapter<AdapterBes
                 SaveSharedPreference.setFoodCategory(context, data.getFoodName());
                 SaveSharedPreference.setFoodShopImg(context, data.getImg());
 
-                //b.putExtra("FoodShop", topList.get(i).getFoodName());
-                //Log.e("item food name bundle", topList.get(i).getFoodName());
+               /* b.putExtra("FoodShop", topList.get(i).getFoodName());
+                Log.e("item food name bundle", topList.get(i).getFoodName());*/
                 context.startActivity(b);
 
             }
         });
 
     }
+
 
     @Override
     public int getItemCount() {
@@ -91,7 +98,7 @@ public class AdapterBestCusineCategories extends RecyclerView.Adapter<AdapterBes
         public TextView foodName;
         public CardView itemCard;
 
-        public ViewHolder(@NonNull final View itemView) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             img = itemView.findViewById(R.id.orderFoodImage);

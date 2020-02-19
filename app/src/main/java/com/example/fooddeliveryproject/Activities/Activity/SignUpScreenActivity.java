@@ -1,14 +1,11 @@
 package com.example.fooddeliveryproject.Activities.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -65,8 +62,6 @@ public class SignUpScreenActivity extends BaseActivity {
             public void onClick(View v) {
 
                 onBackPressed();
-                /*Intent closeSignUp = new Intent(SignUpScreenActivity.this, LoginScreenActivity.class);
-                startActivity(closeSignUp);*/
 
             }
         });
@@ -74,8 +69,7 @@ public class SignUpScreenActivity extends BaseActivity {
     }
 
     private void submitForm() {
-        //first validate the form then move ahead
-        //if this becomes true that means validation is successfull
+
         openHelper = new DatabaseHelper(this);
         String nameStr = name.getText().toString().trim();
         String phoneNumberStr = phoneNumber.getText().toString().trim();
@@ -97,7 +91,7 @@ public class SignUpScreenActivity extends BaseActivity {
 
                 }
             },TIME_CHANGING);
-            //process the data further
+
         }
 
     }
@@ -109,7 +103,7 @@ public class SignUpScreenActivity extends BaseActivity {
         contentValues.put(DatabaseHelper.COLUMN_USER_PHONENUMBER, phoneNumberStr);
         contentValues.put(DatabaseHelper.COLUMN_USER_PASSWORD, passwordStr);
 
-        long id = db.insert(DatabaseHelper.TABLE_USER, null, contentValues);
+        db.insert(DatabaseHelper.TABLE_USER, null, contentValues);
 
     }
 

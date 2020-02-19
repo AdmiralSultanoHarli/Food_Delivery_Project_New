@@ -13,22 +13,21 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddeliveryproject.Activities.Activity.MenuScreenActivity;
-
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
-import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
+import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.R;
 
 import java.util.List;
 
-public class AdapterTodayCategories extends RecyclerView.Adapter<AdapterTodayCategories.ViewHolder> {
+public class AdapterRestaurantsCategories extends RecyclerView.Adapter<AdapterRestaurantsCategories.ViewHolder> {
 
     List<DataKhanaval> topList;
     List<DataKhanaval> mTopList;
     Context context;
     private DatabaseHelper helper;
 
-    public AdapterTodayCategories(List<DataKhanaval> topList, Context context) {
+    public AdapterRestaurantsCategories(List<DataKhanaval> topList, Context context) {
         this.topList = topList;
         this.context = context;
         this.mTopList = topList;
@@ -37,55 +36,39 @@ public class AdapterTodayCategories extends RecyclerView.Adapter<AdapterTodayCat
 
     @NonNull
     @Override
-    public AdapterTodayCategories.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public AdapterRestaurantsCategories.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.view_item_categories, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(v);
-
-        /*v.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent i = new Intent(context, MenuScreenActivity.class);
-                context.startActivity(i);
-
-            }
-        });*/
-
         return viewHolder;
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdapterTodayCategories.ViewHolder viewHolder, final int i) {
+    public void onBindViewHolder(@NonNull AdapterRestaurantsCategories.ViewHolder viewHolder, final int i) {
 
         final DataKhanaval data = topList.get(i);
 
         viewHolder.foodName.setText(data.getFoodName());
         viewHolder.img.setImageResource(data.getImg());
 
-        viewHolder.itemCard.setOnClickListener(new View.OnClickListener() {
+        viewHolder.itemCard.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Intent b = new Intent(context, MenuScreenActivity.class);
-                /*bundle.putString("FoodShop", topList.get(i).getFoodName());
-                foodChartFragment.setArguments(bundle);*/
                 b.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 b.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                 SaveSharedPreference.setFoodCategory(context, data.getFoodName());
                 SaveSharedPreference.setFoodShopImg(context, data.getImg());
 
-               /* b.putExtra("FoodShop", topList.get(i).getFoodName());
-                Log.e("item food name bundle", topList.get(i).getFoodName());*/
                 context.startActivity(b);
 
             }
         });
 
     }
-
 
     @Override
     public int getItemCount() {
@@ -98,7 +81,7 @@ public class AdapterTodayCategories extends RecyclerView.Adapter<AdapterTodayCat
         public TextView foodName;
         public CardView itemCard;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull final View itemView) {
             super(itemView);
 
             img = itemView.findViewById(R.id.orderFoodImage);

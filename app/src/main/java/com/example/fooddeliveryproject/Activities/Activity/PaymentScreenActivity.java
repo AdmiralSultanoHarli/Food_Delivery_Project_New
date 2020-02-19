@@ -2,7 +2,6 @@ package com.example.fooddeliveryproject.Activities.Activity;
 
 import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
@@ -46,8 +45,6 @@ public class PaymentScreenActivity extends BaseActivity {
     SQLiteOpenHelper openHelper;
     SQLiteDatabase db;
     DatabaseHelper helper;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -231,12 +228,6 @@ public class PaymentScreenActivity extends BaseActivity {
         paymentTotal.setText(decimalHelper.formatter(paymentTotalInt));
         minusPayment.setText("-" + decimalHelper.formatter(SaveSharedPreference.getTotalPayment(this, 0)));
 
-
-
-        /*getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
-        getWindow().setStatusBarColor(Color.TRANSPARENT);*/
-
     }
 
     public void paymentSuccessReset(){
@@ -262,7 +253,6 @@ public class PaymentScreenActivity extends BaseActivity {
         contentValues.put(DatabaseHelper.COLUMN_BUTTON, foodCartQuantityOpened);
         contentValues.put(DatabaseHelper.COLUMN_FOOD_ITEM_COUNT, foodItemCount);
 
-        // Updating direct to the database
         db.update(DatabaseHelper.TABLE_FOOD, contentValues, null, null);
         //db.update(DatabaseHelper.TABLE_FOOD, contentValues, DatabaseHelper.COLUMN_FOOD_ID +"= ?", new String[]{"2"});
 
@@ -270,7 +260,6 @@ public class PaymentScreenActivity extends BaseActivity {
 
     public void deleteDataTrans(){
 
-        // Delete data in TABLE FOOD TRANSACTION
         db.delete(DatabaseHelper.TABLE_FOOD_TRANSACTION, null, null);
 
     }
@@ -307,7 +296,6 @@ public class PaymentScreenActivity extends BaseActivity {
                 "('Sate Ayam', '10 Tusuk sate ayam + bumbu kacang + nasi', 40000, 50000, 0, 0, 0, 0," + R.drawable.sate_ayam + ")," +
                 "('Sate Padang', '20 Tusuk sate padang + bumbu sate padang + lontong', 100000, 115000, 0, 0, 0, 0," + R.drawable.sate_padang + ")," +
                 "('Nasi Lemak', 'Nasi lemak + kacang + telor _ sambal', 50000, 30000, 0, 0, 0, 0," + R.drawable.nasi_lemak + ")," +
-                // "('Dal Tadkda', '3 Roti butter + kentang india', 30000, 40000, 0," + R.drawable.dal_tadkda + ")," +
                 "('Chinese Food', '1 porsi spagheti chinese + sayuran', 40000, 45000, 0, 0, 0, 0," + R.drawable.chow_mein + ")," +
                 "('Indian Curry', '3 roti butter + Mix sayuran + nasi', 20000, 35000, 0, 0, 0, 0," + R.drawable.maharashtra_thali + ")," +
                 "('Panang Curry', '3 Curry ayam + sayuran', 50000, 65000, 0, 0, 0, 0," + R.drawable.panang_curry + ")," +

@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterBestCusineCategories;
-import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.Model.DataTransaction;
 import com.example.fooddeliveryproject.Activities.OrderScreenItem.Adapter.AdapterOrderPaymentDetails;
 import com.example.fooddeliveryproject.R;

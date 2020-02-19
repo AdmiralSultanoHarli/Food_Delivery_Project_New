@@ -1,12 +1,6 @@
 package com.example.fooddeliveryproject.Activities.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.widget.ImageViewCompat;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,10 +9,7 @@ import android.widget.TextView;
 
 import com.example.fooddeliveryproject.Activities.Helper.DecimalHelper;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.OrdersFragment;
 import com.example.fooddeliveryproject.R;
-
-import org.w3c.dom.Text;
 
 public class PaymentSuccessScreenActivity extends BaseActivity {
 
@@ -39,10 +30,6 @@ public class PaymentSuccessScreenActivity extends BaseActivity {
         DecimalHelper decimalHelper = new DecimalHelper();
 
         paymentMode.setText(SaveSharedPreference.getPaymentName(this, ""));
-
-        //buttonMyOrder.setBackgroundResource(SaveSharedPreference.getButtonColor(this, 0));
-
-        SaveSharedPreference.setNoOrderComplete(this, 1);
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override

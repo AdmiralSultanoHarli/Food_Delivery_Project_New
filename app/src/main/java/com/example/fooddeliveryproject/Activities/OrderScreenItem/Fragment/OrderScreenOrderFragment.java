@@ -17,7 +17,6 @@ import com.example.fooddeliveryproject.Activities.OrderScreenItem.Adapter.Adapte
 import com.example.fooddeliveryproject.R;
 
 import java.util.ArrayList;
-import java.util.EventListener;
 
 public class OrderScreenOrderFragment extends Fragment {
 

@@ -17,16 +17,9 @@ import java.util.List;
 
 public class AdapterTopSliderPager extends PagerAdapter {
 
-   /* private Context mContext;
-    private List<DataFood> mList;*/
-
     List<DataKhanaval> mList;
     Context mContext;
 
-    /*public AdapterTopSliderPager(ArrayList<DataFood> mContext, FragmentActivity mList) {
-        this.mContext = mContext;
-        this.mList = mList;
-    }*/
 
     public AdapterTopSliderPager(List<DataKhanaval> mList, Context mContext) {
         this.mList = mList;

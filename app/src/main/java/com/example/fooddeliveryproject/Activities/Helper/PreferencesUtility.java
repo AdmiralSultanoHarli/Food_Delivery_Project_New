@@ -54,8 +54,6 @@ public class PreferencesUtility {
 
     public static final String LOCATION_SIMPLE_NAME = "locationsimplename";
 
-    public static final String NO_ORDER_COMPLETE = "noordercomplete";
-
     public static final String IS_COUPON_EXIST = "iscouponexist";
 
     public static final String FOOD_SHOP_IMAGE = "foodshopimage";

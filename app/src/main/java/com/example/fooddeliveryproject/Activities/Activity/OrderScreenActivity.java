@@ -1,10 +1,14 @@
 package com.example.fooddeliveryproject.Activities.Activity;
 
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -24,13 +28,21 @@ import com.example.fooddeliveryproject.Activities.OrderScreenItem.Fragment.Order
 import com.example.fooddeliveryproject.Activities.OrderScreenItem.Fragment.OrderScreenOrderFragment;
 import com.example.fooddeliveryproject.R;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
+import com.sucho.placepicker.AddressData;
+import com.sucho.placepicker.Constants;
+import com.sucho.placepicker.MapType;
+import com.sucho.placepicker.PlacePicker;
+
+import java.util.List;
+import java.util.Locale;
 
 public class OrderScreenActivity extends BaseActivity {
 
     ImageView backButton, imageViewMap;
     RadioButton radioButtonGrab, radioButtonGojek, radioButtonOvo, radioButtonGopay, radioButtonMuamalat;
     Button buttonPayment;
-    TextView textCount, deliveryPrice, viewPayment, textViewAddMore, promoAppliedText, placeName, placeDescription;
+    TextView textCount, deliveryPrice, viewPayment, textViewAddMore, promoAppliedText,
+            placeName, placeDescription, textViewChangeAddress;
 
     public static TextView totalPriceBar, totalPrice;
 
@@ -72,6 +84,8 @@ public class OrderScreenActivity extends BaseActivity {
     String gopayName = "Gopay";
     String muamalatName = "Bank Muamalat";
 
+    float latitude, longitude;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,19 +113,18 @@ public class OrderScreenActivity extends BaseActivity {
         placeName = findViewById(R.id.placeName);
         placeDescription = findViewById(R.id.placeDescription);
         imageViewMap = findViewById(R.id.imageViewMap);
+        textViewChangeAddress = findViewById(R.id.textViewChangeAddress);
 
         decimalHelper = new DecimalHelper();
 
-        //slidingPanel.setPanelState(SlidingUpPanelLayout.PanelState.HIDDEN);
+        latitude = SaveSharedPreference.getLatitude(this, 0);
+        longitude = SaveSharedPreference.getLongitude(this, 0);
+
         editNotes.addTextChangedListener(textCounter);
         accNotes.setEnabled(false);
 
         placeName.setText(SaveSharedPreference.getLocationSimpleName(this, ""));
         placeDescription.setText(SaveSharedPreference.getLocationName(this, ""));
-
-        /*editNotes.requestFocus();
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);*/
 
         Log.e("Exist", String.valueOf(SaveSharedPreference.getIsCouponExist(this, true)));
 
@@ -131,10 +144,16 @@ public class OrderScreenActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(OrderScreenActivity.this, MapsActivityScreen.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);
+                mapShower();
+
+            }
+        });
+
+        textViewChangeAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                mapShower();
 
             }
         });
@@ -353,13 +372,11 @@ public class OrderScreenActivity extends BaseActivity {
         radioButtonGopay.setChecked(false);
         SaveSharedPreference.setImagePayment(OrderScreenActivity.this, muamalatImage);
         SaveSharedPreference.setColorPayment(OrderScreenActivity.this, muamalatColor);
-        //SaveSharedPreference.setButtonColor(OrderScreenActivity.this, ovoButton);
         SaveSharedPreference.setPaymentName(OrderScreenActivity.this, muamalatName);
         SaveSharedPreference.setPaymentMethodName(OrderScreenActivity.this, 1);
         viewPayment.setTextColor(ContextCompat.getColor(getApplicationContext(),muamalatColor));
         viewPayment.setBackgroundResource(roundedMuamalat);
         viewPayment.setTextSize(15);
-       //buttonPayment.setBackgroundResource(ovoButton);
         viewPayment.setText(muamalatName);
 
     }
@@ -371,13 +388,10 @@ public class OrderScreenActivity extends BaseActivity {
         radioButtonMuamalat.setChecked(false);
         SaveSharedPreference.setImagePayment(OrderScreenActivity.this, ovoImage);
         SaveSharedPreference.setColorPayment(OrderScreenActivity.this, ovoColor);
-        //SaveSharedPreference.setButtonColor(OrderScreenActivity.this, ovoButton);
         SaveSharedPreference.setPaymentName(OrderScreenActivity.this, ovoName);
         SaveSharedPreference.setPaymentMethodName(OrderScreenActivity.this, 2);
         viewPayment.setTextColor(ContextCompat.getColor(getApplicationContext(),ovoColor));
         viewPayment.setBackgroundResource(roundedMuamalat);
-        viewPayment.setTextSize(15);
-        //buttonPayment.setBackgroundResource(ovoButton);
         viewPayment.setText(ovoName);
 
     }
@@ -389,13 +403,11 @@ public class OrderScreenActivity extends BaseActivity {
         radioButtonMuamalat.setChecked(false);
         SaveSharedPreference.setImagePayment(OrderScreenActivity.this, gopayImage);
         SaveSharedPreference.setColorPayment(OrderScreenActivity.this, gopayColor);
-        //SaveSharedPreference.setButtonColor(OrderScreenActivity.this, gopayButton);
         SaveSharedPreference.setPaymentName(OrderScreenActivity.this, gopayName);
         SaveSharedPreference.setPaymentMethodName(OrderScreenActivity.this, 3);
         viewPayment.setTextColor(ContextCompat.getColor(getApplicationContext(),gopayColor));
         viewPayment.setBackgroundResource(roundedMuamalat);
         viewPayment.setTextSize(15);
-        //buttonPayment.setBackgroundResource(gopayButton);
         viewPayment.setText(gopayName);
 
     }
@@ -428,7 +440,101 @@ public class OrderScreenActivity extends BaseActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == Constants.PLACE_PICKER_REQUEST) {
+            if (resultCode == Activity.RESULT_OK && data != null) {
+                try {
+                    AddressData addressData = data.getParcelableExtra(Constants.ADDRESS_INTENT);
 
+                    double latitudeDoub = addressData.getLatitude();
+                    double longitudeDoub = addressData.getLongitude();
+
+                    latitude = (float) latitudeDoub;
+                    longitude = (float) longitudeDoub;
+
+                    SaveSharedPreference.setLatitude(this, (float) latitudeDoub);
+                    SaveSharedPreference.setLongitude(this, (float) longitudeDoub);
+
+                    getCompleteAddressString(latitude, longitude);
+
+                } catch (Exception e) {
+                    Log.e("MainActivity", e.getMessage());
+                }
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    public void mapShower(){
+
+        Intent intent = new PlacePicker.IntentBuilder()
+                .setLatLong(latitude, longitude)
+                .showLatLong(true)
+                .setMapRawResourceStyle(R.raw.map_style)
+                .setFabColor(R.color.colorButton)
+                .setAddressRequired(true)
+                .setPrimaryTextColor(R.color.colorBlack)
+                .setSecondaryTextColor(R.color.colorBlack)
+                .setMapType(MapType.NORMAL)
+                .setMarkerDrawable(R.drawable.ic_marker)
+                .setMapZoom(16f)
+                .build(OrderScreenActivity.this);
+
+        startActivityForResult(intent, Constants.PLACE_PICKER_REQUEST);
+
+    }
+
+    public String getCompleteAddressString(double LATITUDE, double LONGITUDE) {
+        String strAdd = "";
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        try {
+            List<Address> addresses = geocoder.getFromLocation(LATITUDE, LONGITUDE, 3);
+            if (addresses != null) {
+                Address returnedAddress = addresses.get(0);
+                StringBuilder strReturnedAddress = new StringBuilder("");
+
+                for (int i = 0; i <= returnedAddress.getMaxAddressLineIndex(); i++) {
+                    strReturnedAddress.append(returnedAddress.getAddressLine(i)).append("\n");
+
+                }
+                strAdd = strReturnedAddress.toString();
+                String[] locationParts = strAdd.split(", ");
+                String locationName = "";
+
+                if (locationParts.length == 8 || locationParts.length == 4 || locationParts.length == 5
+                        || locationParts.length == 6 || locationParts.length == 7){
+
+                    locationName = locationParts[0];
+
+                }else if (locationParts.length == 9 || locationParts.length == 10 || locationParts.length == 12){
+
+                    locationName = locationParts[1];
+
+                }
+
+                Log.e("Location", locationName);
+
+                Log.e("location parts size", String.valueOf(locationParts.length));
+
+                Log.e("My Current location ", strReturnedAddress.toString());
+
+                placeName.setText(locationName);
+                placeDescription.setText(strAdd);
+
+                SaveSharedPreference.setLocationName(this, strAdd);
+                SaveSharedPreference.setLocationSimpleName(this, locationName);
+
+            } else {
+                Log.e("My Current location ", "No Address returned!");
+            }
+        } catch (Exception e) {
+            //e.printStackTrace();
+            Log.e("My Current location ", "Cannot get Address!");
+        }
+        return strAdd;
+    }
 
     @Override
     public void onBackPressed() {

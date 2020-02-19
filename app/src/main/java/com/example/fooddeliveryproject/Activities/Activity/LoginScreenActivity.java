@@ -1,7 +1,5 @@
 package com.example.fooddeliveryproject.Activities.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -52,7 +50,6 @@ public class LoginScreenActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
-                //Toast.makeText(LoginScreenActivity.this, "Login Succeed", Toast.LENGTH_SHORT).show();
                 submitForm();
 
             }
@@ -63,6 +60,8 @@ public class LoginScreenActivity extends BaseActivity {
             public void onClick(View v) {
 
                 Intent signUp = new Intent(LoginScreenActivity.this, SignUpScreenActivity.class);
+                signUp.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                signUp.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(signUp);
 
             }
@@ -74,8 +73,6 @@ public class LoginScreenActivity extends BaseActivity {
             public void onClick(View v) {
 
                 onBackPressed();
-                /*Intent closeLogin = new Intent(LoginScreenActivity.this, AppScreenActivity.class);
-                startActivity(closeLogin);*/
 
             }
         });
@@ -83,8 +80,6 @@ public class LoginScreenActivity extends BaseActivity {
     }
 
     private void submitForm() {
-        //first validate the form then move ahead
-        //if this becomes true that means validation is successfull
 
         openHelper = new DatabaseHelper(this);
         db = openHelper.getReadableDatabase();
@@ -117,6 +112,8 @@ public class LoginScreenActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         Intent i = new Intent(LoginScreenActivity.this, AppScreenActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(i);
         finish();
 

@@ -21,6 +21,8 @@ public class OrdersDetailsFragment extends Fragment {
     TextView date, orderPrice, orderPaymentMethod, orderFoodName;
     ImageView orderFoodImage;
 
+    DecimalHelper decimalHelper;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -28,25 +30,18 @@ public class OrdersDetailsFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_home_orders_details, container, false);
 
+        decimalHelper = new DecimalHelper();
         orderFoodName = v.findViewById(R.id.orderFoodName);
         date = v.findViewById(R.id.date);
         orderPaymentMethod = v.findViewById(R.id.orderPaymentMethod);
         orderPrice = v.findViewById(R.id.orderPrice);
         orderFoodImage = v.findViewById(R.id.orderFoodImage);
 
-        DecimalHelper decimalHelper = new DecimalHelper();
-
         orderFoodName.setText(SaveSharedPreference.getShopName(getContext(), ""));
         date.setText(SaveSharedPreference.getTransactionDate(getContext(), ""));
         orderPaymentMethod.setText("Payment done by " + SaveSharedPreference.getTransactionPaymentMethod(getContext(), ""));
         orderPrice.setText(decimalHelper.formatter(SaveSharedPreference.getTransactionTotalPayment(getContext(), 0)));
         orderFoodImage.setImageResource(SaveSharedPreference.getShopImg(getContext(), 0));
-
-        /*SaveSharedPreference.setShopName(context, historyList.get(i).getShopName());
-        SaveSharedPreference.setTransactionDate(context, historyList.get(i).getDate());
-        SaveSharedPreference.setTransactionPaymentMethod(context, historyList.get(i).getPaymentMethod());
-        SaveSharedPreference.setTransactionTotalPayment(context, historyList.get(i).getTotalPayment());
-        SaveSharedPreference.setShopImg(context,historyList.get(i).getShopImg());*/
 
         return v;
 

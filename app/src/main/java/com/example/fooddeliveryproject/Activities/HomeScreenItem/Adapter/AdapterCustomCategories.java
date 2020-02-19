@@ -43,16 +43,6 @@ public class AdapterCustomCategories extends RecyclerView.Adapter<AdapterCustomC
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.view_item_categories, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(v);
 
-        /*v.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent i = new Intent(context, MenuScreenActivity.class);
-                context.startActivity(i);
-
-            }
-        });*/
-
         return viewHolder;
     }
 
@@ -68,17 +58,12 @@ public class AdapterCustomCategories extends RecyclerView.Adapter<AdapterCustomC
             public void onClick(View view) {
 
                 Intent b = new Intent(context, MenuScreenActivity.class);
-                /*bundle.putString("FoodShop", topList.get(i).getFoodName());
-                foodChartFragment.setArguments(bundle);*/
                 b.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 b.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                 SaveSharedPreference.setFoodCategory(context, data.getFoodName());
                 SaveSharedPreference.setFoodShopImg(context, data.getImg());
 
-                //that i comment below
-                /*b.putExtra("FoodShop", topList.get(i).getFoodName());
-                Log.e("item food name bundle", topList.get(i).getFoodName());*/
                 context.startActivity(b);
 
             }

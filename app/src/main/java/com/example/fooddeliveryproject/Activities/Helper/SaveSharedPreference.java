@@ -1,14 +1,8 @@
 package com.example.fooddeliveryproject.Activities.Helper;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-
-import java.security.PublicKey;
-import java.sql.Array;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.logging.SocketHandler;
 
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.ALL_QUANTITY;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.COLOR_PAYMENT;
@@ -36,7 +30,6 @@ import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtili
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.LOCATION_SIMPLE_NAME;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.LONGITUDE;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.MUAMALAT_BALANCE;
-import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.NO_ORDER_COMPLETE;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.OVO_BALANCE;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.PAYMENT_METHOD_NAME;
 import static com.example.fooddeliveryproject.Activities.Helper.PreferencesUtility.PAYMENT_NAME;
@@ -375,21 +368,6 @@ public class SaveSharedPreference {
         return getPreferences(context).getString(LOCATION_SIMPLE_NAME, "");
 
     }
-
-    public static void setNoOrderComplete(Context context, int noOrderComplete){
-
-        SharedPreferences.Editor editor = getPreferences(context).edit();
-        editor.putInt(NO_ORDER_COMPLETE, noOrderComplete);
-        editor.apply();
-
-    }
-
-    public static int getNoOrderComplete(Context context, int noOrderComplete){
-
-        return getPreferences(context).getInt(NO_ORDER_COMPLETE, 0);
-
-    }
-
 
     public static void setMuBalance(Context context, int muBalance){
 

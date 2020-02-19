@@ -38,13 +38,12 @@ import com.example.fooddeliveryproject.Activities.Activity.HomeScreenActivity;
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterSearchView;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.HomeFragmentAttributes.RestaurantsFragment;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.HomeFragmentAttributes.SearchViewFragment;
-import com.example.fooddeliveryproject.Activities.MenuScreenItem.Adapter.AdapterMenuScreen;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterTopSliderPager;
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.HomeFragmentAttributes.BestCusineFragment;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.HomeFragmentAttributes.CustomFragment;
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.HomeFragmentAttributes.TodaySpecialsFragment;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.HomeFragmentAttributes.BestCusineFragment;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.HomeFragmentAttributes.YourFavouritesFragment;
 import com.example.fooddeliveryproject.R;
 import com.google.android.gms.common.api.ApiException;
@@ -71,16 +70,11 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.Executor;
-
-import kotlin.jvm.internal.PropertyReference0Impl;
 
 
 public class HomeFragment extends Fragment {
@@ -268,11 +262,11 @@ public class HomeFragment extends Fragment {
         /*SearchViewFragment searchViewFragment = new SearchViewFragment();
         fragmentTransaction.replace(R.id.searchFraegment, searchViewFragment);*/
 
+        RestaurantsFragment restaurantsFragment = new RestaurantsFragment();
+        fragmentTransaction.replace(R.id.restaurantsFragment, restaurantsFragment, restaurantsFragment.getTag());
+
         BestCusineFragment bestCusineFragment = new BestCusineFragment();
         fragmentTransaction.replace(R.id.bestCusineFragment, bestCusineFragment, bestCusineFragment.getTag());
-
-        TodaySpecialsFragment todaySpecialsFragment = new TodaySpecialsFragment();
-        fragmentTransaction.replace(R.id.todaySpecialsFragment, todaySpecialsFragment, todaySpecialsFragment.getTag());
 
         YourFavouritesFragment yourFavouritesFragment = new YourFavouritesFragment();
         fragmentTransaction.replace(R.id.yourFavouritesFragment, yourFavouritesFragment, yourFavouritesFragment.getTag());
@@ -571,8 +565,8 @@ public class HomeFragment extends Fragment {
                 String[] locationParts = strAdd.split(", ");
                 String locationName = "";
 
-                if (locationParts.length == 8 || locationParts.length == 4 || locationParts.length == 6 ||
-                        locationParts.length == 7){
+                if (locationParts.length == 8 || locationParts.length == 4 || locationParts.length == 5
+                        || locationParts.length == 6 || locationParts.length == 7){
 
                     locationName = locationParts[0];
 

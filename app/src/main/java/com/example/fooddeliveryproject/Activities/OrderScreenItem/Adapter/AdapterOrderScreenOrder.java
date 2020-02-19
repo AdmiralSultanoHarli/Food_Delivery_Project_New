@@ -1,7 +1,6 @@
 package com.example.fooddeliveryproject.Activities.OrderScreenItem.Adapter;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -23,14 +22,12 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.fooddeliveryproject.Activities.Activity.HomeScreenActivity;
 import com.example.fooddeliveryproject.Activities.Activity.MenuDetailsScreenActivity;
 import com.example.fooddeliveryproject.Activities.Activity.MenuScreenActivity;
 import com.example.fooddeliveryproject.Activities.Activity.OrderScreenActivity;
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 import com.example.fooddeliveryproject.Activities.Helper.DecimalHelper;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.OrdersDetailsFragment;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.Model.DataTransaction;
 import com.example.fooddeliveryproject.Activities.OrderScreenItem.Fragment.OrderAddOnFragment;
@@ -40,7 +37,6 @@ import com.example.fooddeliveryproject.R;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.List;
-import java.util.Locale;
 
 public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderScreenOrder.ViewHolder> {
 
@@ -52,6 +48,16 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
     int quantityTotal;
     int foodPriceTotal;
     int foodPriceDiscountTotal;
+    int foodId;
+    String foodTransName;
+    String foodTransDesc;
+    int foodTransPrice;
+    int foodTransPriceDiscount;
+    int foodTransPriceTotal;
+    int foodTransPriceDiscountTotal;
+    int buttonTransPosition;
+    int foodTransItemCount;
+    int img;
 
     OrderScreenActivity orderScreenActivity = new OrderScreenActivity();
 
@@ -149,16 +155,16 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
 
                 isChartQuantity[0] = 1;
 
-                int foodId = data.getFoodId();
-                String foodTransName = data.getFoodTransName();
-                String foodTransDesc = data.getFoodTransDesc();
-                int foodTransPrice = data.getFoodTransPrice();
-                int foodTransPriceDiscount = data.getFoodTransPriceDiscount();
-                int foodTransPriceTotal = priceTotal[0];
-                int foodTransPriceDiscountTotal = priceDiscountTotal[0];
-                int buttonTransPosition = isChartQuantity[0];
-                int foodTransItemCount = quantity[0];
-                int img = data.getFoodImg();
+                foodId = data.getFoodId();
+                foodTransName = data.getFoodTransName();
+                foodTransDesc = data.getFoodTransDesc();
+                foodTransPrice = data.getFoodTransPrice();
+                foodTransPriceDiscount = data.getFoodTransPriceDiscount();
+                foodTransPriceTotal = priceTotal[0];
+                foodTransPriceDiscountTotal = priceDiscountTotal[0];
+                buttonTransPosition = isChartQuantity[0];
+                foodTransItemCount = quantity[0];
+                img = data.getFoodImg();
 
                 updateDataFood(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                         foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
@@ -168,7 +174,10 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
                 viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
 
                 OrderScreenActivity orderScreenActivity = (OrderScreenActivity) view.getContext();
+                //orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.orderSummaryFragment, new OrderScreenOrderFragment()).commit();
                 orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.paymentDetailsFragment, new OrderPaymentDetailsFragment()).commit();
+                orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.menuOrderAlsoOrderFragment, new OrderAddOnFragment()).commit();
+
 
             }
 
@@ -267,16 +276,16 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
 
                         isChartQuantity[0] = 0;
 
-                        int foodId = data.getFoodId();
-                        String foodTransName = data.getFoodTransName();
-                        String foodTransDesc = data.getFoodTransDesc();
-                        int foodTransPrice = data.getFoodTransPrice();
-                        int foodTransPriceDiscount = data.getFoodTransPriceDiscount();
-                        int foodTransPriceTotal = priceTotal[0];
-                        int foodTransPriceDiscountTotal = priceDiscountTotal[0];
-                        int buttonTransPosition = isChartQuantity[0];
-                        int foodTransItemCount = quantity[0];
-                        int img = data.getFoodImg();
+                        foodId = data.getFoodId();
+                        foodTransName = data.getFoodTransName();
+                        foodTransDesc = data.getFoodTransDesc();
+                        foodTransPrice = data.getFoodTransPrice();
+                        foodTransPriceDiscount = data.getFoodTransPriceDiscount();
+                        foodTransPriceTotal = priceTotal[0];
+                        foodTransPriceDiscountTotal = priceDiscountTotal[0];
+                        buttonTransPosition = isChartQuantity[0];
+                        foodTransItemCount = quantity[0];
+                        img = data.getFoodImg();
                         deleteData(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                                 foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
 
@@ -313,16 +322,16 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
 
                         isChartQuantity[0] = 0;
 
-                        int foodId = data.getFoodId();
-                        String foodTransName = data.getFoodTransName();
-                        String foodTransDesc = data.getFoodTransDesc();
-                        int foodTransPrice = data.getFoodTransPrice();
-                        int foodTransPriceDiscount = data.getFoodTransPriceDiscount();
-                        int foodTransPriceTotal = priceTotal[0];
-                        int foodTransPriceDiscountTotal = priceDiscountTotal[0];
-                        int buttonTransPosition = isChartQuantity[0];
-                        int foodTransItemCount = quantity[0];
-                        int img = data.getFoodImg();
+                        foodId = data.getFoodId();
+                        foodTransName = data.getFoodTransName();
+                        foodTransDesc = data.getFoodTransDesc();
+                        foodTransPrice = data.getFoodTransPrice();
+                        foodTransPriceDiscount = data.getFoodTransPriceDiscount();
+                        foodTransPriceTotal = priceTotal[0];
+                        foodTransPriceDiscountTotal = priceDiscountTotal[0];
+                        buttonTransPosition = isChartQuantity[0];
+                        foodTransItemCount = quantity[0];
+                        img = data.getFoodImg();
                         deleteData(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                                 foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
 
@@ -363,16 +372,16 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
                         // Showing the text that Counting number in the middle button Decrement and Increment
                         viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
 
-                        int foodId = data.getFoodId();
-                        String foodTransName = data.getFoodTransName();
-                        String foodTransDesc = data.getFoodTransDesc();
-                        int foodTransPrice = data.getFoodTransPrice();
-                        int foodTransPriceDiscount = data.getFoodTransPriceDiscount();
-                        int foodTransPriceTotal = priceTotal[0];
-                        int foodTransPriceDiscountTotal = priceDiscountTotal[0];
-                        int buttonTransPosition = isChartQuantity[0];
-                        int foodTransItemCount = quantity[0];
-                        int img = data.getFoodImg();
+                        foodId = data.getFoodId();
+                        foodTransName = data.getFoodTransName();
+                        foodTransDesc = data.getFoodTransDesc();
+                        foodTransPrice = data.getFoodTransPrice();
+                        foodTransPriceDiscount = data.getFoodTransPriceDiscount();
+                        foodTransPriceTotal = priceTotal[0];
+                        foodTransPriceDiscountTotal = priceDiscountTotal[0];
+                        buttonTransPosition = isChartQuantity[0];
+                        foodTransItemCount = quantity[0];
+                        img = data.getFoodImg();
 
                         updateDataFood(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                                 foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
@@ -507,8 +516,6 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
                     orderScreenActivity.accNotes.setEnabled(true);
                     orderScreenActivity.accNotes.setBackgroundResource(R.drawable.rounded_button_add_active);
                 }
-
-                //orderScreenActivity.editNotes.setShowSoftInputOnFocus(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
 
             }
         });
