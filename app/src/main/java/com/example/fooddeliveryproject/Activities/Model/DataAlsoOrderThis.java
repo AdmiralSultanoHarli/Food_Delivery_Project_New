@@ -11,6 +11,7 @@ public class DataAlsoOrderThis {
     int foodPriceDiscountTotal;
     int buttonPosition;
     int foodItemCount;
+    int foodFavourites;
     int foodImg;
 
     public DataAlsoOrderThis() {
@@ -19,7 +20,8 @@ public class DataAlsoOrderThis {
 
     }
 
-    public DataAlsoOrderThis(int foodId, String foodName, String foodDesc, int foodPrice, int foodPriceDiscount, int foodPriceTotal, int foodPriceDiscountTotal, int buttonPosition, int foodItemCount, int foodImg) {
+    public DataAlsoOrderThis(int foodId, String foodName, String foodDesc, int foodPrice, int foodPriceDiscount, int foodPriceTotal,
+                             int foodPriceDiscountTotal, int buttonPosition, int foodItemCount, int foodFavourites, int foodImg) {
         this.foodId = foodId;
         this.foodName = foodName;
         this.foodDesc = foodDesc;
@@ -29,6 +31,7 @@ public class DataAlsoOrderThis {
         this.foodPriceDiscountTotal = foodPriceDiscountTotal;
         this.buttonPosition = buttonPosition;
         this.foodItemCount = foodItemCount;
+        this.foodFavourites = foodFavourites;
         this.foodImg = foodImg;
     }
 
@@ -58,6 +61,10 @@ public class DataAlsoOrderThis {
 
     public void setFoodPriceDiscountTotal(int foodPriceDiscountTotal) {
         this.foodPriceDiscountTotal = foodPriceDiscountTotal;
+    }
+
+    public void setFoodFavourites(int foodFavourites) {
+        this.foodFavourites = foodFavourites;
     }
 
     public void setButtonPosition(int buttonPosition) {
@@ -98,6 +105,10 @@ public class DataAlsoOrderThis {
 
     public int getFoodPriceDiscountTotal() {
         return foodPriceDiscountTotal;
+    }
+
+    public int getFoodFavourites() {
+        return foodFavourites;
     }
 
     public int getButtonPosition() {

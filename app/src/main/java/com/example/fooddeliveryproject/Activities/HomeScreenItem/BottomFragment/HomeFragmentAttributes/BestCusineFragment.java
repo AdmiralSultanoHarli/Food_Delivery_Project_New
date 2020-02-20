@@ -39,7 +39,7 @@ public class BestCusineFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_today_special, container, false);
+        View v = inflater.inflate(R.layout.fragment_best_cusine, container, false);
 
         helper = new DatabaseHelper(getActivity());
         todaySpecialsCategories = v.findViewById(R.id.third_categories);

@@ -4,6 +4,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -61,7 +62,15 @@ public class MenuScreenActivity extends BaseActivity {
             }
         });
 
-
     }
 
+    @Override
+    public void onBackPressed() {
+
+        Intent i = new Intent(MenuScreenActivity.this, HomeScreenActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
+
+    }
 }

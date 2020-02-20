@@ -46,6 +46,7 @@ public class AdapterOrderAddOn extends RecyclerView.Adapter<AdapterOrderAddOn.Vi
     int foodTransPriceDiscountTotal;
     int buttonTransPosition;
     int foodTransItemCount;
+    int foodTransFavourites;
     int img;
 
     DecimalHelper decimalHelper;
@@ -77,7 +78,6 @@ public class AdapterOrderAddOn extends RecyclerView.Adapter<AdapterOrderAddOn.Vi
         final DataAlsoOrderThis data = menuDetailList.get(i);
         final Bundle bundle = new Bundle();
 
-
         decimalHelper = new DecimalHelper();
 
         viewHolder.foodName.setText(menuDetailList.get(i).getFoodName());
@@ -100,6 +100,7 @@ public class AdapterOrderAddOn extends RecyclerView.Adapter<AdapterOrderAddOn.Vi
         quantityTotal = SaveSharedPreference.getAllQuantity(context, 0);
         foodPriceTotal = SaveSharedPreference.getFoodPriceTotal(context, 0);
         foodPriceDiscountTotal = SaveSharedPreference.getFoodPriceDiscountTotal(context, 0);
+        //foodTransFavourites = data.getFoodFavourites();
 
         viewHolder.chartQuantity.setText(String.valueOf(quantity[0]));
 
@@ -140,13 +141,16 @@ public class AdapterOrderAddOn extends RecyclerView.Adapter<AdapterOrderAddOn.Vi
                     foodTransPriceDiscountTotal = priceDiscountTotal[0];
                     buttonTransPosition = isChartQuantity[0];
                     foodTransItemCount = quantity[0];
+                    foodTransFavourites = data.getFoodFavourites();
                     img = data.getFoodImg();
 
                     insertData(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
-                            foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
+                            foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount,
+                            foodTransFavourites ,img);
 
                     updateDataFood(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
-                            foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
+                            foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount,
+                            foodTransFavourites, img);
 
                     deleteDataNew(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                             foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
@@ -164,7 +168,8 @@ public class AdapterOrderAddOn extends RecyclerView.Adapter<AdapterOrderAddOn.Vi
             }
 
             public void insertData(int foodId, String foodTransName, String foodTransDesc, int foodTransPrice, int foodTransPriceDiscount,
-                                   int foodTransPriceTotal, int foodTransPriceDiscountTotal, int buttonTransPosition, int foodTransItemCount, int img){
+                                   int foodTransPriceTotal, int foodTransPriceDiscountTotal, int buttonTransPosition, int foodTransItemCount,
+                                   int foodTransFavourites, int img){
 
                 ContentValues contentValues = new ContentValues();
 
@@ -180,6 +185,7 @@ public class AdapterOrderAddOn extends RecyclerView.Adapter<AdapterOrderAddOn.Vi
                 contentValues.put(DatabaseHelper.COLUMN_FOOD_TRANSACTION_PRICE_DISCOUNT_TOTAL, foodTransPriceDiscountTotal);
                 contentValues.put(DatabaseHelper.COLUMN_TRANSACTION_BUTTON, buttonTransPosition);
                 contentValues.put(DatabaseHelper.COLUMN_FOOD_TRANSACTION_ITEM_COUNT, foodTransItemCount);
+                contentValues.put(DatabaseHelper.COLUMN_FOOD_TRANSACTION_FAVOURITES, foodTransFavourites);
                 contentValues.put(DatabaseHelper.COLUMN_FOOD_TRANSACTION_IMG, img);
                 db.insert(DatabaseHelper.TABLE_FOOD_TRANSACTION, null, contentValues);
 
@@ -201,7 +207,8 @@ public class AdapterOrderAddOn extends RecyclerView.Adapter<AdapterOrderAddOn.Vi
             }
 
             public void updateDataFood(int foodId, String foodTransName, String foodTransDesc, int foodTransPrice, int foodTransPriceDiscount,
-                                       int foodTransPriceTotal, int foodTransPriceDiscountTotal, int buttonTransPosition, int foodTransItemCount, int img){
+                                       int foodTransPriceTotal, int foodTransPriceDiscountTotal, int buttonTransPosition, int foodTransItemCount,
+                                       int foodTransFavourites, int img){
 
                 String query = "SELECT "+ DatabaseHelper.COLUMN_FOOD_ID + " FROM "+ DatabaseHelper.TABLE_FOOD +" WHERE "+
                         DatabaseHelper.COLUMN_FOOD_NAME + " = '"+foodTransName+"'";
@@ -211,7 +218,7 @@ public class AdapterOrderAddOn extends RecyclerView.Adapter<AdapterOrderAddOn.Vi
 
                     Log.e("Data", "Exists");
                     DataKhanaval dataKhanaval = new DataKhanaval(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
-                            foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
+                            foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, foodTransFavourites, img);
                     helper.updateData(dataKhanaval);
 
                 }

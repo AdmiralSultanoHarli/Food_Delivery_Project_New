@@ -17,19 +17,20 @@ import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
+import com.example.fooddeliveryproject.Activities.Model.DataYourFavourites;
 import com.example.fooddeliveryproject.R;
 
 import java.util.List;
 
 public class AdapterCustomCategories extends RecyclerView.Adapter<AdapterCustomCategories.ViewHolder> {
 
-    List<DataKhanaval> topList;
-    List<DataKhanaval> mTopList;
+    List<DataYourFavourites> topList;
+    List<DataYourFavourites> mTopList;
     Context context;
 
     private DatabaseHelper helper;
 
-    public AdapterCustomCategories(List<DataKhanaval> topList, Context context) {
+    public AdapterCustomCategories(List<DataYourFavourites> topList, Context context) {
         this.topList = topList;
         this.context = context;
         this.mTopList = topList;
@@ -49,7 +50,7 @@ public class AdapterCustomCategories extends RecyclerView.Adapter<AdapterCustomC
     @Override
     public void onBindViewHolder(@NonNull AdapterCustomCategories.ViewHolder viewHolder, final int i) {
 
-        final DataKhanaval data = topList.get(i);
+        final DataYourFavourites data = topList.get(i);
 
         viewHolder.foodName.setText(data.getFoodName());
         viewHolder.img.setImageResource(data.getImg());

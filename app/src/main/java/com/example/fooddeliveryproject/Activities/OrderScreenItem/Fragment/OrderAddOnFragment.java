@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fooddeliveryproject.Activities.Activity.OrderScreenActivity;
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 import com.example.fooddeliveryproject.Activities.Model.DataAlsoOrderThis;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
@@ -50,6 +51,11 @@ public class OrderAddOnFragment extends Fragment {
 
             orderAddOnAdapter = new AdapterOrderAddOn(allData, getActivity());
             orderAddOn.setAdapter(orderAddOnAdapter);
+            OrderScreenActivity.textViewAddOn.setVisibility(View.VISIBLE);
+
+        }else {
+
+            OrderScreenActivity.textViewAddOn.setVisibility(View.GONE);
 
         }
 

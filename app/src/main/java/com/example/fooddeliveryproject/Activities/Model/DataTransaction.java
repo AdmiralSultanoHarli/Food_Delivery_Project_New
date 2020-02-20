@@ -11,6 +11,7 @@ public class DataTransaction {
     int foodTransPriceDiscountTotal;
     int buttonTransPosition;
     int foodTransItemCount;
+    int foodTransFavourites;
     int foodImg;
 
     public DataTransaction() {
@@ -18,7 +19,9 @@ public class DataTransaction {
 
     }
 
-    public DataTransaction(int foodId, String foodTransName, String foodTransDesc, int foodTransPrice, int foodTransPriceDiscount, int foodTransPriceTotal, int foodTransPriceDiscountTotal, int buttonTransPosition, int foodTransItemCount, int foodImg) {
+    public DataTransaction(int foodId, String foodTransName, String foodTransDesc, int foodTransPrice, int foodTransPriceDiscount,
+                           int foodTransPriceTotal, int foodTransPriceDiscountTotal, int buttonTransPosition, int foodTransItemCount,
+                           int foodTransFavourites, int foodImg) {
         this.foodId = foodId;
         this.foodTransName = foodTransName;
         this.foodTransDesc = foodTransDesc;
@@ -28,6 +31,7 @@ public class DataTransaction {
         this.foodTransPriceDiscountTotal = foodTransPriceDiscountTotal;
         this.buttonTransPosition = buttonTransPosition;
         this.foodTransItemCount = foodTransItemCount;
+        this.foodTransFavourites = foodTransFavourites;
         this.foodImg = foodImg;
     }
 
@@ -71,6 +75,9 @@ public class DataTransaction {
         this.foodTransItemCount = foodTransItemCount;
     }
 
+    public void setFoodTransFavourites(int foodTransFavourites) {
+        this.foodTransFavourites = foodTransFavourites;
+    }
 
     public String getFoodTransName() {
         return foodTransName;
@@ -108,6 +115,10 @@ public class DataTransaction {
         return foodId;
     }
 
+    public int getFoodTransFavourites() {
+        return foodTransFavourites;
+    }
+
     public int getFoodImg() {
         return foodImg;
     }
@@ -124,6 +135,7 @@ public class DataTransaction {
                 ", foodTransPriceDiscountTotal=" + foodTransPriceDiscountTotal +
                 ", buttonTransPosition=" + buttonTransPosition +
                 ", foodTransItemCount=" + foodTransItemCount +
+                ", foodTransFavourites=" + foodTransFavourites +
                 ", foodImg=" + foodImg +
                 '}';
     }

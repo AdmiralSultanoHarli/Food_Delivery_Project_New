@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterCustomCategories;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
+import com.example.fooddeliveryproject.Activities.Model.DataYourFavourites;
 import com.example.fooddeliveryproject.R;
 
 import java.util.ArrayList;
@@ -22,11 +23,10 @@ public class CustomFragment extends Fragment {
 
     RecyclerView customCategories;
     AdapterCustomCategories adapterCustomCategories;
-    ArrayList<DataKhanaval> allData = new ArrayList<>();
+    ArrayList<DataYourFavourites> allData = new ArrayList<>();
     private DatabaseHelper helper;
+    View line;
 
-    //String foods[] = {"Beverages", "Snacks", "Sweets"};
-    int img[] = {R.drawable.beverage, R.drawable.snacks, R.drawable.sweets};
 
     public CustomFragment() {
 
@@ -41,7 +41,8 @@ public class CustomFragment extends Fragment {
 
         helper = new DatabaseHelper(getActivity());
         customCategories = v.findViewById(R.id.custom_categories);
-        allData = helper.listDataCustom();
+        line = v.findViewById(R.id.line);
+        allData = helper.listDataYourFavouritesContinue();
         customCategories.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManagerCustom = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         customCategories.setLayoutManager(layoutManagerCustom);
@@ -51,6 +52,11 @@ public class CustomFragment extends Fragment {
             customCategories.setVisibility(View.VISIBLE);
             adapterCustomCategories = new AdapterCustomCategories(allData, getActivity());
             customCategories.setAdapter(adapterCustomCategories);
+            line.setVisibility(View.VISIBLE);
+
+        }else {
+
+            line.setVisibility(View.GONE);
 
         }
 

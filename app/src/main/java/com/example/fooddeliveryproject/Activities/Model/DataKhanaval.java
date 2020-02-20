@@ -18,6 +18,8 @@ public class DataKhanaval {
     int buttonPosition;
     int foodItemCount;
 
+    int foodFavourites;
+
     String couponName;
     int couponValue;
     String couponValid;
@@ -51,7 +53,9 @@ public class DataKhanaval {
 
     }
 
-    public DataKhanaval(int id, String foodName, String foodDescription, int foodPrice, int foodPriceDiscount, int foodPriceTotal, int foodPriceDiscountTotal, int buttonPosition, int foodItemCount, int img) {
+    public DataKhanaval(int id, String foodName, String foodDescription, int foodPrice, int foodPriceDiscount,
+                        int foodPriceTotal, int foodPriceDiscountTotal, int buttonPosition, int foodItemCount,
+                        int foodFavourites, int img) {
         this.id = id;
         this.foodName = foodName;
         this.foodDescription = foodDescription;
@@ -61,6 +65,7 @@ public class DataKhanaval {
         this.foodPriceDiscountTotal = foodPriceDiscountTotal;
         this.buttonPosition = buttonPosition;
         this.foodItemCount = foodItemCount;
+        this.foodFavourites = foodFavourites;
         this.img = img;
     }
 
@@ -71,18 +76,6 @@ public class DataKhanaval {
         this.couponValid = couponValid;
         this.img = img;
     }
-
-    /* public DataKhanaval(String foodName, String foodDescription, String date, String orderTracker, int foodPrice, int foodPriceDiscount, int chartQuantity, int img, int buttonPosition) {
-        this.foodName = foodName;
-        this.foodDescription = foodDescription;
-        this.date = date;
-        this.orderTracker = orderTracker;
-        this.foodPrice = foodPrice;
-        this.foodPriceDiscount = foodPriceDiscount;
-        this.chartQuantity = chartQuantity;
-        this.img = img;
-        this.buttonPosition = buttonPosition;
-    }*/
 
     public String getAddress() {
         return address;
@@ -134,6 +127,10 @@ public class DataKhanaval {
 
     public String getOrderTracker() {
         return orderTracker;
+    }
+
+    public int getFoodFavourites() {
+        return foodFavourites;
     }
 
     public int getFoodPrice() {
@@ -202,6 +199,10 @@ public class DataKhanaval {
 
     public void setFoodDescription(String foodDescription) {
         this.foodDescription = foodDescription;
+    }
+
+    public void setFoodFavourites(int foodFavourites) {
+        this.foodFavourites = foodFavourites;
     }
 
     public void setDate(String date) {

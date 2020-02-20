@@ -22,12 +22,15 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fooddeliveryproject.Activities.Activity.HomeScreenActivity;
 import com.example.fooddeliveryproject.Activities.Activity.MenuDetailsScreenActivity;
 import com.example.fooddeliveryproject.Activities.Activity.MenuScreenActivity;
 import com.example.fooddeliveryproject.Activities.Activity.OrderScreenActivity;
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 import com.example.fooddeliveryproject.Activities.Helper.DecimalHelper;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
+import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.HomeFragment;
+import com.example.fooddeliveryproject.Activities.Model.DataAlsoOrderThis;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.Model.DataTransaction;
 import com.example.fooddeliveryproject.Activities.OrderScreenItem.Fragment.OrderAddOnFragment;
@@ -57,6 +60,7 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
     int foodTransPriceDiscountTotal;
     int buttonTransPosition;
     int foodTransItemCount;
+    int foodTransFavourites;
     int img;
 
     OrderScreenActivity orderScreenActivity = new OrderScreenActivity();
@@ -109,6 +113,9 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
         viewHolder.foodPriceDiscount.setText(decimalHelper.formatter(topList.get(i).getFoodTransPriceDiscount()));
         viewHolder.chartQuantity.setText(String.valueOf(topList.get(i).getFoodTransItemCount()));
         viewHolder.img.setImageResource(topList.get(i).getFoodImg());
+
+        viewHolder.favouriteFood.setColorFilter(data.getFoodTransFavourites() == 0 ?
+                ContextCompat.getColor(context, R.color.colorButtonGray) : ContextCompat.getColor(context, R.color.circleRed));
 
         Log.e("Food name",viewHolder.foodName.getText().toString());
 
@@ -164,10 +171,12 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
                 foodTransPriceDiscountTotal = priceDiscountTotal[0];
                 buttonTransPosition = isChartQuantity[0];
                 foodTransItemCount = quantity[0];
+                foodTransFavourites = data.getFoodTransFavourites();
                 img = data.getFoodImg();
 
                 updateDataFood(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
-                        foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
+                        foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount,
+                        foodTransFavourites, img);
                 updateDataToOne(data);
                 logListItem();
 
@@ -184,14 +193,16 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
             public void updateDataToOne(final DataTransaction data){
 
                 DataTransaction dataTransaction = new DataTransaction(data.getFoodId(), data.getFoodTransName(),
-                        data.getFoodTransDesc(), data.getFoodTransPrice(), data.getFoodTransPriceDiscount(), priceTotal[0], priceDiscountTotal[0], isChartQuantity[0], quantity[0], data.getFoodImg());
+                        data.getFoodTransDesc(), data.getFoodTransPrice(), data.getFoodTransPriceDiscount(), priceTotal[0],
+                        priceDiscountTotal[0], isChartQuantity[0], quantity[0], data.getFoodTransFavourites(), data.getFoodImg());
 
                 helper.updateDataTrans(dataTransaction);
 
             }
 
             public void updateDataFood(int foodId, String foodTransName, String foodTransDesc, int foodTransPrice, int foodTransPriceDiscount,
-                                        int foodTransPriceTotal, int foodTransPriceDiscountTotal, int buttonTransPosition, int foodTransItemCount, int img){
+                                       int foodTransPriceTotal, int foodTransPriceDiscountTotal, int buttonTransPosition, int foodTransItemCount,
+                                       int foodTransFavourites, int img){
 
                 String query = "SELECT "+ DatabaseHelper.COLUMN_FOOD_ID + " FROM "+ DatabaseHelper.TABLE_FOOD +" WHERE "+
                         DatabaseHelper.COLUMN_FOOD_NAME + " = '"+foodTransName+"'";
@@ -201,7 +212,7 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
 
                     Log.e("Data", "Exists");
                     DataKhanaval dataKhanaval = new DataKhanaval(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
-                            foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
+                            foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, foodTransFavourites, img);
                     helper.updateData(dataKhanaval);
 
                 }
@@ -285,15 +296,17 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
                         foodTransPriceDiscountTotal = priceDiscountTotal[0];
                         buttonTransPosition = isChartQuantity[0];
                         foodTransItemCount = quantity[0];
+                        foodTransFavourites = data.getFoodTransFavourites();
                         img = data.getFoodImg();
                         deleteData(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                                 foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
 
                         updateDataFood(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
-                                foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
+                                foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount,
+                                foodTransFavourites, img);
 
                         insertDataToNew(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
-                                foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
+                                foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, foodTransFavourites, img);
 
                         updateDataToZero(data);
                         logListItem();
@@ -331,15 +344,17 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
                         foodTransPriceDiscountTotal = priceDiscountTotal[0];
                         buttonTransPosition = isChartQuantity[0];
                         foodTransItemCount = quantity[0];
+                        foodTransFavourites = data.getFoodTransFavourites();
                         img = data.getFoodImg();
                         deleteData(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                                 foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
 
                         updateDataFood(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
-                                foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
+                                foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount,
+                                foodTransFavourites, img);
 
                         insertDataToNew(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
-                                foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
+                                foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, foodTransFavourites, img);
 
                         updateDataToZero(data);
                         logListItem();
@@ -381,10 +396,12 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
                         foodTransPriceDiscountTotal = priceDiscountTotal[0];
                         buttonTransPosition = isChartQuantity[0];
                         foodTransItemCount = quantity[0];
+                        foodTransFavourites = data.getFoodTransFavourites();
                         img = data.getFoodImg();
 
                         updateDataFood(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
-                                foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
+                                foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount,
+                                foodTransFavourites, img);
 
                         updateDataToZero(data);
                         logListItem();
@@ -400,7 +417,8 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
             }
 
             public void updateDataFood(int foodId, String foodTransName, String foodTransDesc, int foodTransPrice, int foodTransPriceDiscount,
-                                        int foodTransPriceTotal, int foodTransPriceDiscountTotal, int buttonTransPosition, int foodTransItemCount, int img){
+                                       int foodTransPriceTotal, int foodTransPriceDiscountTotal, int buttonTransPosition, int foodTransItemCount,
+                                       int foodTransFavourites, int img){
 
                 String query = "SELECT "+ DatabaseHelper.COLUMN_FOOD_ID + " FROM "+ DatabaseHelper.TABLE_FOOD +" WHERE "+
                         DatabaseHelper.COLUMN_FOOD_NAME + " = '"+foodTransName+"'";
@@ -410,15 +428,16 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
 
                     Log.e("Data", "Exists");
                     DataKhanaval dataKhanaval = new DataKhanaval(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
-                            foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, img);
+                            foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, foodTransFavourites, img);
                     helper.updateData(dataKhanaval);
 
                 }
 
             }
 
+
             public void insertDataToNew(int foodId, String foodTransName, String foodTransDesc, int foodTransPrice, int foodTransPriceDiscount,
-                                        int foodTransPriceTotal, int foodTransPriceDiscountTotal, int buttonTransPosition, int foodTransItemCount, int img){
+                                        int foodTransPriceTotal, int foodTransPriceDiscountTotal, int buttonTransPosition, int foodTransItemCount, int foodTransFavourites, int img){
 
                 ContentValues contentValues = new ContentValues();
 
@@ -430,6 +449,7 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
                 contentValues.put(DatabaseHelper.COLUMN_FOOD_PRICE_DISCOUNT_TOTAL_NEW, foodTransPriceDiscountTotal);
                 contentValues.put(DatabaseHelper.COLUMN_BUTTON_NEW, buttonTransPosition);
                 contentValues.put(DatabaseHelper.COLUMN_FOOD_ITEM_COUNT_NEW, foodTransItemCount);
+                contentValues.put(DatabaseHelper.COLUMN_FOOD_NEW_FAVOURITES, foodTransFavourites);
                 contentValues.put(DatabaseHelper.COLUMN_FOOD_IMG_NEW, img);
                 db.insert(DatabaseHelper.TABLE_FOOD_NEW, null, contentValues);
 
@@ -453,7 +473,9 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
             public void updateDataToZero(final DataTransaction data){
 
                 DataTransaction dataTransaction = new DataTransaction(data.getFoodId(), data.getFoodTransName(),
-                        data.getFoodTransDesc(), data.getFoodTransPrice(), data.getFoodTransPriceDiscount(), priceTotal[0], priceDiscountTotal[0], isChartQuantity[0], quantity[0], data.getFoodImg());
+                        data.getFoodTransDesc(), data.getFoodTransPrice(), data.getFoodTransPriceDiscount(),
+                        priceTotal[0], priceDiscountTotal[0], isChartQuantity[0], quantity[0],
+                        data.getFoodTransFavourites(), data.getFoodImg());
 
                 helper.updateDataTrans(dataTransaction);
 
@@ -496,6 +518,136 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
             }
         });
 
+        viewHolder.favouriteFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                OrderScreenActivity orderScreenActivity = (OrderScreenActivity) view.getContext();
+                //HomeScreenActivity homeScreenActivity = (HomeScreenActivity) view.getContext();
+
+                if (data.getFoodTransFavourites() == 0){
+
+                    foodId = data.getFoodId();
+                    foodTransName = data.getFoodTransName();
+                    foodTransDesc = data.getFoodTransDesc();
+                    foodTransPrice = data.getFoodTransPrice();
+                    foodTransPriceDiscount = data.getFoodTransPriceDiscount();
+                    foodTransPriceTotal = priceTotal[0];
+                    foodTransPriceDiscountTotal = priceDiscountTotal[0];
+                    buttonTransPosition = isChartQuantity[0];
+                    foodTransItemCount = quantity[0];
+                    foodTransFavourites = 1;
+                    img = data.getFoodImg();
+
+                    updateDataFood(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
+                            foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount,
+                            foodTransFavourites, img);
+
+                    updateDataToZero(data);
+
+                    insertDataFavourites(foodTransName, img);
+
+                    data.setFoodTransFavourites(foodTransFavourites);
+
+                    viewHolder.favouriteFood.setColorFilter(ContextCompat.getColor(context, R.color.circleRed));
+
+                    orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.orderSummaryFragment, new OrderScreenOrderFragment()).commit();
+                    orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.paymentDetailsFragment, new OrderPaymentDetailsFragment()).commit();
+                    orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.menuOrderAlsoOrderFragment, new OrderAddOnFragment()).commit();
+                    //homeScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, new HomeFragment()).commit();
+
+                }else if(data.getFoodTransFavourites() == 1){
+
+                    foodId = data.getFoodId();
+                    foodTransName = data.getFoodTransName();
+                    foodTransDesc = data.getFoodTransDesc();
+                    foodTransPrice = data.getFoodTransPrice();
+                    foodTransPriceDiscount = data.getFoodTransPriceDiscount();
+                    foodTransPriceTotal = priceTotal[0];
+                    foodTransPriceDiscountTotal = priceDiscountTotal[0];
+                    buttonTransPosition = isChartQuantity[0];
+                    foodTransItemCount = quantity[0];
+                    foodTransFavourites = 0;
+                    img = data.getFoodImg();
+
+                    updateDataFood(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
+                            foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount,
+                            foodTransFavourites, img);
+
+                    updateDataToZero(data);
+
+                    deleteDataFavourites(foodTransName, img);
+
+                    data.setFoodTransFavourites(foodTransFavourites);
+
+                    viewHolder.favouriteFood.setColorFilter(ContextCompat.getColor(context, R.color.colorButtonGray));
+
+                    orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.orderSummaryFragment, new OrderScreenOrderFragment()).commit();
+                    orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.paymentDetailsFragment, new OrderPaymentDetailsFragment()).commit();
+                    orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.menuOrderAlsoOrderFragment, new OrderAddOnFragment()).commit();
+                    //homeScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, new HomeFragment()).commit();
+
+                }
+
+            }
+
+            public void insertDataFavourites(String foodTransName, int foodImg){
+
+                ContentValues contentValues = new ContentValues();
+
+                contentValues.put(DatabaseHelper.COLUMN_YOURFAVOURITES_NAME, foodTransName);
+                contentValues.put(DatabaseHelper.COLUMN_YOURFAVOURITES_IMG, foodImg);
+
+                db.insert(DatabaseHelper.TABLE_YOURFAVOURITES_FRAGMENT, null, contentValues);
+
+            }
+
+            public void deleteDataFavourites(String foodTransName, int foodImg){
+
+                String query = "SELECT "+ DatabaseHelper.COLUMN_YOURFAVOURITES_ID + " FROM "+ DatabaseHelper.TABLE_YOURFAVOURITES_FRAGMENT +" WHERE "+
+                        DatabaseHelper.COLUMN_YOURFAVOURITES_NAME + " = '"+foodTransName+"'";
+                Cursor data = db.rawQuery(query,null);
+
+                if (data.moveToFirst()){
+
+                    helper.deleteDataFavourites(foodTransName);
+
+                }
+
+            }
+
+            public void updateDataFood(int foodId, String foodTransName, String foodTransDesc, int foodTransPrice, int foodTransPriceDiscount,
+                                       int foodTransPriceTotal, int foodTransPriceDiscountTotal, int buttonTransPosition, int foodTransItemCount,
+                                       int foodTransFavourites, int img){
+
+                String query = "SELECT "+ DatabaseHelper.COLUMN_FOOD_ID + " FROM "+ DatabaseHelper.TABLE_FOOD +" WHERE "+
+                        DatabaseHelper.COLUMN_FOOD_NAME + " = '"+foodTransName+"'";
+                Cursor data = db.rawQuery(query,null);
+
+                if (data.moveToFirst()){
+
+                    Log.e("Data", "Exists");
+                    DataKhanaval dataKhanaval = new DataKhanaval(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
+                            foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, foodTransFavourites, img);
+                    helper.updateData(dataKhanaval);
+
+                }
+
+            }
+
+            public void updateDataToZero(final DataTransaction data){
+
+                DataTransaction dataTransaction = new DataTransaction(data.getFoodId(), data.getFoodTransName(),
+                        data.getFoodTransDesc(), data.getFoodTransPrice(), data.getFoodTransPriceDiscount(),
+                        priceTotal[0], priceDiscountTotal[0], isChartQuantity[0], quantity[0],
+                        foodTransFavourites, data.getFoodImg());
+
+                helper.updateDataTrans(dataTransaction);
+
+            }
+
+        });
+
         viewHolder.openNotes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -517,27 +669,6 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
                     orderScreenActivity.accNotes.setBackgroundResource(R.drawable.rounded_button_add_active);
                 }
 
-            }
-        });
-
-        viewHolder.favouriteFood.setColorFilter(ContextCompat.getColor(context, R.color.colorButtonGray));
-
-        viewHolder.favouriteFood.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                OrderScreenActivity orderScreenActivity = (OrderScreenActivity) view.getContext();
-                if (orderScreenActivity.wishlistAdded == false) {
-
-                    viewHolder.favouriteFood.setColorFilter(ContextCompat.getColor(context, R.color.circleRed));
-                    orderScreenActivity.wishlistAdded = true;
-
-                }else if (orderScreenActivity.wishlistAdded == true){
-
-                    viewHolder.favouriteFood.setColorFilter(ContextCompat.getColor(context, R.color.colorButtonGray));
-                    orderScreenActivity.wishlistAdded = false;
-
-                }
             }
         });
 

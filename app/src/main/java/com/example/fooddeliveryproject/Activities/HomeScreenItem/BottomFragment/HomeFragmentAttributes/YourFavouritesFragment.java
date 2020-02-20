@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,19 +14,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterYourFavouritesCategories;
+import com.example.fooddeliveryproject.Activities.Model.DataYourFavourites;
 import com.example.fooddeliveryproject.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class YourFavouritesFragment extends Fragment {
 
     RecyclerView yourFavouritesCategories;
     AdapterYourFavouritesCategories adapterYourFavouritesCategories;
-    ArrayList<DataKhanaval> allData = new ArrayList<>();
+    ArrayList<DataYourFavourites> allData = new ArrayList<>();
     private DatabaseHelper helper;
-
-    /*String foods[] = {"Maha Thali", "Samosa", "Murg Mussalam"};
-    int img[] = {R.drawable.maharashtra_thali, R.drawable.snacks, R.drawable.murg_musallam};*/
+    View line;
+    TextView yourFavourites;
 
     public YourFavouritesFragment() {
 
@@ -40,6 +42,8 @@ public class YourFavouritesFragment extends Fragment {
 
         helper = new DatabaseHelper(getActivity());
         yourFavouritesCategories = v.findViewById(R.id.fourth_categories);
+        line = v.findViewById(R.id.line);
+        yourFavourites = v.findViewById(R.id.yourFavourites);
         allData = helper.listDataYourFavourites();
         yourFavouritesCategories.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManagerYourFavourites = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
@@ -50,29 +54,17 @@ public class YourFavouritesFragment extends Fragment {
             yourFavouritesCategories.setVisibility(View.VISIBLE);
             adapterYourFavouritesCategories = new AdapterYourFavouritesCategories(allData, getActivity());
             yourFavouritesCategories.setAdapter(adapterYourFavouritesCategories);
+            line.setVisibility(View.VISIBLE);
+            yourFavourites.setVisibility(View.VISIBLE);
+
+        }else {
+
+            line.setVisibility(View.GONE);
+            yourFavourites.setVisibility(View.GONE);
 
         }
-
-        /*ArrayList<DataKhanaval> dataFoods = getData();
-        adapterYourFavouritesCategories = new AdapterYourFavouritesCategories(dataFoods, getActivity());
-        yourFavouritesCategories.setAdapter(adapterYourFavouritesCategories);*/
 
         return v;
     }
-
-    /*private ArrayList<DataKhanaval> getData(){
-
-        ArrayList<DataKhanaval> foodArrayList = new ArrayList<>();
-        for(int i = 0; i<foods.length; i++){
-
-            DataKhanaval dataFood = new DataKhanaval();
-            dataFood.setFoodName(foods[i]);
-            dataFood.setImg(img[i]);
-            foodArrayList.add(dataFood);
-
-        }
-
-        return foodArrayList;
-    }*/
 
 }

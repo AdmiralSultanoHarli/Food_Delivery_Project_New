@@ -44,6 +44,8 @@ public class OrderScreenActivity extends BaseActivity {
     TextView textCount, deliveryPrice, viewPayment, textViewAddMore, promoAppliedText,
             placeName, placeDescription, textViewChangeAddress;
 
+    public static TextView textViewAddOn;
+
     public static TextView totalPriceBar, totalPrice;
 
     public Button accNotes, couponShower;
@@ -114,6 +116,7 @@ public class OrderScreenActivity extends BaseActivity {
         placeDescription = findViewById(R.id.placeDescription);
         imageViewMap = findViewById(R.id.imageViewMap);
         textViewChangeAddress = findViewById(R.id.textViewChangeAddress);
+        textViewAddOn = findViewById(R.id.textViewAddOn);
 
         decimalHelper = new DecimalHelper();
 

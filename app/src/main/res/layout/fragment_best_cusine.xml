@@ -2,9 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="5dp">
+    android:layout_marginTop="10dp">
 
-    <!--Second Categories(Best Cusine) -->
+    <!--Third Categories(Today Special) -->
     <View
         android:id="@+id/line"
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
         android:id="@+id/test"
         android:textSize="15dp"
         android:layout_marginTop="10dp"
-        android:text="Restaurant's"
+        android:text="Best Cusine"
         android:layout_below="@+id/line"
         android:textColor="@color/colorBlack"
         android:layout_width="wrap_content"
@@ -27,12 +27,11 @@
         />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/second_categories"
+        android:id="@+id/third_categories"
         android:layout_marginTop="2dp"
         android:layout_below="@+id/test"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
-
 
 </RelativeLayout>

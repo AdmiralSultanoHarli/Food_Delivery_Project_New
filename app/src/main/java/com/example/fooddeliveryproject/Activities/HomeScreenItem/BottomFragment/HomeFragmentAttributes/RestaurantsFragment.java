@@ -36,7 +36,7 @@ public class RestaurantsFragment extends Fragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_best_cusine, container, false);
+        View v = inflater.inflate(R.layout.fragment_restaurants, container, false);
 
         helper = new DatabaseHelper(getActivity());
         restaurantsCategories = v.findViewById(R.id.second_categories);

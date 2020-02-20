@@ -134,5 +134,18 @@ public class PopUp extends Activity {
         this.notifyItemRangeInserted(0, menuList.size());// notify adapter of new data
 
     }*/
+
+    /*OrderScreenActivity orderScreenActivity = (OrderScreenActivity) view.getContext();
+                if (orderScreenActivity.wishlistAdded == false) {
+
+                    viewHolder.favouriteFood.setColorFilter(ContextCompat.getColor(context, R.color.circleRed));
+                    orderScreenActivity.wishlistAdded = true;
+
+                }else if (orderScreenActivity.wishlistAdded == true){
+
+                    viewHolder.favouriteFood.setColorFilter(ContextCompat.getColor(context, R.color.colorButtonGray));
+                    orderScreenActivity.wishlistAdded = false;
+
+                }*/
     }
 }

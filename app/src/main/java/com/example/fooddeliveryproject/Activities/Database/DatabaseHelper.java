@@ -11,6 +11,7 @@ import com.example.fooddeliveryproject.Activities.Model.DataAlsoOrderThis;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.Model.DataTransaction;
 import com.example.fooddeliveryproject.Activities.Model.DataTransactionDone;
+import com.example.fooddeliveryproject.Activities.Model.DataYourFavourites;
 import com.example.fooddeliveryproject.R;
 
 import java.util.ArrayList;
@@ -28,13 +29,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_USER_PHONENUMBER = "phonenumber";
     public static final String COLUMN_USER_PASSWORD = "password";
 
-    //Restaurant Data
-    public static final String TABLE_RESTAURANT = "restaurant";
-    public static final String COLUMN_REST_ID = "restaurantid";
-    public static final String COLUMN_REST_NAME = "restaurantname";
-    public static final String COLUMN_REST_ADDRESS = "restaurantaddress";
-    public static final String COLUMN_REST_IMG = "restaurantimage";
-
     //Food Data
     public static final String TABLE_FOOD = "food";
     public static final String COLUMN_FOOD_ID = "foodid";
@@ -46,6 +40,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_FOOD_PRICE_DISCOUNT_TOTAL = "foodpricediscounttotal";
     public static final String COLUMN_BUTTON = "buttoncartquantityopened";
     public static final String COLUMN_FOOD_ITEM_COUNT = "fooditemcount";
+    public static final String COLUMN_FOOD_FAVOURITES = "foodfavourites";
     public static final String COLUMN_FOOD_IMG = "foodimage";
 
     //Food Transaction Data
@@ -59,6 +54,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_FOOD_TRANSACTION_PRICE_DISCOUNT_TOTAL  = "foodtransactionpricediscounttotal";
     public static final String COLUMN_TRANSACTION_BUTTON = "buttoncartquantityopened";
     public static final String COLUMN_FOOD_TRANSACTION_ITEM_COUNT = "foodtransactionitemcount";
+    public static final String COLUMN_FOOD_TRANSACTION_FAVOURITES = "foodtransactionfavourites";
     public static final String COLUMN_FOOD_TRANSACTION_IMG = "foodtransactionimg";
 
     // Food Transaction Done
@@ -83,6 +79,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_FOOD_PRICE_DISCOUNT_TOTAL_NEW = "foodpricediscounttotalnew";
     public static final String COLUMN_BUTTON_NEW = "buttoncartquantityopenednew";
     public static final String COLUMN_FOOD_ITEM_COUNT_NEW = "fooditemcountnew";
+    public static final String COLUMN_FOOD_NEW_FAVOURITES = "foodnewfavourites";
     public static final String COLUMN_FOOD_IMG_NEW = "foodimagenew";
 
     //Coupon Data
@@ -93,17 +90,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_COUPON_VALID = "couponvalid";
     public static final String COLUMN_COUPON_IMG = "couponimage";
 
+    //Restaurant Data
+    public static final String TABLE_RESTAURANT = "restaurant";
+    public static final String COLUMN_REST_ID = "restaurantid";
+    public static final String COLUMN_REST_NAME = "restaurantname";
+    public static final String COLUMN_REST_ADDRESS = "restaurantaddress";
+    public static final String COLUMN_REST_IMG = "restaurantimage";
+
     //BestCusine Fragment Data
     public static final String TABLE_BESTCUSINE_FRAGMENT = "bestcusinefragment";
     public static final String COLUMN_BESTCUSINE_ID = "foodid";
     public static final String COLUMN_BESTCUSINE_NAME = "foodname";
     public static final String COLUMN_BESTCUSINE_IMG = "foodimage";
-
-    //TodaysSpecial Fragment Data
-    public static final String TABLE_TODAYSPECIAL_FRAGMENT = "todaysspecialfragment";
-    public static final String COLUMN_TODAYSPECIAL_ID = "foodid";
-    public static final String COLUMN_TODAYSPECIAL_NAME = "foodname";
-    public static final String COLUMN_TODAYSPECIAL_IMG = "foodimage";
 
     //YourFavourites Fragment Data
     public static final String TABLE_YOURFAVOURITES_FRAGMENT = "yourfavouritesfragment";
@@ -153,6 +151,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_FOOD_PRICE_DISCOUNT_TOTAL + " INTEGER, " +
                 COLUMN_BUTTON + " INTEGER, " +
                 COLUMN_FOOD_ITEM_COUNT + " INTEGER, " +
+                COLUMN_FOOD_FAVOURITES + " INTEGER, " +
                 COLUMN_FOOD_IMG + " BLOB " + " )";
 
         String CREATE_FOOD_TABLE_NEW = "CREATE TABLE " + TABLE_FOOD_NEW + " (" +
@@ -165,6 +164,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_FOOD_PRICE_DISCOUNT_TOTAL_NEW + " INTEGER, " +
                 COLUMN_BUTTON_NEW + " INTEGER, " +
                 COLUMN_FOOD_ITEM_COUNT_NEW + " INTEGER, " +
+                COLUMN_FOOD_NEW_FAVOURITES + " INTEGER, " +
                 COLUMN_FOOD_IMG_NEW + " BLOB " + " )";
 
         String CREATE_FOOD_TABLE_TRANSACTION = "CREATE TABLE " + TABLE_FOOD_TRANSACTION + " (" +
@@ -177,6 +177,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_FOOD_TRANSACTION_PRICE_DISCOUNT_TOTAL + " INTEGER, " +
                 COLUMN_TRANSACTION_BUTTON + " INTEGER, " +
                 COLUMN_FOOD_TRANSACTION_ITEM_COUNT + " INTEGER, " +
+                COLUMN_FOOD_TRANSACTION_FAVOURITES + " INTEGER, " +
                 COLUMN_FOOD_TRANSACTION_IMG + " BLOB " + " )";
 
         String CREATE_TABLE_TRANSACTION_DONE = "CREATE TABLE " + TABLE_TRANSACTION_DONE + " (" +
@@ -202,11 +203,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_BESTCUSINE_NAME + " TEXT, " +
                 COLUMN_BESTCUSINE_IMG + " BLOB " + " )";
 
-        String CREATE_TODAYSPECIAL_TABLE = "CREATE TABLE " + TABLE_TODAYSPECIAL_FRAGMENT + " (" +
-                COLUMN_TODAYSPECIAL_ID + " INTEGER PRIMARY KEY, " +
-                COLUMN_TODAYSPECIAL_NAME + " TEXT, " +
-                COLUMN_TODAYSPECIAL_IMG + " BLOB " + " )";
-
         String CREATE_YOURFAVOURITES_TABLE = "CREATE TABLE " + TABLE_YOURFAVOURITES_FRAGMENT + " (" +
                 COLUMN_YOURFAVOURITES_ID + " INTEGER PRIMARY KEY, " +
                 COLUMN_YOURFAVOURITES_NAME + " TEXT, " +
@@ -223,18 +219,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_REST_ADDRESS + " TEXT, " +
                 COLUMN_REST_IMG + " BLOB " + " )";
 
-        String DATA_FOOD_NEW = "INSERT INTO " + TABLE_FOOD_NEW + "(foodnamenew, fooddescnew, foodpricenew, foodpricediscountnew, foodpricetotalnew, foodpricediscounttotalnew, buttoncartquantityopenednew, fooditemcountnew, foodimagenew) " +
-                "VALUES ('Nasi Padang', '3 nasi + 2 ayam + sayuran + sambel', 30000, 40000, 0, 0, 0, 0," + R.drawable.nasi_padang_s + ")," +
-                "('Bakso', '2 Bakso besar + 5 Bakso kecil + bihun + bawang', 50000, 65000, 0, 0, 0, 0," + R.drawable.bakso + ")," +
-                "('Soto', 'Suwiran Ayam + Telor + Nasi', 40000, 55000, 0, 0, 0, 0," + R.drawable.soto + ")," +
-                "('Sate Ayam', '10 Tusuk sate ayam + bumbu kacang + nasi', 40000, 50000, 0, 0, 0, 0," + R.drawable.sate_ayam + ")," +
-                "('Sate Padang', '20 Tusuk sate padang + bumbu sate padang + lontong', 100000, 115000, 0, 0, 0, 0," + R.drawable.sate_padang + ")," +
-                "('Nasi Lemak', 'Nasi lemak + kacang + telor _ sambal', 50000, 30000, 0, 0, 0, 0," + R.drawable.nasi_lemak + ")," +
-                // "('Dal Tadkda', '3 Roti butter + kentang india', 30000, 40000, 0," + R.drawable.dal_tadkda + ")," +
-                "('Chinese Food', '1 porsi spagheti chinese + sayuran', 40000, 45000, 0, 0, 0, 0," + R.drawable.chow_mein + ")," +
-                "('Indian Curry', '3 roti butter + Mix sayuran + nasi', 20000, 35000, 0, 0, 0, 0," + R.drawable.maharashtra_thali + ")," +
-                "('Panang Curry', '3 Curry ayam + sayuran', 50000, 65000, 0, 0, 0, 0," + R.drawable.panang_curry + ")," +
-                "('Samosa', '10 Aneka gorengan india', 30000, 45000, 0, 0, 0, 0," + R.drawable.snacks + ")";
+        String DATA_FOOD_NEW = "INSERT INTO " + TABLE_FOOD_NEW + "(foodnamenew, fooddescnew, foodpricenew, foodpricediscountnew, foodpricetotalnew, foodpricediscounttotalnew, buttoncartquantityopenednew, fooditemcountnew, foodnewfavourites, foodimagenew) " +
+                "VALUES ('Nasi Padang', '3 nasi + 2 ayam + sayuran + sambel', 30000, 40000, 0, 0, 0, 0, 0," + R.drawable.nasi_padang_s + ")," +
+                "('Bakso', '2 Bakso besar + 5 Bakso kecil + bihun + bawang', 50000, 65000, 0, 0, 0, 0, 0," + R.drawable.bakso + ")," +
+                "('Soto', 'Suwiran Ayam + Telor + Nasi', 40000, 55000, 0, 0, 0, 0, 0," + R.drawable.soto + ")," +
+                "('Sate Ayam', '10 Tusuk sate ayam + bumbu kacang + nasi', 40000, 50000, 0, 0, 0, 0, 0," + R.drawable.sate_ayam + ")," +
+                "('Sate Padang', '20 Tusuk sate padang + bumbu sate padang + lontong', 100000, 115000, 0, 0, 0, 0, 0," + R.drawable.sate_padang + ")," +
+                "('Nasi Lemak', 'Nasi lemak + kacang + telor _ sambal', 50000, 30000, 0, 0, 0, 0, 0," + R.drawable.nasi_lemak + ")," +
+                "('Chinese Food', '1 porsi spagheti chinese + sayuran', 40000, 45000, 0, 0, 0, 0, 0," + R.drawable.chow_mein + ")," +
+                "('Indian Curry', '3 roti butter + Mix sayuran + nasi', 20000, 35000, 0, 0, 0, 0, 0," + R.drawable.maharashtra_thali + ")," +
+                "('Panang Curry', '3 Curry ayam + sayuran', 50000, 65000, 0, 0, 0, 0, 0," + R.drawable.panang_curry + ")," +
+                "('Samosa', '10 Aneka gorengan india', 30000, 45000, 0, 0, 0, 0, 0," + R.drawable.snacks + ")";
+
+        String DATA_FOOD = "INSERT INTO " + TABLE_FOOD + "(foodname, fooddesc, foodprice, foodpricediscount, foodpricetotal, foodpricediscounttotal, buttoncartquantityopened, fooditemcount, foodfavourites, foodimage) " +
+                "VALUES ('Nasi Padang', '3 nasi + 2 ayam + sayuran + sambel', 30000, 40000, 0, 0, 0, 0, 0," + R.drawable.nasi_padang_s + ")," +
+                "('Bakso', '2 Bakso besar + 5 Bakso kecil + bihun + bawang', 50000, 65000, 0, 0, 0, 0, 0," + R.drawable.bakso + ")," +
+                "('Soto', 'Suwiran Ayam + Telor + Nasi', 40000, 55000, 0, 0, 0, 0, 0," + R.drawable.soto + ")," +
+                "('Sate Ayam', '10 Tusuk sate ayam + bumbu kacang + nasi', 40000, 50000, 0, 0, 0, 0, 0," + R.drawable.sate_ayam + ")," +
+                "('Sate Padang', '20 Tusuk sate padang + bumbu sate padang + lontong', 100000, 115000, 0, 0, 0, 0, 0," + R.drawable.sate_padang + ")," +
+                "('Nasi Lemak', 'Nasi lemak + kacang + telor _ sambal', 50000, 30000, 0, 0, 0, 0, 0," + R.drawable.nasi_lemak + ")," +
+                "('Chinese Food', '1 porsi spagheti chinese + sayuran', 40000, 45000, 0, 0, 0, 0, 0," + R.drawable.chow_mein + ")," +
+                "('Indian Curry', '3 roti butter + Mix sayuran + nasi', 20000, 35000, 0, 0, 0, 0, 0," + R.drawable.maharashtra_thali + ")," +
+                "('Panang Curry', '3 Curry ayam + sayuran', 50000, 65000, 0, 0, 0, 0, 0," + R.drawable.panang_curry + ")," +
+                "('Samosa', '10 Aneka gorengan india', 30000, 45000, 0, 0, 0, 0, 0," + R.drawable.snacks + ")";
 
         String DATA_RESTAURANT = "INSERT INTO " + TABLE_RESTAURANT + "(restaurantname, restaurantaddress, restaurantimage) " +
                 "VALUES ('Ayam Gepuk Pak Gembus', 'Jl. Guru Mughni No.7, RT.1/RW.3, Karet Kuningan',"  + R.drawable.ayam_gepuk_pakgembus + ")," +
@@ -258,20 +265,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "('Tahu Kriuk Yes', 'Jl. Muara Karang Raya No.125, RW.12, Pluit, Kec. Penjaringan'," + R.drawable.tahu_kriuk_yes + ")," +
                 "('Wingstop', 'Generali Tower (next to MMC Hospital), Gran Rubina Business Park'," + R.drawable.wingstop + ")";
 
-
-        String DATA_FOOD = "INSERT INTO " + TABLE_FOOD + "(foodname, fooddesc, foodprice, foodpricediscount, foodpricetotal, foodpricediscounttotal, buttoncartquantityopened, fooditemcount, foodimage) " +
-                "VALUES ('Nasi Padang', '3 nasi + 2 ayam + sayuran + sambel', 30000, 40000, 0, 0, 0, 0," + R.drawable.nasi_padang_s + ")," +
-                "('Bakso', '2 Bakso besar + 5 Bakso kecil + bihun + bawang', 50000, 65000, 0, 0, 0, 0," + R.drawable.bakso + ")," +
-                "('Soto', 'Suwiran Ayam + Telor + Nasi', 40000, 55000, 0, 0, 0, 0," + R.drawable.soto + ")," +
-                "('Sate Ayam', '10 Tusuk sate ayam + bumbu kacang + nasi', 40000, 50000, 0, 0, 0, 0," + R.drawable.sate_ayam + ")," +
-                "('Sate Padang', '20 Tusuk sate padang + bumbu sate padang + lontong', 100000, 115000, 0, 0, 0, 0," + R.drawable.sate_padang + ")," +
-                "('Nasi Lemak', 'Nasi lemak + kacang + telor _ sambal', 50000, 30000, 0, 0, 0, 0," + R.drawable.nasi_lemak + ")," +
-               // "('Dal Tadkda', '3 Roti butter + kentang india', 30000, 40000, 0," + R.drawable.dal_tadkda + ")," +
-                "('Chinese Food', '1 porsi spagheti chinese + sayuran', 40000, 45000, 0, 0, 0, 0," + R.drawable.chow_mein + ")," +
-                "('Indian Curry', '3 roti butter + Mix sayuran + nasi', 20000, 35000, 0, 0, 0, 0," + R.drawable.maharashtra_thali + ")," +
-                "('Panang Curry', '3 Curry ayam + sayuran', 50000, 65000, 0, 0, 0, 0," + R.drawable.panang_curry + ")," +
-                "('Samosa', '10 Aneka gorengan india', 30000, 45000, 0, 0, 0, 0," + R.drawable.snacks + ")";
-
         String DATA_COUPON = "INSERT INTO " + TABLE_COUPON + "(couponname, couponvalue, couponvalid, couponimage) " +
                 "VALUES ('Chat Time', 5, '23 December 2022'," + R.drawable.chat_time_coupon + ")," +
                 "('KFC', 15, '15 January 2021'," + R.drawable.kfc_coupon + ")," +
@@ -288,20 +281,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "('Malysian'," + R.drawable.nasi_lemak + ")," +
                 "('Chinese'," + chow_mein + ")";
 
-        String DATA_TODAYSPECIAL = "INSERT INTO " + TABLE_TODAYSPECIAL_FRAGMENT + "(foodname, foodimage)" +
-                "VALUES ('Goan Special'," + butter_chicken + ")," +
-                "('Indian Curry'," + maharashtra_thali + ")," +
-                "('Panang Curry'," + panang_curry + ")," +
-                "('Chapati'," + chapati + ")";
-
-        String DATA_YOURFAVOURITES = "INSERT INTO " + TABLE_YOURFAVOURITES_FRAGMENT + "(foodname, foodimage)" +
+        /*String DATA_YOURFAVOURITES = "INSERT INTO " + TABLE_YOURFAVOURITES_FRAGMENT + "(foodname, foodimage)" +
                 "VALUES ('Nasi Padang'," + R.drawable.nasi_padang_s + ")," +
                 "('Soto'," + R.drawable.soto + ")," +
                 "('Bakso'," + R.drawable.bakso + ")," +
                 "('Sate Ayam'," + R.drawable.sate_ayam + ")," +
                 "('Sate Padang'," + R.drawable.sate_padang + ")," +
                 "('Murg Musallam'," + murg_musallam + ")," +
-                "('Goan Special'," + butter_chicken + ")";
+                "('Goan Special'," + butter_chicken + ")";*/
 
         String DATA_CUSTOM = "INSERT INTO " + TABLE_CUSTOM_FRAGMENT + "(foodname, foodimage)" +
                 "VALUES ('Beverage'," + beverage + ")," +
@@ -315,7 +302,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_FOOD_TABLE_TRANSACTION);
         db.execSQL(CREATE_TABLE_TRANSACTION_DONE);
         db.execSQL(CREATE_BESTCUSINE_TABLE);
-        db.execSQL(CREATE_TODAYSPECIAL_TABLE);
         db.execSQL(CREATE_YOURFAVOURITES_TABLE);
         db.execSQL(CREATE_CUSTOM_TABLE);
         db.execSQL(CREATE_RESTAURANT_TABLE);
@@ -324,8 +310,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(DATA_COUPON);
         db.execSQL(DATA_RESTAURANT);
         db.execSQL(DATA_BESTCUSINE);
-        db.execSQL(DATA_TODAYSPECIAL);
-        db.execSQL(DATA_YOURFAVOURITES);
+        //db.execSQL(DATA_YOURFAVOURITES);
         db.execSQL(DATA_CUSTOM);
 
     }
@@ -339,7 +324,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_FOOD_TRANSACTION);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TRANSACTION_DONE);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_BESTCUSINE_FRAGMENT);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TODAYSPECIAL_FRAGMENT);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_YOURFAVOURITES_FRAGMENT);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CUSTOM_FRAGMENT);
         onCreate(db);
@@ -353,8 +337,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_FOOD_ITEM_COUNT, data.getFoodItemCount());
         values.put(COLUMN_FOOD_PRICE_TOTAL, data.getFoodPriceTotal());
         values.put(COLUMN_FOOD_PRICE_DISCOUNT_TOTAL, data.getFoodPriceDiscountTotal());
+        values.put(COLUMN_FOOD_FAVOURITES, data.getFoodFavourites());
         SQLiteDatabase db = this.getWritableDatabase();
         db.update(TABLE_FOOD, values, COLUMN_FOOD_NAME	+ "	= ?", new String[] { String.valueOf(data.getFoodName())});
+
+    }
+
+    public void updateDataNew(DataAlsoOrderThis data){
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_BUTTON_NEW, data.getButtonPosition());
+        values.put(COLUMN_FOOD_ITEM_COUNT_NEW, data.getFoodItemCount());
+        values.put(COLUMN_FOOD_PRICE_TOTAL_NEW, data.getFoodPriceTotal());
+        values.put(COLUMN_FOOD_PRICE_DISCOUNT_TOTAL_NEW, data.getFoodPriceDiscountTotal());
+        values.put(COLUMN_FOOD_NEW_FAVOURITES, data.getFoodFavourites());
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.update(TABLE_FOOD_NEW, values, COLUMN_FOOD_NAME_NEW	+ "	= ?", new String[] { String.valueOf(data.getFoodName())});
 
     }
 
@@ -365,6 +363,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_FOOD_TRANSACTION_ITEM_COUNT, data.getFoodTransItemCount());
         values.put(COLUMN_FOOD_TRANSACTION_PRICE_TOTAL, data.getFoodTransPriceTotal());
         values.put(COLUMN_FOOD_TRANSACTION_PRICE_DISCOUNT_TOTAL, data.getFoodTransPriceDiscountTotal());
+        values.put(COLUMN_FOOD_TRANSACTION_FAVOURITES, data.getFoodTransFavourites());
         SQLiteDatabase db = this.getWritableDatabase();
         db.update(TABLE_FOOD_TRANSACTION, values, COLUMN_FOOD_TRANSACTION_NAME	+ "	= ?", new String[] { String.valueOf(data.getFoodTransName())});
 
@@ -381,6 +380,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_FOOD_NEW, COLUMN_FOOD_NAME_NEW + " = ?", new String[]{String.valueOf(name)});
+
+    }
+
+    public void deleteDataFavourites(String name){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_YOURFAVOURITES_FRAGMENT, COLUMN_YOURFAVOURITES_NAME + " = ?", new String[]{String.valueOf(name)});
 
     }
 
@@ -417,8 +423,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 int foodPriceDiscountTotal = cursor.getInt(6);
                 int button = cursor.getInt(7);
                 int foodItemCount = cursor.getInt(8);
-                int foodImg = Integer.parseInt(cursor.getString(9));
-                storeData.add(new DataKhanaval(foodId, foodName, foodDesc, foodPrice, foodPriceDiscount, foodPriceTotal, foodPriceDiscountTotal, button, foodItemCount, foodImg));
+                int foodFavourites = cursor.getInt(9);
+                int foodImg = Integer.parseInt(cursor.getString(10));
+                storeData.add(new DataKhanaval(foodId, foodName, foodDesc, foodPrice, foodPriceDiscount,
+                        foodPriceTotal, foodPriceDiscountTotal, button, foodItemCount, foodFavourites, foodImg));
             }while (cursor.moveToNext());
 
         }
@@ -447,8 +455,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 int foodTransPriceDiscountTotal = cursor.getInt(6);
                 int transButton = cursor.getInt(7);
                 int foodTransItemCount = cursor.getInt(8);
-                int foodTransImg = Integer.parseInt(cursor.getString(9));
-                storeData.add(new DataTransaction(foodTransId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount, foodTransPriceTotal, foodTransPriceDiscountTotal, transButton, foodTransItemCount, foodTransImg));
+                int foodTransFavourites = cursor.getInt(9);
+                int foodTransImg = Integer.parseInt(cursor.getString(10));
+                storeData.add(new DataTransaction(foodTransId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
+                        foodTransPriceTotal, foodTransPriceDiscountTotal, transButton, foodTransItemCount, foodTransFavourites,foodTransImg));
             }while (cursor.moveToNext());
 
         }
@@ -505,8 +515,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 int foodPriceDiscountTotal = cursor.getInt(6);
                 int button = cursor.getInt(7);
                 int foodItemCount = cursor.getInt(8);
-                int foodImg = Integer.parseInt(cursor.getString(9));
-                storeData.add(new DataAlsoOrderThis(foodId, foodName, foodDesc, foodPrice, foodPriceDiscount, foodPriceTotal, foodPriceDiscountTotal, button, foodItemCount, foodImg));
+                int foodFavourites = cursor.getInt(9);
+                int foodImg = Integer.parseInt(cursor.getString(10));
+                storeData.add(new DataAlsoOrderThis(foodId, foodName, foodDesc, foodPrice, foodPriceDiscount,
+                        foodPriceTotal, foodPriceDiscountTotal, button, foodItemCount, foodFavourites, foodImg));
             }while (cursor.moveToNext());
 
         }
@@ -612,11 +624,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public ArrayList<DataKhanaval> listDataTodaySpecial(){
+    public ArrayList<DataYourFavourites> listDataYourFavourites(){
 
-        String sql = "select * from " + TABLE_TODAYSPECIAL_FRAGMENT;
+        String sql = "select * from " + TABLE_YOURFAVOURITES_FRAGMENT + " limit 5";
         SQLiteDatabase db = this.getReadableDatabase();
-        ArrayList<DataKhanaval> storeData = new ArrayList<>();
+        ArrayList<DataYourFavourites> storeData = new ArrayList<>();
         Cursor cursor = db.rawQuery(sql, null);
         if (cursor.moveToFirst()){
 
@@ -625,7 +637,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 int foodTestId = Integer.parseInt(cursor.getString(0));
                 String foodTestName = cursor.getString(1);
                 int img = Integer.parseInt(cursor.getString(2));
-                storeData.add(new DataKhanaval(foodTestId, foodTestName, img));
+                storeData.add(new DataYourFavourites(foodTestId, foodTestName, img));
             }while (cursor.moveToNext());
 
         }
@@ -635,11 +647,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public ArrayList<DataKhanaval> listDataYourFavourites(){
+    public ArrayList<DataYourFavourites> listDataYourFavouritesContinue(){
 
-        String sql = "select * from " + TABLE_YOURFAVOURITES_FRAGMENT;
+        String sql = "select * from " + TABLE_YOURFAVOURITES_FRAGMENT + " limit 5 offset 5";
         SQLiteDatabase db = this.getReadableDatabase();
-        ArrayList<DataKhanaval> storeData = new ArrayList<>();
+        ArrayList<DataYourFavourites> storeData = new ArrayList<>();
         Cursor cursor = db.rawQuery(sql, null);
         if (cursor.moveToFirst()){
 
@@ -648,7 +660,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 int foodTestId = Integer.parseInt(cursor.getString(0));
                 String foodTestName = cursor.getString(1);
                 int img = Integer.parseInt(cursor.getString(2));
-                storeData.add(new DataKhanaval(foodTestId, foodTestName, img));
+                storeData.add(new DataYourFavourites(foodTestId, foodTestName, img));
             }while (cursor.moveToNext());
 
         }
