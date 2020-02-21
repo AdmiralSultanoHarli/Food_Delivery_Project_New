@@ -41,6 +41,8 @@ import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.List;
 
+import static com.example.fooddeliveryproject.Activities.Activity.OrderScreenActivity.editNotes;
+
 public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderScreenOrder.ViewHolder> {
 
     List<DataTransaction> topList;
@@ -194,7 +196,8 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
 
                 DataTransaction dataTransaction = new DataTransaction(data.getFoodId(), data.getFoodTransName(),
                         data.getFoodTransDesc(), data.getFoodTransPrice(), data.getFoodTransPriceDiscount(), priceTotal[0],
-                        priceDiscountTotal[0], isChartQuantity[0], quantity[0], data.getFoodTransFavourites(), data.getFoodImg());
+                        priceDiscountTotal[0], isChartQuantity[0], quantity[0], data.getFoodTransFavourites(), data. getFoodTransNotes(),
+                        data.getFoodImg());
 
                 helper.updateDataTrans(dataTransaction);
 
@@ -475,7 +478,7 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
                 DataTransaction dataTransaction = new DataTransaction(data.getFoodId(), data.getFoodTransName(),
                         data.getFoodTransDesc(), data.getFoodTransPrice(), data.getFoodTransPriceDiscount(),
                         priceTotal[0], priceDiscountTotal[0], isChartQuantity[0], quantity[0],
-                        data.getFoodTransFavourites(), data.getFoodImg());
+                        data.getFoodTransFavourites(), data.getFoodTransNotes(), data.getFoodImg());
 
                 helper.updateDataTrans(dataTransaction);
 
@@ -640,7 +643,7 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
                 DataTransaction dataTransaction = new DataTransaction(data.getFoodId(), data.getFoodTransName(),
                         data.getFoodTransDesc(), data.getFoodTransPrice(), data.getFoodTransPriceDiscount(),
                         priceTotal[0], priceDiscountTotal[0], isChartQuantity[0], quantity[0],
-                        foodTransFavourites, data.getFoodImg());
+                        foodTransFavourites, data.getFoodTransNotes(), data.getFoodImg());
 
                 helper.updateDataTrans(dataTransaction);
 
@@ -652,28 +655,70 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
             @Override
             public void onClick(View view) {
 
-                OrderScreenActivity orderScreenActivity = (OrderScreenActivity) view.getContext();
-                orderScreenActivity.slidingPanel.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
-                orderScreenActivity.slideOpened = true;
-                orderScreenActivity.editNotes.requestFocus();
-                orderScreenActivity.editNotes.setEnabled(true);
+                slideNoteData(data);
 
-                if (orderScreenActivity.counter == 0) {
 
-                    orderScreenActivity.accNotes.setEnabled(false);
-                    orderScreenActivity.accNotes.setBackgroundResource(R.drawable.rounded_button_add_nonactive);
+            }
 
-                }else{
+        });
 
-                    orderScreenActivity.accNotes.setEnabled(true);
-                    orderScreenActivity.accNotes.setBackgroundResource(R.drawable.rounded_button_add_active);
-                }
+    }
+
+    private void slideNoteData(final DataTransaction dataTransaction){
+
+        final OrderScreenActivity orderScreenActivity = new OrderScreenActivity();
+        orderScreenActivity.slidingPanel.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
+        orderScreenActivity.slideOpened = true;
+        orderScreenActivity.editNotes.requestFocus();
+        orderScreenActivity.editNotes.setEnabled(true);
+
+        orderScreenActivity.editNotes.setText(dataTransaction.getFoodTransNotes());
+
+        if (orderScreenActivity.counter == 0) {
+
+            orderScreenActivity.accNotes.setEnabled(false);
+            orderScreenActivity.accNotes.setBackgroundResource(R.drawable.rounded_button_add_nonactive);
+
+        }else{
+
+            orderScreenActivity.accNotes.setEnabled(true);
+            orderScreenActivity.accNotes.setBackgroundResource(R.drawable.rounded_button_add_active);
+
+        }
+
+
+
+        orderScreenActivity.accNotes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                orderScreenActivity.slidingPanel.setPanelState(SlidingUpPanelLayout.PanelState.HIDDEN);
+                orderScreenActivity.editNotes.setEnabled(false);
+                orderScreenActivity.slideOpened = false;
+
+                OrderScreenActivity orderScreenActivity1 = (OrderScreenActivity) v.getContext();
+
+                String editNotesString = orderScreenActivity.editNotes.getText().toString();
+
+                updateDataTransNotes(dataTransaction.getFoodTransName(), editNotesString);
+                Log.e("FoodTransName", dataTransaction.getFoodTransName());
+                Log.e("EditNotes", editNotesString);
+
+                orderScreenActivity1.getSupportFragmentManager().beginTransaction().replace(R.id.orderSummaryFragment, new OrderScreenOrderFragment()).commit();
 
             }
         });
 
     }
 
+
+    private void updateDataTransNotes(String foodTransName, String foodTransNotes){
+
+        ContentValues values = new ContentValues();
+        values.put(DatabaseHelper.COLUMN_FOOD_TRANSACTION_NOTES, foodTransNotes);
+        db.update(DatabaseHelper.TABLE_FOOD_TRANSACTION, values, DatabaseHelper.COLUMN_FOOD_TRANSACTION_NAME	+ "	= ?", new String[] {String.valueOf(foodTransName)});
+
+    }
 
     @Override
     public int getItemCount() {

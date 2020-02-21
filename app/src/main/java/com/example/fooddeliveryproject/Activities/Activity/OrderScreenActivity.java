@@ -48,16 +48,17 @@ public class OrderScreenActivity extends BaseActivity {
 
     public static TextView totalPriceBar, totalPrice;
 
-    public Button accNotes, couponShower;
-    public EditText editNotes;
+    public static Button accNotes;
+    public static Button couponShower;
+    public static EditText editNotes;
 
     DecimalHelper decimalHelper;
 
-    public SlidingUpPanelLayout slidingPanel;
-    public boolean slideOpened = false;
+    public static SlidingUpPanelLayout slidingPanel;
+    public static boolean slideOpened = false;
     public boolean wishlistAdded = false;
 
-    public int counter;
+    public static int counter;
 
     public int gopay = 10000;
     public int ovo = 9000;
@@ -66,6 +67,8 @@ public class OrderScreenActivity extends BaseActivity {
     public int tax = 4000;
 
     public static int allFoodPrice;
+
+    public static String editNotesString;
 
     int ovoImage = R.drawable.ovo2;
     int gopayImage = R.drawable.gopay2;
@@ -117,6 +120,8 @@ public class OrderScreenActivity extends BaseActivity {
         imageViewMap = findViewById(R.id.imageViewMap);
         textViewChangeAddress = findViewById(R.id.textViewChangeAddress);
         textViewAddOn = findViewById(R.id.textViewAddOn);
+
+        /*editNotesString = editNotes.getText().toString();*/
 
         decimalHelper = new DecimalHelper();
 
@@ -216,7 +221,7 @@ public class OrderScreenActivity extends BaseActivity {
             }
         });
 
-        accNotes.setOnClickListener(new View.OnClickListener() {
+        /*accNotes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -225,7 +230,7 @@ public class OrderScreenActivity extends BaseActivity {
                 slideOpened = false;
 
             }
-        });
+        });*/
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -506,12 +511,13 @@ public class OrderScreenActivity extends BaseActivity {
                 String[] locationParts = strAdd.split(", ");
                 String locationName = "";
 
-                if (locationParts.length == 8 || locationParts.length == 4 || locationParts.length == 5
-                        || locationParts.length == 6 || locationParts.length == 7){
+                if (/*locationParts.length == 8 || locationParts.length == 4 || locationParts.length == 5
+                        || locationParts.length == 6 || locationParts.length == 7*/locationParts.length < 9){
 
                     locationName = locationParts[0];
 
-                }else if (locationParts.length == 9 || locationParts.length == 10 || locationParts.length == 12){
+                }else if (/*locationParts.length == 9 || locationParts.length == 10 || locationParts.length == 12*/
+                        locationParts.length >= 9){
 
                     locationName = locationParts[1];
 

@@ -17,7 +17,6 @@
         android:weightSum="3"
         android:orientation="vertical">
 
-
         <Button
             android:id="@+id/facebookButton"
             android:layout_width="290dp"

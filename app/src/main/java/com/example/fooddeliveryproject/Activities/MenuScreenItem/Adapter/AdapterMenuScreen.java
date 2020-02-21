@@ -88,6 +88,7 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
         final DataKhanaval data = menuList.get(i);
 
         DecimalHelper decimalHelper = new DecimalHelper();
+        MenuScreenActivity menuScreenActivity = new MenuScreenActivity();
 
         final Bundle bundle = new Bundle();
 
@@ -121,6 +122,8 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
         if (SaveSharedPreference.getAllQuantity(context, quantityTotal) >= 1 ) {
 
             viewHolder.activity.getSupportFragmentManager().beginTransaction().replace(R.id.foodChartFragment, foodChartFragment).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
+            menuScreenActivity.numberCountText.setVisibility(View.VISIBLE);
+            menuScreenActivity.numberCountText.setText(String.valueOf(quantityTotal));
 
         }
 
@@ -132,12 +135,10 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                 MenuScreenActivity menuScreenActivity = (MenuScreenActivity) view.getContext();
 
                 if (!foodChartFragment.isAdded()) {
+
                     if (quantity[0] == 0) {
 
-
                         viewHolder.buttonAddToChart.getTag();
-
-                        menuScreenActivity.numberCount.setVisibility(View.VISIBLE);
 
                         quantity[0] = 1;
                         priceTotal[0] = foodPriceItem;
@@ -163,6 +164,9 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                         foodTransItemCount = quantity[0];
                         foodTransFavourites = data.getFoodFavourites();
                         img = data.getImg();
+
+                        menuScreenActivity.numberCountText.setVisibility(View.VISIBLE);
+                        menuScreenActivity.numberCountText.setText(String.valueOf(quantityTotal));
 
                         insertData(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                                 foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount,
@@ -214,6 +218,8 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                     foodTransItemCount = quantity[0];
                     foodTransFavourites = data.getFoodFavourites();
                     img = data.getImg();
+
+                    menuScreenActivity.numberCountText.setText(String.valueOf(quantityTotal));
 
                     insertData(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                             foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount,
@@ -328,6 +334,8 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
             @Override
             public void onClick(View view) {
 
+                MenuScreenActivity menuScreenActivity = (MenuScreenActivity) view.getContext();
+
                 if (quantityTotal == 100){
 
                     Toast.makeText(context, "Iam sorry only 100 item can be added", Toast.LENGTH_SHORT).show();
@@ -360,6 +368,8 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                 foodTransItemCount = quantity[0];
                 foodTransFavourites = data.getFoodFavourites();
                 img = data.getImg();
+
+                menuScreenActivity.numberCountText.setText(String.valueOf(quantityTotal));
 
                 updateDataTrans(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                         foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, foodTransFavourites, img);
@@ -395,7 +405,7 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
                     Log.e("Data", "Exists");
                     DataTransaction dataTransaction1 = new DataTransaction(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
-                            foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, foodTransFavourites, img);
+                            foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, foodTransFavourites, null, img);
                     helper.updateDataTrans(dataTransaction1);
 
                 }
@@ -455,7 +465,6 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                         priceTotal[0] = 0;
                         priceDiscountTotal[0] = 0;
 
-                        menuScreenActivity.numberCount.setVisibility(View.GONE);
                         isChartQuantity[0] = 0;
 
                         foodId = data.getId();
@@ -469,6 +478,9 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                         foodTransItemCount = quantity[0];
                         foodTransFavourites = data.getFoodFavourites();
                         img = data.getImg();
+
+                        menuScreenActivity.numberCountText.setVisibility(View.GONE);
+                        menuScreenActivity.numberCountText.setText(String.valueOf(quantityTotal));
 
                         deleteData(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                                 foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount,
@@ -513,6 +525,8 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                         foodTransItemCount = quantity[0];
                         foodTransFavourites = data.getFoodFavourites();
                         img = data.getImg();
+
+                        menuScreenActivity.numberCountText.setText(String.valueOf(quantityTotal));
 
                         deleteData(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                                 foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount,
@@ -560,6 +574,8 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                         foodTransFavourites = data.getFoodFavourites();
                         img = data.getImg();
 
+                        menuScreenActivity.numberCountText.setText(String.valueOf(quantityTotal));
+
                         updateDataTrans(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                                 foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, foodTransFavourites, img);
 
@@ -589,7 +605,7 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
                     Log.e("Data", "Exists");
                     DataTransaction dataTransaction1 = new DataTransaction(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
-                            foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, foodTransFavourites, img);
+                            foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, foodTransFavourites, null, img);
                     helper.updateDataTrans(dataTransaction1);
 
                 }

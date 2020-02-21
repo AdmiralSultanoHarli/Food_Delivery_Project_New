@@ -35,6 +35,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.fooddeliveryproject.Activities.Activity.HomeScreenActivity;
+import com.example.fooddeliveryproject.Activities.Activity.OrderScreenActivity;
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterSearchView;
@@ -89,6 +90,8 @@ public class HomeFragment extends Fragment {
     public ImageView pinPoint;
     public RelativeLayout searchContainer;
     public TextView textFindLocation;
+    TextView numberCountText;
+    ImageView shoppingCartButton;
 
     private ArrayList<DataKhanaval> allData = new ArrayList<>();
 
@@ -133,6 +136,8 @@ public class HomeFragment extends Fragment {
         pinPoint = mView.findViewById(R.id.pinPoint);
         searchContainer = mView.findViewById(R.id.searchContainer);
         textFindLocation = mView.findViewById(R.id.textFindLocation);
+        numberCountText = mView.findViewById(R.id.numberCountText);
+        shoppingCartButton = mView.findViewById(R.id.shoppingCartButton);
 
         //searchFragment.setVisibility(View.GONE);
 
@@ -142,6 +147,39 @@ public class HomeFragment extends Fragment {
         slideList.add(new DataFood(R.drawable.maharashtra_thali, "MaharashtraThali"));
         slideList.add(new DataFood(R.drawable.cashback, "Cashback"));
         slideList.add(new DataFood(R.drawable.chow_mein, "ChowMein"));*/
+
+        if (SaveSharedPreference.getAllQuantity(mContext, 0) >= 1 ) {
+
+            numberCountText.setVisibility(View.VISIBLE);
+            numberCountText.setText(String.valueOf(SaveSharedPreference.getAllQuantity(getContext(), 0)));
+
+            shoppingCartButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if (SaveSharedPreference.getAllQuantity(mContext, 0) >= 1 ) {
+
+                        Intent i = new Intent(mContext, OrderScreenActivity.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(i);
+
+                    }
+                }
+            });
+
+        }else {
+
+            shoppingCartButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Toast.makeText(mContext, "There'is no item in the cart", Toast.LENGTH_SHORT).show();
+
+                }
+            });
+
+        }
 
         final FragmentManager fragmentManager = getFragmentManager();
         final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -564,12 +602,13 @@ public class HomeFragment extends Fragment {
                 String[] locationParts = strAdd.split(", ");
                 String locationName = "";
 
-                if (locationParts.length == 8 || locationParts.length == 4 || locationParts.length == 5
-                        || locationParts.length == 6 || locationParts.length == 7){
+                if (/*locationParts.length == 8 || locationParts.length == 4 || locationParts.length == 5
+                        || locationParts.length == 6 || locationParts.length == 7*/locationParts.length < 9){
 
                     locationName = locationParts[0];
 
-                }else if (locationParts.length == 9 || locationParts.length == 10 || locationParts.length == 12){
+                }else if (/*locationParts.length == 9 || locationParts.length == 10 || locationParts.length == 12*/
+                        locationParts.length >= 9){
 
                     locationName = locationParts[1];
 

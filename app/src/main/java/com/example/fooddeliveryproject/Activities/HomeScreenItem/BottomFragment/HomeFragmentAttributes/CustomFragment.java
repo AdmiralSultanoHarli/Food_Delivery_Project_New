@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterCustomCategories;
-import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
 import com.example.fooddeliveryproject.Activities.Model.DataYourFavourites;
 import com.example.fooddeliveryproject.R;
 
@@ -29,6 +28,7 @@ public class CustomFragment extends Fragment {
 
 
     public CustomFragment() {
+
 
 
     }
@@ -60,28 +60,7 @@ public class CustomFragment extends Fragment {
 
         }
 
-        /*ArrayList<Data> dataFoods = getData();
-
-        adapterCustomCategories = new AdapterCustomCategories(dataFoods, getActivity());
-        customCategories.setAdapter(adapterCustomCategories);*/
-
         return v;
     }
 
-    /*private ArrayList<DataKhanaval> getData(){
-
-        ArrayList<DataKhanaval> foodArrayList = new ArrayList<>();
-
-        for(int i = 0; i<img.length; i++){
-
-            DataKhanaval dataFood = new DataKhanaval();
-            //dataFood.setFoodName(foods[i]);
-            dataFood.setImg(img[i]);
-            foodArrayList.add(dataFood);
-
-        }
-
-        return foodArrayList;
-
-    }*/
 }

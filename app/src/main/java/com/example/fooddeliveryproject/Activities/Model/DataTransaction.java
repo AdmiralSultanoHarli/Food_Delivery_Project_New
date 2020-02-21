@@ -12,6 +12,7 @@ public class DataTransaction {
     int buttonTransPosition;
     int foodTransItemCount;
     int foodTransFavourites;
+    String foodTransNotes;
     int foodImg;
 
     public DataTransaction() {
@@ -21,7 +22,7 @@ public class DataTransaction {
 
     public DataTransaction(int foodId, String foodTransName, String foodTransDesc, int foodTransPrice, int foodTransPriceDiscount,
                            int foodTransPriceTotal, int foodTransPriceDiscountTotal, int buttonTransPosition, int foodTransItemCount,
-                           int foodTransFavourites, int foodImg) {
+                           int foodTransFavourites, String foodTransNotes, int foodImg) {
         this.foodId = foodId;
         this.foodTransName = foodTransName;
         this.foodTransDesc = foodTransDesc;
@@ -32,6 +33,7 @@ public class DataTransaction {
         this.buttonTransPosition = buttonTransPosition;
         this.foodTransItemCount = foodTransItemCount;
         this.foodTransFavourites = foodTransFavourites;
+        this.foodTransNotes = foodTransNotes;
         this.foodImg = foodImg;
     }
 
@@ -79,6 +81,10 @@ public class DataTransaction {
         this.foodTransFavourites = foodTransFavourites;
     }
 
+    public void setFoodTransNotes(String foodTransNotes) {
+        this.foodTransNotes = foodTransNotes;
+    }
+
     public String getFoodTransName() {
         return foodTransName;
     }
@@ -117,6 +123,10 @@ public class DataTransaction {
 
     public int getFoodTransFavourites() {
         return foodTransFavourites;
+    }
+
+    public String getFoodTransNotes() {
+        return foodTransNotes;
     }
 
     public int getFoodImg() {

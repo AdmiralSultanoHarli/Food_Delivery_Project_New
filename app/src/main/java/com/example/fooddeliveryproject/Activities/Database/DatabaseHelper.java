@@ -55,6 +55,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_TRANSACTION_BUTTON = "buttoncartquantityopened";
     public static final String COLUMN_FOOD_TRANSACTION_ITEM_COUNT = "foodtransactionitemcount";
     public static final String COLUMN_FOOD_TRANSACTION_FAVOURITES = "foodtransactionfavourites";
+    public static final String COLUMN_FOOD_TRANSACTION_NOTES = "foodtransactionnotes";
     public static final String COLUMN_FOOD_TRANSACTION_IMG = "foodtransactionimg";
 
     // Food Transaction Done
@@ -178,6 +179,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_TRANSACTION_BUTTON + " INTEGER, " +
                 COLUMN_FOOD_TRANSACTION_ITEM_COUNT + " INTEGER, " +
                 COLUMN_FOOD_TRANSACTION_FAVOURITES + " INTEGER, " +
+                COLUMN_FOOD_TRANSACTION_NOTES + " TEXT, " +
                 COLUMN_FOOD_TRANSACTION_IMG + " BLOB " + " )";
 
         String CREATE_TABLE_TRANSACTION_DONE = "CREATE TABLE " + TABLE_TRANSACTION_DONE + " (" +
@@ -364,6 +366,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_FOOD_TRANSACTION_PRICE_TOTAL, data.getFoodTransPriceTotal());
         values.put(COLUMN_FOOD_TRANSACTION_PRICE_DISCOUNT_TOTAL, data.getFoodTransPriceDiscountTotal());
         values.put(COLUMN_FOOD_TRANSACTION_FAVOURITES, data.getFoodTransFavourites());
+        values.put(COLUMN_FOOD_TRANSACTION_NOTES, data.getFoodTransNotes());
         SQLiteDatabase db = this.getWritableDatabase();
         db.update(TABLE_FOOD_TRANSACTION, values, COLUMN_FOOD_TRANSACTION_NAME	+ "	= ?", new String[] { String.valueOf(data.getFoodTransName())});
 
@@ -456,9 +459,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 int transButton = cursor.getInt(7);
                 int foodTransItemCount = cursor.getInt(8);
                 int foodTransFavourites = cursor.getInt(9);
-                int foodTransImg = Integer.parseInt(cursor.getString(10));
+                String foodTransNotes = cursor.getString(10);
+                int foodTransImg = Integer.parseInt(cursor.getString(11));
                 storeData.add(new DataTransaction(foodTransId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
-                        foodTransPriceTotal, foodTransPriceDiscountTotal, transButton, foodTransItemCount, foodTransFavourites,foodTransImg));
+                        foodTransPriceTotal, foodTransPriceDiscountTotal, transButton, foodTransItemCount, foodTransFavourites,
+                        foodTransNotes, foodTransImg));
             }while (cursor.moveToNext());
 
         }

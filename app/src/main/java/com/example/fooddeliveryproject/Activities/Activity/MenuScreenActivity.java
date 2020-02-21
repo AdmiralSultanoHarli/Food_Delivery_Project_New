@@ -9,9 +9,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+
 import com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment.MenuScreenFragment;
 import com.example.fooddeliveryproject.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MenuScreenActivity extends BaseActivity {
 
@@ -19,7 +20,8 @@ public class MenuScreenActivity extends BaseActivity {
     public static ImageView searchButton;
     RelativeLayout menu1, menuSearch;
     SearchView searchView;
-    public FloatingActionButton numberCount;
+    //public FloatingActionButton numberCount;
+    public static TextView numberCountText;
 
     MenuScreenFragment menuScreenFragment = new MenuScreenFragment();
 
@@ -30,11 +32,12 @@ public class MenuScreenActivity extends BaseActivity {
 
         backButton = findViewById(R.id.backButton);
         cartButton = findViewById(R.id.cartButton);
-        numberCount = findViewById(R.id.numberCount);
+        //numberCount = findViewById(R.id.numberCount);
         searchButton = findViewById(R.id.searchButton);
         menu1 = findViewById(R.id.menu1);
         menuSearch = findViewById(R.id.menuSearch);
         searchView = findViewById(R.id.searchView);
+        numberCountText = findViewById(R.id.numberCountText);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
