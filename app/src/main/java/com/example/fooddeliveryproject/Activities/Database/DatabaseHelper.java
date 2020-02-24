@@ -366,6 +366,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_FOOD_TRANSACTION_PRICE_TOTAL, data.getFoodTransPriceTotal());
         values.put(COLUMN_FOOD_TRANSACTION_PRICE_DISCOUNT_TOTAL, data.getFoodTransPriceDiscountTotal());
         values.put(COLUMN_FOOD_TRANSACTION_FAVOURITES, data.getFoodTransFavourites());
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.update(TABLE_FOOD_TRANSACTION, values, COLUMN_FOOD_TRANSACTION_NAME	+ "	= ?", new String[] { String.valueOf(data.getFoodTransName())});
+
+    }
+
+    public void updateDataTransWithNotes(DataTransaction data){
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_TRANSACTION_BUTTON, data.getButtonTransPosition());
+        values.put(COLUMN_FOOD_TRANSACTION_ITEM_COUNT, data.getFoodTransItemCount());
+        values.put(COLUMN_FOOD_TRANSACTION_PRICE_TOTAL, data.getFoodTransPriceTotal());
+        values.put(COLUMN_FOOD_TRANSACTION_PRICE_DISCOUNT_TOTAL, data.getFoodTransPriceDiscountTotal());
+        values.put(COLUMN_FOOD_TRANSACTION_FAVOURITES, data.getFoodTransFavourites());
         values.put(COLUMN_FOOD_TRANSACTION_NOTES, data.getFoodTransNotes());
         SQLiteDatabase db = this.getWritableDatabase();
         db.update(TABLE_FOOD_TRANSACTION, values, COLUMN_FOOD_TRANSACTION_NAME	+ "	= ?", new String[] { String.valueOf(data.getFoodTransName())});

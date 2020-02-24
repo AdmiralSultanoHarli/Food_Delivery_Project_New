@@ -6,11 +6,14 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment.MenuScreenFragment;
 import com.example.fooddeliveryproject.R;
 
@@ -32,7 +35,6 @@ public class MenuScreenActivity extends BaseActivity {
 
         backButton = findViewById(R.id.backButton);
         cartButton = findViewById(R.id.cartButton);
-        //numberCount = findViewById(R.id.numberCount);
         searchButton = findViewById(R.id.searchButton);
         menu1 = findViewById(R.id.menu1);
         menuSearch = findViewById(R.id.menuSearch);
@@ -64,6 +66,52 @@ public class MenuScreenActivity extends BaseActivity {
 
             }
         });
+
+        if (SaveSharedPreference.getAllQuantity(this, 0) >= 1 ) {
+
+            numberCountText.setVisibility(View.VISIBLE);
+            numberCountText.setText(String.valueOf(SaveSharedPreference.getAllQuantity(this, 0)));
+
+            cartButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if (SaveSharedPreference.getAllQuantity(getApplicationContext(), 0) >= 1 ) {
+
+                        Intent i = new Intent(MenuScreenActivity.this, OrderScreenActivity.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(i);
+
+                    }
+                }
+            });
+
+        }else {
+
+            cartButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if (SaveSharedPreference.getAllQuantity(getApplicationContext(), 0) >= 1 ) {
+
+                        Intent i = new Intent(MenuScreenActivity.this, OrderScreenActivity.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(i);
+
+                    }else {
+
+                        Toast.makeText(getApplicationContext(), "There'is no item in the cart", Toast.LENGTH_SHORT).show();
+                        Log.e("AllQuantity", String.valueOf(SaveSharedPreference.getAllQuantity(MenuScreenActivity.this, 0)));
+
+                    }
+
+                }
+            });
+
+
+        }
 
     }
 

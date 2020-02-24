@@ -80,7 +80,6 @@ import java.util.TimerTask;
 
 public class HomeFragment extends Fragment {
 
-    //private List<DataKhanaval> slideList;
     private ViewPager sliderPager;
     private TabLayout indicator;
     private Context mContext;
@@ -92,20 +91,15 @@ public class HomeFragment extends Fragment {
     public TextView textFindLocation;
     TextView numberCountText;
     ImageView shoppingCartButton;
-
-    private ArrayList<DataKhanaval> allData = new ArrayList<>();
-
-    //private AdapterMenuScreen mAdapter;
-    private AdapterSearchView mAdapter;
-    private DatabaseHelper helper;
+    Timer timer;
 
     private static final String TAG = "Location Report";
     private String lastUpdateTime;
-    private static final long WAIT_TIME = 5000;
-    private static final long UPDATE_INTERVAL_IN_MILLISECONDS = 10000;
-    private static final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS = 5000;
+    private static final long WAIT_TIME = 200;
+    private static final int PRIORITY = 2000;
+    private static final long UPDATE_INTERVAL_IN_MILLISECONDS = 100000;
+    private static final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS = 50000;
     private static final int REQUEST_CHECK_SETTINGS = 100;
-
 
     private FusedLocationProviderClient fusedLocationProviderClient;
     private SettingsClient settingsClient;
@@ -114,7 +108,7 @@ public class HomeFragment extends Fragment {
     private LocationCallback locationCallback;
     private Location location;
 
-    boolean locationOpened;
+    boolean locationExist;
 
     // Boolean to toggle the ui
     private boolean requestingLocationUpdates;
@@ -139,14 +133,10 @@ public class HomeFragment extends Fragment {
         numberCountText = mView.findViewById(R.id.numberCountText);
         shoppingCartButton = mView.findViewById(R.id.shoppingCartButton);
 
-        //searchFragment.setVisibility(View.GONE);
+        locationExist = false;
+        init();
 
-       /* slideList = new ArrayList<>();
-        slideList.add(new DataKhanaval(R.drawable.panang_curry, "PanangCurry", ));
-        slideList.add(new DataFood(R.drawable.butter_chicken, "ButterChicken"));
-        slideList.add(new DataFood(R.drawable.maharashtra_thali, "MaharashtraThali"));
-        slideList.add(new DataFood(R.drawable.cashback, "Cashback"));
-        slideList.add(new DataFood(R.drawable.chow_mein, "ChowMein"));*/
+        timer = new Timer();
 
         if (SaveSharedPreference.getAllQuantity(mContext, 0) >= 1 ) {
 
@@ -189,37 +179,14 @@ public class HomeFragment extends Fragment {
         textFindLocation.setVisibility(View.GONE);
         textViewMap.setText(SaveSharedPreference.getLocationSimpleName(getContext(), ""));
 
-        /*searchView.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-
-               searchView.setIconified(false);
-               Log.e("great","in onclick method");
-
-
-           }
-        });*/
 
         searchView.setOnSearchClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("great","in onsearch method");
-                /*searchFragment.setVisibility(View.VISIBLE);
-                scrollView.setVisibility(View.GONE);*/
-                //searchView.setVisibility(View.GONE);
-
-               /* SearchViewFragment searchViewFragment = new SearchViewFragment();
-                searchViewFragment.searchView.setIconified(false);*/
 
                 HomeScreenActivity homeScreenActivity = (HomeScreenActivity) getActivity();
                 homeScreenActivity.isSearchFragmentOpened = true;
                 homeScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, new SearchViewFragment()).addToBackStack(null).commit();
-
-                /*FragmentTransaction searchFragmentTransacation = fragmentManager.beginTransaction();
-
-                SearchViewFragment searchViewFragment = new SearchViewFragment();
-                searchFragmentTransacation.replace(R.id.searchFraegment, searchViewFragment);
-                searchFragmentTransacation.commit();*/
 
             }
         });
@@ -228,30 +195,12 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Log.e("great","in onsearch method");
-                /*searchFragment.setVisibility(View.VISIBLE);
-                scrollView.setVisibility(View.GONE);*/
-                //searchView.setVisibility(View.GONE);
-
-               /* SearchViewFragment searchViewFragment = new SearchViewFragment();
-                searchViewFragment.searchView.setIconified(false);*/
-
                 HomeScreenActivity homeScreenActivity = (HomeScreenActivity) getActivity();
                 homeScreenActivity.isSearchFragmentOpened = true;
                 homeScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, new SearchViewFragment()).addToBackStack(null).commit();
 
-
-                /*FragmentTransaction searchFragmentTransacation = fragmentManager.beginTransaction();
-
-                SearchViewFragment searchViewFragment = new SearchViewFragment();
-                searchFragmentTransacation.replace(R.id.searchFraegment, searchViewFragment);
-                searchFragmentTransacation.commit();*/
-
             }
         });
-
-
-        init();
 
         SaveSharedPreference.getLocationOpened(getContext(), false);
         Log.e("Location First", String.valueOf(SaveSharedPreference.getLocationOpened(mContext, false)));
@@ -259,6 +208,7 @@ public class HomeFragment extends Fragment {
         if (SaveSharedPreference.getLocationOpened(getContext(), false) == false){
 
             startLocationButtonClick();
+            //startLocationUpdates();
             //locationOpened = SaveSharedPreference.getLocationOpened(mContext, false);
             Log.e("Location Opened updated", String.valueOf(SaveSharedPreference.getLocationOpened(mContext, false)));
 
@@ -271,12 +221,11 @@ public class HomeFragment extends Fragment {
            public void onClick(View v) {
 
                startLocationButtonClick();
-               //locationOpened =
+               //startLocationUpdates();
+
            }
         });
 
-
-        restoreValuesFromBundle(savedInstanceState);
 
         ArrayList<DataKhanaval> dataKhanavals = getData();
 
@@ -288,16 +237,9 @@ public class HomeFragment extends Fragment {
 
         sliderPager.setPadding(50,0,50,0);
 
-        Timer timer = new Timer();
         timer.scheduleAtFixedRate(new HomeFragment.SliderTimer(), 0, 4000);
 
         indicator.setupWithViewPager(sliderPager, true);
-
-       /* FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();*/
-
-        /*SearchViewFragment searchViewFragment = new SearchViewFragment();
-        fragmentTransaction.replace(R.id.searchFraegment, searchViewFragment);*/
 
         RestaurantsFragment restaurantsFragment = new RestaurantsFragment();
         fragmentTransaction.replace(R.id.restaurantsFragment, restaurantsFragment, restaurantsFragment.getTag());
@@ -313,6 +255,8 @@ public class HomeFragment extends Fragment {
 
         fragmentTransaction.commit();
 
+        init();
+
         return mView;
     }
 
@@ -326,66 +270,36 @@ public class HomeFragment extends Fragment {
 
     public void init(){
 
-            fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(mContext);
-            settingsClient = LocationServices.getSettingsClient(mContext);
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(mContext);
+        settingsClient = LocationServices.getSettingsClient(mContext);
 
-            locationCallback = new LocationCallback() {
-                @Override
-                public void onLocationResult(LocationResult locationResult) {
-                    super.onLocationResult(locationResult);
-                    //Location is received
-                    location = locationResult.getLastLocation();
+        locationCallback = new LocationCallback() {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                super.onLocationResult(locationResult);
+                //Location is received
+                location = locationResult.getLastLocation();
+                updateLocationUI();
 
-                    updateLocationUI();
+            }
+        };
 
-                }
-            };
+        requestingLocationUpdates = false;
 
-            requestingLocationUpdates = false;
+        locationRequest = new LocationRequest();
 
-            locationRequest = new LocationRequest();
-            /*locationRequest.setInterval(UPDATE_INTERVAL_IN_MILLISECONDS);
-            locationRequest.setFastestInterval(FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS);*/
-            locationRequest.setMaxWaitTime(WAIT_TIME);
-            locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        locationRequest.setInterval(UPDATE_INTERVAL_IN_MILLISECONDS);
+        locationRequest.setFastestInterval(FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS);
 
-            LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
-            builder.addLocationRequest(locationRequest);
-            locationSettingsRequest = builder.build();
+        //locationRequest.setMaxWaitTime(WAIT_TIME);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
+        builder.addLocationRequest(locationRequest);
+        locationSettingsRequest = builder.build();
 
     }
 
-    /**
-     * Restoring values from saved instance state
-     */
-    public void restoreValuesFromBundle(Bundle savedInstanceState){
-
-        if (savedInstanceState != null){
-
-            if (savedInstanceState.containsKey("is_requesting_updates")){
-
-                requestingLocationUpdates = savedInstanceState.getBoolean("is_requesting_updates");
-
-            }
-
-            if (savedInstanceState.containsKey("last_known_location")){
-
-                location = savedInstanceState.getParcelable("last_known_location");
-
-            }
-
-            if (savedInstanceState.containsKey("last_updated_on")){
-
-                lastUpdateTime = savedInstanceState.getString("last_updated_on");
-
-            }
-
-        }
-
-        updateLocationUI();
-
-    }
 
     /**
      * Update the UI displaying the location data
@@ -393,34 +307,16 @@ public class HomeFragment extends Fragment {
      */
     public void updateLocationUI(){
 
-        /*if (SaveSharedPreference.getLocationOpened(mContext, false) == true) {
+        if (location != null) {
 
-            Toast.makeText(mContext, "Not updated", Toast.LENGTH_SHORT).show();
+            getCompleteAddressString(location.getLatitude(), location.getLongitude());
+            Log.e("Latitude", String.valueOf(location.getLatitude()));
+            Log.e("Longitude", String.valueOf(location.getLongitude()));
 
-        }else {*/
+            SaveSharedPreference.setLatitude(mContext, (float) location.getLatitude());
+            SaveSharedPreference.setLongitude(mContext, (float) location.getLongitude());
 
-            if (location != null) {
-
-                getCompleteAddressString(location.getLatitude(), location.getLongitude());
-                Log.e("Latitude", String.valueOf(location.getLatitude()));
-                Log.e("Longitude", String.valueOf(location.getLongitude()));
-
-                SaveSharedPreference.setLatitude(mContext, (float) location.getLatitude());
-                SaveSharedPreference.setLongitude(mContext, (float) location.getLongitude());
-
-            }
-
-
-
-    }
-
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-        outState.putBoolean("is_requesting_updates", requestingLocationUpdates);
-        outState.putParcelable("last_known_location", location);
-        outState.putString("last_updated_on", lastUpdateTime);
+        }
 
     }
 
@@ -438,40 +334,40 @@ public class HomeFragment extends Fragment {
                     public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
                         Log.i(TAG, "All location settings are satisfied.");
 
-                        //Toast.makeText(getContext(), "Started location updates!", Toast.LENGTH_SHORT).show();
-                        SaveSharedPreference.setLocationOpened(getActivity(), true);
+                            //Toast.makeText(getContext(), "Started location updates!", Toast.LENGTH_SHORT).show();
+                            SaveSharedPreference.setLocationOpened(getActivity(), true);
 
-                        //noinspection MissingPermission
-                        fusedLocationProviderClient.requestLocationUpdates(locationRequest,
-                                locationCallback, Looper.myLooper());
+                            //noinspection MissingPermission
+                            fusedLocationProviderClient.requestLocationUpdates(locationRequest,
+                                    locationCallback, Looper.myLooper());
 
-                        updateLocationUI();
-                    }
-                })
-                .addOnFailureListener(getActivity(), new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        int statusCode = ((ApiException) e).getStatusCode();
-                        switch (statusCode) {
-                            case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
-                                Log.i(TAG, "Location settings are not satisfied. Attempting to upgrade " +
-                                        "location settings ");
-                                try {
-                                    // Show the dialog by calling startResolutionForResult(), and check the
-                                    // result in onActivityResult().
-                                    ResolvableApiException rae = (ResolvableApiException) e;
-                                    rae.startResolutionForResult(getActivity(), REQUEST_CHECK_SETTINGS);
-                                } catch (IntentSender.SendIntentException sie) {
-                                    Log.i(TAG, "PendingIntent unable to execute request.");
-                                }
-                                break;
-                            case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
-                                String errorMessage = "Location settings are inadequate, and cannot be " +
-                                        "fixed here. Fix in Settings.";
-                                Log.e(TAG, errorMessage);
-
-                                Toast.makeText(getContext(), errorMessage, Toast.LENGTH_LONG).show();
+                            updateLocationUI();
                         }
+                    })
+                    .addOnFailureListener((Activity) mContext, new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            int statusCode = ((ApiException) e).getStatusCode();
+                            switch (statusCode) {
+                                case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+                                    Log.i(TAG, "Location settings are not satisfied. Attempting to upgrade " +
+                                            "location settings ");
+                                    try {
+                                        // Show the dialog by calling startResolutionForResult(), and check the
+                                        // result in onActivityResult().
+                                        ResolvableApiException rae = (ResolvableApiException) e;
+                                        rae.startResolutionForResult((Activity) mContext, REQUEST_CHECK_SETTINGS);
+                                    } catch (IntentSender.SendIntentException sie) {
+                                        Log.i(TAG, "PendingIntent unable to execute request.");
+                                    }
+                                    break;
+                                case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
+                                    String errorMessage = "Location settings are inadequate, and cannot be " +
+                                            "fixed here. Fix in Settings.";
+                                    Log.e(TAG, errorMessage);
+
+                                    Toast.makeText(getContext(), errorMessage, Toast.LENGTH_LONG).show();
+                            }
 
                         updateLocationUI();
                     }
@@ -480,7 +376,7 @@ public class HomeFragment extends Fragment {
 
     public void startLocationButtonClick() {
         // Requesting ACCESS_FINE_LOCATION using Dexter library
-        Dexter.withActivity(getActivity())
+        Dexter.withActivity((Activity) mContext)
                 .withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
                 .withListener(new PermissionListener() {
                     @Override
@@ -496,6 +392,7 @@ public class HomeFragment extends Fragment {
                         if (response.isPermanentlyDenied()) {
                             // open device settings when the permission is
                             // denied permanently
+                            Log.e("this button", "pressed");
                             openSettings();
                         }
                     }
@@ -508,8 +405,7 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             // Check for the integer request code originally supplied to startResolutionForResult().
             case REQUEST_CHECK_SETTINGS:
@@ -532,50 +428,51 @@ public class HomeFragment extends Fragment {
         // Removing location updates
         fusedLocationProviderClient
                 .removeLocationUpdates(locationCallback)
-                .addOnCompleteListener(getActivity(), new OnCompleteListener<Void>() {
+                .addOnCompleteListener((Activity) mContext, new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                           //Toast.makeText(mContext, "Location updates stopped!", Toast.LENGTH_SHORT).show();
+                        Log.e("Location Stopped", " yes");
                     }
                 });
     }
 
     public void openSettings() {
-        Intent intent = new Intent();
+        /*Intent intent = new Intent();
         intent.setAction(
                 Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
         Uri uri = Uri.fromParts("package",
                 BuildConfig.APPLICATION_ID, null);
         intent.setData(uri);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
+        startActivity(intent);*/
+
+        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+        mContext.startActivity(intent);
     }
 
-    @Override
+    /*@Override
     public void onResume() {
         super.onResume();
 
         // Resuming location updates depending on button state and
         // allowed permissions
-
-
-
         if (requestingLocationUpdates && checkPermissions()) {
             startLocationUpdates();
         }
 
         updateLocationUI();
 
-    }
+    }*/
 
     public boolean checkPermissions() {
-        int permissionState = ActivityCompat.checkSelfPermission(getContext(),
+        int permissionState = ActivityCompat.checkSelfPermission(mContext,
                 Manifest.permission.ACCESS_FINE_LOCATION);
         return permissionState == PackageManager.PERMISSION_GRANTED;
 
     }
 
-    @Override
+    /*@Override
     public void onPause() {
         super.onPause();
 
@@ -583,7 +480,7 @@ public class HomeFragment extends Fragment {
             // pausing location updates
             stopLocationUpdates();
         }
-    }
+    }*/
 
     public String getCompleteAddressString(double LATITUDE, double LONGITUDE) {
         String strAdd = "";
@@ -690,7 +587,5 @@ public class HomeFragment extends Fragment {
 
         }
     }
-
-
 
 }

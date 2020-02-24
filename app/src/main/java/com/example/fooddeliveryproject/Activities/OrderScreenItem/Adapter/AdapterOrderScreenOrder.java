@@ -196,10 +196,10 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
 
                 DataTransaction dataTransaction = new DataTransaction(data.getFoodId(), data.getFoodTransName(),
                         data.getFoodTransDesc(), data.getFoodTransPrice(), data.getFoodTransPriceDiscount(), priceTotal[0],
-                        priceDiscountTotal[0], isChartQuantity[0], quantity[0], data.getFoodTransFavourites(), data. getFoodTransNotes(),
+                        priceDiscountTotal[0], isChartQuantity[0], quantity[0], data.getFoodTransFavourites(), data.getFoodTransNotes(),
                         data.getFoodImg());
 
-                helper.updateDataTrans(dataTransaction);
+                helper.updateDataTransWithNotes(dataTransaction);
 
             }
 
@@ -480,7 +480,7 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
                         priceTotal[0], priceDiscountTotal[0], isChartQuantity[0], quantity[0],
                         data.getFoodTransFavourites(), data.getFoodTransNotes(), data.getFoodImg());
 
-                helper.updateDataTrans(dataTransaction);
+                helper.updateDataTransWithNotes(dataTransaction);
 
             }
 
@@ -645,7 +645,7 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
                         priceTotal[0], priceDiscountTotal[0], isChartQuantity[0], quantity[0],
                         foodTransFavourites, data.getFoodTransNotes(), data.getFoodImg());
 
-                helper.updateDataTrans(dataTransaction);
+                helper.updateDataTransWithNotes(dataTransaction);
 
             }
 
