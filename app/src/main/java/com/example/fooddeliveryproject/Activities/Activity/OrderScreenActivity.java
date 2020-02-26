@@ -455,6 +455,8 @@ public class OrderScreenActivity extends BaseActivity {
                 try {
                     AddressData addressData = data.getParcelableExtra(Constants.ADDRESS_INTENT);
 
+
+                    SaveSharedPreference.setLocationOpened(OrderScreenActivity.this, true);
                     double latitudeDoub = addressData.getLatitude();
                     double longitudeDoub = addressData.getLongitude();
 

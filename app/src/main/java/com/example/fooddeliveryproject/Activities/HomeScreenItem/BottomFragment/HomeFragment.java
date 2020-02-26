@@ -1,9 +1,9 @@
 package com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
@@ -27,8 +27,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -36,9 +38,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.fooddeliveryproject.Activities.Activity.HomeScreenActivity;
 import com.example.fooddeliveryproject.Activities.Activity.OrderScreenActivity;
-import com.example.fooddeliveryproject.Activities.Database.DatabaseHelper;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
-import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.AdapterSearchView;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.HomeFragmentAttributes.RestaurantsFragment;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.HomeFragmentAttributes.SearchViewFragment;
 import com.example.fooddeliveryproject.Activities.Model.DataKhanaval;
@@ -46,6 +46,7 @@ import com.example.fooddeliveryproject.Activities.HomeScreenItem.Adapter.Adapter
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.HomeFragmentAttributes.CustomFragment;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.HomeFragmentAttributes.BestCusineFragment;
 import com.example.fooddeliveryproject.Activities.HomeScreenItem.BottomFragment.HomeFragmentAttributes.YourFavouritesFragment;
+import com.example.fooddeliveryproject.BuildConfig;
 import com.example.fooddeliveryproject.R;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
@@ -63,7 +64,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
-import com.karumi.dexter.BuildConfig;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -97,9 +97,9 @@ public class HomeFragment extends Fragment {
     private String lastUpdateTime;
     private static final long WAIT_TIME = 200;
     private static final int PRIORITY = 2000;
-    private static final long UPDATE_INTERVAL_IN_MILLISECONDS = 100000;
-    private static final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS = 50000;
-    private static final int REQUEST_CHECK_SETTINGS = 100;
+    private static final long UPDATE_INTERVAL_IN_MILLISECONDS = 1000000;
+    private static final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS = 500000;
+    public static final int REQUEST_CHECK_SETTINGS = 100;
 
     private FusedLocationProviderClient fusedLocationProviderClient;
     private SettingsClient settingsClient;
@@ -108,10 +108,9 @@ public class HomeFragment extends Fragment {
     private LocationCallback locationCallback;
     private Location location;
 
-    boolean locationExist;
-
     // Boolean to toggle the ui
-    private boolean requestingLocationUpdates;
+    public static boolean requestingLocationUpdates;
+    boolean firstTimeLocation;
 
     public static SearchView searchView;
     int[] img = {R.drawable.muamalat_cashback, R.drawable.domino_cashback, R.drawable.pizza_cashback, R.drawable.cashback, R.drawable.flipburger_cashback, R.drawable.cashback_s};
@@ -133,8 +132,8 @@ public class HomeFragment extends Fragment {
         numberCountText = mView.findViewById(R.id.numberCountText);
         shoppingCartButton = mView.findViewById(R.id.shoppingCartButton);
 
-        locationExist = false;
         init();
+        firstTimeLocation = false;
 
         timer = new Timer();
 
@@ -205,14 +204,15 @@ public class HomeFragment extends Fragment {
         SaveSharedPreference.getLocationOpened(getContext(), false);
         Log.e("Location First", String.valueOf(SaveSharedPreference.getLocationOpened(mContext, false)));
 
-        if (SaveSharedPreference.getLocationOpened(getContext(), false) == false){
+        /*if (SaveSharedPreference.getLocationOpened(getContext(), false) == false){
 
-            startLocationButtonClick();
+            //startLocationButtonClick();
             //startLocationUpdates();
             //locationOpened = SaveSharedPreference.getLocationOpened(mContext, false);
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
             Log.e("Location Opened updated", String.valueOf(SaveSharedPreference.getLocationOpened(mContext, false)));
 
-        }
+        }*/
 
         Log.e("Location Opened", String.valueOf(SaveSharedPreference.getLocationOpened(mContext, false)));
 
@@ -220,8 +220,12 @@ public class HomeFragment extends Fragment {
            @Override
            public void onClick(View v) {
 
-               startLocationButtonClick();
+               //startLocationButtonClick();
                //startLocationUpdates();
+               //ActivityCompat.requestPermissions((Activity) mContext,new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+               //requestingLocationUpdates = true;
+               requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+
 
            }
         });
@@ -255,8 +259,6 @@ public class HomeFragment extends Fragment {
 
         fragmentTransaction.commit();
 
-        init();
-
         return mView;
     }
 
@@ -288,8 +290,8 @@ public class HomeFragment extends Fragment {
 
         locationRequest = new LocationRequest();
 
-        locationRequest.setInterval(UPDATE_INTERVAL_IN_MILLISECONDS);
-        locationRequest.setFastestInterval(FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS);
+        /*locationRequest.setInterval(UPDATE_INTERVAL_IN_MILLISECONDS);
+        locationRequest.setFastestInterval(FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS);*/
 
         //locationRequest.setMaxWaitTime(WAIT_TIME);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
@@ -299,7 +301,6 @@ public class HomeFragment extends Fragment {
         locationSettingsRequest = builder.build();
 
     }
-
 
     /**
      * Update the UI displaying the location data
@@ -328,53 +329,121 @@ public class HomeFragment extends Fragment {
     public void startLocationUpdates() {
         settingsClient
                 .checkLocationSettings(locationSettingsRequest)
-                .addOnSuccessListener(getActivity(), new OnSuccessListener<LocationSettingsResponse>() {
-                    @SuppressLint("MissingPermission")
+                .addOnSuccessListener((Activity) mContext, new OnSuccessListener<LocationSettingsResponse>() {
                     @Override
                     public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
                         Log.i(TAG, "All location settings are satisfied.");
 
-                            //Toast.makeText(getContext(), "Started location updates!", Toast.LENGTH_SHORT).show();
-                            SaveSharedPreference.setLocationOpened(getActivity(), true);
+                        //Toast.makeText(getContext(), "Started location updates!", Toast.LENGTH_SHORT).show();
+                        SaveSharedPreference.setLocationOpened(getActivity(), true);
 
-                            //noinspection MissingPermission
-                            fusedLocationProviderClient.requestLocationUpdates(locationRequest,
-                                    locationCallback, Looper.myLooper());
+                        //noinspection MissingPermission
+                        fusedLocationProviderClient.requestLocationUpdates(locationRequest,
+                                locationCallback, Looper.myLooper());
+                        updateLocationUI();
+                    }
+                })
+                .addOnFailureListener((Activity) mContext, new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        int statusCode = ((ApiException) e).getStatusCode();
+                        switch (statusCode) {
+                            case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+                                Log.i(TAG, "Location settings are not satisfied. Attempting to upgrade " +
+                                        "location settings ");
+                                //requestingLocationUpdates = false;
+                                try {
+                                    // Show the dialog by calling startResolutionForResult(), and check the
+                                    // result in onActivityResult().
+                                    ResolvableApiException rae = (ResolvableApiException) e;
+                                    rae.startResolutionForResult((Activity) mContext, REQUEST_CHECK_SETTINGS);
+                                    Log.e("try", "in here");
+                                } catch (IntentSender.SendIntentException sie) {
+                                    Log.i(TAG, "PendingIntent unable to execute request.");
+                                }
+                                break;
+                            case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
+                                String errorMessage = "Location settings are inadequate, and cannot be " +
+                                        "fixed here. Fix in Settings.";
+                                Log.e(TAG, errorMessage);
 
-                            updateLocationUI();
+                                Toast.makeText(getContext(), errorMessage, Toast.LENGTH_LONG).show();
                         }
-                    })
-                    .addOnFailureListener((Activity) mContext, new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            int statusCode = ((ApiException) e).getStatusCode();
-                            switch (statusCode) {
-                                case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
-                                    Log.i(TAG, "Location settings are not satisfied. Attempting to upgrade " +
-                                            "location settings ");
-                                    try {
-                                        // Show the dialog by calling startResolutionForResult(), and check the
-                                        // result in onActivityResult().
-                                        ResolvableApiException rae = (ResolvableApiException) e;
-                                        rae.startResolutionForResult((Activity) mContext, REQUEST_CHECK_SETTINGS);
-                                    } catch (IntentSender.SendIntentException sie) {
-                                        Log.i(TAG, "PendingIntent unable to execute request.");
-                                    }
-                                    break;
-                                case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
-                                    String errorMessage = "Location settings are inadequate, and cannot be " +
-                                            "fixed here. Fix in Settings.";
-                                    Log.e(TAG, errorMessage);
-
-                                    Toast.makeText(getContext(), errorMessage, Toast.LENGTH_LONG).show();
-                            }
 
                         updateLocationUI();
                     }
                 });
     }
 
-    public void startLocationButtonClick() {
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) // grant the access from user when the activity created
+                != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            //startLocationButtonClick();
+
+        }else {
+
+            if (SaveSharedPreference.getLocationOpened(getContext(), false) == false){
+
+                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+
+            }else {
+
+                Log.e("No things", "NO THINGS");
+
+            }
+
+        }
+    }
+
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        switch (requestCode) {
+            case 1: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    if (checkPermissions()) {
+                        //startLocationUpdates();
+                        requestingLocationUpdates = true;
+                    }
+
+                } else {
+
+                    Log.e("User", "Not agree!");
+                    //requestingLocationUpdates = false;
+                    // show a dialog
+                    new AlertDialog.Builder(mContext).setMessage("You need to enable location permissions to use this app").setPositiveButton("Go to settings", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // navigate to settings
+                            openSettings();
+                            requestingLocationUpdates = true;
+                        }
+                    }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // leave?
+                            requestingLocationUpdates = false;
+
+                        }
+                    }).show();
+                }
+                    //requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            }
+            return;
+        }
+
+    }
+
+    /*public void startLocationButtonClick() {
         // Requesting ACCESS_FINE_LOCATION using Dexter library
         Dexter.withActivity((Activity) mContext)
                 .withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -383,17 +452,17 @@ public class HomeFragment extends Fragment {
                     public void onPermissionGranted(PermissionGrantedResponse response) {
                         requestingLocationUpdates = true;
                         //SaveSharedPreference.setLocationOpened(mContext, true);
-                        SaveSharedPreference.setLocationOpened(getActivity(), true);
                         startLocationUpdates();
                     }
 
                     @Override
                     public void onPermissionDenied(PermissionDeniedResponse response) {
+                        requestingLocationUpdates = false;
                         if (response.isPermanentlyDenied()) {
-                            // open device settings when the permission is
-                            // denied permanently
-                            Log.e("this button", "pressed");
-                            openSettings();
+                        // open device settings when the permission is
+                        // denied permanently
+                        Log.e("this button", "pressed");
+                        openSettings();
                         }
                     }
 
@@ -402,68 +471,25 @@ public class HomeFragment extends Fragment {
                         token.continuePermissionRequest();
                     }
                 }).check();
-    }
+    }*/
+
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-            // Check for the integer request code originally supplied to startResolutionForResult().
-            case REQUEST_CHECK_SETTINGS:
-                switch (resultCode) {
-                    case Activity.RESULT_OK:
-                        Log.e(TAG, "User agreed to make required location settings changes.");
-                        // Nothing to do. startLocationupdates() gets called in onResume again.
-                        break;
-                    case Activity.RESULT_CANCELED:
-                        Log.e(TAG, "User choose not to make required location settings changes.");
-                        requestingLocationUpdates = false;
-                        break;
-                }
-                break;
-        }
-
-    }
-
-    public void stopLocationUpdates() {
-        // Removing location updates
-        fusedLocationProviderClient
-                .removeLocationUpdates(locationCallback)
-                .addOnCompleteListener((Activity) mContext, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                          //Toast.makeText(mContext, "Location updates stopped!", Toast.LENGTH_SHORT).show();
-                        Log.e("Location Stopped", " yes");
-                    }
-                });
-    }
-
-    public void openSettings() {
-        /*Intent intent = new Intent();
-        intent.setAction(
-                Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-        Uri uri = Uri.fromParts("package",
-                BuildConfig.APPLICATION_ID, null);
-        intent.setData(uri);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);*/
-
-        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-        mContext.startActivity(intent);
-    }
-
-    /*@Override
     public void onResume() {
         super.onResume();
 
-        // Resuming location updates depending on button state and
-        // allowed permissions
+        Log.e("Bool Location resume", String.valueOf(requestingLocationUpdates));
+
         if (requestingLocationUpdates && checkPermissions()) {
+
             startLocationUpdates();
+
         }
 
         updateLocationUI();
 
-    }*/
+    }
+
 
     public boolean checkPermissions() {
         int permissionState = ActivityCompat.checkSelfPermission(mContext,
@@ -472,21 +498,25 @@ public class HomeFragment extends Fragment {
 
     }
 
-    /*@Override
-    public void onPause() {
-        super.onPause();
+    public void openSettings() {
+        Intent intent = new Intent();
+        intent.setAction(
+                Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package",
+                BuildConfig.APPLICATION_ID, null);
+        intent.setData(uri);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
 
-        if (requestingLocationUpdates) {
-            // pausing location updates
-            stopLocationUpdates();
-        }
-    }*/
+        /*Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+        mContext.startActivity(intent);*/
+    }
 
     public String getCompleteAddressString(double LATITUDE, double LONGITUDE) {
         String strAdd = "";
         Geocoder geocoder = new Geocoder(mContext, Locale.getDefault());
         try {
-            List<Address> addresses = geocoder.getFromLocation(LATITUDE, LONGITUDE, 3);
+            List<Address> addresses = geocoder.getFromLocation(LATITUDE, LONGITUDE, 1);
             if (addresses != null) {
                 Address returnedAddress = addresses.get(0);
                 StringBuilder strReturnedAddress = new StringBuilder("");
@@ -551,9 +581,6 @@ public class HomeFragment extends Fragment {
 
     }
 
-
-
-
     class SliderTimer extends TimerTask{
 
         @Override
@@ -583,9 +610,21 @@ public class HomeFragment extends Fragment {
                 }
             });
 
-
-
         }
+    }
+
+    public void stopLocationUpdates() {
+        // Removing location updates
+        requestingLocationUpdates = false;
+        fusedLocationProviderClient
+                .removeLocationUpdates(locationCallback)
+                .addOnCompleteListener((Activity) mContext, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        //Toast.makeText(mContext, "Location updates stopped!", Toast.LENGTH_SHORT).show();
+                        Log.e("Location Stopped", " yes");
+                    }
+                });
     }
 
 }

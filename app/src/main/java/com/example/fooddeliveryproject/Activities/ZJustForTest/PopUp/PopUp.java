@@ -147,5 +147,37 @@ public class PopUp extends Activity {
                     orderScreenActivity.wishlistAdded = false;
 
                 }*/
+
+    /*public void startLocationButtonClick() {
+        // Requesting ACCESS_FINE_LOCATION using Dexter library
+        Dexter.withActivity((Activity) mContext)
+                .withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+                .withListener(new PermissionListener() {
+                    @Override
+                    public void onPermissionGranted(PermissionGrantedResponse response) {
+                        requestingLocationUpdates = true;
+                        //SaveSharedPreference.setLocationOpened(mContext, true);
+                        SaveSharedPreference.setLocationOpened(getActivity(), true);
+                        startLocationUpdates();
+                    }
+
+                    @Override
+                    public void onPermissionDenied(PermissionDeniedResponse response) {
+                        *//*if (response.isPermanentlyDenied()) {
+                            // open device settings when the permission is
+                            // denied permanently
+                            Log.e("this button", "pressed");
+                            openSettings();
+                        }*//*
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
+                        token.continuePermissionRequest();
+                    }
+                }).check();
+    }
+*/
+
     }
 }

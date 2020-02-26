@@ -14,9 +14,9 @@
     <application
         android:allowBackup="false"
         android:hardwareAccelerated="true"
-        android:icon="@mipmap/khanal_test"
+        android:icon="@mipmap/ic_food_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/khanal_test_round"
+        android:roundIcon="@mipmap/ic_food_logo_round"
         android:supportsRtl="true"
         android:theme="@style/BlackStatusBar"
         tools:replace="android:allowBackup">
