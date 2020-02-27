@@ -117,9 +117,9 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
         viewHolder.img.setImageResource(topList.get(i).getFoodImg());
 
         viewHolder.favouriteFood.setColorFilter(data.getFoodTransFavourites() == 0 ?
-                ContextCompat.getColor(context, R.color.colorButtonGray) : ContextCompat.getColor(context, R.color.circleRed));
+                ContextCompat.getColor(context, R.color.grayButton) : ContextCompat.getColor(context, R.color.circleRed));
 
-        Log.e("Food name",viewHolder.foodName.getText().toString());
+        //Log.e("Food name",viewHolder.foodName.getText().toString());
 
         viewHolder.orderSummaryCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,7 +150,7 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
 
                 }
 
-                Log.e("Adapter Position", String.valueOf(position));
+                //Log.e("Adapter Position", String.valueOf(position));
 
                 // Total All Item
                 quantityTotal++;
@@ -213,7 +213,7 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
 
                 if (data.moveToFirst()){
 
-                    Log.e("Data", "Exists");
+                    //Log.e("Data", "Exists");
                     DataKhanaval dataKhanaval = new DataKhanaval(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                             foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, foodTransFavourites, img);
                     helper.updateData(dataKhanaval);
@@ -250,6 +250,9 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
                 Log.e("FoodPriceTotal", " = " + foodPriceTotal);
                 Log.e("FoodDiscountTotal", " = " + foodPriceDiscountTotal);
 
+                Log.e("-----------------", "----------------");
+
+
                 int totalPayment = SaveSharedPreference.getTotalPayment(context, 0) + topList.get(i).getFoodTransPrice();
 
                 SaveSharedPreference.setTotalPayment(context, totalPayment);
@@ -276,7 +279,7 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
 
                     if (quantityTotal == 1) {
 
-                        Log.e("Adapter Position", String.valueOf(position));
+                        //Log.e("Adapter Position", String.valueOf(position));
 
                         // Total All Item
                         quantityTotal = 0;
@@ -324,7 +327,7 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
 
                     }else if(quantityTotal > 1) {
 
-                        Log.e("Adapter Position", String.valueOf(position));
+                        //Log.e("Adapter Position", String.valueOf(position));
 
                         // Total All Item
                         quantityTotal--;
@@ -373,7 +376,7 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
 
                     if (quantityTotal > 1) {
 
-                        Log.e("Adapter Position", String.valueOf(position));
+                        //Log.e("Adapter Position", String.valueOf(position));
 
                         // Total All Item
                         quantityTotal--;
@@ -429,7 +432,7 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
 
                 if (data.moveToFirst()){
 
-                    Log.e("Data", "Exists");
+                    //Log.e("Data", "Exists");
                     DataKhanaval dataKhanaval = new DataKhanaval(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                             foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, foodTransFavourites, img);
                     helper.updateData(dataKhanaval);
@@ -512,6 +515,8 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
                 Log.e("FoodPriceTotal", " = " + foodPriceTotal);
                 Log.e("FoodDiscountTotal", " = " + foodPriceDiscountTotal);
 
+                Log.e("-----------------", "----------------");
+
                 int totalPayment = SaveSharedPreference.getTotalPayment(context, 0) - topList.get(i).getFoodTransPrice();
 
                 SaveSharedPreference.setTotalPayment(context, totalPayment);
@@ -583,7 +588,7 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
 
                     data.setFoodTransFavourites(foodTransFavourites);
 
-                    viewHolder.favouriteFood.setColorFilter(ContextCompat.getColor(context, R.color.colorButtonGray));
+                    viewHolder.favouriteFood.setColorFilter(ContextCompat.getColor(context, R.color.grayButton));
 
                     orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.orderSummaryFragment, new OrderScreenOrderFragment()).commit();
                     orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.paymentDetailsFragment, new OrderPaymentDetailsFragment()).commit();
@@ -629,7 +634,7 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
 
                 if (data.moveToFirst()){
 
-                    Log.e("Data", "Exists");
+                    //Log.e("Data", "Exists");
                     DataKhanaval dataKhanaval = new DataKhanaval(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                             foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, foodTransFavourites, img);
                     helper.updateData(dataKhanaval);

@@ -289,15 +289,15 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
                 helper.updateData(dataKhanaval);
 
-                Log.e("Datakhanaval changed", String.valueOf(dataKhanaval));
+                //Log.e("Datakhanaval changed", String.valueOf(dataKhanaval));
 
             }
 
             public void logListItem() {
 
-                Log.e("Adapter Position", String.valueOf(position));
+                //Log.e("Adapter Position", String.valueOf(position));
 
-                Log.e("Tag Position", String.valueOf(viewHolder.buttonAddToChart.getTag()));
+                //Log.e("Tag Position", String.valueOf(viewHolder.buttonAddToChart.getTag()));
 
                 bundle.putString("FoodName", menuList.get(i).getFoodName());
                 bundle.putString("FoodCount", String.valueOf(quantityTotal));
@@ -326,6 +326,9 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                 Log.e("FoodPriceTotal", " = " + foodPriceTotal);
                 Log.e("FoodDiscountTotal", " = " + foodPriceDiscountTotal);
 
+                Log.e("-----------------", "----------------");
+
+
             }
 
         });
@@ -343,7 +346,7 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
                 }
 
-                Log.e("Adapter Position", String.valueOf(position));
+                //Log.e("Adapter Position", String.valueOf(position));
 
                 // Total All Item
                 quantityTotal++;
@@ -390,7 +393,7 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                         priceDiscountTotal[0], isChartQuantity[0], quantity[0], data.getFoodFavourites(), data.getImg());
 
                 helper.updateData(dataKhanaval);
-                Log.e("Datakhanaval changed", String.valueOf(dataKhanaval));
+                //Log.e("Datakhanaval changed", String.valueOf(dataKhanaval));
 
             }
 
@@ -404,7 +407,7 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
                 if (data.moveToFirst()){
 
-                    Log.e("Data", "Exists");
+                    //Log.e("Data", "Exists");
                     DataTransaction dataTransaction1 = new DataTransaction(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                             foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, foodTransFavourites, null, img);
                     helper.updateDataTrans(dataTransaction1);
@@ -440,6 +443,9 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                 Log.e("FoodPriceTotal", " = " + foodPriceTotal);
                 Log.e("FoodDiscountTotal", " = " + foodPriceDiscountTotal);
 
+                Log.e("-----------------", "----------------");
+
+
             }
         });
 
@@ -454,7 +460,7 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
                     if (quantityTotal == 1) {
 
-                        Log.e("Adapter Position", String.valueOf(position));
+                        //Log.e("Adapter Position", String.valueOf(position));
 
                         // Total All Item
                         quantityTotal = 0;
@@ -502,7 +508,7 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
                     }else if(quantityTotal > 1) {
 
-                        Log.e("Adapter Position", String.valueOf(position));
+                        //Log.e("Adapter Position", String.valueOf(position));
 
                         // Total All Item
                         quantityTotal--;
@@ -551,7 +557,7 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
                     if (quantityTotal > 1) {
 
-                        Log.e("Adapter Position", String.valueOf(position));
+                        //Log.e("Adapter Position", String.valueOf(position));
 
                         // Total All Item
                         quantityTotal--;
@@ -604,7 +610,7 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
                 if (data.moveToFirst()){
 
-                    Log.e("Data", "Exists");
+                    //Log.e("Data", "Exists");
                     DataTransaction dataTransaction1 = new DataTransaction(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                             foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, foodTransFavourites, null, img);
                     helper.updateDataTrans(dataTransaction1);
@@ -656,7 +662,7 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                         priceDiscountTotal[0], isChartQuantity[0], quantity[0], data.getFoodFavourites(), data.getImg());
 
                 helper.updateData(dataKhanaval);
-                Log.e("Datakhanaval changed", String.valueOf(dataKhanaval));
+                //Log.e("Datakhanaval changed", String.valueOf(dataKhanaval));
 
             }
 
@@ -686,6 +692,9 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
                 Log.e("FoodCountTotal", " = " + quantityTotal);
                 Log.e("FoodPriceTotal", " = " + foodPriceTotal);
                 Log.e("FoodDiscountTotal", " = " + foodPriceDiscountTotal);
+
+                Log.e("-----------------", "----------------");
+
 
             }
         });

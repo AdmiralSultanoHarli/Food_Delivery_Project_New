@@ -64,12 +64,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionDeniedResponse;
-import com.karumi.dexter.listener.PermissionGrantedResponse;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,17 +82,18 @@ public class HomeFragment extends Fragment {
     public static ScrollView scrollView;
     public ImageView pinPoint;
     public RelativeLayout searchContainer;
-    public TextView textFindLocation;
+    //public TextView textFindLocation;
     TextView numberCountText;
     ImageView shoppingCartButton;
     Timer timer;
+    TextView textViewLocation;
 
     private static final String TAG = "Location Report";
     private String lastUpdateTime;
     private static final long WAIT_TIME = 200;
     private static final int PRIORITY = 2000;
-    private static final long UPDATE_INTERVAL_IN_MILLISECONDS = 1000000;
-    private static final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS = 500000;
+    private static final long UPDATE_INTERVAL_IN_MILLISECONDS = 1000;
+    private static final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS = 500;
     public static final int REQUEST_CHECK_SETTINGS = 100;
 
     private FusedLocationProviderClient fusedLocationProviderClient;
@@ -128,9 +123,10 @@ public class HomeFragment extends Fragment {
         scrollView = mView.findViewById(R.id.scrollView);
         pinPoint = mView.findViewById(R.id.pinPoint);
         searchContainer = mView.findViewById(R.id.searchContainer);
-        textFindLocation = mView.findViewById(R.id.textFindLocation);
+        //textFindLocation = mView.findViewById(R.id.textFindLocation);
         numberCountText = mView.findViewById(R.id.numberCountText);
         shoppingCartButton = mView.findViewById(R.id.shoppingCartButton);
+        textViewLocation = mView.findViewById(R.id.textViewLocation);
 
         init();
         firstTimeLocation = false;
@@ -163,7 +159,7 @@ public class HomeFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
 
-                    Toast.makeText(mContext, "There'is no item in the cart", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "There's no item in the cart", Toast.LENGTH_SHORT).show();
 
                 }
             });
@@ -175,7 +171,7 @@ public class HomeFragment extends Fragment {
 
         textViewMap.setVisibility(View.VISIBLE);
         pinPoint.setVisibility(View.VISIBLE);
-        textFindLocation.setVisibility(View.GONE);
+//        textFindLocation.setVisibility(View.VISIBLE);
         textViewMap.setText(SaveSharedPreference.getLocationSimpleName(getContext(), ""));
 
 
@@ -203,16 +199,6 @@ public class HomeFragment extends Fragment {
 
         SaveSharedPreference.getLocationOpened(getContext(), false);
         Log.e("Location First", String.valueOf(SaveSharedPreference.getLocationOpened(mContext, false)));
-
-        /*if (SaveSharedPreference.getLocationOpened(getContext(), false) == false){
-
-            //startLocationButtonClick();
-            //startLocationUpdates();
-            //locationOpened = SaveSharedPreference.getLocationOpened(mContext, false);
-            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-            Log.e("Location Opened updated", String.valueOf(SaveSharedPreference.getLocationOpened(mContext, false)));
-
-        }*/
 
         Log.e("Location Opened", String.valueOf(SaveSharedPreference.getLocationOpened(mContext, false)));
 
@@ -290,8 +276,8 @@ public class HomeFragment extends Fragment {
 
         locationRequest = new LocationRequest();
 
-        /*locationRequest.setInterval(UPDATE_INTERVAL_IN_MILLISECONDS);
-        locationRequest.setFastestInterval(FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS);*/
+        locationRequest.setInterval(UPDATE_INTERVAL_IN_MILLISECONDS);
+        locationRequest.setFastestInterval(FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS);
 
         //locationRequest.setMaxWaitTime(WAIT_TIME);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
@@ -515,6 +501,8 @@ public class HomeFragment extends Fragment {
     public String getCompleteAddressString(double LATITUDE, double LONGITUDE) {
         String strAdd = "";
         Geocoder geocoder = new Geocoder(mContext, Locale.getDefault());
+        //textViewLocation.setVisibility(View.VISIBLE);
+        stopLocationUpdates();
         try {
             List<Address> addresses = geocoder.getFromLocation(LATITUDE, LONGITUDE, 1);
             if (addresses != null) {
@@ -549,7 +537,7 @@ public class HomeFragment extends Fragment {
 
                 textViewMap.setVisibility(View.VISIBLE);
                 pinPoint.setVisibility(View.VISIBLE);
-                textFindLocation.setVisibility(View.GONE);
+                //textFindLocation.setVisibility(View.GONE);
                 textViewMap.setText(locationName);
                 SaveSharedPreference.setLocationName(mContext, strAdd);
                 SaveSharedPreference.setLocationSimpleName(mContext, locationName);

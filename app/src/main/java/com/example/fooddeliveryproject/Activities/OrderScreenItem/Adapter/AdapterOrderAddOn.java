@@ -216,7 +216,7 @@ public class AdapterOrderAddOn extends RecyclerView.Adapter<AdapterOrderAddOn.Vi
 
                 if (data.moveToFirst()){
 
-                    Log.e("Data", "Exists");
+                    //Log.e("Data", "Exists");
                     DataKhanaval dataKhanaval = new DataKhanaval(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
                             foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, foodTransFavourites, img);
                     helper.updateData(dataKhanaval);
@@ -252,6 +252,8 @@ public class AdapterOrderAddOn extends RecyclerView.Adapter<AdapterOrderAddOn.Vi
                 Log.e("FoodCountTotal", " = " + quantityTotal);
                 Log.e("FoodPriceTotal", " = " + foodPriceTotal);
                 Log.e("FoodDiscountTotal", " = " + foodPriceDiscountTotal);
+
+                Log.e("-----------------", "----------------");
 
                 int totalPayment = SaveSharedPreference.getTotalPayment(context, 0) + menuDetailList.get(i).getFoodPrice();
 

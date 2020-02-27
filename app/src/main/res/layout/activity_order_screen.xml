@@ -82,6 +82,7 @@
                         android:id="@+id/textViewDeliver"
                         android:text="Deliver to"
                         android:textSize="14dp"
+                        android:textStyle="bold"
                         android:textColor="@color/colorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -180,6 +181,7 @@
                         android:id="@+id/textViewOrder"
                         android:text="Order Summary"
                         android:textSize="14dp"
+                        android:textStyle="bold"
                         android:textColor="@color/colorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -267,6 +269,7 @@
                         android:layout_height="wrap_content"
                         android:text="People also order this"
                         android:textSize="14dp"
+                        android:textStyle="bold"
                         android:textColor="@color/colorBlack"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentTop="true"
@@ -294,6 +297,7 @@
                         android:id="@+id/textViewSelectDelivery"
                         android:text="Select Delivery Partner"
                         android:textSize="14dp"
+                        android:textStyle="bold"
                         android:textColor="@color/colorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -370,7 +374,7 @@
                                 android:id="@+id/line"
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
-                                android:background="@color/grayLine"
+                                android:background="@color/grayButton"
                                 android:layout_marginLeft="3dp"
                                 android:layout_marginRight="3dp"
                                 />
@@ -438,6 +442,7 @@
                         android:id="@+id/textViewSelectPayment"
                         android:text="Select Payment Mode"
                         android:textSize="14dp"
+                        android:textStyle="bold"
                         android:textColor="@color/colorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -503,7 +508,7 @@
                                 android:id="@+id/line1"
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
-                                android:background="@color/grayLine"
+                                android:background="@color/grayButton"
                                 android:layout_marginLeft="3dp"
                                 android:layout_marginRight="3dp"
                                 />
@@ -549,7 +554,7 @@
                                 android:id="@+id/line2"
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
-                                android:background="@color/grayLine"
+                                android:background="@color/grayButton"
                                 android:layout_marginLeft="3dp"
                                 android:layout_marginRight="3dp"
                                 />
@@ -608,6 +613,7 @@
                         android:text="Payment Details"
                         android:textSize="14dp"
                         android:textColor="@color/colorBlack"
+                        android:textStyle="bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -685,7 +691,7 @@
                                 android:layout_marginLeft="20dp"
                                 android:layout_marginTop="-1dp"
                                 android:layout_marginRight="20dp"
-                                android:background="@color/grayLine" />
+                                android:background="@color/grayButton" />
 
                             <TextView
                                 android:id="@+id/textViewTotal"
@@ -741,6 +747,7 @@
                 android:id="@+id/totalPriceBar"
                 android:text="53.000"
                 android:textSize="12dp"
+                android:textStyle="bold"
                 android:textColor="@color/colorBlack"
                 android:layout_marginTop="13dp"
                 android:layout_marginLeft="12dp"

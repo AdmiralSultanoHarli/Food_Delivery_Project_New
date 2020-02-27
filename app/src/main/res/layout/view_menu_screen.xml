@@ -87,16 +87,17 @@
                 android:visibility="gone"
                 android:layout_width="100dp"
                 android:layout_height="25dp"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:foreground="?attr/selectableItemBackground"
                 android:background="@drawable/rounded_button_addtochart"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="5dp"
                 android:textAllCaps="false"
-                android:text="Add To Chart"
-                android:textColor="@color/textGreyColor"
+                android:text="Add To Cart"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
                 android:textSize="12dp"
-                android:translationY="-6dp"
+                android:layout_marginBottom="2dp"
                 />
 
             <androidx.cardview.widget.CardView
@@ -109,7 +110,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="5dp"
-                android:layout_marginBottom="6dp"
+                android:layout_marginBottom="2dp"
                 android:visibility="gone"
                 >
 
@@ -168,6 +169,6 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_height="2dp"
-        android:background="@color/line"/>
+        android:background="@color/gray"/>
 
 </RelativeLayout>

@@ -38,6 +38,7 @@
                 android:layout_below="@+id/orderFoodImage"
                 android:layout_width="match_parent"
                 android:gravity="center|left"
+                android:textSize="12dp"
                 android:layout_height="match_parent"
                 android:textColor="@color/colorBlack"
                 />

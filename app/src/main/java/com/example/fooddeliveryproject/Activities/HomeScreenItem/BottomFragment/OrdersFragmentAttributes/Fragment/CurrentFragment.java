@@ -70,7 +70,7 @@ public class CurrentFragment extends Fragment{
             adapterCurrent = new AdapterCurrent(allData, getActivity());
             currentCategories.setAdapter(adapterCurrent);
 
-            Log.e("CURRENT DATA", String.valueOf(allData));
+            //Log.e("CURRENT DATA", String.valueOf(allData));
 
         }else {
 
