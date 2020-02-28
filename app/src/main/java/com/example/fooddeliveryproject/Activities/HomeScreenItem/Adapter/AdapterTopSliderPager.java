@@ -34,9 +34,7 @@ public class AdapterTopSliderPager extends PagerAdapter {
         View slideLayout = inflater.inflate(R.layout.view_top_categories, container,false);
 
         ImageView slideImage = slideLayout.findViewById(R.id.orderFoodImage);
-
         slideImage.setImageResource(mList.get(position).getImg());
-
         container.addView(slideLayout);
 
         slideLayout.setOnClickListener(new View.OnClickListener() {

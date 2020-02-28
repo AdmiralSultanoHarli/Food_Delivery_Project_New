@@ -757,6 +757,8 @@ public class AdapterMenuScreen extends RecyclerView.Adapter<AdapterMenuScreen.Vi
 
     }
 
+
+
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         public ImageView img;

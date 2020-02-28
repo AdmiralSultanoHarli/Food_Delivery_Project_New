@@ -1,5 +1,6 @@
 package com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,6 +32,7 @@ public class MenuScreenFragment extends Fragment {
     AdapterMenuScreen menuScreenAdapter;
     ArrayList<DataKhanaval> allData = new ArrayList<>();
     private DatabaseHelper helper;
+    SQLiteDatabase db;
 
     public MenuScreenFragment() {
 
@@ -49,6 +51,7 @@ public class MenuScreenFragment extends Fragment {
         helper = new DatabaseHelper(getActivity());
         menuScreenCategories = v.findViewById(R.id.menuScreenRecyclerView);
         allData = helper.listDataMenuScreen();
+        //db = helper.getWritableDatabase();
         menuScreenCategories.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManagerMenuScreen = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         menuScreenCategories.setLayoutManager(layoutManagerMenuScreen);
@@ -88,6 +91,7 @@ public class MenuScreenFragment extends Fragment {
         });
 
 
+
         if (allData.size() > 0){
 
             menuScreenCategories.setVisibility(View.VISIBLE);
@@ -101,4 +105,12 @@ public class MenuScreenFragment extends Fragment {
 
     }
 
+    /*@Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        db.close();
+        Log.e("Menu Screen", "Called");
+
+    }*/
 }

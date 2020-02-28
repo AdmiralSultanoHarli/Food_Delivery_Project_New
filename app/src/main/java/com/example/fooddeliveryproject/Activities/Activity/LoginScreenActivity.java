@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
@@ -21,7 +21,7 @@ import com.example.fooddeliveryproject.R;
 public class LoginScreenActivity extends BaseActivity {
 
     Button buttonSignIn, buttonSignUp;
-    ImageButton buttonClose;
+    ImageView buttonClose;
     EditText phoneNumber, password;
     private AwesomeValidation awesomeValidation;
     private SQLiteOpenHelper openHelper;

@@ -16,6 +16,7 @@ import android.os.Looper;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -219,7 +220,6 @@ public class HomeFragment extends Fragment {
 
         ArrayList<DataKhanaval> dataKhanavals = getData();
 
-        Log.d("context", String .valueOf(sliderPager));
         if(mContext!=null) {
             AdapterTopSliderPager adapter = new AdapterTopSliderPager(dataKhanavals, getActivity());
             sliderPager.setAdapter(adapter);
@@ -228,6 +228,7 @@ public class HomeFragment extends Fragment {
         sliderPager.setPadding(50,0,50,0);
 
         timer.scheduleAtFixedRate(new HomeFragment.SliderTimer(), 0, 4000);
+
 
         indicator.setupWithViewPager(sliderPager, true);
 
@@ -381,11 +382,8 @@ public class HomeFragment extends Fragment {
                 Log.e("No things", "NO THINGS");
 
             }
-
         }
     }
-
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -584,6 +582,16 @@ public class HomeFragment extends Fragment {
 
                 @Override
                 public void run() {
+
+                    LinearLayout tabStrip = ((LinearLayout)indicator.getChildAt(0));
+                    for(int i = 0; i < tabStrip.getChildCount(); i++) {
+                        tabStrip.getChildAt(i).setOnTouchListener(new View.OnTouchListener() {
+                            @Override
+                            public boolean onTouch(View v, MotionEvent event) {
+                                return true;
+                            }
+                        });
+                    }
 
                     if (sliderPager.getCurrentItem()<getData().size()-1){
 

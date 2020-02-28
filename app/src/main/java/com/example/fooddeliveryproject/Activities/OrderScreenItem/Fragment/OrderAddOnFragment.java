@@ -1,6 +1,8 @@
 package com.example.fooddeliveryproject.Activities.OrderScreenItem.Fragment;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +30,7 @@ public class OrderAddOnFragment extends Fragment {
     AdapterOrderAddOn orderAddOnAdapter;
     ArrayList<DataAlsoOrderThis> allData;
     private DatabaseHelper helper;
+    SQLiteDatabase db;
 
     public OrderAddOnFragment() {
 
@@ -43,6 +46,7 @@ public class OrderAddOnFragment extends Fragment {
         helper = new DatabaseHelper(getActivity());
         orderAddOn = v.findViewById(R.id.menuDetailAddOnRecyclerView);
         allData = helper.listDataNew();
+        //db = helper.getWritableDatabase();
         orderAddOn.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManagerBestCusine = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         orderAddOn.setLayoutManager(layoutManagerBestCusine);
@@ -62,6 +66,15 @@ public class OrderAddOnFragment extends Fragment {
         return v;
 
     }
+
+    /*@Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        db.close();
+        Log.e("Order Add On", "Called");
+
+    }*/
 
 
 }

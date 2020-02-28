@@ -751,6 +751,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    @Override
+    protected void finalize() throws Throwable {
+        this.close();
+        super.finalize();
+    }
+
 
 
     /*public void addData(Data data){

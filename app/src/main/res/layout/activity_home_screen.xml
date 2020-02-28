@@ -113,6 +113,7 @@
         app:itemIconTint="@color/navigation_button_color"
         app:itemTextColor="@color/navigation_button_color"
         app:labelVisibilityMode="labeled"
+        android:background="?attr/selectableItemBackground"
         app:menu="@menu/bottom_nav_menu" />
 
 

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
@@ -20,7 +21,7 @@ import com.example.fooddeliveryproject.R;
 public class SignUpScreenActivity extends BaseActivity {
 
     Button buttonSignUp;
-    ImageButton buttonClose;
+    ImageView buttonClose;
     EditText name, phoneNumber, password;
 
     SQLiteOpenHelper openHelper;

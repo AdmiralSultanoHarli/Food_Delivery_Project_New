@@ -7,13 +7,14 @@
     android:background="@color/colorWhite"
     tools:context=".Activities.Activity.SignUpScreenActivity">
 
-    <ImageButton
+    <ImageView
         android:id="@+id/buttonClose"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="22dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/iconx"
+        android:src="@drawable/ic_close_blue_40dp"
+        android:background="?actionBarItemBackground"
         />
 
     <TextView
@@ -21,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/buttonClose"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:paddingLeft="2dp"

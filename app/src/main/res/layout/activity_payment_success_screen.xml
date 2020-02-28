@@ -20,7 +20,7 @@
             android:clickable="true"
             android:src="@drawable/ic_home_black_24dp"
             android:tint="@color/colorButton"
-            android:foreground="?attr/selectableItemBackground"
+            android:background="?actionBarItemBackground"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"

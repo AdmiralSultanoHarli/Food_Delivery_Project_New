@@ -1,7 +1,5 @@
 package com.example.fooddeliveryproject.Activities.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -11,7 +9,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.R;
 
 public class SplashScreenActivity extends BaseActivity {
