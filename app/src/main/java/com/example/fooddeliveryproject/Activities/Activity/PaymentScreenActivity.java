@@ -5,10 +5,13 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +43,8 @@ public class PaymentScreenActivity extends BaseActivity {
     int gopayBalance;
     int muamalatBalance;
 
+    ProgressBar progressBar;
+
     DataKhanaval dataKhanaval;
 
     SQLiteOpenHelper openHelper;
@@ -67,6 +72,7 @@ public class PaymentScreenActivity extends BaseActivity {
         availableBalance = findViewById(R.id.availableBalance);
         minusPayment = findViewById(R.id.minusPayment);
         line = findViewById(R.id.line);
+        progressBar = findViewById(R.id.progressBar);
 
         imagePayment.setBackgroundResource(SaveSharedPreference.getImagePayment(this, 0));
         line.setBackgroundResource(SaveSharedPreference.getColorPayment(this, 0));
@@ -83,114 +89,131 @@ public class PaymentScreenActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
 
+                progressBar.setVisibility(View.VISIBLE);
+                getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 String pattern = "dd MMMM yyyy";
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, new Locale("en", "UK"));
                 String date = simpleDateFormat.format(new Date());
                 SaveSharedPreference.setDate(PaymentScreenActivity.this, date);
 
-                int foodPrice = 0;
-                int foodPriceTotal = 0;
-                int isCartOpened = 0;
-                int itemCount = 0;
+                final int foodPrice = 0;
+                final int foodPriceTotal = 0;
+                final int isCartOpened = 0;
+                final int itemCount = 0;
 
-                String shopName = SaveSharedPreference.getFoodCategory(PaymentScreenActivity.this, "");
-                int totalPayment = SaveSharedPreference.getTotalPayment(PaymentScreenActivity.this, 0);
-                String dates = SaveSharedPreference.getDate(PaymentScreenActivity.this, "");
-                String paymentMethod = SaveSharedPreference.getPaymentName(PaymentScreenActivity.this, "");
-                String orderTracker = "Food Is Preparing";
-                String location = SaveSharedPreference.getLocationName(PaymentScreenActivity.this, "");
-                int shopImg = SaveSharedPreference.getFoodShopImg(PaymentScreenActivity.this, 0);
+                final String shopName = SaveSharedPreference.getFoodCategory(PaymentScreenActivity.this, "");
+                final int totalPayment = SaveSharedPreference.getTotalPayment(PaymentScreenActivity.this, 0);
+                final String dates = SaveSharedPreference.getDate(PaymentScreenActivity.this, "");
+                final String paymentMethod = SaveSharedPreference.getPaymentName(PaymentScreenActivity.this, "");
+                final String orderTracker = "Food Is Preparing";
+                final String location = SaveSharedPreference.getLocationName(PaymentScreenActivity.this, "");
+                final int shopImg = SaveSharedPreference.getFoodShopImg(PaymentScreenActivity.this, 0);
 
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
 
-                if(SaveSharedPreference.getPaymentMethodName(getApplicationContext(), 0) == 1){
+                        progressBar.setVisibility(View.INVISIBLE);
 
-                    if (SaveSharedPreference.getMubalance(getApplicationContext(), 0) > 32000 &&
-                            SaveSharedPreference.getMubalance(getApplicationContext(), 0) >= paymentTotalInt) {
+                        if(SaveSharedPreference.getPaymentMethodName(getApplicationContext(), 0) == 1){
 
-                        int muamalatBalanceInt = muamalatBalance - paymentTotalInt;
+                            if (SaveSharedPreference.getMubalance(getApplicationContext(), 0) > 32000 &&
+                                    SaveSharedPreference.getMubalance(getApplicationContext(), 0) >= paymentTotalInt) {
 
-                        if (muamalatBalanceInt <= 32000){
+                                int muamalatBalanceInt = muamalatBalance - paymentTotalInt;
 
-                            Toast.makeText(PaymentScreenActivity.this, "We're really sorry the current balance must be 32.000", Toast.LENGTH_LONG).show();
+                                if (muamalatBalanceInt <= 32000){
 
-                        }else {
+                                    Toast.makeText(PaymentScreenActivity.this, "We're really sorry the current balance must be 32.000", Toast.LENGTH_LONG).show();
+                                    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
-                            SaveSharedPreference.setMuBalance(PaymentScreenActivity.this, muamalatBalanceInt);
-                            paymentSuccessReset();
-                            resetData(foodPrice, foodPriceTotal, isCartOpened, itemCount);
-                            deleteDataTrans();
-                            insertTransactionDoneData(shopName, totalPayment, dates, paymentMethod, orderTracker, location, shopImg);
-                            deleteDataNew();
-                            insertDataNew();
+                                }else {
+
+                                    SaveSharedPreference.setMuBalance(PaymentScreenActivity.this, muamalatBalanceInt);
+                                    paymentSuccessReset();
+                                    resetData(foodPrice, foodPriceTotal, isCartOpened, itemCount);
+                                    deleteDataTrans();
+                                    insertTransactionDoneData(shopName, totalPayment, dates, paymentMethod, orderTracker, location, shopImg);
+                                    deleteDataNew();
+                                    insertDataNew();
+
+                                }
+
+                            }else {
+
+                                Toast.makeText(PaymentScreenActivity.this, "Not Enough Balance", Toast.LENGTH_SHORT).show();
+                                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+                            }
+                        }else if (SaveSharedPreference.getPaymentMethodName(getApplicationContext(), 0) == 2){
+
+                            if (SaveSharedPreference.getOvoBalance(getApplicationContext(), 0) > 32000 &&
+                                    SaveSharedPreference.getOvoBalance(getApplicationContext(), 0) >= paymentTotalInt) {
+
+                                int ovoBalanceint = ovoBalance - paymentTotalInt;
+
+                                if (ovoBalanceint <= 32000){
+
+                                    Toast.makeText(PaymentScreenActivity.this, "We're really sorry the current balance must be 32.000", Toast.LENGTH_LONG).show();
+                                    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+                                }else {
+
+                                    SaveSharedPreference.setOvoBalance(PaymentScreenActivity.this, ovoBalanceint);
+                                    paymentSuccessReset();
+                                    resetData(foodPrice, foodPriceTotal, isCartOpened, itemCount);
+                                    deleteDataTrans();
+                                    insertTransactionDoneData(shopName, totalPayment, dates, paymentMethod, orderTracker, location, shopImg);
+                                    deleteDataNew();
+                                    insertDataNew();
+
+                                }
+
+                            }else {
+
+                                Toast.makeText(PaymentScreenActivity.this, "Not Enough Balance", Toast.LENGTH_SHORT).show();
+                                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+                            }
+
+                        }else if(SaveSharedPreference.getPaymentMethodName(getApplicationContext(), 0) == 3){
+
+                            if (SaveSharedPreference.getGopayBalance(getApplicationContext(), 0) > 32000 &&
+                                    SaveSharedPreference.getGopayBalance(getApplicationContext(), 0) >= paymentTotalInt) {
+
+                                int gopayBalanceInt = gopayBalance - paymentTotalInt;
+
+                                if (gopayBalanceInt <= 32000){
+
+                                    Toast.makeText(PaymentScreenActivity.this, "We're really sorry the current balance must be 32.000", Toast.LENGTH_LONG).show();
+                                    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+                                }else {
+
+                                    SaveSharedPreference.setGopayBalance(PaymentScreenActivity.this, gopayBalanceInt);
+                                    paymentSuccessReset();
+                                    resetData(foodPrice, foodPriceTotal, isCartOpened, itemCount);
+                                    deleteDataTrans();
+                                    insertTransactionDoneData(shopName, totalPayment, dates, paymentMethod, orderTracker, location, shopImg);
+                                    deleteDataNew();
+                                    insertDataNew();
+
+                                }
+                            }else {
+
+                                Toast.makeText(PaymentScreenActivity.this, "Not Enough Balance", Toast.LENGTH_SHORT).show();
+                                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+                            }
 
                         }
 
-                    }else {
-
-                        Toast.makeText(PaymentScreenActivity.this, "Not Enough Balance", Toast.LENGTH_SHORT).show();
-
                     }
-                }else if (SaveSharedPreference.getPaymentMethodName(getApplicationContext(), 0) == 2){
-
-                    if (SaveSharedPreference.getOvoBalance(getApplicationContext(), 0) > 32000 &&
-                            SaveSharedPreference.getOvoBalance(getApplicationContext(), 0) >= paymentTotalInt) {
-
-                        int ovoBalanceint = ovoBalance - paymentTotalInt;
-
-                        if (ovoBalanceint <= 32000){
-
-                            Toast.makeText(PaymentScreenActivity.this, "We're really sorry the current balance must be 32.000", Toast.LENGTH_LONG).show();
-
-                        }else {
-
-                            SaveSharedPreference.setOvoBalance(PaymentScreenActivity.this, ovoBalanceint);
-                            paymentSuccessReset();
-                            resetData(foodPrice, foodPriceTotal, isCartOpened, itemCount);
-                            deleteDataTrans();
-                            insertTransactionDoneData(shopName, totalPayment, dates, paymentMethod, orderTracker, location, shopImg);
-                            deleteDataNew();
-                            insertDataNew();
-
-                        }
-
-                    }else {
-
-                        Toast.makeText(PaymentScreenActivity.this, "Not Enough Balance", Toast.LENGTH_SHORT).show();
-
-                    }
-
-                }else if(SaveSharedPreference.getPaymentMethodName(getApplicationContext(), 0) == 3){
-
-                    if (SaveSharedPreference.getGopayBalance(getApplicationContext(), 0) > 32000 &&
-                            SaveSharedPreference.getGopayBalance(getApplicationContext(), 0) >= paymentTotalInt) {
-
-                        int gopayBalanceInt = gopayBalance - paymentTotalInt;
-
-                        if (gopayBalanceInt <= 32000){
-
-                            Toast.makeText(PaymentScreenActivity.this, "We're really sorry the current balance must be 32.000", Toast.LENGTH_LONG).show();
-
-                        }else {
-
-                            SaveSharedPreference.setGopayBalance(PaymentScreenActivity.this, gopayBalanceInt);
-                            paymentSuccessReset();
-                            resetData(foodPrice, foodPriceTotal, isCartOpened, itemCount);
-                            deleteDataTrans();
-                            insertTransactionDoneData(shopName, totalPayment, dates, paymentMethod, orderTracker, location, shopImg);
-                            deleteDataNew();
-                            insertDataNew();
-
-                        }
-                    }else {
-
-                        Toast.makeText(PaymentScreenActivity.this, "Not Enough Balance", Toast.LENGTH_SHORT).show();
-
-                    }
-
-                }
-
+                }, 3000);
 
             }
+
 
         });
 
@@ -223,7 +246,6 @@ public class PaymentScreenActivity extends BaseActivity {
 
             }
         });
-
 
         paymentTotal.setText(decimalHelper.formatter(paymentTotalInt));
         minusPayment.setText("-" + decimalHelper.formatter(SaveSharedPreference.getTotalPayment(this, 0)));

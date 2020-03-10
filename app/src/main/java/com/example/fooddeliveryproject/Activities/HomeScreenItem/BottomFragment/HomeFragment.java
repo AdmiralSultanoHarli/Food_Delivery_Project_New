@@ -597,7 +597,6 @@ public class HomeFragment extends Fragment {
 
                         sliderPager.setCurrentItem(sliderPager.getCurrentItem()+1);
 
-
                     }else {
 
                         sliderPager.setCurrentItem(0);

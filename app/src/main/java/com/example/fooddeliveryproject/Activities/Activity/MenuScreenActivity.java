@@ -6,9 +6,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 import com.example.fooddeliveryproject.Activities.Helper.SaveSharedPreference;
 import com.example.fooddeliveryproject.Activities.MenuScreenItem.Fragment.MenuScreenFragment;
 import com.example.fooddeliveryproject.R;
+import com.google.android.gms.dynamic.IFragmentWrapper;
 
 public class MenuScreenActivity extends BaseActivity {
 
@@ -25,6 +28,8 @@ public class MenuScreenActivity extends BaseActivity {
     SearchView searchView;
     //public FloatingActionButton numberCount;
     public static TextView numberCountText;
+    ProgressBar progressBar;
+    boolean progress = false;
 
     MenuScreenFragment menuScreenFragment = new MenuScreenFragment();
 
@@ -40,6 +45,7 @@ public class MenuScreenActivity extends BaseActivity {
         menuSearch = findViewById(R.id.menuSearch);
         searchView = findViewById(R.id.searchView);
         numberCountText = findViewById(R.id.numberCountText);
+        progressBar = findViewById(R.id.progressBar);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -110,10 +116,20 @@ public class MenuScreenActivity extends BaseActivity {
                 }
             });
 
-
         }
 
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                progressBar.setVisibility(View.INVISIBLE);
+
+            }
+
+        }, 2000);
+
     }
+
 
     @Override
     public void onBackPressed() {

@@ -153,4 +153,15 @@
 
     </androidx.cardview.widget.CardView>
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="100dp"
+        android:layout_below="@id/balanceCategories"
+        android:layout_centerInParent="true"
+        android:indeterminateTint="@color/colorButton"
+        android:visibility="invisible"
+        />
+
 </RelativeLayout>

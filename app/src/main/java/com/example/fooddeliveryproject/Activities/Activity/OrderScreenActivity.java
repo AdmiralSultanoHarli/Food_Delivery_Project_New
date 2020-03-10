@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -18,6 +19,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -51,6 +53,8 @@ public class OrderScreenActivity extends BaseActivity {
     public static Button accNotes;
     public static Button couponShower;
     public static EditText editNotes;
+
+    ProgressBar progressBar;
 
     DecimalHelper decimalHelper;
 
@@ -120,6 +124,7 @@ public class OrderScreenActivity extends BaseActivity {
         imageViewMap = findViewById(R.id.imageViewMap);
         textViewChangeAddress = findViewById(R.id.textViewChangeAddress);
         textViewAddOn = findViewById(R.id.textViewAddOn);
+        progressBar = findViewById(R.id.progressBar);
 
         /*editNotesString = editNotes.getText().toString();*/
 
@@ -316,6 +321,15 @@ public class OrderScreenActivity extends BaseActivity {
 
             }
         });
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                progressBar.setVisibility(View.INVISIBLE);
+
+            }
+        }, 2000);
 
 
         FragmentManager fragmentManager = getSupportFragmentManager();

@@ -24,7 +24,7 @@ public class PastFragment extends Fragment{
     AdapterPast adapterPast;
     String[] date = {"23 December 2019", "24 December 2019", "25 December 2019", "26 December 2019"};
     String[] foodName = {"Soto", "Nasi Lemak", "Sate Ayam", "Nasi Padang"};
-    String[] orderTracker = {"Order Delivered", "Order Delivered", "Order Delivered", "Order Delivered"};
+    String[] orderTracker = {"Bank Muamalat", "Gopay", "Ovo", "Gopay"};
     int[] foodPrice = {49000, 50000, 30000, 20000};
     int[] img = {R.drawable.soto, R.drawable.nasi_lemak, R.drawable.sate_ayam, R.drawable.nasi_padang_s};
 
