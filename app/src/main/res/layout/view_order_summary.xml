@@ -73,7 +73,38 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
                 android:src="@drawable/ic_hearts"
-                android:tint="@color/gray"/>
+                android:tint="@color/gray"
+                android:visibility="gone"/>
+
+            <RelativeLayout
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="6dp">
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/favourite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    app:lottie_autoPlay="false"
+                    app:lottie_loop="false"
+                    android:scaleType="center"
+                    app:lottie_scale="0.35"
+                    />
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/notFavourite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:lottie_scale="0.17"
+                    android:layout_centerInParent="true"
+                    app:lottie_autoPlay="false"
+                    app:lottie_loop="false"
+                    app:lottie_speed="4"
+                    />
+
+            </RelativeLayout>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/orderButtonAddPlusMinusChart"

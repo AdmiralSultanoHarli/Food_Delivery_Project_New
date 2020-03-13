@@ -268,7 +268,6 @@ public class PaymentScreenActivity extends BaseActivity {
 
     public void resetData(int foodPriceTotal, int foodPriceDiscountTotal, int foodCartQuantityOpened, int foodItemCount){
 
-
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseHelper.COLUMN_FOOD_PRICE_TOTAL, foodPriceTotal);
         contentValues.put(DatabaseHelper.COLUMN_FOOD_PRICE_DISCOUNT_TOTAL, foodPriceDiscountTotal);

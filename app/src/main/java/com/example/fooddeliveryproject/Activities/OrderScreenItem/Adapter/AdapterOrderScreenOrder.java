@@ -1,5 +1,6 @@
 package com.example.fooddeliveryproject.Activities.OrderScreenItem.Adapter;
 
+import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,6 +8,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,7 +23,9 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.vectordrawable.graphics.drawable.ArgbEvaluator;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.fooddeliveryproject.Activities.Activity.HomeScreenActivity;
 import com.example.fooddeliveryproject.Activities.Activity.MenuDetailsScreenActivity;
 import com.example.fooddeliveryproject.Activities.Activity.MenuScreenActivity;
@@ -64,6 +68,8 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
     int foodTransItemCount;
     int foodTransFavourites;
     int img;
+
+    ValueAnimator colorAnimation;
 
     OrderScreenActivity orderScreenActivity = new OrderScreenActivity();
 
@@ -116,8 +122,24 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
         viewHolder.chartQuantity.setText(String.valueOf(topList.get(i).getFoodTransItemCount()));
         viewHolder.img.setImageResource(topList.get(i).getFoodImg());
 
-        viewHolder.favouriteFood.setColorFilter(data.getFoodTransFavourites() == 0 ?
-                ContextCompat.getColor(context, R.color.grayButton) : ContextCompat.getColor(context, R.color.circleRed));
+        /*viewHolder.favouriteFood.setColorFilter(data.getFoodTransFavourites() == 0 ?
+                ContextCompat.getColor(context, R.color.grayButton) : ContextCompat.getColor(context, R.color.circleRed));*/
+
+        if (data.getFoodTransFavourites() == 0){
+
+            viewHolder.favourite.setVisibility(View.GONE);
+            viewHolder.notFavourite.setVisibility(View.VISIBLE);
+            viewHolder.notFavourite.setAnimation("not_favourite.json");
+            viewHolder.notFavourite.setProgress(5);
+
+        }else if(data.getFoodTransFavourites() == 1){
+
+            viewHolder.notFavourite.setVisibility(View.GONE);
+            viewHolder.favourite.setVisibility(View.VISIBLE);
+            viewHolder.favourite.setAnimation("favourite.json");
+            viewHolder.favourite.setProgress(5);
+
+        }
 
         //Log.e("Food name",viewHolder.foodName.getText().toString());
 
@@ -526,7 +548,7 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
             }
         });
 
-        viewHolder.favouriteFood.setOnClickListener(new View.OnClickListener() {
+        viewHolder.favourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -557,9 +579,30 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
 
                     data.setFoodTransFavourites(foodTransFavourites);
 
-                    viewHolder.favouriteFood.setColorFilter(ContextCompat.getColor(context, R.color.circleRed));
+                    //Basic animation
+                    colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(),
+                            ContextCompat.getColor(context, R.color.grayButton), ContextCompat.getColor(context, R.color.circleRed));
+                    //viewHolder.favouriteFood.setColorFilter(ContextCompat.getColor(context, R.color.circleRed));
+                    colorAnimation.setDuration(1000);
+                    colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public void onAnimationUpdate(ValueAnimator animation) {
+                            viewHolder.favouriteFood.setColorFilter((int) animation.getAnimatedValue(), PorterDuff.Mode.SRC_IN);
+                        }
+                    });
+                    colorAnimation.start();
 
-                    orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.orderSummaryFragment, new OrderScreenOrderFragment()).commit();
+                    //Lotti animation
+                    viewHolder.notFavourite.setProgress(0);
+                    viewHolder.notFavourite.pauseAnimation();
+                    viewHolder.notFavourite.setVisibility(View.GONE);
+                    viewHolder.favourite.setAnimation("favourite.json");
+                    viewHolder.favourite.playAnimation();
+                    viewHolder.favourite.setVisibility(View.VISIBLE);
+
+                    /*viewHolder.favouriteFood.animate().setDuration(1000) */
+
+                    //orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.orderSummaryFragment, new OrderScreenOrderFragment()).commit();
                     orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.paymentDetailsFragment, new OrderPaymentDetailsFragment()).commit();
                     orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.menuOrderAlsoOrderFragment, new OrderAddOnFragment()).commit();
                     //homeScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, new HomeFragment()).commit();
@@ -588,9 +631,30 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
 
                     data.setFoodTransFavourites(foodTransFavourites);
 
-                    viewHolder.favouriteFood.setColorFilter(ContextCompat.getColor(context, R.color.grayButton));
+                    //Basic animation
+                    colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(),
+                            ContextCompat.getColor(context, R.color.circleRed), ContextCompat.getColor(context, R.color.grayButton));
+                    //viewHolder.favouriteFood.setColorFilter(ContextCompat.getColor(context, R.color.grayButton));
+                    colorAnimation.setDuration(1000);
+                    colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public void onAnimationUpdate(ValueAnimator animation) {
 
-                    orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.orderSummaryFragment, new OrderScreenOrderFragment()).commit();
+                            viewHolder.favouriteFood.setColorFilter((int) animation.getAnimatedValue(), PorterDuff.Mode.SRC_IN);
+
+                        }
+                    });
+                    colorAnimation.start();
+
+                    //Lotti animation
+                    viewHolder.favourite.setProgress(0);
+                    viewHolder.favourite.pauseAnimation();
+                    viewHolder.favourite.setVisibility(View.GONE);
+                    viewHolder.notFavourite.setAnimation("not_favourite.json");
+                    viewHolder.notFavourite.playAnimation();
+                    viewHolder.notFavourite.setVisibility(View.VISIBLE);
+
+                    //orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.orderSummaryFragment, new OrderScreenOrderFragment()).commit();
                     orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.paymentDetailsFragment, new OrderPaymentDetailsFragment()).commit();
                     orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.menuOrderAlsoOrderFragment, new OrderAddOnFragment()).commit();
                     //homeScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, new HomeFragment()).commit();
@@ -656,12 +720,347 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
 
         });
 
+        viewHolder.notFavourite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                OrderScreenActivity orderScreenActivity = (OrderScreenActivity) view.getContext();
+                //HomeScreenActivity homeScreenActivity = (HomeScreenActivity) view.getContext();
+
+                if (data.getFoodTransFavourites() == 0){
+
+                    foodId = data.getFoodId();
+                    foodTransName = data.getFoodTransName();
+                    foodTransDesc = data.getFoodTransDesc();
+                    foodTransPrice = data.getFoodTransPrice();
+                    foodTransPriceDiscount = data.getFoodTransPriceDiscount();
+                    foodTransPriceTotal = priceTotal[0];
+                    foodTransPriceDiscountTotal = priceDiscountTotal[0];
+                    buttonTransPosition = isChartQuantity[0];
+                    foodTransItemCount = quantity[0];
+                    foodTransFavourites = 1;
+                    img = data.getFoodImg();
+
+                    updateDataFood(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
+                            foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount,
+                            foodTransFavourites, img);
+
+                    updateDataToZero(data);
+
+                    insertDataFavourites(foodTransName, img);
+
+                    data.setFoodTransFavourites(foodTransFavourites);
+
+                    //Basic animation
+                    colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(),
+                            ContextCompat.getColor(context, R.color.grayButton), ContextCompat.getColor(context, R.color.circleRed));
+                    //viewHolder.favouriteFood.setColorFilter(ContextCompat.getColor(context, R.color.circleRed));
+                    colorAnimation.setDuration(1000);
+                    colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public void onAnimationUpdate(ValueAnimator animation) {
+                            viewHolder.favouriteFood.setColorFilter((int) animation.getAnimatedValue(), PorterDuff.Mode.SRC_IN);
+                        }
+                    });
+                    colorAnimation.start();
+
+                    //Lotti animation
+                    viewHolder.notFavourite.setProgress(0);
+                    viewHolder.notFavourite.pauseAnimation();
+                    viewHolder.notFavourite.setVisibility(View.GONE);
+                    viewHolder.favourite.setAnimation("favourite.json");
+                    viewHolder.favourite.playAnimation();
+                    viewHolder.favourite.setVisibility(View.VISIBLE);
+
+                    /*viewHolder.favouriteFood.animate().setDuration(1000) */
+
+                    //orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.orderSummaryFragment, new OrderScreenOrderFragment()).commit();
+                    orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.paymentDetailsFragment, new OrderPaymentDetailsFragment()).commit();
+                    orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.menuOrderAlsoOrderFragment, new OrderAddOnFragment()).commit();
+                    //homeScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, new HomeFragment()).commit();
+
+                }else if(data.getFoodTransFavourites() == 1){
+
+                    foodId = data.getFoodId();
+                    foodTransName = data.getFoodTransName();
+                    foodTransDesc = data.getFoodTransDesc();
+                    foodTransPrice = data.getFoodTransPrice();
+                    foodTransPriceDiscount = data.getFoodTransPriceDiscount();
+                    foodTransPriceTotal = priceTotal[0];
+                    foodTransPriceDiscountTotal = priceDiscountTotal[0];
+                    buttonTransPosition = isChartQuantity[0];
+                    foodTransItemCount = quantity[0];
+                    foodTransFavourites = 0;
+                    img = data.getFoodImg();
+
+                    updateDataFood(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
+                            foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount,
+                            foodTransFavourites, img);
+
+                    updateDataToZero(data);
+
+                    deleteDataFavourites(foodTransName, img);
+
+                    data.setFoodTransFavourites(foodTransFavourites);
+
+                    //Basic animation
+                    colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(),
+                            ContextCompat.getColor(context, R.color.circleRed), ContextCompat.getColor(context, R.color.grayButton));
+                    //viewHolder.favouriteFood.setColorFilter(ContextCompat.getColor(context, R.color.grayButton));
+                    colorAnimation.setDuration(1000);
+                    colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public void onAnimationUpdate(ValueAnimator animation) {
+
+                            viewHolder.favouriteFood.setColorFilter((int) animation.getAnimatedValue(), PorterDuff.Mode.SRC_IN);
+
+                        }
+                    });
+                    colorAnimation.start();
+
+                    //Lotti animation
+                    viewHolder.favourite.setProgress(0);
+                    viewHolder.favourite.pauseAnimation();
+                    viewHolder.favourite.setVisibility(View.GONE);
+                    viewHolder.notFavourite.setAnimation("not_favourite.json");
+                    viewHolder.notFavourite.playAnimation();
+                    viewHolder.notFavourite.setVisibility(View.VISIBLE);
+
+                    //orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.orderSummaryFragment, new OrderScreenOrderFragment()).commit();
+                    orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.paymentDetailsFragment, new OrderPaymentDetailsFragment()).commit();
+                    orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.menuOrderAlsoOrderFragment, new OrderAddOnFragment()).commit();
+                    //homeScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, new HomeFragment()).commit();
+
+                }
+
+            }
+
+            public void insertDataFavourites(String foodTransName, int foodImg){
+
+                ContentValues contentValues = new ContentValues();
+
+                contentValues.put(DatabaseHelper.COLUMN_YOURFAVOURITES_NAME, foodTransName);
+                contentValues.put(DatabaseHelper.COLUMN_YOURFAVOURITES_IMG, foodImg);
+
+                db.insert(DatabaseHelper.TABLE_YOURFAVOURITES_FRAGMENT, null, contentValues);
+
+            }
+
+            public void deleteDataFavourites(String foodTransName, int foodImg){
+
+                String query = "SELECT "+ DatabaseHelper.COLUMN_YOURFAVOURITES_ID + " FROM "+ DatabaseHelper.TABLE_YOURFAVOURITES_FRAGMENT +" WHERE "+
+                        DatabaseHelper.COLUMN_YOURFAVOURITES_NAME + " = '"+foodTransName+"'";
+                Cursor data = db.rawQuery(query,null);
+
+                if (data.moveToFirst()){
+
+                    helper.deleteDataFavourites(foodTransName);
+
+                }
+
+            }
+
+            public void updateDataFood(int foodId, String foodTransName, String foodTransDesc, int foodTransPrice, int foodTransPriceDiscount,
+                                       int foodTransPriceTotal, int foodTransPriceDiscountTotal, int buttonTransPosition, int foodTransItemCount,
+                                       int foodTransFavourites, int img){
+
+                String query = "SELECT "+ DatabaseHelper.COLUMN_FOOD_ID + " FROM "+ DatabaseHelper.TABLE_FOOD +" WHERE "+
+                        DatabaseHelper.COLUMN_FOOD_NAME + " = '"+foodTransName+"'";
+                Cursor data = db.rawQuery(query,null);
+
+                if (data.moveToFirst()){
+
+                    //Log.e("Data", "Exists");
+                    DataKhanaval dataKhanaval = new DataKhanaval(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
+                            foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, foodTransFavourites, img);
+                    helper.updateData(dataKhanaval);
+
+                }
+
+            }
+
+            public void updateDataToZero(final DataTransaction data){
+
+                DataTransaction dataTransaction = new DataTransaction(data.getFoodId(), data.getFoodTransName(),
+                        data.getFoodTransDesc(), data.getFoodTransPrice(), data.getFoodTransPriceDiscount(),
+                        priceTotal[0], priceDiscountTotal[0], isChartQuantity[0], quantity[0],
+                        foodTransFavourites, data.getFoodTransNotes(), data.getFoodImg());
+
+                helper.updateDataTransWithNotes(dataTransaction);
+
+            }
+
+        });
+
+        /*viewHolder.favouriteFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                OrderScreenActivity orderScreenActivity = (OrderScreenActivity) view.getContext();
+                //HomeScreenActivity homeScreenActivity = (HomeScreenActivity) view.getContext();
+
+                if (data.getFoodTransFavourites() == 0){
+
+                    foodId = data.getFoodId();
+                    foodTransName = data.getFoodTransName();
+                    foodTransDesc = data.getFoodTransDesc();
+                    foodTransPrice = data.getFoodTransPrice();
+                    foodTransPriceDiscount = data.getFoodTransPriceDiscount();
+                    foodTransPriceTotal = priceTotal[0];
+                    foodTransPriceDiscountTotal = priceDiscountTotal[0];
+                    buttonTransPosition = isChartQuantity[0];
+                    foodTransItemCount = quantity[0];
+                    foodTransFavourites = 1;
+                    img = data.getFoodImg();
+
+                    updateDataFood(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
+                            foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount,
+                            foodTransFavourites, img);
+
+                    updateDataToZero(data);
+
+                    insertDataFavourites(foodTransName, img);
+
+                    data.setFoodTransFavourites(foodTransFavourites);
+
+                    colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(),
+                            ContextCompat.getColor(context, R.color.grayButton), ContextCompat.getColor(context, R.color.circleRed));
+                    //viewHolder.favouriteFood.setColorFilter(ContextCompat.getColor(context, R.color.circleRed));
+
+                    colorAnimation.setDuration(1000);
+                    colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public void onAnimationUpdate(ValueAnimator animation) {
+
+                            viewHolder.favouriteFood.setColorFilter((int) animation.getAnimatedValue(), PorterDuff.Mode.SRC_IN);
+
+                        }
+                    });
+
+                    colorAnimation.start();
+                    *//*viewHolder.favouriteFood.animate().setDuration(1000) *//*
+
+                    //orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.orderSummaryFragment, new OrderScreenOrderFragment()).commit();
+                    orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.paymentDetailsFragment, new OrderPaymentDetailsFragment()).commit();
+                    orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.menuOrderAlsoOrderFragment, new OrderAddOnFragment()).commit();
+                    //homeScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, new HomeFragment()).commit();
+
+                }else if(data.getFoodTransFavourites() == 1){
+
+                    foodId = data.getFoodId();
+                    foodTransName = data.getFoodTransName();
+                    foodTransDesc = data.getFoodTransDesc();
+                    foodTransPrice = data.getFoodTransPrice();
+                    foodTransPriceDiscount = data.getFoodTransPriceDiscount();
+                    foodTransPriceTotal = priceTotal[0];
+                    foodTransPriceDiscountTotal = priceDiscountTotal[0];
+                    buttonTransPosition = isChartQuantity[0];
+                    foodTransItemCount = quantity[0];
+                    foodTransFavourites = 0;
+                    img = data.getFoodImg();
+
+                    updateDataFood(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
+                            foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount,
+                            foodTransFavourites, img);
+
+                    updateDataToZero(data);
+
+                    deleteDataFavourites(foodTransName, img);
+
+                    data.setFoodTransFavourites(foodTransFavourites);
+
+                    //Basic animation
+                    colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(),
+                            ContextCompat.getColor(context, R.color.circleRed), ContextCompat.getColor(context, R.color.grayButton));
+                    //viewHolder.favouriteFood.setColorFilter(ContextCompat.getColor(context, R.color.grayButton));
+
+                    colorAnimation.setDuration(1000);
+
+                    colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public void onAnimationUpdate(ValueAnimator animation) {
+
+                            viewHolder.favouriteFood.setColorFilter((int) animation.getAnimatedValue(), PorterDuff.Mode.SRC_IN);
+
+                        }
+                    });
+
+                    colorAnimation.start();
+
+                    //Lotti animation
+
+
+                    //orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.orderSummaryFragment, new OrderScreenOrderFragment()).commit();
+                    orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.paymentDetailsFragment, new OrderPaymentDetailsFragment()).commit();
+                    orderScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.menuOrderAlsoOrderFragment, new OrderAddOnFragment()).commit();
+                    //homeScreenActivity.getSupportFragmentManager().beginTransaction().replace(R.id.layout_selected, new HomeFragment()).commit();
+
+                }
+
+            }
+
+            public void insertDataFavourites(String foodTransName, int foodImg){
+
+                ContentValues contentValues = new ContentValues();
+
+                contentValues.put(DatabaseHelper.COLUMN_YOURFAVOURITES_NAME, foodTransName);
+                contentValues.put(DatabaseHelper.COLUMN_YOURFAVOURITES_IMG, foodImg);
+
+                db.insert(DatabaseHelper.TABLE_YOURFAVOURITES_FRAGMENT, null, contentValues);
+
+            }
+
+            public void deleteDataFavourites(String foodTransName, int foodImg){
+
+                String query = "SELECT "+ DatabaseHelper.COLUMN_YOURFAVOURITES_ID + " FROM "+ DatabaseHelper.TABLE_YOURFAVOURITES_FRAGMENT +" WHERE "+
+                        DatabaseHelper.COLUMN_YOURFAVOURITES_NAME + " = '"+foodTransName+"'";
+                Cursor data = db.rawQuery(query,null);
+
+                if (data.moveToFirst()){
+
+                    helper.deleteDataFavourites(foodTransName);
+
+                }
+
+            }
+
+            public void updateDataFood(int foodId, String foodTransName, String foodTransDesc, int foodTransPrice, int foodTransPriceDiscount,
+                                       int foodTransPriceTotal, int foodTransPriceDiscountTotal, int buttonTransPosition, int foodTransItemCount,
+                                       int foodTransFavourites, int img){
+
+                String query = "SELECT "+ DatabaseHelper.COLUMN_FOOD_ID + " FROM "+ DatabaseHelper.TABLE_FOOD +" WHERE "+
+                        DatabaseHelper.COLUMN_FOOD_NAME + " = '"+foodTransName+"'";
+                Cursor data = db.rawQuery(query,null);
+
+                if (data.moveToFirst()){
+
+                    //Log.e("Data", "Exists");
+                    DataKhanaval dataKhanaval = new DataKhanaval(foodId, foodTransName, foodTransDesc, foodTransPrice, foodTransPriceDiscount,
+                            foodTransPriceTotal, foodTransPriceDiscountTotal, buttonTransPosition, foodTransItemCount, foodTransFavourites, img);
+                    helper.updateData(dataKhanaval);
+
+                }
+
+            }
+
+            public void updateDataToZero(final DataTransaction data){
+
+                DataTransaction dataTransaction = new DataTransaction(data.getFoodId(), data.getFoodTransName(),
+                        data.getFoodTransDesc(), data.getFoodTransPrice(), data.getFoodTransPriceDiscount(),
+                        priceTotal[0], priceDiscountTotal[0], isChartQuantity[0], quantity[0],
+                        foodTransFavourites, data.getFoodTransNotes(), data.getFoodImg());
+
+                helper.updateDataTransWithNotes(dataTransaction);
+
+            }
+
+        });*/
+
         viewHolder.openNotes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 slideNoteData(data);
-
 
             }
 
@@ -737,6 +1136,8 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
         public TextView foodName, foodPrice, foodPriceDiscount, decreaseChartQuantity, increaseChartQuantity, chartQuantity;
         public ImageButton openNotes;
         public CardView orderSummaryCard;
+        public LottieAnimationView favourite;
+        public LottieAnimationView notFavourite;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -752,6 +1153,8 @@ public class AdapterOrderScreenOrder extends RecyclerView.Adapter<AdapterOrderSc
             openNotes = itemView.findViewById(R.id.openNotes);
             favouriteFood = itemView.findViewById(R.id.favouriteFood);
             orderSummaryCard = itemView.findViewById(R.id.orderSummaryCard);
+            favourite = itemView.findViewById(R.id.favourite);
+            notFavourite = itemView.findViewById(R.id.notFavourite);
 
             foodPriceDiscount.setPaintFlags(foodPriceDiscount.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
